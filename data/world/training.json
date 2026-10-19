@@ -1,0 +1,607 @@
+{
+ "notes": [
+  "battle.scenes defeat_*: a boss shot down with a player's robot's help (0x07675e, robot state 0x13) holds the battle: the letterbox bars slide in, the players' controls and HUD wait, and the camera watches it from the stage's fixed cameras no farther than defeat_watch (0x089bb9, 0x07e538) for defeat_frames (60 Hz; the First Ranker first_ranker_defeat_frames, state 0x17) and until an Area Ranker's defeat line (states 0x14-0x16, chatter.json ranker_defeats) has been spoken. A ranker's contest then ends (0x089d1b); another boss's battle goes on.",
+  "Optic Camouflage fades in and out over 60 frames (camouflage_fade_seconds: states 1-2 and 5-6 of 0x074e80); damage breaks it (0x07675e calls 0x075444, state 7), and it then fades out over 20 frames (camouflage_break_seconds).",
+  "The tutorial battle (scene 42) on the training ground, opened by Pepper's lessons (data/ui/pepper_guide.json). The guide's lesson handler (0x2928c) stores a mode in the save (+0x10f10): FreePlay 3, basic controls 0, attack methods 1, Optic Camouflage 2. training_split2 and training_split4 are the port's tests of the split-screen HUD (Tools > Level Select): FreePlay with \"screens\" screens, each following one robot (the player's, then the drones) with its own camera and HUD (docs/TRAINING_GROUND.md).",
+  "battle.courses lists each mode's lesson steps: robot states 0x18-0x2e of the state table at 0x242d38 (researcher-assigned goal names; amounts are the values the state handlers compare against). Each step plays Pepper's first message (battle.lessons, converted from the XBE), waits for its goal, then plays the second. A mode without a course is FreePlay. battle.buttons.exit opens the pause menu: RESUME, or EXIT and then YES, leaves deliberately (ui/battle_pause.json).",
+  "Walk and dash speeds come from the leg motions' root travel (stride_speeds: the original moves robots by root motion, 0x0910d4); movement's speeds apply to legs without root motion. movement.gravity is the original's (0x07d117: 9.8 units/s^2 at the battle's 30 Hz logic rate, 0x255ab0 scene 42, times the world scale 2.5 set at 0x046aa5), and so are the twist and pitch values (0x07d330: the twist, robot +0xf8, turns by the legs' turn times the 2 frames a tick and the stick within 45 degrees, so with legs records twist_degrees_per_second is theirs; the aim pitch follows the camera's look, 3 degrees a tick times the stick, 0x19f8f8, limited to 45 degrees by the camera (0x07fd72), with a separate body-animation clamp of 0.4 rad (0x0aa499); the reset eases back over 8 ticks); with legs records the dodge pushes are the legs' too (+0x9c on the ground, +0xac in the air, times the speed factor, 0.1..30 units a tick added 2 frames a tick, 0x07c34e, 0x08d98c), and dodge_speed and air_dodge_speed apply only without them; the dodge motion's frames time the dodge (0x08ef79): the robot goes on as it moved until the loop start, slides on its speed plus the push, keeping dodge_keep of it a tick, until the loop end, then slows until the last frame (on the ground to the slide times dodge_ease for each frame left plus one, in the air keeping air_dodge_keep a tick); dodge_seconds is the slide for a motion without frames; with the Standard controls the left stick pushed past flick_stick to one side, let go and pushed there again, each step within flick_seconds, dodges to that side, standard_air_strafe preserves the requested lateral movement in the air; when disabled, the original left-stick turn and right-stick priority above standard_air_turn_stick apply (0x0774ad). Forward stride movement samples the motion root per tick; stopping retains the leg record's stop_keep of world momentum each battle tick until below stop_speed (0x09281d, 0x090d21); a melee strike plays the arm's strike motion (0x09dd24) and steps forward at strike_speed (0x199fd4: 0.25 units a frame) while its blade is armed; the motion's frames in the leg type's timing table disarm the blade and end the strike (0x08ddb2, 0x08fc1e); once the lock has completed it lunges at the locked robot instead (0x091245: lunge_turn_degrees a tick, at most the dash motion's rate times lunge_rate_speed, nothing while facing more than lunge_cone_degrees away, climbing lunge_climb_rate of the height between them a second; the computer_ values for computer robots); robot radii come from the leg types (robots/catalogue.json). Weapons naming a part take their damage, fire interval, rounds, spread, speeds, lifetime, homing, launch angle, blast, ammunition, beam recharge, stun, knockback and knockdown from that record at its level (tables/parts.json, docs/PART_RECORDS.md); their values here apply only when parts.json is missing (knockback in units/s, knockdown_percent, recharge_seconds). The robots' critical, dodge and knockdown and knockback resistances come from their chip and legs records, and their weight against their frame and the legs' capacity slows their walk and dash (the leg motions play slower), turns and jump (0x075a36, docs/PART_RECORDS.md); with legs records the turns (one rate on the ground, in a dash and in the air) and the jump height are the legs' own under the load, and movement's turn rates and jump_height apply only to robots without them. A held jump eases toward 0.4 of the speed that throws it the whole height and its lift cancels gravity until it has risen 0.84 of it (0x08ea5b, 0x0905af); a tap rises only the throw. A stunned robot plays the hit reaction for the way the hit pushes it (0x08dcd1), for the weapon's stun, at most the motion's 29 frames (movement.hit_seconds; 0x07675e, 0x08f989). battle.chatter is the battle chatter the robots speak (converted from the XBE); a line opens with chatter_sound and its script frames run at chatter_frame_rate (the battle's logic rate, a port reading). Lock, reach, stagger and gravity values stay port values; a weapon whose record has no stun does not stagger. A lobbed round falls at 49 units/s^2 (0x097c30: 9.8 / 30^2 x 2.5 a tick on a per-frame velocity that moves 2 frames a tick). With armour_from_parts the robots' armour is their body and legs records' (0x076114; the player's robot takes the player floors, the drones the computer ones) and hp applies only without the records; pilot names a pilot record whose tag labels the robot's marker. hit_flash_seconds above 0 turns a hit robot white that long, a port addition: the original's damage (0x0988e1, 0x09d2ce) and robot drawing (0x082e60) set no flash. Other movement and HUD values are port values. Drones walk the stage's enemy path (battle.enemy_path, converted from Media/enepath) and respawn at the entry farthest from the player.",
+  "The arena is the square |x|,|z| <= half_size less the four corner towers (blocks, {x0, z0, x1, z1}), measured from the choco stage model.",
+  "battle.scenes is FreePlay's entrance and exit (robot states 1-4 and 6 of the state table at 0x242d38; tables/battle_scenes.json holds their cameras, the walk and the stages' gates, 0x258f50 and 0x201598). FreePlay (save +0x10f10 3) starts the robot in gate `gate` of stage `stage` (0x082552); it walks out under letterbox bars in one of four camera shots picked at random, READY and GO! show (ready_frame, go_frame: 60 Hz frames left of 540) and the camera eases into the chase view over blend_frames. Walking back into a gate (gate_radius across, gate_height up) turns the robot to it and walks it in, and the battle ends (0x08224d, 0x08a161). The chip says its sign-off as it leaves: event 0x1c, or 9 with less than left_armour of its armour. The drones walk out of gate index % 4 too (computer_entrance, 0x082552), using the same walk at computer_entrance_speed (2 by default). With computer_entrance_skip_stand true they resume AI at the walk endpoint, without the player standing phase, for a three-second unobstructed entry. Their shield is visible while waiting inside the door and throughout the walk, and their entry path starts at its nearest point. A drone that walks back into a gate leaves as the player does, without the bars (computer_exit); it stands in the gate, shielded for gone_shield_frames, until the door has shut, and then is out of the battle and respawns (0x08a496, 0x047c9e); a drone whose gate door is busy waits up to entry_delay frames. A boss walks out of its gate in its own scene (state 5, 0x082cff) the first time in a battle: it takes the camera and the letterbox bars, the player's controls wait, boss_music starts and the boss walks at the scene's own pace while the other robots fight on; robots walking in are shielded (entry_shield). regular_battle is the original's battle modes 0 and 2, off for the tutorial's mode 4: it raises the entrance chatter (event 0x12 for the player and allies, 0 or 4 for rivals), plays play_in_music play_in_frame frames before the player's entrance ends, and makes computer robots wait for the other robots' scenes (0x09199e). Each entrance opens its gate's door at door_frame (0x070667) and the exit shuts it at close_frame (0x0707ae); doors are the stage's gate doors from tables/battle_scenes.json, drawn from doors.model, and open, hold and close over doors.*_seconds (0x0731c5, 0x073430). A robot that walks into a shut door opens it; one shut by the exit stays locked until it has closed. rider_entrance is the VS start: each piloted robot walks out of its own gate with the state 1 walk (0x080778, 0x082552), its controls waiting until it stands; off, it starts where that walk ends.",
+  "A weapon with a part takes its record's stats over the values here (robot_parts.cpp apply_weapon_stats): its range, lock_range and stagger_seconds too (port/src/weapon_reach.cpp, docs/PART_RECORDS.md). Arm weapons lock inside the chip's inner box and shoulder and melee weapons inside its outer one (0x05262d, 0x051e37); a robot without the player's drawn reticle takes the boxes around its sight, 64 units ahead of its aim (0x04e6b8), seen through its camera or, without one, from its own eyes at sight_fov_degrees (a port value). A lobbed round's gravity (49, the original's 0x097c30) stays a port value.",
+  "music is the track the original starts for scene 42 (tables/music.json scene_music: track 5, 12SENTOU). Text is in 640x480 canvas units.",
+  "The player's parts are the tutorial's robot. A new game's save has no robot (the garage is empty and nothing is ridden); the tutorial (0x97457) copies robot preset 0x411 PRACHOLY (tables/garage.json robots) into the player's loadout (save +0x5c4c). Its chip is Dog I (tables/parts.json chips 14, shown on the HUD as the reticles, tracking and a 22-frame lock) and, per weapon, part names the original record at its level: Pistol/HM15 (arm 0), Penetrate Cone (arm 6), M-24L/1 Aspide (shoulder 2) and G24 Slingshot (shoulder 0); its body, legs, paint (23) and emblem are the look's. The preset's module (0, OCGIIIA) comes with it (player.modules): the whole 0x3c-byte preset is copied into team loadout 0 (0x974f8), and 0x075d4a adds the critical and knockdown resistance of the modules at loadout +0x22 to the chip's. A robot from the garage fits its hangar's modules the same way. A record gives the weapon its HUD kind, ammunition and homing; flight, damage and timing stay the port's tuning. Weapons refill only from supply pickups, as in the original (0x06ad29); ammo_refill_seconds above 0 also refills an empty weapon after that long (port choice, off).",
+  "object_reward_ny is what a direct hit that starts a stage object's destruction pays its shooter, by the object's kind (object +0x40): the table at 0x203734 counts tens of stored units (0x0486af multiplies by 10), and money is stored in tens of NY. A blast catching an object on its way pays nothing (docs/DESTRUCTIBLE_REWARDS.md)."
+ ],
+ "stage": "choco_day",
+ "music": "tutorial_battle",
+ "return_to": "pepper_guide",
+ "lessons": {
+  "training_free": {
+   "title": "FreePlay",
+   "mode": 3
+  },
+  "training_basic": {
+   "title": "{xbe:0x19afac}",
+   "mode": 0
+  },
+  "training_attack": {
+   "title": "{xbe:0x19af7c}",
+   "mode": 1
+  },
+  "training_optic": {
+   "title": "{xbe:0x19af48}",
+   "mode": 2
+  },
+  "training_split2": {
+   "title": "FreePlay, 2 screens",
+   "mode": 3,
+   "screens": 2
+  },
+  "training_split4": {
+   "title": "FreePlay, 4 screens",
+   "mode": 3,
+   "screens": 4
+  }
+ },
+ "robots": {
+  "player": {
+   "body": 0,
+   "legs": 0,
+   "arms": [
+    0,
+    6
+   ],
+   "shoulders": [
+    2,
+    0
+   ],
+   "colour": 23,
+   "emblem": 205
+  },
+  "drone": {
+   "body": 12,
+   "legs": 23,
+   "arms": [
+    39,
+    39
+   ],
+   "shoulders": [
+    -1,
+    -1
+   ],
+   "colour": 0
+  }
+ },
+ "battle": {
+  "lessons": "tables/lessons.json",
+  "chatter": "tables/chatter.json",
+  "chatter_sound": "chatter",
+  "chatter_frame_rate": 30,
+  "scenes": {
+   "tables": "tables/battle_scenes.json",
+   "stage": 6,
+   "gate": 0,
+   "entrance": true,
+   "exit": true,
+   "computer_entrance": true,
+   "computer_entrance_speed": 2,
+   "computer_entrance_skip_stand": true,
+   "computer_exit": true,
+   "rider_entrance": true,
+   "regular_battle": false,
+   "ready_frame": 90,
+   "go_frame": 30,
+   "stand_frame": 180,
+   "door_frame": 480,
+   "close_frame": 30,
+   "play_in_frame": 360,
+   "music_gap_seconds": 3,
+   "entry_delay": 120,
+   "blend_frames": 20,
+   "letterbox_frames": 30,
+   "gate_radius": 5.97,
+   "gate_height": 10.5,
+   "exit_facing": 0.1,
+   "exit_turn": 0.10471976,
+   "exit_step": 0.2,
+   "still_step": 0.01,
+   "left_armour": 0.25,
+   "gone_shield_frames": 30,
+   "defeat_frames": 180,
+   "first_ranker_defeat_frames": 240,
+   "defeat_watch": 10,
+   "ready_sound": "battle_ready",
+   "go_sound": "battle_go",
+   "play_in_music": "battle_play_in",
+   "boss_music": "boss_start",
+   "doors": {
+    "enabled": true,
+    "model": "models/model/choco_effmodel_mdl.gltf",
+    "open_angle": 0.58,
+    "open_seconds": 1.0,
+    "passable_seconds": 0.6666667,
+    "hold_seconds": 5.0,
+    "close_seconds": 1.0,
+    "close_open_seconds": 0.9666667,
+    "open_sound": "door_open",
+    "move_sound": "door_move"
+   }
+  },
+  "enemy_path": "enepath/choco_es_01_enepath.json",
+  "stride_speeds": true,
+  "arena": {
+   "half_size": 100,
+   "blocks": [
+    [
+     89.5,
+     89.5,
+     109.6,
+     109.6
+    ],
+    [
+     -109.6,
+     89.5,
+     -89.5,
+     109.6
+    ],
+    [
+     89.5,
+     -109.6,
+     109.6,
+     -89.5
+    ],
+    [
+     -109.6,
+     -109.6,
+     -89.5,
+     -89.5
+    ]
+   ]
+  },
+  "movement": {
+   "walk_speed": 7.5,
+   "back_speed": 5.5,
+   "walk_accel": 60,
+   "stop_keep": 0.875,
+   "stop_speed": 6,
+   "dash_speed": 24,
+   "dash_back_speed": 18,
+   "turn_degrees_per_second": 110,
+   "dash_turn_degrees_per_second": 70,
+   "air_turn_degrees_per_second": 55,
+   "stick_threshold": 0.01,
+   "dash_stick": 0.7,
+   "dash_hold_seconds": 0.5,
+   "brake_cut_seconds": 0.35,
+   "dash_turn_legs": [2, 3, 4, 8, 9, 13, 14, 15],
+   "dash_turn_stick": 0.3,
+   "dash_turn_ease_ticks": 16,
+   "flick_stick": 0.5,
+   "flick_seconds": 0.1667,
+   "standard_air_turn_stick": 0.001,
+   "standard_air_strafe": true,
+   "quick_turn_stick": 0.5,
+   "quick_turn_degrees": 90,
+   "quick_turn_share": 0.8,
+   "quick_turn_cooldown_seconds": 0.2667,
+   "jump_height": 16,
+   "gravity": 24.5,
+   "down_boost_acceleration": 58.8,
+   "air_control": 0.5,
+   "dodge_speed": 32,
+   "air_dodge_speed": 32,
+   "dodge_keep": 0.99,
+   "dodge_ease": 0.05,
+   "air_dodge_keep": 0.9,
+   "dodge_seconds": 0.3,
+   "strike_speed": 15,
+   "lunge_rate_speed": 120,
+   "computer_lunge_rate_speed": 84,
+   "lunge_turn_degrees": 11.25,
+   "computer_lunge_turn_degrees": 7.875,
+   "lunge_cone_degrees": 90,
+   "lunge_climb_rate": 6,
+   "twist_degrees_per_second": 90,
+   "twist_limit_degrees": 45,
+   "twist_stretch_degrees": 0,
+   "twist_stick_keep": 0.9,
+   "twist_reset_seconds": 0.2667,
+   "pitch_limit": 0.7853982,
+   "pitch_per_second": 1.5708
+  },
+  "weapons": {
+   "handgun": {
+    "label": "HANDGUN",
+    "part": {"table": "arm", "index": 0, "level": 0},
+    "kind": "gun",
+    "damage": 20,
+    "cooldown": 0.12,
+    "speed": 250,
+    "range": 150,
+    "lock_range": 120,
+    "spread_degrees": 1.0,
+    "stagger_seconds": 0.1
+   },
+   "drill": {
+    "label": "DRILL",
+    "part": {"table": "arm", "index": 24, "level": 0},
+    "kind": "melee",
+    "damage": 60,
+    "cooldown": 0.6,
+    "range": 7,
+    "lock_range": 30,
+    "stagger_seconds": 0.5
+   },
+   "cone": {
+    "label": "CONE",
+    "part": {"table": "arm", "index": 6, "level": 0},
+    "kind": "melee",
+    "damage": 60,
+    "cooldown": 0.6,
+    "range": 7,
+    "lock_range": 30,
+    "stagger_seconds": 0.5
+   },
+   "missile": {
+    "label": "MISSILE",
+    "part": {"table": "shoulder", "index": 2, "level": 0},
+    "kind": "missile",
+    "damage": 50,
+    "cooldown": 1.2,
+    "speed": 80,
+    "range": 220,
+    "lock_range": 160,
+    "turn_degrees_per_second": 360,
+    "blast_radius": 5,
+    "stagger_seconds": 0.4
+   },
+   "grenade": {
+    "label": "GRENADE",
+    "part": {"table": "shoulder", "index": 0, "level": 0},
+    "kind": "grenade",
+    "damage": 45,
+    "cooldown": 1.0,
+    "speed": 60,
+    "range": 90,
+    "lock_range": 90,
+    "gravity": 49,
+    "blast_radius": 8,
+    "stagger_seconds": 0.4
+   }
+  },
+  "robot_radius": 2.4,
+  "robot_height": 4.4,
+  "hit_flash_seconds": 0,
+  "sight_fov_degrees": 55,
+  "fence_contact_seconds": 0.016,
+  "drone_respawn_seconds": 4,
+  "death_fallback_seconds": 2,
+  "object_reward_ny": [10000, 5000, 3000, 7000, 4000, 3000, 0, 10000, 0],
+  "robot_wrecks": {
+   "burn_seconds": 6.45,
+   "reward_ny": 10000,
+   "break_effect": 15,
+   "break_sound": "sound/sfx/battle/16.wav"
+  },
+  "drone_walk": 0.6,
+  "drone_reach": 3,
+  "camouflage_seconds": 12,
+  "camouflage_recharge_seconds": 20,
+  "camouflage_fade_seconds": 1,
+  "camouflage_break_seconds": 0.333,
+  "optical_camouflage": {
+   "notes": "Optic Camouflage's look (Media/Shaders/multi_optical.xvu, Blend.xpu; set up at 0x0c21db). Inside a sphere the robot is seen; outside it shows the world behind, picked where the vertex lands pushed along its normal. The sphere's centre rises 'rise' above the robot's base (its lower collision sphere's centre) over camouflage_fade_seconds.",
+   "rise": 10,
+   "radius": 5,
+   "edge": 1,
+   "reach": 4,
+   "push": 1,
+   "least": 0.25
+  },
+  "entry_shield": {
+   "notes": "A robot walking into the battle is shielded (robot +0x27d4): 300 timer frames (1/60 s, two a battle tick) from its entrance (0x082552, renewed while it waits at its gate, 0x089032, 0x0892d1), and the player's robot for its exit scene (0x08224d). No hit hurts it meanwhile. Its glow (+0xac) changes in the robot's draw (0x082e60), which a battle runs once a 30 Hz tick (0x0c53b1 waits refresh / rate vertical blanks before each swap): it rises 0.015 a draw to 0.3 while more than 10 timer frames are left, then falls 0.03 a draw (rise_per_second 0.45, fall_per_second 0.9). Drawn by 0x06f592: mesh 30 of resource 197 (object slot 0x41b, a sphere one unit across) at the lower collision sphere's centre, 3.2 leg radii across, turned by the heading plus a shared angle (0x988570) that grows 0.02 a draw, colour 0x64ffffff times the glow, added to what is behind it, unculled and unlit. rainbow.xvu/rainbow.xpu (constants from 0x0c43ae) give each vertex 0.75 times the object's light, from the light direction dotted with the model's own normal, plus 0.5 times red, green and blue bands phase-shifted by 0.6666 along the model's height, clamped to 0..1, and planar UVs (x + 0.5, y + 0.5 + scroll). The phase steps -0.03 a draw and restarts at 1 below -1; the scroll steps -0.01. muteki01.tga supplies the wave alpha; alpha is the glow times it, without the caller's 100/255 multiplier. The angle, phase and scroll are globals stepped by every shield drawn, so two shielded robots turn and cycle twice as fast (per_shield; false steps them once whatever the number of shields). The port advances them by elapsed time at update_hz draws a second, once for all cameras.",
+   "seconds": 5,
+   "fade_from": 0.1667,
+   "peak": 0.3,
+   "rise_per_second": 0.45,
+   "fall_per_second": 0.9,
+   "model": "models/binlink/197_30.gltf",
+   "scale": 3.2,
+   "spin_per_second": 0.6,
+   "colour": [1, 1, 1, 1],
+   "update_hz": 30,
+   "phase_step": -0.03,
+   "scroll_step": -0.01,
+   "per_shield": true
+  },
+  "robot_shadows": {
+   "notes": "0x082e60: a player's robot casts a stencil shadow volume (view layer 3, 0x0b7230) unless the screen is split (+0x11074); every other robot, while it stands on the ground (+0x252c), has a flat shadow shaped for its legs, mesh 0x242750[leg type] of resource 184 (robots/catalogue.json leg_types shadow_mesh), placed with the robot and coloured 0x60ffffff (view layer 8). Robots are drawn after the volumes and clear the stencil (layers 4-6), so volumes shadow the stage only; the stage's shadow_colour (stages.json) is laid where they counted (0x0b6b80). volume_length: how far a volume reaches along the light. Layer 3 draws the volumes with vertex shader 6, whose constants (0x0c2637) are c4 = (50, 0.5, 0, 1) and c5 = the light's direction; 50 is read as the length (the shader's microcode was not decoded). camouflage_hides (port option, on): a flat shadow fades with Optic Camouflage and a volume goes once it is half on. The original's shadows ignore the camouflage state +0x3494; set false for that.",
+   "volumes": true,
+   "split_screen_volumes": false,
+   "volume_length": 50,
+   "ground_model": "models/binlink/184.gltf",
+   "ground_colour": [1, 1, 1, 0.3765],
+   "camouflage_hides": true
+  },
+  "ammo_refill_seconds": 0,
+  "supply": {
+   "notes": "FreePlay's supply drops (0x066940; the stage's routes are tables/battle_scenes.json supply_routes). Counts are in the original's 30 Hz ticks: the carrier flies 'speed' of a route segment a tick, opens its hatch on the drop segment and lets its pickups fall drop_ticks apart; a landed pickup waits lifetime_ticks. each kind's 'chance' is its odds (stages 6 and 7, set 6 of the table at 0x24b3cc) and it gives money (credits), repair (a share of the armour) or ammo (a share of one weapon's magazine). A shot within carrier_radius brings the carrier down and pays its shooter shot_bounty; an explosion plays immediately and cargo still carried is removed, while already falling or landed pickups survive. The wreck keeps wreck_keep of its horizontal speed and sinks wreck_sink a tick until it contacts the stage or wreck_ticks pass, then explodes again. A shot within pickup_radius bursts a pickup. 'look' names the meshes of each stage parity's model (resource 207 even, 208 odd).",
+   "speed": 0.03,
+   "pickups": 3,
+   "drop_ticks": 50,
+   "lifetime_ticks": 900,
+   "ammo_to_notes": "Which weapon an ammo box refills (port addition, docs/SUPPLY_BOXES.md): 'emptiest', the one with the smallest share of its magazine left, so that a second box goes to the next emptiest; 'random', the original's pick among those short of rounds.",
+   "ammo_to": "emptiest",
+   "carrier_radius": 3,
+   "pickup_radius": 1,
+   "shot_bounty": 1000,
+   "wreck_keep": 0.6,
+   "wreck_sink": 0.3,
+   "wreck_ticks": 500,
+   "kinds_notes": "Each pickup rolls one kind by 'chance'; a pickup's kind is its place in this list, so only ever append. Money 'amount' is in stored units (tens of NY): 10000 shows as 100,000 NY. The first ten are the original's (its chances, except 1,000 NY at 0.0625 for the port's three top tiers); the look fields are the port's (docs/SUPPLY_BOXES.md): 'image' a crate picture drawn on original crate 'crate', 'tint' its body colour and 'label_tint' its lettering's, 'glow' (else the tint), 'glow_scale', 'glow_cycle' hue turns a second, 'sheen' and 'take_sounds'. 'special_chance' is a kind's odds on the red carrier (none: its 'chance').",
+   "kinds": [
+    { "effect": "money", "amount": 100, "chance": 0.0625, "special_chance": 0 },
+    { "effect": "money", "amount": 500, "chance": 0.12, "special_chance": 0 },
+    { "effect": "money", "amount": 1000, "chance": 0.08, "special_chance": 0.125 },
+    { "effect": "money", "amount": 10000, "chance": 0.02, "special_chance": 0.2, "image": "textures/supply/money_100000.png", "tint": "#8A4FFF", "label_tint": "#FFFFFF" },
+    { "effect": "repair", "amount": 0.1, "chance": 0.15, "special_chance": 0 },
+    { "effect": "repair", "amount": 0.3, "chance": 0.1, "special_chance": 0.1 },
+    { "effect": "repair", "amount": 0.5, "chance": 0.1, "special_chance": 0.15 },
+    { "effect": "ammo", "amount": 0.3, "chance": 0.06, "special_chance": 0 },
+    { "effect": "ammo", "amount": 0.5, "chance": 0.15, "special_chance": 0.1 },
+    { "effect": "ammo", "amount": 1.0, "chance": 0.14, "special_chance": 0.15 },
+    { "effect": "money", "amount": 25000, "chance": 0.01, "special_chance": 0.1, "crate": 3, "image": "textures/supply/money_250000.png", "tint": "#FF8A1E", "label_tint": "#FFFFFF" },
+    { "effect": "money", "amount": 50000, "chance": 0.005, "special_chance": 0.05, "crate": 3, "image": "textures/supply/money_500000.png", "tint": "#FFC83A", "label_tint": "#4A2A08", "sheen": 0.6 },
+    { "effect": "money", "amount": 100000, "chance": 0.0025, "special_chance": 0.025, "crate": 3, "image": "textures/supply/money_1000000.png", "tint": "#FFD54A", "label_tint": "#B01818", "sheen": 1.0, "glow_scale": 1.5, "glow_cycle": 0.75, "take_sounds": ["supply_take", "spin_pay"] }
+   ],
+   "special_notes": "The red carrier (port addition, docs/SUPPLY_BOXES.md): once 'streak' carriers in a row are shot down before dropping anything, the next is tinted 'tint', 'scale' times as big, pays 'shot_bounty' (stored units) when shot down and drops one pickup onto each of 'spots' ([x, z]: the helipad's H, two bars of four and the middle), 'drop_ticks' apart, each kind rolled by its 'special_chance'. 'arrive_sound' plays as it sets out. A streak of 0 turns it off.",
+   "special": {
+    "streak": 3, "tint": "#E01E1E", "scale": 1.2, "drop_ticks": 12, "shot_bounty": 5000, "arrive_sound": "warning",
+    "spots": [[-2.3, 3.6], [-2.3, 1.2], [-2.3, -1.2], [-2.3, -3.6], [0, 0], [2.3, -3.6], [2.3, -1.2], [2.3, 1.2], [2.3, 3.6]]
+   },
+   "rescue_notes": "The rescue (port addition, docs/SUPPLY_BOXES.md): when a player's robot is below 'armour_share' of its armour as a carrier sets out, that carrier's first box is a repair box giving at least 'min_repair' of the armour (the 50% box), and as it falls it glides toward the robot by up to 'glide' across a tick (fall_speed is 0.5) so that it lands at its feet, or as near as it can reach. One box for each such player. An armour_share of 0 turns it off.",
+   "rescue": { "armour_share": 0.25, "min_repair": 0.5, "glide": 1.5 },
+   "look": {
+    "models": [
+     { "model": "models/binlink/207.gltf", "body": 0, "doors": [2, 3], "spinner": 4, "wreck": 1, "first_pickup": 5 },
+     { "model": "models/binlink/208.gltf", "body": 0, "shell": 1, "doors": [3, 4], "spinner": 5, "wreck": 2, "first_pickup": 6 }
+    ],
+    "pickup_scale": 2.5,
+    "glow_texture": "textures/binlink/1574.png",
+    "glow_size": 3.7,
+    "glow_pull": 1.8,
+    "glow_alpha": 0.376,
+    "tint_pulse": 0.8,
+    "tint_base": 0.7,
+    "glow_colours": [[0.439, 0.439, 0.816], [0.627, 0.627, 0.627], [0.439, 0.816, 0.439]],
+    "take_effects": [49, 50, 51],
+    "take_rate": 2400,
+    "take_bursts": 3,
+    "burst_effect": 64,
+    "take_sound": "supply_take"
+   }
+  },
+  "chase_camera": {
+   "notes": [
+    "The battle camera's behind view (0x07edfa, ticked by 0x07dd2a for camera struct 0x98bb30 + i * 0xd0). Its yaw and pitch close follow of the gap to the robot's heading plus twist and to its aim pitch (clamped to pitch_limit_degrees) every tick (0x07fc5e, 0x07fd72).",
+    "With R the pitch then the yaw, the look point is the feet + R (0, height + pitch_lift |pitch|, -look_ahead) and the wanted eye the torso + R (0, the same, behind). In the air (robot +0x252c clear) the eye rises robot_top less half a leg radius. A sight line from robot_top above the feet (one leg radius lower in the air) that meets a wall puts the wanted eye wall_margin off it along the wall's normal (0x053db4).",
+    "The eye closes 1 / eye_follow_ticks of its gap to the wanted eye a tick (0x0805a0(3.0)); within the leg radius plus robot_clearance of the robot's lower sphere it rises clearance_lift a tick (0x17ac38); its eye_radius sphere then sweeps against the stage from where it was (0x052c1f).",
+    "robot_top stands in for robot +0x3240, which is only read (0x07edfa, 0x07973f, 0x07c7c0) and whose source is not recovered; it is the battle's robot_height."
+   ],
+   "fov_degrees": 52,
+   "near_plane": 0.3,
+   "far_plane": 6000,
+   "tick_rate": 30,
+   "follow": 0.3,
+   "pitch_limit_degrees": 45,
+   "behind": 6.15,
+   "look_ahead": 8,
+   "height": 2.0,
+   "pitch_lift": 2.0,
+   "eye_follow_ticks": 3,
+   "wall_margin": 1.0,
+   "robot_clearance": 1.0,
+   "clearance_lift": 0.1,
+   "eye_radius": 1.0,
+   "robot_top": 4.4
+  },
+  "camera_views": {
+   "fov_degrees": [52, 52, 52, 52, 52, 52],
+   "start_view": 1,
+   "tick_rate": 30,
+   "blend_ticks": 20,
+   "follow": 0.3,
+   "pitch_limit_degrees": 45,
+   "pitch_lift": 2.0,
+   "orbits": [
+    {"offset": [-5.5, 1.65, 0]},
+    {"offset": [8, 5, 0], "pitch_lift": true},
+    {"offset": [0, 1.65, -8], "pitch_lift": true}
+   ],
+   "eye_height": [0.8, 0.9, 0.8, 1.0, 1.1, 0.9, 1.1, 1.1, 1.0, 1.0, 0.8, 0.4, 0.4, 0.4, 0.4, 0.4],
+   "eye_forward": [1.0, 1.0, 1.0, 1.6, 1.5, 1.2, 1.2, 1.2, 0.9, 1.0, 1.0, 1.7, 1.8, 1.7, 1.8, 1.7],
+   "look_distance": 24,
+   "fixed_pick_ticks": 30,
+   "fixed_candidates": 3
+  },
+  "buttons": {
+   "fire": {
+    "right_arm": "right_trigger",
+    "left_arm": "left_trigger",
+    "right_shoulder": "b",
+    "left_shoulder": "y"
+   },
+   "fire_labels": {
+    "right_arm": "RT",
+    "left_arm": "LT",
+    "right_shoulder": "B",
+    "left_shoulder": "Y"
+   },
+   "camouflage": "x",
+   "jump": "a",
+   "dash": "left_thumb",
+   "down_boost": "left_thumb",
+   "reset_twist": "right_thumb",
+   "dodge_left": "white",
+   "dodge_right": "black",
+   "exit": [
+    "back"
+   ],
+   "view_first_person": "pad_up",
+   "view_behind": "pad_down",
+   "view_next": "pad_right",
+   "view_previous": "pad_left"
+  },
+  "player": {
+   "start": [
+    0,
+    0,
+    40
+   ],
+   "heading_degrees": 0,
+   "hp": 300,
+   "chip": {"index": 14, "level": 0},
+   "modules": [0],
+   "weapons": {
+    "right_arm": "handgun",
+    "left_arm": "cone",
+    "right_shoulder": "missile",
+    "left_shoulder": "grenade"
+   }
+  },
+  "drone": {
+   "count": 4,
+   "hp": 100,
+   "boss": false,
+   "weapons": {}
+  },
+  "courses": {
+   "0": [
+    {
+     "state": 24
+    },
+    {
+     "state": 25,
+     "goal": "walk_both_ways",
+     "amount": 15,
+     "walk_limit": 0.7
+    },
+    {
+     "state": 26,
+     "goal": "turn_right",
+     "amount": 6.2832,
+     "turn_only": 1
+    },
+    {
+     "state": 27,
+     "goal": "turn_left",
+     "amount": 6.2832,
+     "turn_only": -1
+    },
+    {
+     "state": 28,
+     "goal": "dash",
+     "amount": 80
+    },
+    {
+     "state": 29,
+     "goal": "jump"
+    },
+    {
+     "state": 30,
+     "goal": "high_jump",
+     "amount": 8
+    },
+    {
+     "state": 31,
+     "goal": "dodge_both",
+     "amount": 2
+    },
+    {
+     "state": 32,
+     "goal": "twist_both",
+     "amount": 0.7854
+    },
+    {
+     "state": 33,
+     "goal": "twist_reset"
+    },
+    {
+     "state": 34,
+     "end": true
+    }
+   ],
+   "1": [
+    {
+     "state": 35
+    },
+    {
+     "state": 36,
+     "goal": "kills",
+     "amount": 3,
+     "drones": true,
+     "weapons": [
+      "right_arm"
+     ]
+    },
+    {
+     "state": 37,
+     "goal": "kills",
+     "amount": 3,
+     "drones": true,
+     "weapons": [
+      "left_arm"
+     ]
+    },
+    {
+     "state": 38,
+     "goal": "kills",
+     "amount": 3,
+     "drones": true,
+     "weapons": [
+      "right_shoulder"
+     ]
+    },
+    {
+     "state": 39,
+     "goal": "kills",
+     "amount": 3,
+     "drones": true,
+     "weapons": [
+      "left_shoulder"
+     ]
+    },
+    {
+     "state": 40,
+     "goal": "kills",
+     "amount": 10,
+     "drones": true,
+     "weapons": [
+      "right_arm",
+      "left_arm",
+      "right_shoulder",
+      "left_shoulder"
+     ]
+    },
+    {
+     "state": 41,
+     "end": true
+    }
+   ],
+   "2": [
+    {
+     "state": 42
+    },
+    {
+     "state": 43,
+     "goal": "camouflage",
+     "place_drone": 30
+    },
+    {
+     "state": 44,
+     "end": true
+    }
+   ]
+  }
+ }
+}

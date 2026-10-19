@@ -1,0 +1,229 @@
+{
+ "notes": ["The three SV dealers on the town map (original scene 34, shared: create 0x3b19b, init 0x3af43, end 0x39d6a; menu 0x3a990, profile 0x3a5bc, trade 0x3a92a and 0x3a789, buy 0x3a618, hangars 0x3a2fe, notices 0x3abda, question 0x3ad84, leaving 0x3a500; draws 0x39e46, 0x396be, 0x399d8, 0x39585, 0x39db6). The town map sets which dealer (0x393de: American Stars 0, Kojima 1, Ventuno 2), which picks its look from the tables at 0x1fd708-0x1fddb8 (dealers.*) and its lineup from the day's calendar entry (tables/town.json dealers, by index): three SVs from tables/garage.json dealer_lineups, each a robot record and a name plate (pictures).", "opening: the band (1213) slides in from band_from over band_seconds (20 frames), then the menu's icons from slide_from, slide_distance along, over menu_seconds (40 frames, 0x19d440); welcome (1216) shows with the band and fades as the icons arrive ((1 - menu) x band, 0x39603). A press skips it. EXIT and NAME ENTRY run it backwards with farewell (1215) instead, then fade out. SV SPEC only fades to the selected robot; returning resumes the open menu at the same item, without a farewell or another welcome.", "panorama: the dealer's four backgrounds (640 x 480, the last 200 wide) side by side, scrolling left 0.5 a frame (scroll_speed) at half brightness (0x808080), wrapping. top, bottom and line (1212, stretched x100) frame it.", "menu: left/right over COMPANY PROFILE, the three SVs and EXIT (0x6d1cd flags 0x17, sys 3), the chosen icon lit over its plain one; an SV's icon is its legs' (0x1fd7a0 by legs record; legs_icons). Confirm (sys 5) opens the profile or the trade window; EXIT (sys 26) leaves; cancel moves to EXIT (sys 4). The help line says what confirm does (0x1fdd4c).", "logo: large at large_at (x 1.875) while the profile or EXIT is chosen, small at small_at over an SV, moving 0.125 a frame with a trail of 15 copies, each 0.7 of the opacity of the one before (0x393ee, 0x39e46); before the menu has opened it is drawn once at half opacity.", "SV chosen: the maker's badge at (40, 284), the SV's name plate at picture_at cross-fading from the last one over picture_seconds (0.05 a frame), and its price (0x392ff: the prices of its parts, modules, paint and emblem, times price_markup, the float 1.1 at 0x19b2a8, truncated, 0x39ca8) after the price label, right-aligned at 570 (0x39db6).", "profile: the panel grows open over 10 frames (0xbe87c), then the text script (0x1fdd88 by dealer, 0xc58ba) shows the corporation profile; the port closes it on confirm or cancel.", "trade: SV SPEC, BUY and CANCEL on the window (1194), the chosen label (0x1fd9c8) lit orange and pulsing; left/right (sys 4), cancel moves to CANCEL (sys 3). SV SPEC copies the SV to + 0x10f5c and opens its spec screen (spec_screen), which comes back here. BUY checks (0x3a618) each hangar: owned, empty, the SV has a body, legs and CHIP, and the stock has room for all of its parts and modules (0x39501). With one and the money: the hangars; otherwise no_stock (the stock is full), no_hangar or poor.", "hangars: left/right scroll the carousel of hangar numbers (0x1fddc4) 56 a step over 8 frames (sys 4), empty ones lit; confirm on one that does not fit says in_use or not_yours (not owned), otherwise pays, fits the SV (0x1da04, sys 27) and says delivered; cancel (sys 8) goes back to the trade window.", "after delivered: board asks YES/NO (NO first); YES rides it (+ 0x9c8) and says boarded. Then name_chip, and NAME ENTRY names the new CHIP (its stock entry; mode 2, 0x2c5d9) and comes back here (data/ui/name_entry.json exits).", "messages: the SYSTEM INFORMATION notices (0x1fdaa0, 0x4c each: lines, text at (139, 213))."],
+ "scene": 34,
+ "music": "dealer",
+ "fade_in": 0.5,
+ "fade_out": 0.5,
+ "exit_to": "town_map",
+ "confirm": {"buttons": "confirm"},
+ "cancel": {"buttons": "cancel"},
+ "cursor_repeat": {"delay": 0.4, "interval": 0.1},
+ "buttons": {"left": "left", "right": "right"},
+ "sounds": {"move": "cursor", "select": "confirm", "jump": "adjust", "cancel": "cancel", "buy": "purchase", "leave": "club_exit"},
+ "opening": {"band_seconds": 0.3333, "menu_seconds": 0.6667},
+ "picture_seconds": 0.3333,
+ "scroll_speed": 30,
+ "panorama_colour": "#808080",
+ "band": {"id": "1213", "image": "textures/scroll/dealer_tex/2.png", "rect": [0, 328, 416, 352], "position": [0, 385], "layer": 257, "extend_edges": "left"},
+ "band_from": -400,
+ "line": {"id": "1212", "image": "textures/scroll/dealer_tex/2.png", "rect": [488, 0, 496, 8], "position": [0, 350], "layer": 257, "size": [800, 8], "extend_edges": "both", "edge_inset": [0, 1]},
+ "welcome": {"id": "1216", "image": "textures/scroll/dealer_tex/2.png", "rect": [0, 200, 416, 288], "position": [115, 178], "layer": 260},
+ "farewell": {"id": "1215", "image": "textures/scroll/dealer_tex/2.png", "rect": [0, 104, 328, 200], "position": [160, 174], "layer": 260},
+ "logo": {"small_at": [95, 115], "large_at": [155, 81], "large_scale": 1.875, "move_seconds": 0.1333, "trail": 15, "trail_fade": 0.7, "opening_alpha": 0.5},
+ "menu": {
+  "items": [
+   {"id": "profile", "sprite": {"id": "1208", "image": "textures/scroll/dealer_tex/2.png", "rect": [416, 200, 504, 232], "position": [55, 371], "layer": 258}, "lit": {"id": "1209", "image": "textures/scroll/dealer_tex/2.png", "rect": [416, 232, 504, 264], "position": [55, 371], "layer": 259, "animation": "pulse"}},
+   {"id": "sv", "sprite": {"id": "1208", "image": "textures/scroll/dealer_tex/2.png", "rect": [416, 200, 504, 232], "position": [143, 357], "layer": 258}, "lit": {"id": "1209", "image": "textures/scroll/dealer_tex/2.png", "rect": [416, 232, 504, 264], "position": [143, 357], "layer": 259, "animation": "pulse"}},
+   {"id": "sv", "sprite": {"id": "1208", "image": "textures/scroll/dealer_tex/2.png", "rect": [416, 200, 504, 232], "position": [207, 357], "layer": 258}, "lit": {"id": "1209", "image": "textures/scroll/dealer_tex/2.png", "rect": [416, 232, 504, 264], "position": [207, 357], "layer": 259, "animation": "pulse"}},
+   {"id": "sv", "sprite": {"id": "1208", "image": "textures/scroll/dealer_tex/2.png", "rect": [416, 200, 504, 232], "position": [271, 357], "layer": 258}, "lit": {"id": "1209", "image": "textures/scroll/dealer_tex/2.png", "rect": [416, 232, 504, 264], "position": [271, 357], "layer": 259, "animation": "pulse"}},
+   {"id": "exit", "sprite": {"id": "1210", "image": "textures/scroll/dealer_tex/2.png", "rect": [264, 288, 328, 320], "position": [344, 371], "layer": 258}, "lit": {"id": "1211", "image": "textures/scroll/dealer_tex/2.png", "rect": [328, 288, 392, 320], "position": [344, 371], "layer": 259, "animation": "pulse"}}
+  ],
+  "slide_from": [-629, -481, -357, -233, -100],
+  "slide_distance": 800
+ },
+ "picture_at": [122, 275],
+ "price_label": {"id": "3723", "image": "textures/scroll/common_2d_tex/1.png", "rect": [448, 328, 496, 344], "position": [416, 330], "layer": 257},
+ "price": {"right": [570, 330], "digits": 8, "commas": true, "colour": "#f0f0f0"},
+ "profile_growth": {"grow_seconds": 0.1667, "grow_from_scale": 0.1},
+ "help": {"position": [304, 45], "clip": [304, 45, 622, 63], "colour": "#ffffff", "speed": 60, "lead": 0, "trail": 27, "layer": 266},
+ "help_trail": 27,
+ "price_markup": 1.1,
+ "help_text": {"profile": "               {xbe:0x19cf70}       ", "sv": "               {xbe:0x19cee0}     ", "exit": "               {xbe:0x19ce20}", "hangars": "               Move the direction pad left/right to select Hangar, and then press the A/START button to confirm. "},
+ "trade_help": ["               {xbe:0x19cdc8}", "               {xbe:0x17e550}", "               {xbe:0x17e4c0}"],
+ "trade": {
+  "window": {"id": "1194", "image": "textures/scroll/dealer_tex/2.png", "rect": [0, 288, 264, 328], "position": [187, 220], "layer": 258},
+  "actions": [
+   {"id": "spec", "sprite": {"id": "1214", "image": "textures/scroll/dealer_tex/2.png", "rect": [328, 80, 392, 96], "position": [204, 229], "layer": 259, "colour": "#ff9400"}, "lit": {"id": "1214", "image": "textures/scroll/dealer_tex/2.png", "rect": [328, 80, 392, 96], "position": [204, 229], "layer": 259, "colour": "#ff9400", "animation": "pulse"}},
+   {"id": "buy", "sprite": {"id": "1193", "image": "textures/scroll/dealer_tex/2.png", "rect": [472, 40, 512, 56], "position": [300, 229], "layer": 259, "colour": "#ff9400"}, "lit": {"id": "1193", "image": "textures/scroll/dealer_tex/2.png", "rect": [472, 40, 512, 56], "position": [300, 229], "layer": 259, "colour": "#ff9400", "animation": "pulse"}},
+   {"id": "cancel", "sprite": {"id": "1195", "image": "textures/scroll/dealer_tex/2.png", "rect": [256, 80, 328, 96], "position": [360, 229], "layer": 259, "colour": "#ff9400"}, "lit": {"id": "1195", "image": "textures/scroll/dealer_tex/2.png", "rect": [256, 80, 328, 96], "position": [360, 229], "layer": 259, "colour": "#ff9400", "animation": "pulse"}}
+  ],
+  "spec_screen": "sv_spec"
+ },
+ "hangars": {
+  "panel": {"id": "1206", "image": "textures/scroll/dealer_tex/2.png", "rect": [0, 0, 256, 104], "position": [191, 186], "layer": 260},
+  "arrows": [
+   {"id": "1207", "image": "textures/scroll/dealer_tex/2.png", "rect": [472, 0, 488, 24], "position": [201, 224], "layer": 261},
+   {"id": "1207", "image": "textures/scroll/dealer_tex/2.png", "rect": [472, 0, 488, 24], "position": [422, 224], "layer": 261, "flip_x": true}
+  ],
+  "arrow_lit": "#ff9400",
+  "numbers": [
+   {"id": "1196", "image": "textures/scroll/dealer_tex/2.png", "rect": [256, 0, 328, 40], "layer": 258},
+   {"id": "1197", "image": "textures/scroll/dealer_tex/2.png", "rect": [328, 0, 400, 40], "layer": 258},
+   {"id": "1198", "image": "textures/scroll/dealer_tex/2.png", "rect": [400, 0, 472, 40], "layer": 258},
+   {"id": "1199", "image": "textures/scroll/dealer_tex/2.png", "rect": [256, 40, 328, 80], "layer": 258},
+   {"id": "1200", "image": "textures/scroll/dealer_tex/2.png", "rect": [328, 40, 400, 80], "layer": 258},
+   {"id": "1201", "image": "textures/scroll/dealer_tex/2.png", "rect": [400, 40, 472, 80], "layer": 258},
+   {"id": "1202", "image": "textures/scroll/dealer_tex/2.png", "rect": [328, 104, 400, 144], "layer": 258},
+   {"id": "1203", "image": "textures/scroll/dealer_tex/2.png", "rect": [400, 104, 472, 144], "layer": 258},
+   {"id": "1204", "image": "textures/scroll/dealer_tex/2.png", "rect": [328, 144, 400, 184], "layer": 258},
+   {"id": "1205", "image": "textures/scroll/dealer_tex/2.png", "rect": [400, 144, 472, 184], "layer": 258},
+   [{"id": "1205-digit-0", "image": "textures/scroll/dealer_tex/2.png", "rect": [400, 144.0, 444.75, 149.0], "layer": 258, "position": [0, 0.0]}, {"id": "1196-digit-0", "image": "textures/scroll/dealer_tex/2.png", "rect": [300.75, 0.0, 328, 5.0], "layer": 258, "position": [44.75, 0.0]}, {"id": "1205-digit-1", "image": "textures/scroll/dealer_tex/2.png", "rect": [400, 149.0, 442.25, 154.0], "layer": 258, "position": [0, 5.0]}, {"id": "1196-digit-1", "image": "textures/scroll/dealer_tex/2.png", "rect": [298.25, 5.0, 328, 10.0], "layer": 258, "position": [42.25, 5.0]}, {"id": "1205-digit-2", "image": "textures/scroll/dealer_tex/2.png", "rect": [400, 154.0, 439.75, 159.0], "layer": 258, "position": [0, 10.0]}, {"id": "1196-digit-2", "image": "textures/scroll/dealer_tex/2.png", "rect": [295.75, 10.0, 328, 15.0], "layer": 258, "position": [39.75, 10.0]}, {"id": "1205-digit-3", "image": "textures/scroll/dealer_tex/2.png", "rect": [400, 159.0, 437.25, 164.0], "layer": 258, "position": [0, 15.0]}, {"id": "1196-digit-3", "image": "textures/scroll/dealer_tex/2.png", "rect": [293.25, 15.0, 328, 20.0], "layer": 258, "position": [37.25, 15.0]}, {"id": "1205-digit-4", "image": "textures/scroll/dealer_tex/2.png", "rect": [400, 164.0, 434.75, 169.0], "layer": 258, "position": [0, 20.0]}, {"id": "1196-digit-4", "image": "textures/scroll/dealer_tex/2.png", "rect": [290.75, 20.0, 328, 25.0], "layer": 258, "position": [34.75, 20.0]}, {"id": "1205-digit-5", "image": "textures/scroll/dealer_tex/2.png", "rect": [400, 169.0, 432.25, 174.0], "layer": 258, "position": [0, 25.0]}, {"id": "1196-digit-5", "image": "textures/scroll/dealer_tex/2.png", "rect": [288.25, 25.0, 328, 30.0], "layer": 258, "position": [32.25, 25.0]}, {"id": "1205-digit-6", "image": "textures/scroll/dealer_tex/2.png", "rect": [400, 174.0, 429.75, 179.0], "layer": 258, "position": [0, 30.0]}, {"id": "1196-digit-6", "image": "textures/scroll/dealer_tex/2.png", "rect": [285.75, 30.0, 328, 35.0], "layer": 258, "position": [29.75, 30.0]}, {"id": "1205-digit-7", "image": "textures/scroll/dealer_tex/2.png", "rect": [400, 179.0, 427.25, 184.0], "layer": 258, "position": [0, 35.0]}, {"id": "1196-digit-7", "image": "textures/scroll/dealer_tex/2.png", "rect": [283.25, 35.0, 328, 40.0], "layer": 258, "position": [27.25, 35.0]}],
+   [{"id": "1205-digit-0", "image": "textures/scroll/dealer_tex/2.png", "rect": [400, 144.0, 444.75, 149.0], "layer": 258, "position": [0, 0.0]}, {"id": "1197-digit-0", "image": "textures/scroll/dealer_tex/2.png", "rect": [372.75, 0.0, 400, 5.0], "layer": 258, "position": [44.75, 0.0]}, {"id": "1205-digit-1", "image": "textures/scroll/dealer_tex/2.png", "rect": [400, 149.0, 442.25, 154.0], "layer": 258, "position": [0, 5.0]}, {"id": "1197-digit-1", "image": "textures/scroll/dealer_tex/2.png", "rect": [370.25, 5.0, 400, 10.0], "layer": 258, "position": [42.25, 5.0]}, {"id": "1205-digit-2", "image": "textures/scroll/dealer_tex/2.png", "rect": [400, 154.0, 439.75, 159.0], "layer": 258, "position": [0, 10.0]}, {"id": "1197-digit-2", "image": "textures/scroll/dealer_tex/2.png", "rect": [367.75, 10.0, 400, 15.0], "layer": 258, "position": [39.75, 10.0]}, {"id": "1205-digit-3", "image": "textures/scroll/dealer_tex/2.png", "rect": [400, 159.0, 437.25, 164.0], "layer": 258, "position": [0, 15.0]}, {"id": "1197-digit-3", "image": "textures/scroll/dealer_tex/2.png", "rect": [365.25, 15.0, 400, 20.0], "layer": 258, "position": [37.25, 15.0]}, {"id": "1205-digit-4", "image": "textures/scroll/dealer_tex/2.png", "rect": [400, 164.0, 434.75, 169.0], "layer": 258, "position": [0, 20.0]}, {"id": "1197-digit-4", "image": "textures/scroll/dealer_tex/2.png", "rect": [362.75, 20.0, 400, 25.0], "layer": 258, "position": [34.75, 20.0]}, {"id": "1205-digit-5", "image": "textures/scroll/dealer_tex/2.png", "rect": [400, 169.0, 432.25, 174.0], "layer": 258, "position": [0, 25.0]}, {"id": "1197-digit-5", "image": "textures/scroll/dealer_tex/2.png", "rect": [360.25, 25.0, 400, 30.0], "layer": 258, "position": [32.25, 25.0]}, {"id": "1205-digit-6", "image": "textures/scroll/dealer_tex/2.png", "rect": [400, 174.0, 429.75, 179.0], "layer": 258, "position": [0, 30.0]}, {"id": "1197-digit-6", "image": "textures/scroll/dealer_tex/2.png", "rect": [357.75, 30.0, 400, 35.0], "layer": 258, "position": [29.75, 30.0]}, {"id": "1205-digit-7", "image": "textures/scroll/dealer_tex/2.png", "rect": [400, 179.0, 427.25, 184.0], "layer": 258, "position": [0, 35.0]}, {"id": "1197-digit-7", "image": "textures/scroll/dealer_tex/2.png", "rect": [355.25, 35.0, 400, 40.0], "layer": 258, "position": [27.25, 35.0]}]
+  ],
+  "centre": [283, 218],
+  "step": 56,
+  "clip": [219, 218, 420, 258],
+  "empty_colour": "#ffffff",
+  "used_colour": "#333333",
+  "chosen_empty": "#ff9400",
+  "chosen_used": "#333333",
+  "number_layer": 258,
+  "chosen_layer": 259,
+  "scroll_seconds": 0.1333,
+  "shown": 5,
+  "cancel_hint": [{"id": "3122", "image": "textures/scroll/scr_common_tex/0.png", "rect": [256, 184, 272, 200], "position": [336, 263], "layer": 261}, {"id": "3133", "image": "textures/scroll/scr_common_tex/0.png", "rect": [536, 184, 600, 200], "position": [356, 265], "layer": 261}]
+ },
+ "message_text_at": [139, 213],
+ "messages": {"no_stock": ["{xbe:0x19d3dc}", "{xbe:0x19d3b4}", "again."], "no_hangar": ["{xbe:0x19d370}", "{xbe:0x19d33c}"], "poor": ["{xbe:0x19d308}", "{xbe:0x19d2d8}", "{xbe:0x19d2a4}", "select another."], "in_use": ["{xbe:0x19d248}", "{xbe:0x19d220}", "another."], "not_yours": ["{xbe:0x19d1e0}", "{xbe:0x19d1ac}", "{xbe:0x19d180}"], "delivered": ["{xbe:0x19d148}", "{xbe:0x19d110}", "purchasing."], "name_chip": ["{xbe:0x19d0c8}", "{xbe:0x19d090}"], "board": ["{xbe:0x19d05c}", "purchased Scoobee?"], "boarded": ["{xbe:0x19d008}"]},
+ "frame": {
+  "hud": true,
+  "meter": [435, 396],
+  "now_playing": {"format": "《 {title} : {artist} 》", "position": [0, 419], "clip": [0, 419, 396, 437], "colour": "#ffffff", "speed": 60, "trail": 45, "layer": 263}
+ },
+ "dealers": {
+  "dealer_american_stars": {
+   "index": 0,
+   "panorama": [
+    {"id": "1247", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [0, 0, 640, 480], "layer": 1},
+    {"id": "1248", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [640, 0, 1280, 480], "layer": 1},
+    {"id": "1249", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1280, 0, 1920, 480], "layer": 1},
+    {"id": "1250", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [0, 480, 200, 960], "layer": 1}
+   ],
+   "top": {"id": "1252", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [472, 784, 1112, 856], "position": [0, 0], "layer": 258, "extend_edges": "both"},
+   "bottom": {"id": "1251", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [376, 480, 1016, 584], "position": [0, 376], "layer": 257, "extend_edges": "both", "edge_inset": [1, 0]},
+   "logo": {"id": "1253", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [200, 480, 376, 624], "layer": 257},
+   "badge": {"id": "1266", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1920, 0, 2000, 64], "position": [40, 284], "layer": 257},
+   "profile_panel": {"id": "1228", "image": "textures/scroll/dealer_tex/4.png", "rect": [0, 0, 416, 248], "position": [318, 212], "layer": 258, "centered": true},
+   "profile": {"at": [201, 117], "line_step": 18, "colour": "#e8e8e8", "layer": 259, "lines": ["An American mega", "corporation. Its main", "product is the Heavyweight", "SV, Aeron, using armor", "technology."]},
+   "pictures": [
+    {"id": "1267", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1016, 480, 1288, 560], "layer": 258},
+    {"id": "1268", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1288, 480, 1560, 560], "layer": 258},
+    {"id": "1269", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1560, 480, 1832, 560], "layer": 258},
+    {"id": "1270", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [200, 624, 472, 704], "layer": 258},
+    {"id": "1271", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [472, 624, 744, 704], "layer": 258},
+    {"id": "1272", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [744, 624, 1016, 704], "layer": 258},
+    {"id": "1273", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1016, 624, 1288, 704], "layer": 258},
+    {"id": "1274", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1288, 624, 1560, 704], "layer": 258},
+    {"id": "1275", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1560, 624, 1832, 704], "layer": 258},
+    {"id": "1276", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [376, 704, 648, 784], "layer": 258},
+    {"id": "1277", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [648, 704, 920, 784], "layer": 258},
+    {"id": "1278", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [920, 704, 1192, 784], "layer": 258},
+    {"id": "1279", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1192, 704, 1464, 784], "layer": 258},
+    {"id": "1280", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1464, 704, 1736, 784], "layer": 258},
+    {"id": "1281", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1736, 704, 2008, 784], "layer": 258},
+    {"id": "1282", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [200, 784, 472, 864], "layer": 258}
+   ],
+   "legs_icons": {
+    "11": {"id": "sv", "sprite": {"id": "1256", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1920, 160, 2000, 208], "layer": 258}, "lit": {"id": "1257", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1920, 208, 2000, 256], "layer": 259, "animation": "pulse"}},
+    "12": {"id": "sv", "sprite": {"id": "1260", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1920, 352, 2000, 400], "layer": 258}, "lit": {"id": "1261", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1920, 400, 2000, 448], "layer": 259, "animation": "pulse"}},
+    "13": {"id": "sv", "sprite": {"id": "1258", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1920, 256, 2000, 304], "layer": 258}, "lit": {"id": "1259", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1920, 304, 2000, 352], "layer": 259, "animation": "pulse"}},
+    "14": {"id": "sv", "sprite": {"id": "1262", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1832, 480, 1912, 528], "layer": 258}, "lit": {"id": "1263", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1912, 480, 1992, 528], "layer": 259, "animation": "pulse"}},
+    "15": {"id": "sv", "sprite": {"id": "1264", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1832, 624, 1912, 672], "layer": 258}, "lit": {"id": "1265", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1912, 624, 1992, 672], "layer": 259, "animation": "pulse"}},
+    "16": {"id": "sv", "sprite": {"id": "1254", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1920, 64, 2000, 112], "layer": 258}, "lit": {"id": "1255", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1920, 112, 2000, 160], "layer": 259, "animation": "pulse"}},
+    "17": {"id": "sv", "sprite": {"id": "1254", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1920, 64, 2000, 112], "layer": 258}, "lit": {"id": "1255", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1920, 112, 2000, 160], "layer": 259, "animation": "pulse"}},
+    "18": {"id": "sv", "sprite": {"id": "1254", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1920, 64, 2000, 112], "layer": 258}, "lit": {"id": "1255", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1920, 112, 2000, 160], "layer": 259, "animation": "pulse"}},
+    "19": {"id": "sv", "sprite": {"id": "1254", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1920, 64, 2000, 112], "layer": 258}, "lit": {"id": "1255", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1920, 112, 2000, 160], "layer": 259, "animation": "pulse"}},
+    "20": {"id": "sv", "sprite": {"id": "1254", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1920, 64, 2000, 112], "layer": 258}, "lit": {"id": "1255", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1920, 112, 2000, 160], "layer": 259, "animation": "pulse"}},
+    "21": {"id": "sv", "sprite": {"id": "1254", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1920, 64, 2000, 112], "layer": 258}, "lit": {"id": "1255", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1920, 112, 2000, 160], "layer": 259, "animation": "pulse"}},
+    "22": {"id": "sv", "sprite": {"id": "1254", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1920, 64, 2000, 112], "layer": 258}, "lit": {"id": "1255", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1920, 112, 2000, 160], "layer": 259, "animation": "pulse"}},
+    "23": {"id": "sv", "sprite": {"id": "1254", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1920, 64, 2000, 112], "layer": 258}, "lit": {"id": "1255", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1920, 112, 2000, 160], "layer": 259, "animation": "pulse"}},
+    "24": {"id": "sv", "sprite": {"id": "1254", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1920, 64, 2000, 112], "layer": 258}, "lit": {"id": "1255", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1920, 112, 2000, 160], "layer": 259, "animation": "pulse"}},
+    "25": {"id": "sv", "sprite": {"id": "1254", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1920, 64, 2000, 112], "layer": 258}, "lit": {"id": "1255", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1920, 112, 2000, 160], "layer": 259, "animation": "pulse"}}
+   },
+   "default_icon": {"id": "sv", "sprite": {"id": "1256", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1920, 160, 2000, 208], "layer": 258}, "lit": {"id": "1257", "image": "textures/scroll/dealer_as_tex/0.png", "rect": [1920, 208, 2000, 256], "layer": 259, "animation": "pulse"}}
+  },
+  "dealer_kojima": {
+   "index": 1,
+   "panorama": [
+    {"id": "1298", "image": "textures/scroll/dealer_kojima_tex/0.png", "rect": [0, 0, 640, 480], "layer": 1},
+    {"id": "1299", "image": "textures/scroll/dealer_kojima_tex/0.png", "rect": [640, 0, 1280, 480], "layer": 1},
+    {"id": "1300", "image": "textures/scroll/dealer_kojima_tex/0.png", "rect": [1280, 0, 1920, 480], "layer": 1},
+    {"id": "1301", "image": "textures/scroll/dealer_kojima_tex/0.png", "rect": [0, 480, 200, 960], "layer": 1}
+   ],
+   "top": {"id": "1296", "image": "textures/scroll/dealer_kojima_tex/0.png", "rect": [472, 784, 1112, 856], "position": [0, 0], "layer": 258, "extend_edges": "both"},
+   "bottom": {"id": "1295", "image": "textures/scroll/dealer_kojima_tex/0.png", "rect": [376, 480, 1016, 584], "position": [0, 376], "layer": 257, "extend_edges": "both", "edge_inset": [1, 0]},
+   "logo": {"id": "1297", "image": "textures/scroll/dealer_kojima_tex/0.png", "rect": [200, 480, 376, 624], "layer": 257},
+   "badge": {"id": "1302", "image": "textures/scroll/dealer_kojima_tex/0.png", "rect": [1920, 0, 2000, 64], "position": [40, 284], "layer": 257},
+   "profile_panel": {"id": "1229", "image": "textures/scroll/dealer_tex/4.png", "rect": [416, 0, 832, 248], "position": [318, 212], "layer": 258, "centered": true},
+   "profile": {"at": [201, 117], "line_step": 18, "colour": "#e8e8e8", "layer": 259, "lines": ["Former Kojima Plating", "produces Photon, a", "lightweight mobile SV."]},
+   "pictures": [
+    {"id": "1303", "image": "textures/scroll/dealer_kojima_tex/0.png", "rect": [1016, 480, 1288, 560], "layer": 258},
+    {"id": "1304", "image": "textures/scroll/dealer_kojima_tex/0.png", "rect": [1288, 480, 1560, 560], "layer": 258},
+    {"id": "1305", "image": "textures/scroll/dealer_kojima_tex/0.png", "rect": [1560, 480, 1832, 560], "layer": 258},
+    {"id": "1306", "image": "textures/scroll/dealer_kojima_tex/0.png", "rect": [200, 624, 472, 704], "layer": 258},
+    {"id": "1307", "image": "textures/scroll/dealer_kojima_tex/0.png", "rect": [472, 624, 744, 704], "layer": 258},
+    {"id": "1308", "image": "textures/scroll/dealer_kojima_tex/0.png", "rect": [744, 624, 1016, 704], "layer": 258},
+    {"id": "1309", "image": "textures/scroll/dealer_kojima_tex/0.png", "rect": [1016, 624, 1288, 704], "layer": 258},
+    {"id": "1310", "image": "textures/scroll/dealer_kojima_tex/0.png", "rect": [1288, 624, 1560, 704], "layer": 258},
+    {"id": "1311", "image": "textures/scroll/dealer_kojima_tex/0.png", "rect": [1560, 624, 1832, 704], "layer": 258},
+    {"id": "1312", "image": "textures/scroll/dealer_kojima_tex/0.png", "rect": [376, 704, 648, 784], "layer": 258},
+    {"id": "1313", "image": "textures/scroll/dealer_kojima_tex/0.png", "rect": [648, 704, 920, 784], "layer": 258},
+    {"id": "1314", "image": "textures/scroll/dealer_kojima_tex/0.png", "rect": [920, 704, 1192, 784], "layer": 258},
+    {"id": "1315", "image": "textures/scroll/dealer_kojima_tex/0.png", "rect": [1192, 704, 1464, 784], "layer": 258},
+    {"id": "1316", "image": "textures/scroll/dealer_kojima_tex/0.png", "rect": [1464, 704, 1736, 784], "layer": 258},
+    {"id": "1317", "image": "textures/scroll/dealer_kojima_tex/0.png", "rect": [1736, 704, 2008, 784], "layer": 258},
+    {"id": "1318", "image": "textures/scroll/dealer_kojima_tex/0.png", "rect": [200, 784, 472, 864], "layer": 258}
+   ],
+   "legs_icons": {
+    "5": {"id": "sv", "sprite": {"id": "1285", "image": "textures/scroll/dealer_kojima_tex/0.png", "rect": [1920, 160, 2000, 208], "layer": 258}, "lit": {"id": "1286", "image": "textures/scroll/dealer_kojima_tex/0.png", "rect": [1920, 208, 2000, 256], "layer": 259, "animation": "pulse"}},
+    "6": {"id": "sv", "sprite": {"id": "1289", "image": "textures/scroll/dealer_kojima_tex/0.png", "rect": [1920, 352, 2000, 400], "layer": 258}, "lit": {"id": "1290", "image": "textures/scroll/dealer_kojima_tex/0.png", "rect": [1920, 400, 2000, 448], "layer": 259, "animation": "pulse"}},
+    "7": {"id": "sv", "sprite": {"id": "1291", "image": "textures/scroll/dealer_kojima_tex/0.png", "rect": [1832, 480, 1912, 528], "layer": 258}, "lit": {"id": "1292", "image": "textures/scroll/dealer_kojima_tex/0.png", "rect": [1912, 480, 1992, 528], "layer": 259, "animation": "pulse"}},
+    "8": {"id": "sv", "sprite": {"id": "1287", "image": "textures/scroll/dealer_kojima_tex/0.png", "rect": [1920, 256, 2000, 304], "layer": 258}, "lit": {"id": "1288", "image": "textures/scroll/dealer_kojima_tex/0.png", "rect": [1920, 304, 2000, 352], "layer": 259, "animation": "pulse"}},
+    "9": {"id": "sv", "sprite": {"id": "1293", "image": "textures/scroll/dealer_kojima_tex/0.png", "rect": [1832, 624, 1912, 672], "layer": 258}, "lit": {"id": "1294", "image": "textures/scroll/dealer_kojima_tex/0.png", "rect": [1912, 624, 1992, 672], "layer": 259, "animation": "pulse"}},
+    "10": {"id": "sv", "sprite": {"id": "1283", "image": "textures/scroll/dealer_kojima_tex/0.png", "rect": [1920, 64, 2000, 112], "layer": 258}, "lit": {"id": "1284", "image": "textures/scroll/dealer_kojima_tex/0.png", "rect": [1920, 112, 2000, 160], "layer": 259, "animation": "pulse"}}
+   },
+   "default_icon": {"id": "sv", "sprite": {"id": "1285", "image": "textures/scroll/dealer_kojima_tex/0.png", "rect": [1920, 160, 2000, 208], "layer": 258}, "lit": {"id": "1286", "image": "textures/scroll/dealer_kojima_tex/0.png", "rect": [1920, 208, 2000, 256], "layer": 259, "animation": "pulse"}}
+  },
+  "dealer_ventuno": {
+   "index": 2,
+   "panorama": [
+    {"id": "1319", "image": "textures/scroll/dealer_ventuno_tex/0.png", "rect": [0, 0, 640, 480], "layer": 1},
+    {"id": "1320", "image": "textures/scroll/dealer_ventuno_tex/0.png", "rect": [640, 0, 1280, 480], "layer": 1},
+    {"id": "1321", "image": "textures/scroll/dealer_ventuno_tex/0.png", "rect": [1280, 0, 1920, 480], "layer": 1},
+    {"id": "1322", "image": "textures/scroll/dealer_ventuno_tex/0.png", "rect": [0, 480, 200, 960], "layer": 1}
+   ],
+   "top": {"id": "1335", "image": "textures/scroll/dealer_ventuno_tex/0.png", "rect": [472, 784, 1112, 856], "position": [0, 0], "layer": 258, "extend_edges": "both"},
+   "bottom": {"id": "1334", "image": "textures/scroll/dealer_ventuno_tex/0.png", "rect": [376, 480, 1016, 584], "position": [0, 376], "layer": 257, "extend_edges": "both", "edge_inset": [1, 0]},
+   "logo": {"id": "1336", "image": "textures/scroll/dealer_ventuno_tex/0.png", "rect": [200, 480, 376, 624], "layer": 257},
+   "badge": {"id": "1333", "image": "textures/scroll/dealer_ventuno_tex/0.png", "rect": [1920, 0, 2000, 64], "position": [40, 284], "layer": 257},
+   "profile_panel": {"id": "1230", "image": "textures/scroll/dealer_tex/4.png", "rect": [0, 248, 416, 496], "position": [318, 212], "layer": 258, "centered": true},
+   "profile": {"at": [201, 117], "line_step": 18, "colour": "#e8e8e8", "layer": 259, "lines": ["This Italian company", "produces Holy, middleweight", "multi-purpose SV."]},
+   "pictures": [
+    {"id": "1337", "image": "textures/scroll/dealer_ventuno_tex/0.png", "rect": [1016, 480, 1288, 560], "layer": 258},
+    {"id": "1338", "image": "textures/scroll/dealer_ventuno_tex/0.png", "rect": [1288, 480, 1560, 560], "layer": 258},
+    {"id": "1339", "image": "textures/scroll/dealer_ventuno_tex/0.png", "rect": [1560, 480, 1832, 560], "layer": 258},
+    {"id": "1340", "image": "textures/scroll/dealer_ventuno_tex/0.png", "rect": [200, 624, 472, 704], "layer": 258},
+    {"id": "1341", "image": "textures/scroll/dealer_ventuno_tex/0.png", "rect": [472, 624, 744, 704], "layer": 258},
+    {"id": "1342", "image": "textures/scroll/dealer_ventuno_tex/0.png", "rect": [744, 624, 1016, 704], "layer": 258},
+    {"id": "1343", "image": "textures/scroll/dealer_ventuno_tex/0.png", "rect": [1016, 624, 1288, 704], "layer": 258},
+    {"id": "1344", "image": "textures/scroll/dealer_ventuno_tex/0.png", "rect": [1288, 624, 1560, 704], "layer": 258},
+    {"id": "1345", "image": "textures/scroll/dealer_ventuno_tex/0.png", "rect": [1560, 624, 1832, 704], "layer": 258},
+    {"id": "1346", "image": "textures/scroll/dealer_ventuno_tex/0.png", "rect": [376, 704, 648, 784], "layer": 258},
+    {"id": "1347", "image": "textures/scroll/dealer_ventuno_tex/0.png", "rect": [648, 704, 920, 784], "layer": 258},
+    {"id": "1348", "image": "textures/scroll/dealer_ventuno_tex/0.png", "rect": [920, 704, 1192, 784], "layer": 258},
+    {"id": "1350", "image": "textures/scroll/dealer_ventuno_tex/0.png", "rect": [1192, 704, 1464, 784], "layer": 258},
+    {"id": "1351", "image": "textures/scroll/dealer_ventuno_tex/0.png", "rect": [1464, 704, 1736, 784], "layer": 258},
+    {"id": "1352", "image": "textures/scroll/dealer_ventuno_tex/0.png", "rect": [1736, 704, 2008, 784], "layer": 258},
+    {"id": "1353", "image": "textures/scroll/dealer_ventuno_tex/0.png", "rect": [200, 784, 472, 864], "layer": 258}
+   ],
+   "legs_icons": {
+    "0": {"id": "sv", "sprite": {"id": "1325", "image": "textures/scroll/dealer_ventuno_tex/0.png", "rect": [1920, 160, 2000, 208], "layer": 258}, "lit": {"id": "1326", "image": "textures/scroll/dealer_ventuno_tex/0.png", "rect": [1920, 208, 2000, 256], "layer": 259, "animation": "pulse"}},
+    "1": {"id": "sv", "sprite": {"id": "1329", "image": "textures/scroll/dealer_ventuno_tex/0.png", "rect": [1920, 352, 2000, 400], "layer": 258}, "lit": {"id": "1330", "image": "textures/scroll/dealer_ventuno_tex/0.png", "rect": [1920, 400, 2000, 448], "layer": 259, "animation": "pulse"}},
+    "2": {"id": "sv", "sprite": {"id": "1327", "image": "textures/scroll/dealer_ventuno_tex/0.png", "rect": [1920, 256, 2000, 304], "layer": 258}, "lit": {"id": "1328", "image": "textures/scroll/dealer_ventuno_tex/0.png", "rect": [1920, 304, 2000, 352], "layer": 259, "animation": "pulse"}},
+    "3": {"id": "sv", "sprite": {"id": "1331", "image": "textures/scroll/dealer_ventuno_tex/0.png", "rect": [1832, 480, 1912, 528], "layer": 258}, "lit": {"id": "1332", "image": "textures/scroll/dealer_ventuno_tex/0.png", "rect": [1912, 480, 1992, 528], "layer": 259, "animation": "pulse"}},
+    "4": {"id": "sv", "sprite": {"id": "1323", "image": "textures/scroll/dealer_ventuno_tex/0.png", "rect": [1920, 64, 2000, 112], "layer": 258}, "lit": {"id": "1324", "image": "textures/scroll/dealer_ventuno_tex/0.png", "rect": [1920, 112, 2000, 160], "layer": 259, "animation": "pulse"}}
+   },
+   "default_icon": {"id": "sv", "sprite": {"id": "1325", "image": "textures/scroll/dealer_ventuno_tex/0.png", "rect": [1920, 160, 2000, 208], "layer": 258}, "lit": {"id": "1326", "image": "textures/scroll/dealer_ventuno_tex/0.png", "rect": [1920, 208, 2000, 256], "layer": 259, "animation": "pulse"}}
+  }
+ }
+}

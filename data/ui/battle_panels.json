@@ -1,0 +1,179 @@
+{
+ "text_replacements": [
+  {"source": {"image": "textures/scroll/common_2d_tex/1.png", "rect": [360, 456, 400, 472]}, "text": "DAY-"},
+  {"source": {"image": "textures/scroll/common_2d_tex/1.png", "rect": [432, 472, 480, 488]}, "text": "TIME"},
+  {"source": {"image": "textures/scroll/common_2d_tex/1.png", "rect": [400, 456, 464, 472]}, "text": "MONEY"},
+  {"source": {"image": "textures/scroll/common_2d_tex/1.png", "rect": [0, 496, 96, 512]}, "text": "SHOOTDOWN ×"},
+  {"source": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [192, 328, 272, 344]}, "text": "DAMAGED"},
+  {"source": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [488, 72, 512, 88]}, "text": "HIT"},
+  {"source": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [456, 232, 512, 248]}, "text": "BINGO!"},
+  {"source": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [272, 328, 352, 344]}, "text": "WEAPON LOST"},
+  {"source": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [352, 328, 432, 344]}, "text": "WEAPON LOST"},
+  {"source": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [144, 304, 296, 328]}, "text": "MISSILE ALERT", "region": [8, 4, 144, 20]},
+  {"source": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [240, 72, 392, 112]}, "stroke_width": 0.8, "centered": true, "line_pitch": 14, "text": "SYS DURABILITY\nDOWN 50%", "colour": "#ffc823"},
+  {"source": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [0, 232, 152, 272]}, "stroke_width": 0.8, "centered": true, "line_pitch": 14, "text": "SYS DURABILITY\nDOWN 75%", "colour": "#ff6060"},
+  {"source": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [0, 272, 152, 304]}, "text": "DURABILITY", "region": [12, 4, 90, 14], "colour": "#b0ff20"},
+  {"source": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [0, 304, 144, 328]}, "text": "O.C TIME", "region": [5, 8, 56, 17], "colour": "#b0ff20"}
+ ],
+ "notes": [
+  "The single-player battle panels in 640x480 units, from the original's records: game_quest_tex (slot 465, sprites 1397-1434) for the panels, game_tex (slot 464) for the weapon digits and common_2d_tex/1 for the labels and the number font. Split screen uses battle_panels_split2.json (two screens) and battle_panels_split4.json (three or four) instead: game_vs_tex (slot 466) and the records at 0x204148, 0x203f50, 0x204a20, 0x205100 and 0x204d90.",
+  "layout: \"widescreen\" keeps left- and right-anchored elements to the window's edges; \"4:3\" leaves every element where the original puts it (docs/WIDESCREEN.md). Anchors are the port's.",
+  "flash_frames: the original's colour flash (0x4dc2f) runs over 10 frames; see hud_flash in battle_hud_state.hpp.",
+  "durability (0x4aaed, records 0x203dac and 0x203d90): the DURABILITY frame 1399 and the fill 1398 stretched to width * armour / maximum, 0xffffc823, 0xffc04040 below low; it flashes toward flash_colour while the shown value is under the robot's (+0x50 < +0x44). The shown armour eases from where it stood to each new armour (0x076368) over the change's share of the maximum times 90 frames, or 300 frames for a change under a tenth, at 60 frames a second (0x075773): a hit drains the gauge and a repair fills it, flashing (port/include/phantomcrash/shown_armour.hpp).",
+  "optic (0x4aaed, records 0x203d74 and 0x203d58): the O.C TIME frame 1401 and the fill 1400 stretched to width * the Optic Camouflage gauge (0x753c2 on robot +0x3494), 0xff3f77c1, 0xffc040c0 below low; while recovering (states 9 and 10), not while camouflaged, it flashes between active_colour and colour.",
+  "weapons (0x4ad3b, records 0x204340 left and 0x2046b0 right, 0x28 bytes each): weapon slots 0 and 2 (right arm, right shoulder) use the right side, 1 and 3 the left; the arm's panel sits at arm, the shoulder's at shoulder. The frame (1430 left, 1431 right) and the weapon's icon are ready_colour, flashing toward refill_colour while a refill counts the shown ammunition up (weapon +0x98 below +0x94, over 120 frames). A lost weapon shows WEAPON LOST (1413, 1414, 0xffff4040) instead of its icon.",
+  "icons are keyed by the weapon's kind (weapon record +0x1c, tables/parts.json): 0 cannon -> 1421/1422, 1 missile -> 1417/1418, or homing (1415/1416) when the record's homing rate (+0x40) is not zero, 2 machine gun or shotgun -> 1423/1424, 3 grenade -> 1419/1420, 5 beam -> 1425/1426, 6 melee -> 1427/1428. readout is what the panel shows beside the icon.",
+  "readout \"ammo\" (kinds 0-3): the shown ammunition in four zero-padded digits at digit_positions (12, 24, 36, 48 left / 31, 43, 55, 67 right) and the bar 1429 stretched to bar_width * shown / maximum (mirrored on the right), bar_colour, bar_low_colour below bar_low, flashing toward refill_colour while refilling. readout \"charge\" (kind 5): three digits of the percentage at the first three digit_positions, the percent sign (1354, 1375) and the bar, flashing toward bar_charging_colour until full. readout \"none\" (kind 6): the icon only.",
+  "labels (0x4ad3b, records 0x203e70-0x203ec4, number font 3 at 0x27dc18 + 3 * 64, 0xfff0f0f0): DAY- (3751) at 396,39 (the record's 356 plus 40) and the day plus one in two zero-padded digits ending at 453; TIME (3757) at 466,39 and the battle clock (battle +0xee524, one a 60 Hz frame) as HH:MM:SS written from 504, the colon (3746) advancing colon_advance, ending at 586; MONEY (3753) at 421,430 and the money in nine digits with commas ending at 573; SHOOTDOWN (3756) at 47,430 and the player's kills (robot +0x20) in four zero-padded digits ending at 187. Each number is placed from its label's left, the label's width and the digit advance (0xd381c).",
+  "messages (0x4ad3b, HUD state + 0x8b4; 0x4da6c queues them): DAMAGED (1403, 0xffc8dc50), HIT (1404, 0xff0fc8d2) and BINGO! (1402, 0xfffaf000) at 48,388, each 120 frames, sliding in from 30 below over 10 frames and out toward 150 above; the list drops push_scroll when one arrives and rises scroll_decay of that a frame, at least min_scroll. DAMAGED is queued when the player takes damage; HIT goes to a robot whose hit did damage to another (0x9d2ce); when a robot is shot down (0x7675e) it gets DAMAGED if others had damaged it, and every robot that damaged it gets BINGO! and a kill.",
+  "warning (0x4ad3b, records 0x203de4-0x203e54): below half armour the stripes 1412 and SYS DURABILITY DOWN 50% (1408); below a quarter the stripes and 75% (1410), at 431,73. Their lettering is two lines 14 pixels apart, 12 high (line_pitch); the sharp text keeps that size rather than filling the 152x40 sprite. The original alternates two records every 60 frames; the European records are the same text twice (the Japanese sprites 1409 and 1411 are unused).",
+  "missile_alert (0x4ad3b, record 0x203dc8): MISSILE ALERT (1406, 0xffff8080) at 248,120 while a missile is homing on the player, its alpha 0.5 + 0.5 * a 60-frame triangle wave."
+ ],
+ "layout": "widescreen",
+ "flash_frames": 10,
+ "money_count_seconds": 0.75,
+ "text_gap": 6,
+ "durability": {
+  "anchor": "centre",
+  "frame": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [0, 272, 152, 304], "position": [245, 371]},
+  "fill": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [504, 0, 512, 8], "position": [256, 390]},
+  "width": 128,
+  "colour": "#ffc823",
+  "low_colour": "#c04040",
+  "low": 0.25,
+  "flash_colour": "#8080e1"
+ },
+ "optic": {
+  "anchor": "centre",
+  "frame": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [0, 304, 144, 328], "position": [287, 396]},
+  "fill": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [200, 144, 208, 152], "position": [349, 405]},
+  "width": 72,
+  "colour": "#3f77c1",
+  "low_colour": "#c040c0",
+  "low": 0.25,
+  "active_colour": "#64ff6e"
+ },
+ "weapons": {
+  "ready_colour": "#32c88c",
+  "refill_colour": "#8080e1",
+  "bar_colour": "#32ff8c",
+  "bar_low_colour": "#c04040",
+  "bar_charging_colour": "#ffc823",
+  "bar_low": 0.25,
+  "bar_width": 72,
+  "left": {
+   "anchor": "left",
+   "arm": [56, 234],
+   "shoulder": [46, 124],
+   "frame": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [392, 72, 488, 112]},
+   "digit_image": "textures/scroll/game_tex/0.png",
+   "digits": [[160, 144, 176, 160], [176, 144, 192, 160], [192, 144, 208, 160], [208, 144, 224, 160], [224, 144, 240, 160], [240, 144, 256, 160], [240, 88, 256, 104], [200, 160, 216, 176], [216, 160, 232, 176], [232, 160, 248, 176]],
+   "digit_positions": [[12, 6], [24, 6], [36, 6], [48, 6]],
+   "percent": {"image": "textures/scroll/game_tex/0.png", "rect": [240, 32, 256, 48], "position": [48, 6]},
+   "icon": [-18, 29],
+   "bar": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [208, 144, 216, 152], "position": [17, 26]},
+   "bar_mirrored": false,
+   "lost": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [272, 328, 352, 344], "position": [9, 6], "colour": "#ff4040"}
+  },
+  "right": {
+   "anchor": "right",
+   "arm": [487, 234],
+   "shoulder": [497, 124],
+   "frame": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [392, 112, 488, 152]},
+   "digit_image": "textures/scroll/game_tex/0.png",
+   "digits": [[56, 184, 72, 200], [72, 184, 88, 200], [88, 184, 104, 200], [104, 184, 120, 200], [120, 184, 136, 200], [136, 184, 152, 200], [152, 184, 168, 200], [168, 184, 184, 200], [184, 184, 200, 200], [200, 184, 216, 200]],
+   "digit_positions": [[31, 6], [43, 6], [55, 6], [67, 6]],
+   "percent": {"image": "textures/scroll/game_tex/0.png", "rect": [216, 184, 232, 200], "position": [67, 6]},
+   "icon": [48, 29],
+   "bar": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [208, 144, 216, 152], "position": [79, 26]},
+   "bar_mirrored": true,
+   "lost": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [352, 328, 432, 344], "position": [7, 6], "colour": "#ff4040"}
+  },
+  "icons": {
+   "0": {
+    "left": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [440, 208, 504, 232]},
+    "right": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [432, 272, 496, 296]}
+   },
+   "1": {
+    "left": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [440, 48, 504, 72]},
+    "right": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [376, 184, 440, 208]},
+    "homing": {
+     "left": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [440, 0, 504, 24]},
+     "right": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [440, 24, 504, 48]}
+    }
+   },
+   "2": {
+    "left": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [296, 304, 360, 328]},
+    "right": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [360, 304, 424, 328]}
+   },
+   "3": {
+    "left": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [440, 184, 504, 208]},
+    "right": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [376, 208, 440, 232]}
+   },
+   "5": {
+    "left": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [424, 304, 488, 328]},
+    "right": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [0, 328, 64, 352]},
+    "readout": "charge"
+   },
+   "6": {
+    "left": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [64, 328, 128, 352]},
+    "right": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [128, 328, 192, 352]},
+    "readout": "none"
+   }
+  }
+ },
+ "labels": {
+  "font": {"image": "textures/scroll/common_2d_tex/1.png", "digits": [[496, 288, 512, 304], [496, 328, 512, 344], [472, 288, 488, 304], [416, 328, 432, 344], [432, 328, 448, 344], [480, 344, 496, 360], [496, 344, 512, 360], [360, 384, 376, 400], [376, 384, 392, 400], [392, 384, 408, 400]], "advance": 11, "comma": [408, 384, 424, 400], "comma_advance": 5},
+  "colon": {"image": "textures/scroll/common_2d_tex/1.png", "rect": [440, 384, 456, 400]},
+  "colon_advance": 8,
+  "day": {
+   "anchor": "right",
+   "label": {"image": "textures/scroll/common_2d_tex/1.png", "rect": [360, 456, 400, 472], "position": [396, 39], "colour": "#f0f0f0"},
+   "number": {"right": [453, 39], "digits": 2, "pad": true, "colour": "#f0f0f0"}
+  },
+  "time": {
+   "anchor": "right",
+   "label": {"image": "textures/scroll/common_2d_tex/1.png", "rect": [432, 472, 480, 488], "position": [466, 39], "colour": "#f0f0f0"},
+   "number": {"right": [586, 39], "digits": 2, "pad": true, "colour": "#f0f0f0"}
+  },
+  "money": {
+   "anchor": "right",
+   "label": {"image": "textures/scroll/common_2d_tex/1.png", "rect": [400, 456, 464, 472], "position": [421, 430], "colour": "#f0f0f0"},
+   "number": {"right": [573, 430], "digits": 9, "commas": true, "colour": "#f0f0f0"}
+  },
+  "shootdown": {
+   "anchor": "left",
+   "label": {"image": "textures/scroll/common_2d_tex/1.png", "rect": [0, 496, 96, 512], "position": [47, 430], "colour": "#f0f0f0"},
+   "number": {"right": [187, 430], "digits": 4, "pad": true, "colour": "#f0f0f0"}
+  }
+ },
+ "messages": {
+  "anchor": "left",
+  "position": [48, 388],
+  "slots": 8,
+  "life_frames": 120,
+  "fade_frames": 10,
+  "step": -15,
+  "enter": 30,
+  "leave": -150,
+  "push_scroll": 15,
+  "scroll_decay": 0.25,
+  "min_scroll": 3,
+  "damaged": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [192, 328, 272, 344], "colour": "#c8dc50"},
+  "hit": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [488, 72, 512, 88], "colour": "#0fc8d2"},
+  "bingo": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [456, 232, 512, 248], "colour": "#faf000"}
+ },
+ "warning": {
+  "anchor": "right",
+  "stripes": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [304, 232, 456, 272], "position": [431, 73]},
+  "half": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [240, 72, 392, 112], "position": [431, 73]},
+  "quarter": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [0, 232, 152, 272], "position": [431, 73]},
+  "half_below": 0.5,
+  "quarter_below": 0.25
+ },
+ "missile_alert": {
+  "anchor": "centre",
+  "sprite": {"image": "textures/scroll/game_quest_tex/0.png", "rect": [144, 304, 296, 328], "position": [248, 120], "colour": "#ff8080"},
+  "wave_frames": 60
+ }
+}

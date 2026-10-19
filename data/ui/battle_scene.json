@@ -1,0 +1,10 @@
+{
+ "notes": [
+  "The battle's entrance and exit scenes (port/src/desktop_battle_scene.hpp), in 640x480 canvas units.",
+  "letterbox: 0x049080 draws sprite 0xe7c (a white square of common_2d_tex/1.png) tinted black, 112 units tall, with its inner edges at inner_top and inner_bottom once in; sliding in or out, they sit up to slide units further out. The port stretches the bars across the whole window.",
+  "ready and go: sprites 0xe80 and 0xe7f, centred on the screen while 90 and 30 60 Hz frames of the entrance are left (0x08928c)."
+ ],
+ "letterbox": { "inner_top": 80, "inner_bottom": 400, "slide": 32, "colour": "#000000" },
+ "ready": { "id": "ready", "image": "textures/scroll/common_2d_tex/1.png", "rect": [0, 432, 168, 472], "position": [320, 240], "centered": true, "layer": 400 },
+ "go": { "id": "go", "image": "textures/scroll/common_2d_tex/1.png", "rect": [360, 344, 480, 384], "position": [320, 240], "centered": true, "layer": 400 }
+}

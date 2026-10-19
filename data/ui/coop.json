@@ -1,0 +1,7 @@
+{
+  "notes": ["Experimental local co-op; enabled by settings.experimental_coop. New campaigns skip the opening and Pepper introduction but keep normal later progression."],
+  "intro_events": [48, 49, 50, 91],
+  "menu_label": "COOP",
+  "save_slots_x": [16, 176, 336, 496],
+  "save_slots_y": 119
+}

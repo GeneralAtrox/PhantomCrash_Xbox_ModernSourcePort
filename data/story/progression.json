@@ -1,0 +1,250 @@
+{
+  "notes": [
+    "ranker_music: a ranker's contest plays its ranker's theme in place of the player's music program (0x09e24c, by the contest's id: tracks 0xbe, 0x35, 0x3f, 0x3a), and the ranker's entrance starts it (0x088ffa calls 0x09e6b1 there instead of 13BossStart).",
+    "Predicate IDs are the original table at 0x40e888. Class/area leader contest IDs come from world/rumbling.json. Unknown predicates remain blocked.",
+    "0xd143b counts cleared class leaders plus area rankers, not days or battles. 0x2a178 counts owned music tracks.",
+    "Winning the First Ranker's contest (first_ranker_class) for the first time holds the battle clear_hold_frames (60 Hz) after the winning blow (0x089861 sets robot state 0x17 with a 240-frame timer), then skips RESULT for clear_exit (0x089d1b)."
+  ],
+  "area_ranker_class": 22,
+  "first_ranker_class": 23,
+  "predicates": [
+    {
+      "id": 9,
+      "kind": "area_ranker_today",
+      "area": 0
+    },
+    {
+      "id": 10,
+      "kind": "area_ranker_today",
+      "area": 1
+    },
+    {
+      "id": 11,
+      "kind": "area_ranker_today",
+      "area": 2
+    },
+    {
+      "id": 12,
+      "kind": "new_area_win"
+    },
+    {
+      "id": 13,
+      "kind": "area_loss"
+    },
+    {
+      "id": 19,
+      "kind": "total_ranker_wins",
+      "minimum": 1
+    },
+    {
+      "id": 20,
+      "kind": "total_ranker_wins",
+      "minimum": 3
+    },
+    {
+      "id": 21,
+      "kind": "total_ranker_wins",
+      "minimum": 6
+    },
+    {
+      "id": 22,
+      "kind": "total_ranker_wins",
+      "minimum": 9
+    },
+    {
+      "id": 23,
+      "kind": "total_ranker_wins",
+      "minimum": 12
+    },
+    {
+      "id": 24,
+      "kind": "total_ranker_wins",
+      "minimum": 15
+    },
+    {
+      "id": 25,
+      "kind": "total_ranker_wins",
+      "minimum": 18
+    },
+    {
+      "id": 26,
+      "kind": "total_ranker_wins",
+      "minimum": 21
+    },
+    {
+      "id": 27,
+      "kind": "total_ranker_wins",
+      "minimum": 24
+    },
+    {
+      "id": 28,
+      "kind": "total_ranker_wins",
+      "minimum": 27
+    },
+    {
+      "id": 29,
+      "kind": "first_ranker"
+    },
+    {
+      "id": 30,
+      "kind": "new_class_win"
+    },
+    {
+      "id": 31,
+      "kind": "owned_music",
+      "minimum": 78
+    },
+    {
+      "id": 51,
+      "kind": "class_wins",
+      "area": 0,
+      "minimum": 1
+    },
+    {
+      "id": 52,
+      "kind": "class_wins",
+      "area": 0,
+      "minimum": 2
+    },
+    {
+      "id": 53,
+      "kind": "class_wins",
+      "area": 0,
+      "minimum": 3
+    },
+    {
+      "id": 54,
+      "kind": "class_wins",
+      "area": 0,
+      "minimum": 4
+    },
+    {
+      "id": 55,
+      "kind": "class_wins",
+      "area": 0,
+      "minimum": 5
+    },
+    {
+      "id": 56,
+      "kind": "class_wins",
+      "area": 0,
+      "minimum": 6
+    },
+    {
+      "id": 57,
+      "kind": "class_wins",
+      "area": 0,
+      "minimum": 7
+    },
+    {
+      "id": 58,
+      "kind": "class_wins",
+      "area": 0,
+      "minimum": 8
+    },
+    {
+      "id": 59,
+      "kind": "class_wins",
+      "area": 2,
+      "minimum": 1
+    },
+    {
+      "id": 60,
+      "kind": "class_wins",
+      "area": 2,
+      "minimum": 2
+    },
+    {
+      "id": 61,
+      "kind": "class_wins",
+      "area": 2,
+      "minimum": 3
+    },
+    {
+      "id": 62,
+      "kind": "class_wins",
+      "area": 2,
+      "minimum": 4
+    },
+    {
+      "id": 63,
+      "kind": "class_wins",
+      "area": 2,
+      "minimum": 5
+    },
+    {
+      "id": 64,
+      "kind": "class_wins",
+      "area": 2,
+      "minimum": 6
+    },
+    {
+      "id": 65,
+      "kind": "class_wins",
+      "area": 2,
+      "minimum": 7
+    },
+    {
+      "id": 66,
+      "kind": "class_wins",
+      "area": 2,
+      "minimum": 8
+    },
+    {
+      "id": 67,
+      "kind": "class_wins",
+      "area": 1,
+      "minimum": 1
+    },
+    {
+      "id": 68,
+      "kind": "class_wins",
+      "area": 1,
+      "minimum": 2
+    },
+    {
+      "id": 69,
+      "kind": "class_wins",
+      "area": 1,
+      "minimum": 3
+    },
+    {
+      "id": 70,
+      "kind": "class_wins",
+      "area": 1,
+      "minimum": 4
+    },
+    {
+      "id": 71,
+      "kind": "class_wins",
+      "area": 1,
+      "minimum": 5
+    },
+    {
+      "id": 72,
+      "kind": "class_wins",
+      "area": 1,
+      "minimum": 6
+    },
+    {
+      "id": 73,
+      "kind": "class_wins",
+      "area": 1,
+      "minimum": 7
+    },
+    {
+      "id": 74,
+      "kind": "class_wins",
+      "area": 1,
+      "minimum": 8
+    }
+  ],
+  "clear_exit": "final_battle",
+  "clear_hold_frames": 240,
+  "ranker_music": {
+    "14": "sound/VOICEPER.WAV",
+    "31": "sound/EISENDWN.WAV",
+    "48": "sound/FULLSTRA.WAV",
+    "49": "sound/FORCFULL.WAV"
+  }
+}

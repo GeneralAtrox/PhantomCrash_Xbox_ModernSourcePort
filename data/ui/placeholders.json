@@ -1,0 +1,10 @@
+{
+ "notes": [
+  "Screens the menus lead to that are not ported yet. Each shows its label and returns (return_to, by default the main menu; \"back\" is the screen it was opened from) on a cancel or confirm press.",
+  "music is the track the original starts for that scene (tables/music.json scene_music: load 17 and VS 44 play 5GARAGE, Club Wired 8 plays 4TOWNMAP). \"keep\" carries on the track playing. Pepper's guide's lessons lead to the training ground (data/world/training.json).",
+  "Club Wired's items lead to Rumbling (scene 3, ported), the records (29), the schedule (32) and the town map (41); the garage's to the hangar (14; its menu to ASSEMBLE 4, SV SPEC 36 and TEST DRIVE 47, all ported), battle music (33, no music), modules (38, ported), the records, the schedule, sleep (24, no music), the system menu (39) and the town map; the system menu's to the save screen (31, SAVE, ported) and the VS mode's Scoobee data (43, KEEP SV, ported); the town map's to Wild Machines (15, 6WILDMCN), PlusTech (27, 7PLASTIC), Sonic Amp (20, no music) and the three dealers (34, 8DEALER). The shops have scene ids in data/story/scenes.json, so the story event of a first visit plays on the way in (156, 155, 154); the others wait until their screens are ported."
+ ],
+ "return_to": "main_menu",
+ "buttons": ["confirm", "cancel"],
+ "screens": {}
+}

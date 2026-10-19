@@ -1,0 +1,94 @@
+{
+ "notes": [
+  "LOAD GAME, the original's scene 17 (factory 0xa3aee, task 0x28480: init 0x28533, input 0x28842, draw 0x28b25). It loads save_load_tex (resource 0x681), plays 5GARAGE and runs the credit ticker at y 419 (0x2a85a).",
+  "The original reads phantomcrash.sav: three slots of 0x60e8 bytes, each a header {byte used, FILETIME} and a save (0x6b3ed). With no file, or no slot used, it shows only the no_records notice and confirm leaves; an unreadable file shows the unreadable notice (0x21ccdc) instead, which the port shows when its settings file, or a save_slots entry, cannot be read. The port keeps the three slots with its settings (save_slots, written by SAVE, data/ui/save_game.json) and loads the chosen one; until anything is saved, the first slot shows the game the port keeps with its settings.",
+  "The cursor starts on the latest save. left/right choose a slot (0xdf410 flags 0x17, sys entry 4), up/down move between the slots and EXIT (flags 0x16, entry 3); cancel moves to EXIT with entry 3. Confirm (entry 5) on a save shows the loaded notice and then leads on (result 2, to the save's creation, scene 46, then the garage 39); on EXIT it fades out over 0.5 s to the main menu (result 1). An empty slot takes the confirm sound and nothing else.",
+  "entered_from: opened from the garage's system menu (scene 39) the original draws the day and money (0xb1b56 and 0xb1cdd, which place them where every town screen does, (51, 49) and right to 253), asks whether to load the saved data (default NO) before loading, and EXIT goes back to that menu. The port shows the day and money and returns there; it does not ask yet. Loading from the main menu leads (by the save's creation, 46, and the system menu) to the garage; the port goes straight there.",
+  "Each slot (0x1fc4c0): the plate at layer 1, the lit plate over it at 257 while chosen (pulsing, flag 0x2000, only while the cursor is on the slots), and EMPTY (0x21cd28) at 258 on an empty slot. A save shows its date 'YYYY/MM/DD' and time 'HH:MM:SS' in number font 0 (0xbcfe2, 0xbd255; positions 0x11da00, 0x11da50), and CLEAR (0x912, 0x11daf0) when the game is cleared. The original draws the ridden Scoobee's frame icon (0x11daa0: 112, 287, 464 at y 139). The port uses the equipped CHIP's face from each slot's saved garage as its profile image; profile_image sets its offset within the plate, size and layer. A save without a ridden robot or equipped CHIP leaves that area blank.",
+  "The details panel (0x6b65a) shows the chosen save's name, the Scoobee ridden, the day ('DAY-' and the day + 1 57 to the right, 0xb1ba5) and the money left-aligned with 'NY' one unit after it (0xb1e39), all hidden while the cursor is on EXIT. The numbers use the town frame's font (data/ui/frame.json).",
+  "The help line is the original's '               Load play data    ' (0x1ddb10): its fifteen leading and four trailing spaces are the lead and trail (9 units a space)."
+ ],
+ "music": "garage",
+ "fade_in": 0.5,
+ "fade_out": 0.5,
+ "exit_to": "main_menu",
+ "entered_from": { "system": { "exit_to": "system", "hud": true } },
+ "loaded_to": "garage",
+ "confirm": { "buttons": "confirm" },
+ "cancel": { "buttons": "cancel" },
+ "cursor_repeat": { "delay": 0.4, "interval": 0.15 },
+ "buttons": { "slot_back": "left", "slot_forward": "right", "row_back": "up", "row_forward": "down" },
+ "sounds": { "move": "adjust", "select": "confirm", "row": "cursor" },
+ "layers": [
+  { "id": "background", "image": "textures/scroll/save_load_tex/0.png", "rect": [0, 0, 640, 480], "position": [320, 240], "centered": true, "layer": 1 },
+  { "id": "top_band", "image": "textures/scroll/save_load_tex/0.png", "rect": [0, 688, 640, 784], "position": [0, 0], "layer": 1 , "extend_edges": "both"},
+  { "id": "music_strip", "image": "textures/scroll/save_load_tex/0.png", "rect": [0, 480, 640, 584], "position": [0, 376], "layer": 1 , "extend_edges": "both"},
+  { "id": "details_panel", "image": "textures/scroll/save_load_tex/0.png", "rect": [768, 304, 912, 432], "position": [81, 281], "layer": 1 }
+ ],
+ "help_text": "{xbe:0x19de78}",
+ "help": { "position": [0, 72], "clip": [0, 0, 640, 480], "colour": "#f0f0f0", "speed": 60, "lead": 135, "trail": 36, "layer": 263 },
+ "frame": {
+  "hud": false,
+  "meter": [435, 396],
+  "now_playing": { "format": "《 {title} : {artist} 》", "position": [0, 419], "clip": [0, 419, 396, 437], "colour": "#ffffff", "speed": 60, "trail": 45, "layer": 263 }
+ },
+ "profile_image": {"offset": [32, 32], "size": [64, 64], "layer": 258},
+ "slots": [
+  {
+   "plate": { "id": "slot_1", "image": "textures/scroll/save_load_tex/0.png", "rect": [640, 0, 768, 152], "position": [81, 107], "layer": 1 },
+   "lit": { "id": "slot_1_lit", "image": "textures/scroll/save_load_tex/0.png", "rect": [768, 0, 896, 152], "position": [81, 107], "layer": 257, "animation": "pulse" },
+   "empty": { "id": "slot_1_empty", "image": "textures/scroll/save_load_tex/0.png", "rect": [640, 304, 768, 456], "position": [81, 107], "layer": 258 },
+   "date": [104, 215],
+   "time": [112, 230],
+   "clear": { "id": "slot_1_clear", "image": "textures/scroll/save_load_tex/0.png", "rect": [952, 304, 1016, 320], "position": [114, 198], "layer": 260 }
+  },
+  {
+   "plate": { "id": "slot_2", "image": "textures/scroll/save_load_tex/0.png", "rect": [896, 0, 1024, 152], "position": [256, 107], "layer": 1 },
+   "lit": { "id": "slot_2_lit", "image": "textures/scroll/save_load_tex/0.png", "rect": [640, 152, 768, 304], "position": [256, 107], "layer": 257, "animation": "pulse" },
+   "empty": { "id": "slot_2_empty", "image": "textures/scroll/save_load_tex/0.png", "rect": [640, 304, 768, 456], "position": [256, 107], "layer": 258 },
+   "date": [279, 215],
+   "time": [287, 230],
+   "clear": { "id": "slot_2_clear", "image": "textures/scroll/save_load_tex/0.png", "rect": [952, 304, 1016, 320], "position": [289, 198], "layer": 260 }
+  },
+  {
+   "plate": { "id": "slot_3", "image": "textures/scroll/save_load_tex/0.png", "rect": [768, 152, 896, 304], "position": [431, 107], "layer": 1 },
+   "lit": { "id": "slot_3_lit", "image": "textures/scroll/save_load_tex/0.png", "rect": [896, 152, 1024, 304], "position": [431, 107], "layer": 257, "animation": "pulse" },
+   "empty": { "id": "slot_3_empty", "image": "textures/scroll/save_load_tex/0.png", "rect": [640, 304, 768, 456], "position": [431, 107], "layer": 258 },
+   "date": [456, 215],
+   "time": [464, 230],
+   "clear": { "id": "slot_3_clear", "image": "textures/scroll/save_load_tex/0.png", "rect": [952, 304, 1016, 320], "position": [466, 198], "layer": 260 }
+  }
+ ],
+ "exit": {
+  "normal": { "id": "exit", "image": "textures/scroll/save_load_tex/0.png", "rect": [640, 480, 832, 520], "position": [400, 318], "layer": 1 },
+  "selected": { "id": "exit_lit", "image": "textures/scroll/save_load_tex/0.png", "rect": [832, 480, 1024, 520], "layer": 257, "animation": "pulse" }
+ },
+ "time_font": {
+  "image": "textures/scroll/common_2d_tex/1.png",
+  "digits": [[504, 0, 512, 16], [504, 16, 512, 32], [504, 32, 512, 48], [504, 48, 512, 64], [504, 64, 512, 80], [504, 80, 512, 96], [504, 96, 512, 112], [504, 112, 512, 128], [504, 128, 512, 144], [504, 144, 512, 160]],
+  "advance": 8,
+  "comma": [504, 248, 512, 264],
+  "comma_advance": 8
+ },
+ "time_separator": { "id": "time_colon", "image": "textures/scroll/common_2d_tex/1.png", "rect": [504, 160, 512, 176] },
+ "time_layer": 259,
+ "details": {
+  "name": [224, 286],
+  "riding": [224, 346],
+  "max_glyphs": 9,
+  "text_colour": "#ffffff",
+  "text_layer": 258,
+  "day_label": { "id": "day", "image": "textures/scroll/common_2d_tex/1.png", "rect": [360, 456, 400, 472], "position": [224, 380] },
+  "day": { "right": [281, 380], "digits": 2, "pad": true, "colour": "#ffffff" },
+  "money": [224, 318],
+  "money_digits": 9,
+  "money_colour": "#f0f0f0",
+  "money_unit": { "id": "ny", "image": "textures/scroll/common_2d_tex/1.png", "rect": [464, 456, 496, 472] },
+  "number_layer": 258
+ },
+ "messages": {
+  "unreadable": [" {xbe:0x1ddc34}", " {xbe:0x21c9f8}", " {xbe:0x19ebc0}"],
+  "no_records": [" {xbe:0x1ddc34}", " {xbe:0x1ddc74}", " {xbe:0x19ebc0}"],
+  "loaded": [" {xbe:0x1ddb58}", " {xbe:0x19ebc0}"]
+ }
+}

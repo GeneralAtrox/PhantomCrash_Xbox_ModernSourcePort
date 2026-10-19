@@ -1,0 +1,1009 @@
+{
+ "notes": [
+  "unscored_events (a port change): the story events every new game plays before the player has done anything (the opening, 48 to 50 and 156, and the first visit to Club Wired, 91) are left out of the achievement rate on both sides, so a new game reads 0% and the rest of the events and contests share the 100%. The original counted them, starting a game at 3%. An empty list restores that.",
+  "RECORDS (the original's scene 29: task 0x34f97, create 0x34d83, destroy 0x335d5). Opened from Club Wired it keeps the radio playing (0x2a972), from the garage it plays 5GARAGE (0x133b1 track 12). EXIT returns to where it was opened from (0x33d3d: 0 garage, 1 Club Wired).",
+  "The menu (0x34336): RUMBLING RECORD, CONVENTION RECORD, GAME PLAY RECORD and EXIT, lit in yellow and pulsing (draw flag 0x2000). Up and down move (sys 4), cancel goes to EXIT (sys 4), confirm opens (sys 5). Behind a page the menu shows at a quarter alpha under the page's panel, on layers 2 and 3 (0x33aed). The original also draws sprite 2148 at (0, 376), which in this texture is an unused Japanese label; the port leaves it out.",
+  "A record page (0x33d99, 0x34123) grows its panel in over 0.3 s. Then each row appears in turn, 0.3 s plus 0.2 s a row after the page opened (0x33b2c): it plays sys 16, a light bar sweeps it, and its text fades in over 1.5 s while turning from yellow to white over 5 s. Cancel returns to the menu (sys 8).",
+  "Values are right-aligned at x 522 with commas (0x331c0); a unit (%, NY) hangs past that edge. Times are hh:mm:ss, hours capped at 99 (0x32f76), from x 422. Counts come from the save's records (QuestSave.records): the original's words at + 0x5fe0 (total prize), + 0x5fe4 (highest prize), + 0x5fe8 (rumblings), + 0x5fec (returns), + 0x5ff4 (shot down), + 0x5ff8 (drones), + 0x600c (saves), + 0x6010 (enemy weapons destroyed), + 0x6014 (weapons destroyed); the days passed are + 0x5ffc (QuestSave.total_days). The battle times' words are not traced yet.",
+  "The achievement rate (0x33556): the contests listed won, plus the story events played, over the contests listed plus the story events, times 100.",
+  "CONVENTION RECORD (0x34451): the WIRE HEADS TOKYO FIRST RANKER plate with the champion of contest 49, crossed LOSER once won, and a menu of the three venues, REGULATION and EXIT that slides in from the left over 0.5 s, the lowest item last. A venue (0x33660) shows its eight class contests (day and night, D to A) and its area ranker in a 4 x 2 grid and one large cell; REGULATION (0x3472d) shows the regulation contests 6 x 2, two pages turned with L and R. The cursor's contest shows its name, its champion team and their portraits, crossed LOSER once won. Rows move with sys 3, columns with sys 4.",
+  "backdrop: the faint mark behind a grid, drawn before it: each venue's area logo (SHINJUKU-EAST 2226, SHIBUYA 2225, 409 TOKYO-AQUA 2223; 0x33660) and REGULATION's PERSONAL BEST (0x3472d). The art itself is half transparent.",
+  "Turning a REGULATION page lights its arrow for 0.15 s (a port choice; the original counts frames at + 0x34).",
+  "TROPHIES (0x334fc): CONVENTION RECORD loads the recordcup model (resource 217, 0x34d83) and shows each trophy as one of its nodes (mesh slots 1266-1273; the table at 0x1fc25c is, by index, the first ranker 1269, the three area rankers 1266-1268, the class contests 1273 and REGULATION 1270-1272). Each stands at its cell (venue 0x1fc318 with the area ranker at 0x1fc348, REGULATION 0x1fc390 with its trophies at 0x1fc27c), tilted about x (robot +0x68, only the first ranker's, -0.436) and turned about its own y by a spin shared by all (+0x64) that grows 0.02 a frame (0x19cad8). The camera is at (0, 0, -10) looking at the origin with a 52-degree field of view; the light (0x5741b) travels along (0, 0, 3), white at full diffuse with a quarter ambient. The trophies' gold is reflect.xvu and reflect.xpu (program 0x1a, the second stage's flag 0x80): the second texture at the world normal's x and z, added to the base before the light. A venue (0x33660) draws, once its panel has grown, a trophy and the darkened cell (2211 at the cell's offset, 62 a step; the area ranker 2210) for each contest won; REGULATION (0x3472d) the same, and for a cell with no contest the darkened cell and NO CONVENTION (2229). The FIRST RANKER view (0x34451) stands its trophy at (1, -1.86, -2.71) once contest 49 is won and the menu has slid in.",
+  "Researcher reading: the trophies are drawn on layer 4, after the darkened cells, the info panel and the FIRST RANKER plate's dark fill (all of which leave them bright in captures) and under the grid (5) and the ellipse with its NOW! FIRST RANKER lettering (262); where the original's 3D pass falls among the 2D layers was read from captures, not traced.",
+  "Contest 14's champion stays hidden (silhouettes and a blank name) until story event 58 has played (0x33660: event 10 of the table)."
+ ],
+ "scene": 29,
+ "music": "garage",
+ "music_from": {
+  "club_wired": "keep"
+ },
+ "fade_in": 0.5,
+ "fade_out": 0.5,
+ "exit_to": "back",
+ "confirm": {
+  "buttons": "confirm"
+ },
+ "cancel": {
+  "buttons": "cancel"
+ },
+ "cursor_repeat": {
+  "delay": 0.4,
+  "interval": 0.15
+ },
+ "buttons": {
+  "up": "up",
+  "down": "down",
+  "left": "left",
+  "right": "right",
+  "page_back": "left_trigger",
+  "page_forward": "right_trigger"
+ },
+ "sounds": {
+  "menu": "adjust",
+  "move": "cursor",
+  "column": "adjust",
+  "select": "confirm",
+  "to_exit": "adjust",
+  "close": "cancel",
+  "row": "record_row",
+  "page": "cursor"
+ },
+ "layers": [
+  {
+   "id": "background",
+   "image": "textures/scroll/record_tex/0.png",
+   "rect": [0, 0, 640, 480],
+   "position": [0, 0],
+   "layer": 1,
+   "extend_edges": "both",
+   "edge_inset": [1, 1],
+   "edge_bands": [[0, 95], [376, 480]],
+   "edge_bands_left": [[0, 95], [414, 480]]
+  }
+ ],
+ "menu": {
+  "panel": {
+   "id": "menu_panel",
+   "image": "textures/scroll/record_tex/0.png",
+   "rect": [640, 304, 856, 472],
+   "position": [212, 156],
+   "layer": 4
+  },
+  "items": [
+   {
+    "label": {
+     "id": "rumbling_record",
+     "image": "textures/scroll/record_tex/0.png",
+     "rect": [288, 704, 480, 735],
+     "position": [223, 173],
+     "layer": 258
+    },
+    "opens": "rumbling"
+   },
+   {
+    "label": {
+     "id": "convention_record",
+     "image": "textures/scroll/record_tex/0.png",
+     "rect": [480, 704, 672, 735],
+     "position": [223, 207],
+     "layer": 258
+    },
+    "opens": "convention"
+   },
+   {
+    "label": {
+     "id": "game_play_record",
+     "image": "textures/scroll/record_tex/0.png",
+     "rect": [672, 704, 864, 735],
+     "position": [223, 241],
+     "layer": 258
+    },
+    "opens": "game_play"
+   },
+   {
+    "label": {
+     "id": "exit",
+     "image": "textures/scroll/record_tex/0.png",
+     "rect": [864, 704, 1056, 735],
+     "position": [223, 275],
+     "layer": 258
+    },
+    "opens": "exit"
+   }
+  ],
+  "lit_colour": "#ffd300",
+  "lit_layer": 260,
+  "behind_alpha": 0.25,
+  "behind_layers": [2, 3]
+ },
+ "reveal": {
+  "first_seconds": 0.3,
+  "step_seconds": 0.2,
+  "fade_seconds": 1.5,
+  "whiten_seconds": 5.0,
+  "start_colour": "#ffd300",
+  "bar": {
+   "id": "row_bar",
+   "image": "textures/scroll/record_tex/0.png",
+   "rect": [1056, 704, 1544, 736],
+   "layer": 265
+  },
+  "bar_x": 76,
+  "bar_above": 7,
+  "bar_until": 0.25098039215686274,
+  "bar_shrink_from": 0.1568627450980392
+ },
+ "number": {
+  "right": 522,
+  "time_left": 422,
+  "hours_max": 99,
+  "percent": "%",
+  "money": " NY"
+ },
+ "pages": {
+  "rumbling": {
+   "panel": {
+    "id": "rumbling_panel",
+    "image": "textures/scroll/record_tex/0.png",
+    "rect": [640, 0, 1168, 304],
+    "position": [57, 93],
+    "layer": 4
+   },
+   "grow_seconds": 0.3,
+   "hint": [
+    {
+     "id": "hint_button",
+     "image": "textures/scroll/scr_common_tex/0.png",
+     "rect": [256, 184, 272, 200],
+     "position": [279, 376],
+     "layer": 262
+    },
+    {
+     "id": "hint_back",
+     "image": "textures/scroll/scr_common_tex/0.png",
+     "rect": [600, 184, 664, 200],
+     "position": [298, 378],
+     "layer": 262
+    }
+   ],
+   "label_x": 84,
+   "first_y": 124,
+   "step_y": 22,
+   "rows": [
+    {
+     "label": "Rumblings played",
+     "stat": "rumblings"
+    },
+    {
+     "label": "{xbe:0x19c8d0}",
+     "stat": "returns"
+    },
+    {
+     "label": "Return rate",
+     "ratio": [
+      "returns",
+      "rumblings"
+     ],
+     "format": "percent"
+    },
+    {
+     "label": "{xbe:0x19c890}",
+     "stat": "longest_battle_seconds",
+     "format": "time"
+    },
+    {
+     "label": "{xbe:0x19c864}",
+     "stat": "shortest_battle_seconds",
+     "format": "time"
+    },
+    {
+     "label": "{xbe:0x19c82c}",
+     "stat": "highest_prize",
+     "format": "money"
+    },
+    {
+     "label": "{xbe:0x19c7fc}",
+     "stat": "enemies_shot_down"
+    },
+    {
+     "label": "{xbe:0x19c7d8}",
+     "stat": "drones_shot_down"
+    },
+    {
+     "label": "{xbe:0x19c7a8}",
+     "stat": "enemy_weapons_destroyed"
+    },
+    {
+     "label": "Weapons destroyed",
+     "stat": "weapons_destroyed"
+    },
+    {
+     "label": "{xbe:0x19c760}",
+     "stat": "total_prize",
+     "format": "money"
+    }
+   ]
+  },
+  "game_play": {
+   "panel": {
+    "id": "game_play_panel",
+    "image": "textures/scroll/record_tex/0.png",
+    "rect": [1272, 304, 1784, 448],
+    "position": [68, 169],
+    "layer": 4
+   },
+   "grow_seconds": 0.3,
+   "hint": [
+    {
+     "id": "hint_button",
+     "image": "textures/scroll/scr_common_tex/0.png",
+     "rect": [256, 184, 272, 200],
+     "position": [278, 322],
+     "layer": 262
+    },
+    {
+     "id": "hint_back",
+     "image": "textures/scroll/scr_common_tex/0.png",
+     "rect": [600, 184, 664, 200],
+     "position": [297, 324],
+     "layer": 262
+    }
+   ],
+   "label_x": 84,
+   "first_y": 197,
+   "step_y": 24,
+   "rows": [
+    {
+     "label": "Days passed",
+     "stat": "days_passed"
+    },
+    {
+     "label": "Saves",
+     "stat": "saves"
+    },
+    {
+     "label": "{xbe:0x19c710}",
+     "stat": "play_seconds",
+     "format": "time"
+    },
+    {
+     "label": "{xbe:0x19c6e4}",
+     "completion": true,
+     "format": "percent"
+    }
+   ]
+  }
+ },
+ "unscored_events": [48, 49, 50, 156, 91],
+ "completion_contests": [6, 5, 4, 3, 10, 9, 8, 7, 14, 23, 22, 21, 20, 27, 26, 25, 24, 31, 40, 39, 38, 37, 44, 43, 42, 41, 48, 1, 2, 11, 12, 15, 16, 17, 18, 19, 28, 29, 32, 33, 34, 35, 36, 45, 46, 50, 49, 52, 53, 54],
+ "help_text": "{xbe:0x19c680}",
+ "help": {"position": [0, 72], "clip": [0, 0, 640, 480], "colour": "#f0f0f0", "speed": 60, "lead": 270, "trail": 0, "layer": 263},
+ "trophies": {"model": "models/model/recordcup_mdl.gltf", "camera": {"eye": [0, 0, -10], "target": [0, 0, 0], "fov_degrees": 52, "near_plane": 0.5, "far_plane": 100}, "light_direction": [0, 0, 1], "diffuse": 1, "ambient": 0.25, "frame_rate": 60, "spin_per_frame": 0.02, "layer": 4, "first_ranker": {"node": 3, "position": [1.0, -1.86, -2.71], "tilt": -0.4363323}, "class_node": 7, "class_cells": [[-4.21, -2.43, 12.4002], [-1.18, -2.43, 12.4002], [1.84, -2.43, 12.4002], [4.86, -2.43, 12.4002], [-4.21, -5.34, 12.4002], [-1.18, -5.34, 12.4002], [1.84, -5.34, 12.4002], [4.86, -5.34, 12.4002]], "area_nodes": [0, 1, 2], "area_ranker": [7.4501, -4.32, 7.6008], "regulation_cells": [[-4.21, -2.43, 12.4002], [-1.18, -2.43, 12.4002], [1.84, -2.43, 12.4002], [4.86, -2.43, 12.4002], [7.86, -2.43, 12.4002], [10.86, -2.43, 12.4002], [-4.21, -5.52, 12.4002], [-1.18, -5.52, 12.4002], [1.84, -5.52, 12.4002], [4.86, -5.52, 12.4002], [7.86, -5.52, 12.4002], [10.86, -5.52, 12.4002]], "regulation_nodes": [4, 5, 6, 4, 5, 6, 6, 5, 4, 6, 5, 4], "cell_step": 62, "won_cell": {"id": "won_cell", "image": "textures/scroll/record_tex/0.png", "rect": [1944, 232, 2008, 296], "position": [202, 240], "layer": 3}, "area_won_cell": {"id": "area_won_cell", "image": "textures/scroll/record_tex/0.png", "rect": [1208, 480, 1336, 608], "position": [450, 240], "layer": 3}, "no_convention": {"id": "no_convention", "image": "textures/scroll/record_tex/0.png", "rect": [1912, 480, 1976, 544], "position": [202, 240], "layer": 261}},
+ "convention": {
+  "ellipse": {
+   "id": "ellipse",
+   "image": "textures/scroll/record_tex/0.png",
+   "rect": [1168, 0, 1552, 288],
+   "position": [195, 97],
+   "layer": 262
+  },
+  "ellipse_seconds": 0.5,
+  "first_ranker": {
+   "id": "first_ranker",
+   "image": "textures/scroll/record_tex/0.png",
+   "rect": [1552, 0, 1864, 232],
+   "position": [233, 123],
+   "layer": 4
+  },
+  "first_ranker_contest": 49,
+  "first_ranker_portraits": [
+   [376, 261],
+   [451, 261]
+  ],
+  "items": [
+   {
+    "id": "convention_item_0",
+    "image": "textures/scroll/record_tex/0.png",
+    "rect": [1864, 200, 1976, 232],
+    "position": [62, 150],
+    "layer": 260
+   },
+   {
+    "id": "convention_item_1",
+    "image": "textures/scroll/record_tex/0.png",
+    "rect": [1928, 424, 2040, 456],
+    "position": [62, 187],
+    "layer": 260
+   },
+   {
+    "id": "convention_item_2",
+    "image": "textures/scroll/record_tex/0.png",
+    "rect": [1560, 592, 1672, 624],
+    "position": [62, 224],
+    "layer": 260
+   },
+   {
+    "id": "convention_item_3",
+    "image": "textures/scroll/record_tex/0.png",
+    "rect": [1672, 592, 1784, 624],
+    "position": [62, 261],
+    "layer": 260
+   },
+   {
+    "id": "convention_item_4",
+    "image": "textures/scroll/record_tex/0.png",
+    "rect": [1784, 592, 1896, 624],
+    "position": [62, 298],
+    "layer": 260
+   }
+  ],
+  "item_opens": [
+   "venue",
+   "venue",
+   "venue",
+   "regulation",
+   "back"
+  ],
+  "dim_colour": "#404040",
+  "slide_seconds": 0.5,
+  "slide_distance": 320,
+  "slide_stagger": 40,
+  "panel": {
+   "id": "info_panel",
+   "image": "textures/scroll/record_tex/0.png",
+   "rect": [856, 304, 1272, 456],
+   "position": [183, 93],
+   "layer": 4
+  },
+  "grow_seconds": 0.3,
+  "hint": [
+   {
+    "id": "hint_button",
+    "image": "textures/scroll/scr_common_tex/0.png",
+    "rect": [256, 184, 272, 200],
+    "position": [285, 372],
+    "layer": 262
+   },
+   {
+    "id": "hint_back",
+    "image": "textures/scroll/scr_common_tex/0.png",
+    "rect": [480, 184, 536, 200],
+    "position": [304, 374],
+    "layer": 262
+   }
+  ],
+  "grid": {
+   "id": "grid",
+   "image": "textures/scroll/record_tex/0.png",
+   "rect": [0, 480, 432, 624],
+   "position": [172, 231],
+   "layer": 5
+  },
+  "cursor": {
+   "id": "cursor",
+   "image": "textures/scroll/record_tex/0.png",
+   "rect": [1928, 304, 2008, 384],
+   "layer": 262,
+   "animation": "pulse"
+  },
+  "cursor_origin": [194, 232],
+  "cursor_step": 62,
+  "area_cursor": {
+   "id": "area_cursor",
+   "image": "textures/scroll/record_tex/0.png",
+   "rect": [864, 480, 1008, 624],
+   "position": [442, 232],
+   "layer": 262,
+   "animation": "pulse"
+  },
+  "day_night": [
+   {
+    "id": "day",
+    "image": "textures/scroll/record_tex/0.png",
+    "rect": [880, 624, 1104, 672],
+    "position": [206, 121],
+    "layer": 258
+   },
+   {
+    "id": "night",
+    "image": "textures/scroll/record_tex/0.png",
+    "rect": [1104, 624, 1328, 672],
+    "position": [206, 121],
+    "layer": 258
+   }
+  ],
+  "portraits": [
+   [437, 118],
+   [507, 118]
+  ],
+  "portrait_layer": 263,
+  "loser": {
+   "id": "loser",
+   "image": "textures/scroll/record_tex/0.png",
+   "rect": [1752, 232, 1816, 296],
+   "position": [437, 118],
+   "layer": 265
+  },
+  "loser_step": 70,
+  "contest_name": [227, 198],
+  "text_colour": "#ffffff",
+  "text_layer": 265,
+  "hidden": {
+   "contest": 14,
+   "until_event": 58,
+   "portraits": [
+    {
+     "id": "unknown_0",
+     "image": "textures/scroll/fight_chara01_tex/0.png",
+     "rect": [64, 192, 128, 256]
+    },
+    {
+     "id": "unknown_1",
+     "image": "textures/scroll/fight_chara00_tex/0.png",
+     "rect": [320, 64, 384, 128]
+    }
+   ],
+   "name": {
+    "id": "unknown_name",
+    "image": "textures/scroll/record_tex/0.png",
+    "rect": [1400, 784, 1600, 808],
+    "position": [220, 162],
+    "layer": 261
+   }
+  },
+  "venues": [
+   {
+    "contests": [6, 5, 4, 3, 10, 9, 8, 7, 14],
+    "header": {
+     "id": "venue_0",
+     "image": "textures/scroll/record_tex/0.png",
+     "rect": [1776, 624, 2000, 672],
+     "position": [206, 121],
+     "layer": 258
+    },
+    "backdrop": {
+     "id": "venue_logo_0",
+     "image": "textures/scroll/record_tex/0.png",
+     "rect": [0, 624, 288, 736],
+     "position": [247, 249],
+     "layer": 2
+    },
+    "ranks": [
+     {
+      "id": "rank_0_0",
+      "image": "textures/scroll/record_tex/0.png",
+      "rect": [880, 736, 1056, 760],
+      "position": [234, 129],
+      "layer": 259
+     },
+     {
+      "id": "rank_0_1",
+      "image": "textures/scroll/record_tex/0.png",
+      "rect": [704, 736, 880, 760],
+      "position": [234, 129],
+      "layer": 259
+     },
+     {
+      "id": "rank_0_2",
+      "image": "textures/scroll/record_tex/0.png",
+      "rect": [528, 736, 704, 760],
+      "position": [234, 129],
+      "layer": 259
+     },
+     {
+      "id": "rank_0_3",
+      "image": "textures/scroll/record_tex/0.png",
+      "rect": [352, 736, 528, 760],
+      "position": [234, 129],
+      "layer": 259
+     }
+    ],
+    "champion_names": [
+     {
+      "id": "champion_0_0",
+      "image": "textures/scroll/record_tex/0.png",
+      "rect": [200, 784, 400, 808],
+      "position": [220, 162],
+      "layer": 261
+     },
+     {
+      "id": "champion_0_1",
+      "image": "textures/scroll/record_tex/0.png",
+      "rect": [1600, 760, 1800, 784],
+      "position": [220, 162],
+      "layer": 261
+     },
+     {
+      "id": "champion_0_2",
+      "image": "textures/scroll/record_tex/0.png",
+      "rect": [1800, 784, 2000, 808],
+      "position": [220, 162],
+      "layer": 261
+     },
+     {
+      "id": "champion_0_3",
+      "image": "textures/scroll/record_tex/0.png",
+      "rect": [1400, 784, 1600, 808],
+      "position": [220, 162],
+      "layer": 261
+     },
+     {
+      "id": "champion_0_4",
+      "image": "textures/scroll/record_tex/0.png",
+      "rect": [0, 808, 200, 832],
+      "position": [220, 162],
+      "layer": 261
+     },
+     {
+      "id": "champion_0_5",
+      "image": "textures/scroll/record_tex/0.png",
+      "rect": [0, 784, 200, 808],
+      "position": [220, 162],
+      "layer": 261
+     },
+     {
+      "id": "champion_0_6",
+      "image": "textures/scroll/record_tex/0.png",
+      "rect": [1400, 760, 1600, 784],
+      "position": [220, 162],
+      "layer": 261
+     },
+     {
+      "id": "champion_0_7",
+      "image": "textures/scroll/record_tex/0.png",
+      "rect": [1400, 784, 1600, 808],
+      "position": [220, 162],
+      "layer": 261
+     },
+     {
+      "id": "champion_0_8",
+      "image": "textures/scroll/record_tex/0.png",
+      "rect": [1600, 784, 1800, 808],
+      "position": [220, 162],
+      "layer": 261
+     }
+    ]
+   },
+   {
+    "contests": [23, 22, 21, 20, 27, 26, 25, 24, 31],
+    "header": {
+     "id": "venue_1",
+     "image": "textures/scroll/record_tex/0.png",
+     "rect": [1552, 624, 1776, 672],
+     "position": [206, 121],
+     "layer": 258
+    },
+    "backdrop": {
+     "id": "venue_logo_1",
+     "image": "textures/scroll/record_tex/0.png",
+     "rect": [1624, 480, 1912, 592],
+     "position": [247, 249],
+     "layer": 2
+    },
+    "ranks": [
+     {
+      "id": "rank_1_0",
+      "image": "textures/scroll/record_tex/0.png",
+      "rect": [176, 736, 352, 760],
+      "position": [234, 129],
+      "layer": 259
+     },
+     {
+      "id": "rank_1_1",
+      "image": "textures/scroll/record_tex/0.png",
+      "rect": [0, 736, 176, 760],
+      "position": [234, 129],
+      "layer": 259
+     },
+     {
+      "id": "rank_1_2",
+      "image": "textures/scroll/record_tex/0.png",
+      "rect": [1736, 672, 1912, 696],
+      "position": [234, 129],
+      "layer": 259
+     },
+     {
+      "id": "rank_1_3",
+      "image": "textures/scroll/record_tex/0.png",
+      "rect": [1560, 672, 1736, 696],
+      "position": [234, 129],
+      "layer": 259
+     }
+    ],
+    "champion_names": [
+     {
+      "id": "champion_1_0",
+      "image": "textures/scroll/record_tex/0.png",
+      "rect": [1200, 784, 1400, 808],
+      "position": [220, 162],
+      "layer": 261
+     },
+     {
+      "id": "champion_1_1",
+      "image": "textures/scroll/record_tex/0.png",
+      "rect": [600, 760, 800, 784],
+      "position": [220, 162],
+      "layer": 261
+     },
+     {
+      "id": "champion_1_2",
+      "image": "textures/scroll/record_tex/0.png",
+      "rect": [200, 760, 400, 784],
+      "position": [220, 162],
+      "layer": 261
+     },
+     {
+      "id": "champion_1_3",
+      "image": "textures/scroll/record_tex/0.png",
+      "rect": [800, 784, 1000, 808],
+      "position": [220, 162],
+      "layer": 261
+     },
+     {
+      "id": "champion_1_4",
+      "image": "textures/scroll/record_tex/0.png",
+      "rect": [1000, 760, 1200, 784],
+      "position": [220, 162],
+      "layer": 261
+     },
+     {
+      "id": "champion_1_5",
+      "image": "textures/scroll/record_tex/0.png",
+      "rect": [800, 760, 1000, 784],
+      "position": [220, 162],
+      "layer": 261
+     },
+     {
+      "id": "champion_1_6",
+      "image": "textures/scroll/record_tex/0.png",
+      "rect": [400, 760, 600, 784],
+      "position": [220, 162],
+      "layer": 261
+     },
+     {
+      "id": "champion_1_7",
+      "image": "textures/scroll/record_tex/0.png",
+      "rect": [0, 760, 200, 784],
+      "position": [220, 162],
+      "layer": 261
+     },
+     {
+      "id": "champion_1_8",
+      "image": "textures/scroll/record_tex/0.png",
+      "rect": [1000, 784, 1200, 808],
+      "position": [220, 162],
+      "layer": 261
+     }
+    ]
+   },
+   {
+    "contests": [40, 39, 38, 37, 44, 43, 42, 41, 48],
+    "header": {
+     "id": "venue_2",
+     "image": "textures/scroll/record_tex/0.png",
+     "rect": [656, 624, 880, 672],
+     "position": [206, 121],
+     "layer": 258
+    },
+    "backdrop": {
+     "id": "venue_logo_2",
+     "image": "textures/scroll/record_tex/0.png",
+     "rect": [1336, 480, 1624, 592],
+     "position": [247, 249],
+     "layer": 2
+    },
+    "ranks": [
+     {
+      "id": "rank_2_0",
+      "image": "textures/scroll/record_tex/0.png",
+      "rect": [1384, 672, 1560, 696],
+      "position": [234, 129],
+      "layer": 259
+     },
+     {
+      "id": "rank_2_1",
+      "image": "textures/scroll/record_tex/0.png",
+      "rect": [1208, 672, 1384, 696],
+      "position": [234, 129],
+      "layer": 259
+     },
+     {
+      "id": "rank_2_2",
+      "image": "textures/scroll/record_tex/0.png",
+      "rect": [1032, 672, 1208, 696],
+      "position": [234, 129],
+      "layer": 259
+     },
+     {
+      "id": "rank_2_3",
+      "image": "textures/scroll/record_tex/0.png",
+      "rect": [856, 672, 1032, 696],
+      "position": [234, 129],
+      "layer": 259
+     }
+    ],
+    "champion_names": [
+     {
+      "id": "champion_2_0",
+      "image": "textures/scroll/record_tex/0.png",
+      "rect": [1744, 704, 1944, 728],
+      "position": [220, 162],
+      "layer": 261
+     },
+     {
+      "id": "champion_2_1",
+      "image": "textures/scroll/record_tex/0.png",
+      "rect": [856, 456, 1056, 480],
+      "position": [220, 162],
+      "layer": 261
+     },
+     {
+      "id": "champion_2_2",
+      "image": "textures/scroll/record_tex/0.png",
+      "rect": [1568, 456, 1768, 480],
+      "position": [220, 162],
+      "layer": 261
+     },
+     {
+      "id": "champion_2_3",
+      "image": "textures/scroll/record_tex/0.png",
+      "rect": [600, 784, 800, 808],
+      "position": [220, 162],
+      "layer": 261
+     },
+     {
+      "id": "champion_2_4",
+      "image": "textures/scroll/record_tex/0.png",
+      "rect": [656, 672, 856, 696],
+      "position": [220, 162],
+      "layer": 261
+     },
+     {
+      "id": "champion_2_5",
+      "image": "textures/scroll/record_tex/0.png",
+      "rect": [1544, 704, 1744, 728],
+      "position": [220, 162],
+      "layer": 261
+     },
+     {
+      "id": "champion_2_6",
+      "image": "textures/scroll/record_tex/0.png",
+      "rect": [1768, 456, 1968, 480],
+      "position": [220, 162],
+      "layer": 261
+     },
+     {
+      "id": "champion_2_7",
+      "image": "textures/scroll/record_tex/0.png",
+      "rect": [1168, 456, 1368, 480],
+      "position": [220, 162],
+      "layer": 261
+     },
+     {
+      "id": "champion_2_8",
+      "image": "textures/scroll/record_tex/0.png",
+      "rect": [1368, 456, 1568, 480],
+      "position": [220, 162],
+      "layer": 261
+     }
+    ]
+   }
+  ],
+  "regulation": {
+   "contests": [1, 2, 11, 12, 15, 16, 17, 18, 19, 28, 29, 32, 33, 34, 35, 36, 45, 46, 50, -1, -1, -1, -1, -1],
+   "columns": 6,
+   "rows": 2,
+   "header": {
+    "id": "regulation",
+    "image": "textures/scroll/record_tex/0.png",
+    "rect": [1328, 624, 1552, 672],
+    "position": [206, 121],
+    "layer": 258
+   },
+   "backdrop": {
+    "id": "personal_best",
+    "image": "textures/scroll/record_tex/0.png",
+    "rect": [288, 624, 656, 704],
+    "position": [207, 262],
+    "layer": 2
+   },
+   "grid": {
+    "id": "regulation_grid",
+    "image": "textures/scroll/record_tex/0.png",
+    "rect": [432, 480, 864, 624],
+    "position": [172, 231],
+    "layer": 5
+   },
+   "champion_names": [
+    {
+     "id": "regulation_champion_0",
+     "image": "textures/scroll/record_tex/0.png",
+     "rect": [1600, 760, 1800, 784],
+     "position": [220, 162],
+     "layer": 261
+    },
+    {
+     "id": "regulation_champion_1",
+     "image": "textures/scroll/record_tex/0.png",
+     "rect": [0, 784, 200, 808],
+     "position": [220, 162],
+     "layer": 261
+    },
+    {
+     "id": "regulation_champion_2",
+     "image": "textures/scroll/record_tex/0.png",
+     "rect": [1400, 784, 1600, 808],
+     "position": [220, 162],
+     "layer": 261
+    },
+    {
+     "id": "regulation_champion_3",
+     "image": "textures/scroll/record_tex/0.png",
+     "rect": [1800, 784, 2000, 808],
+     "position": [220, 162],
+     "layer": 261
+    },
+    {
+     "id": "regulation_champion_4",
+     "image": "textures/scroll/record_tex/0.png",
+     "rect": [1600, 784, 1800, 808],
+     "position": [220, 162],
+     "layer": 261
+    },
+    {
+     "id": "regulation_champion_5",
+     "image": "textures/scroll/record_tex/0.png",
+     "rect": [1168, 456, 1368, 480],
+     "position": [220, 162],
+     "layer": 261
+    },
+    {
+     "id": "regulation_champion_6",
+     "image": "textures/scroll/record_tex/0.png",
+     "rect": [1656, 736, 1856, 760],
+     "position": [220, 162],
+     "layer": 261
+    },
+    {
+     "id": "regulation_champion_7",
+     "image": "textures/scroll/record_tex/0.png",
+     "rect": [600, 760, 800, 784],
+     "position": [220, 162],
+     "layer": 261
+    },
+    {
+     "id": "regulation_champion_8",
+     "image": "textures/scroll/record_tex/0.png",
+     "rect": [800, 760, 1000, 784],
+     "position": [220, 162],
+     "layer": 261
+    },
+    {
+     "id": "regulation_champion_9",
+     "image": "textures/scroll/record_tex/0.png",
+     "rect": [800, 784, 1000, 808],
+     "position": [220, 162],
+     "layer": 261
+    },
+    {
+     "id": "regulation_champion_10",
+     "image": "textures/scroll/record_tex/0.png",
+     "rect": [1568, 456, 1768, 480],
+     "position": [220, 162],
+     "layer": 261
+    },
+    {
+     "id": "regulation_champion_11",
+     "image": "textures/scroll/record_tex/0.png",
+     "rect": [1000, 784, 1200, 808],
+     "position": [220, 162],
+     "layer": 261
+    },
+    {
+     "id": "regulation_champion_12",
+     "image": "textures/scroll/record_tex/0.png",
+     "rect": [0, 760, 200, 784],
+     "position": [220, 162],
+     "layer": 261
+    },
+    {
+     "id": "regulation_champion_13",
+     "image": "textures/scroll/record_tex/0.png",
+     "rect": [1456, 736, 1656, 760],
+     "position": [220, 162],
+     "layer": 261
+    },
+    {
+     "id": "regulation_champion_14",
+     "image": "textures/scroll/record_tex/0.png",
+     "rect": [856, 456, 1056, 480],
+     "position": [220, 162],
+     "layer": 261
+    },
+    {
+     "id": "regulation_champion_15",
+     "image": "textures/scroll/record_tex/0.png",
+     "rect": [1544, 704, 1744, 728],
+     "position": [220, 162],
+     "layer": 261
+    },
+    {
+     "id": "regulation_champion_16",
+     "image": "textures/scroll/record_tex/0.png",
+     "rect": [400, 760, 600, 784],
+     "position": [220, 162],
+     "layer": 261
+    },
+    {
+     "id": "regulation_champion_17",
+     "image": "textures/scroll/record_tex/0.png",
+     "rect": [0, 760, 200, 784],
+     "position": [220, 162],
+     "layer": 261
+    },
+    {
+     "id": "regulation_champion_18",
+     "image": "textures/scroll/record_tex/0.png",
+     "rect": [1000, 760, 1200, 784],
+     "position": [220, 162],
+     "layer": 261
+    }
+   ],
+   "own_portrait": {
+    "slot": 13,
+    "sprite": {
+     "id": "own_portrait",
+     "image": "textures/scroll/record_tex/0.png",
+     "rect": [1688, 232, 1752, 296]
+    }
+   },
+   "arrows": [
+    {
+     "id": "arrow_left",
+     "image": "textures/scroll/record_tex/0.png",
+     "rect": [2000, 0, 2032, 64],
+     "position": [165, 271],
+     "layer": 261
+    },
+    {
+     "id": "arrow_right",
+     "image": "textures/scroll/record_tex/0.png",
+     "rect": [1624, 232, 1656, 296],
+     "position": [581, 271],
+     "layer": 261
+    }
+   ],
+   "flip_seconds": 0.15,
+   "arrows_lit": [
+    {
+     "id": "arrow_left_lit",
+     "image": "textures/scroll/record_tex/0.png",
+     "rect": [2008, 304, 2040, 368],
+     "position": [165, 271],
+     "layer": 262
+    },
+    {
+     "id": "arrow_right_lit",
+     "image": "textures/scroll/record_tex/0.png",
+     "rect": [1656, 232, 1688, 296],
+     "position": [581, 271],
+     "layer": 262
+    }
+   ]
+  }
+ },
+ "frame": {
+  "hud": true,
+  "meter": [435, 396],
+  "now_playing": {
+   "format": "《 {title} : {artist} 》",
+   "position": [0, 419],
+   "clip": [0, 419, 396, 437],
+   "colour": "#ffffff",
+   "speed": 60,
+   "trail": 45,
+   "layer": 263
+  }
+ }
+}

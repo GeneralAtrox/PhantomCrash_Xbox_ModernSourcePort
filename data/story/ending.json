@@ -1,0 +1,12 @@
+{
+ "notes": [
+  "The ending movie (original scene 11: create 0x01c372, steps 0x01c46e, 0x01c4b8, exit 0xa4042), after the finale (data/story/finale.json), in the intro's format (data/boot/intro.json).",
+  "It plays movie 2, ending.sfd (0x0aebf6), with no skip: only the movie's end leaves it (0x0aed1a), for the staff roll (scene 37), which marks the game cleared.",
+  "subtitles: the movie's 13 subtitles, converted from the table at 0x1db4a0 (start and end in 60 Hz frames of the movie, scaled 50/60 on a 50 Hz console, and a Shift-JIS text) into table. Each shows while the movie is between its frames, centred on position's x with its top at position's y, in the font's proportional widths (0x0be443) and colour (0xfff0f0f0, 0x01c4fa)."
+ ],
+ "subtitles": { "table": "tables/ending_subtitles.json", "position": [320, 416], "colour": "#f0f0f0" },
+ "steps": [
+  { "id": "ending", "type": "movie", "file": "movie/ending.sfd", "fade_out": 0.0 }
+ ],
+ "then": "staff_roll"
+}

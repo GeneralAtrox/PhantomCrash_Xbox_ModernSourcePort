@@ -1,0 +1,22 @@
+{
+  "font_family": "Century Gothic",
+  "font_size": 18.18,
+  "letter_spacing": 0.114,
+  "word_spacing": -0.227,
+  "text_scale_x": 0.94,
+  "text_offset": [-0.227, -0.455],
+  "size": [120, 25.45],
+  "offset": [36, 4],
+  "radius": 8.64,
+  "border": 1.36,
+  "padding": 4,
+  "background": "#020302",
+  "outline": "#f3f4eb",
+  "text": "#ffe700",
+  "selected_outline": "#ffffff",
+  "selected_background": "#e8bd00",
+  "selected_text": "#020302",
+  "highlight": "#f6e853",
+  "disabled_outline": "#6b706b",
+  "disabled_text": "#514700"
+}

@@ -1,0 +1,578 @@
+{
+  "notes": [
+    "Optional native enhancement, disabled by default in Settings > Visuals. These are port-authored lights, not a reconstruction of Xbox local lighting.",
+    "The night video ship (models/binlink/211.gltf) carries four searchlight beams, meshes 0-3, each turned at its rotor pivot (tables/arena_monitor.json spinners; 0x06a5ac). Its lamps follow them: 'mesh' puts a light in that mesh's frame, where the beam's axis runs from the mesh origin along 'direction' (port model space: the loader mirrors the glTF's Z) (measured from the beam geometry: 128 units to a disc 8.8 across, about 4 degrees each side). Each lamp starts 22.5 units down its beam, below the hull, which would otherwise shadow it. The night supply carrier (208.gltf) has one beam on its spinner, mesh 5: from (0, -0.64, -0.08) along (0, -0.81, 0.59), its glow fanning about 33 degrees each side; its lamp starts 2 units down it, below the body, with a 14 degree cone so its pool stays near the carrier. The day models have no beams. Night entrance lights are authored above the gate approaches. 'bar' makes a lamp a strip: half its length, from 'position' (world units, or the mesh's) to one end; light leaves the strip's nearest point, so its pool and beam are as wide as the strip. Stage 1's gate lamps are the rows of three panels across each gate's top (models/stages/187.gltf, texture 1559/6), their positions 0.6 units in front of the panels' middle. Their air (0.7, fading from 16 units) keeps the haze a glow along the panels rather than a cone filling the view. Stage 5's (Aqualine night) are the rows of round lamps across each gate's top (models/stages/191.gltf, nodes 196 and 197, texture 1563/0 at 224,16), the strip running between the outer lamps' centres 0.6 units in front of them; each is aimed at its gate's light pool with the cone the point lamp gave it there, and the same air.",
+    "Maximum eight spotlights per frame (stage lights first, then the video ship's, then the carrier's), each with a 1024px shadow map. Cone angles are half-angles in degrees; positions/ranges use world units. 'near' is the shadow map's near plane (default 0.5); lights thrown far need a farther one to keep their shadows' contact. Ship and supply coordinates are the model's or the named mesh's, stage coordinates world.",
+    "light_pools lists, per scene stage, the base texture of the original's painted entrance light pools (blended, unlit stage layers drawn as a white radial sprite). While dynamic lighting is on they are not drawn and the entrance spotlights, aimed at each pool's centre with a cone its size, light the ground, the robots and cast shadows instead. With it off the original pools are drawn as before.",
+    "point_lights (port addition, drawn while Dynamic lighting is on): unshadowed point lights, up to max_lights a frame, kept by how much they light near the camera. effects: every playing effect with additive particles or flashes glows (port/src/effect_glow.cpp); its energy sums each particle's alpha times its brightest colour channel times its half-size, and each flash's alpha times its scale times flash_weight. The light sits lift above the glow's centre in the particles' average colour, with intensity intensity_per_root * sqrt(energy) (at most max_intensity) and range range_base + range_per_root * sqrt(energy) (at most max_range); a burning wreck reaches energy 17-47 for its 6.45 s, a blast about 11 for half a second, a bullet's impact about 1. group_scales multiplies an effect group's energy (0: unlit). fireball: each blast and exploding wreck flashes, its range range_per_radius times the blast's radius (at least 'range'), fading over the blast's life. muzzle: a flash where each round leaves, by HUD kind, for 'seconds'. projectile: a light riding each round in flight. beam: lights along a held beam every 'spacing' units (at most 'points'), brightening over 'seconds' held. day_scale scales them on day stages. shadowed: while the stage and ships leave shadow maps free, this many of the strongest blasts and fires (intensity times range at least shadow_min) cast shadows instead, as a light shadow_lift above them looking down, shadow_degrees each side.",
+    "volumetric (port addition, drawn while Dynamic lighting and Settings > Visuals > Light beams in the air are on): light the air scatters toward the eye, so beams and the glow around fires show in the air. Each view ray, at 'resolution' of the frame and no farther than max_distance, is clipped to every spotlight's cone and marched through it in 'steps' samples, each testing the light's shadow map so robots and buildings cut the beam; the max_point_lights point lights nearest the eye add 'point_steps' unshadowed samples each. The result is laid over the frame through depth-aware taps. density is the light scattered per unit travelled (0: clear air, the default; only the scene stages listed under 'stages' have air). anisotropy (Henyey-Greenstein g) brightens a beam seen looking toward its lamp. The air thins above height_base, by e every height_falloff units, so the ships' beams gather strength toward the ground. A beam dims as 1/(1 + (d/fade)^2) with distance d from its lamp, fade being beam_fade, or a light's own 'air_fade' (the ships' narrow searchlights carry far). Each light's 'air' scales how strongly it lights the air (default 1); point_lights.air sets it for every effect light, shadowed or not. Nothing is dimmed by the air: it only adds light."
+  ],
+  "ship": {
+    "0": [],
+    "1": [
+      {
+        "mesh": 0,
+        "position": [
+          5.29,
+          -21.17,
+          5.45
+        ],
+        "direction": [
+          0.235,
+          -0.941,
+          0.242
+        ],
+        "colour": [
+          0.92,
+          0.98,
+          1.0
+        ],
+        "range": 700,
+        "intensity": 6,
+        "inner_degrees": 3,
+        "outer_degrees": 4.5,
+        "near": 10,
+        "air_fade": 250
+      },
+      {
+        "mesh": 1,
+        "position": [
+          -5.29,
+          -21.17,
+          -5.45
+        ],
+        "direction": [
+          -0.235,
+          -0.941,
+          -0.242
+        ],
+        "colour": [
+          0.92,
+          0.98,
+          1.0
+        ],
+        "range": 700,
+        "intensity": 6,
+        "inner_degrees": 3,
+        "outer_degrees": 4.5,
+        "near": 10,
+        "air_fade": 250
+      },
+      {
+        "mesh": 2,
+        "position": [
+          7.7,
+          -21.15,
+          0.0
+        ],
+        "direction": [
+          0.342,
+          -0.94,
+          0.0
+        ],
+        "colour": [
+          0.92,
+          0.98,
+          1.0
+        ],
+        "range": 700,
+        "intensity": 6,
+        "inner_degrees": 3,
+        "outer_degrees": 4.5,
+        "near": 10,
+        "air_fade": 250
+      },
+      {
+        "mesh": 3,
+        "position": [
+          5.29,
+          -21.17,
+          -5.45
+        ],
+        "direction": [
+          0.235,
+          -0.941,
+          -0.242
+        ],
+        "colour": [
+          0.92,
+          0.98,
+          1.0
+        ],
+        "range": 700,
+        "intensity": 6,
+        "inner_degrees": 3,
+        "outer_degrees": 4.5,
+        "near": 10,
+        "air_fade": 250
+      }
+    ]
+  },
+  "stages": {
+    "1": [
+      {
+        "position": [
+          111.906,
+          22.82,
+          -145.649
+        ],
+        "direction": [
+          0.1259,
+          -0.8911,
+          0.4361
+        ],
+        "bar": [
+          4.815,
+          0,
+          -0.545
+        ],
+        "colour": [
+          0.8,
+          0.9,
+          1
+        ],
+        "range": 65,
+        "intensity": 2.5,
+        "inner_degrees": 14.4,
+        "outer_degrees": 29.7,
+        "air": 0.7,
+        "air_fade": 16
+      },
+      {
+        "position": [
+          181.845,
+          19.85,
+          -6.0
+        ],
+        "direction": [
+          -0.556,
+          -0.819,
+          0.14
+        ],
+        "bar": [
+          1.735,
+          0,
+          4.525
+        ],
+        "colour": [
+          0.8,
+          0.9,
+          1
+        ],
+        "range": 65,
+        "intensity": 2.5,
+        "inner_degrees": 13.2,
+        "outer_degrees": 27.1,
+        "air": 0.7,
+        "air_fade": 16
+      },
+      {
+        "position": [
+          -22.265,
+          19.22,
+          55.545
+        ],
+        "direction": [
+          -0.0916,
+          -0.7874,
+          -0.6094
+        ],
+        "bar": [
+          4.845,
+          0,
+          0
+        ],
+        "colour": [
+          0.8,
+          0.9,
+          1
+        ],
+        "range": 65,
+        "intensity": 2.5,
+        "inner_degrees": 14.6,
+        "outer_degrees": 29.7,
+        "air": 0.7,
+        "air_fade": 16
+      }
+    ],
+    "3": [
+      {
+        "position": [
+          43.68,
+          18.32,
+          13.06
+        ],
+        "direction": [
+          -0.34,
+          -0.9403,
+          0.0126
+        ],
+        "colour": [
+          0.8,
+          0.9,
+          1
+        ],
+        "range": 55,
+        "intensity": 2.5,
+        "inner_degrees": 21.1,
+        "outer_degrees": 42.2
+      },
+      {
+        "position": [
+          -26.652,
+          18.32,
+          -40.254
+        ],
+        "direction": [
+          -0.0122,
+          -0.8844,
+          0.4666
+        ],
+        "colour": [
+          0.8,
+          0.9,
+          1
+        ],
+        "range": 55,
+        "intensity": 2.5,
+        "inner_degrees": 18.1,
+        "outer_degrees": 36.3
+      }
+    ],
+    "5": [
+      {
+        "position": [
+          -212.65,
+          22.57,
+          0.0
+        ],
+        "direction": [
+          0.4849,
+          -0.8746,
+          0.0
+        ],
+        "bar": [
+          0,
+          0,
+          4.3
+        ],
+        "colour": [
+          0.8,
+          0.9,
+          1
+        ],
+        "range": 65,
+        "intensity": 2.5,
+        "inner_degrees": 12.6,
+        "outer_degrees": 25.5,
+        "air": 0.7,
+        "air_fade": 16
+      },
+      {
+        "position": [
+          154.83,
+          22.57,
+          0.295
+        ],
+        "direction": [
+          -0.518,
+          -0.8553,
+          -0.0112
+        ],
+        "bar": [
+          0,
+          0,
+          4.3
+        ],
+        "colour": [
+          0.8,
+          0.9,
+          1
+        ],
+        "range": 65,
+        "intensity": 2.5,
+        "inner_degrees": 12.3,
+        "outer_degrees": 25.0,
+        "air": 0.7,
+        "air_fade": 16
+      }
+    ],
+    "7": [
+      {
+        "position": [
+          -94.696,
+          18.3,
+          94.84
+        ],
+        "direction": [
+          0.14347121817990457,
+          -1,
+          -0.1393413418694331
+        ],
+        "colour": [
+          0.8,
+          0.9,
+          1
+        ],
+        "range": 55,
+        "intensity": 2.5,
+        "inner_degrees": 30,
+        "outer_degrees": 46
+      },
+      {
+        "position": [
+          94.696,
+          18.3,
+          94.84
+        ],
+        "direction": [
+          -0.14347121817990457,
+          -1,
+          -0.1393413418694331
+        ],
+        "colour": [
+          0.8,
+          0.9,
+          1
+        ],
+        "range": 55,
+        "intensity": 2.5,
+        "inner_degrees": 30,
+        "outer_degrees": 46
+      },
+      {
+        "position": [
+          94.836,
+          18.3,
+          -94.7
+        ],
+        "direction": [
+          -0.13945554765198756,
+          -1,
+          0.14336021145730857
+        ],
+        "colour": [
+          0.8,
+          0.9,
+          1
+        ],
+        "range": 55,
+        "intensity": 2.5,
+        "inner_degrees": 30,
+        "outer_degrees": 46
+      },
+      {
+        "position": [
+          -94.836,
+          18.3,
+          -94.7
+        ],
+        "direction": [
+          0.13945554765198756,
+          -1,
+          0.14336021145730857
+        ],
+        "colour": [
+          0.8,
+          0.9,
+          1
+        ],
+        "range": 55,
+        "intensity": 2.5,
+        "inner_degrees": 30,
+        "outer_degrees": 46
+      }
+    ]
+  },
+  "light_pools": {
+    "1": [
+      "textures/stages/1559/19.png"
+    ],
+    "3": [
+      "textures/stages/1561/6.png"
+    ],
+    "5": [
+      "textures/stages/1563/4.png"
+    ]
+  },
+  "supply": {
+    "0": [],
+    "1": [
+      {
+        "mesh": 5,
+        "position": [
+          0,
+          -2.25,
+          1.1
+        ],
+        "direction": [
+          0,
+          -0.807,
+          0.59
+        ],
+        "colour": [
+          1.0,
+          1.0,
+          0.88
+        ],
+        "range": 120,
+        "intensity": 4,
+        "inner_degrees": 9,
+        "outer_degrees": 14,
+        "near": 1,
+        "air_fade": 80
+      }
+    ]
+  },
+  "point_lights": {
+    "enabled": true,
+    "max_lights": 24,
+    "day_scale": 0.6,
+    "shadowed": 2,
+    "shadow_min": 40,
+    "shadow_lift": 6,
+    "shadow_degrees": 80,
+    "air": 0.5,
+    "effects": {
+      "min_energy": 0.5,
+      "intensity_per_root": 1.5,
+      "max_intensity": 9,
+      "range_base": 4,
+      "range_per_root": 3,
+      "max_range": 30,
+      "lift": 1.0,
+      "flash_weight": 1.0,
+      "flash_colour": [
+        1.0,
+        0.8,
+        0.55
+      ],
+      "group_scales": {}
+    },
+    "fireball": {
+      "colour": [
+        1.0,
+        0.72,
+        0.42
+      ],
+      "intensity": 6,
+      "range": 12,
+      "range_per_radius": 3
+    },
+    "muzzle": {
+      "cannon": {
+        "colour": [
+          1.0,
+          0.78,
+          0.45
+        ],
+        "intensity": 3,
+        "range": 10,
+        "seconds": 0.06
+      },
+      "machine_gun": {
+        "colour": [
+          1.0,
+          0.8,
+          0.5
+        ],
+        "intensity": 2.5,
+        "range": 8,
+        "seconds": 0.05
+      },
+      "missile": {
+        "colour": [
+          1.0,
+          0.7,
+          0.4
+        ],
+        "intensity": 2,
+        "range": 8,
+        "seconds": 0.1
+      },
+      "grenade": {
+        "colour": [
+          1.0,
+          0.75,
+          0.45
+        ],
+        "intensity": 2,
+        "range": 8,
+        "seconds": 0.08
+      },
+      "beam": {
+        "colour": [
+          0.5,
+          0.8,
+          1.0
+        ],
+        "intensity": 3,
+        "range": 10,
+        "seconds": 0.1
+      }
+    },
+    "projectile": {
+      "missile": {
+        "colour": [
+          1.0,
+          0.6,
+          0.3
+        ],
+        "intensity": 1.5,
+        "range": 8
+      },
+      "beam": {
+        "colour": [
+          0.45,
+          0.75,
+          1.0
+        ],
+        "intensity": 2.5,
+        "range": 10
+      }
+    },
+    "beam": {
+      "colour": [
+        0.5,
+        0.8,
+        1.0
+      ],
+      "intensity": 2.5,
+      "range": 9,
+      "seconds": 0.27,
+      "spacing": 12,
+      "points": 4
+    }
+  },
+  "volumetric": {
+    "resolution": 0.5,
+    "steps": 24,
+    "point_steps": 6,
+    "max_point_lights": 8,
+    "max_distance": 450,
+    "anisotropy": 0.6,
+    "height_base": 0,
+    "height_falloff": 80,
+    "beam_fade": 60,
+    "stages": {
+      "1": {"density": 0.008},
+      "3": {"density": 0.008},
+      "5": {"density": 0.01},
+      "7": {"density": 0.008}
+    }
+  },
+  "sun_shadows": {
+    "note": "Always on, unlike the rest of this file: one shadow map from the stage's sun in place of the original's stencil shadow volumes. false draws the stencil shadows. sun_degrees is the sun's apparent size (0 keeps hard edges); widest_blur caps the soft edge in world units; debug tints shadowed ground red.",
+    "enabled": true,
+    "resolution": 4096,
+    "half_width": 110,
+    "ahead": 70,
+    "sun_distance": 400,
+    "sun_degrees": 3,
+    "widest_blur": 0.25,
+    "farthest_blocker": 40,
+    "depth_bias": 200,
+    "slope_depth_bias": 2,
+    "debug": false
+  }
+}

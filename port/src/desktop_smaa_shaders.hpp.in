@@ -1,0 +1,8 @@
+#pragma once
+
+// Generated at configure time from the pinned, unmodified upstream shader.
+namespace phantomcrash::smaa_shader {
+inline constexpr char upstream[] = R"smaa(
+@SMAA_SOURCE@
+)smaa";
+}

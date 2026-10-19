@@ -1,0 +1,8 @@
+{
+ "notes": "TEST DRIVE (scene 47, 0x097192) from the hangar menu: the ridden robot (save + 0x60c8) in a battle of mode 6 on contest record 47 (tables/town.json contests, the Scoobee test run), back to the hangar (0x0a8e1b, scene 14) after. The port runs it on the training ground's FreePlay (world/training.json) with that robot as the player's; the contest's own teams wait for the battle roster. Each fitted weapon starts from the training weapon named for its kind here, then takes its record's stats: its reach, lock range and stagger too (port/src/weapon_reach.cpp); the template keeps only a lobbed round's gravity.",
+ "scene": 47,
+ "contest": 47,
+ "return_to": "hangar",
+ "lesson": { "title": "TEST DRIVE", "mode": 3 },
+ "weapon_templates": { "gun": "handgun", "melee": "drill", "missile": "missile", "grenade": "grenade" }
+}

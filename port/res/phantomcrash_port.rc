@@ -1,0 +1,3 @@
+// The executable icon (tools/make_icon.py); SDL takes the first icon for the
+// window and the taskbar.
+1 ICON "phantomcrash.ico"

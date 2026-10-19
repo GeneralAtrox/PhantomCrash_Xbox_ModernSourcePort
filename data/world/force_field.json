@@ -1,0 +1,13 @@
+{
+  "notes": "A port addition: how a robot's touch spreads over the arena force field (surface 8), on top of the original's ripple flipbook (tables/effects.json fence: model 197, meshes 0-29). training.json battle.fence_contact_seconds sets how often the touch is reported (every battle tick by default). The newest ripple glides to the contact, follow_rate of the gap closed a second; once the robot has slid spacing units on, or refresh_seconds have passed while it holds still, that ripple is left behind and a new one follows, so a slide leaves a wake. Each touch ripple plays the flipbook at frame_rate, spreads to scale + growth over its life (the shot ripple grows 0.05), is stretched along the slide by stretch per unit a second up to stretch_limit more, and its refraction fades as (1 - life)^fade. A robot keeps at most trail ripples and the whole field at most limit touch ripples (the oldest goes first), which bounds the cost of a crowd sliding along it; shots keep their own pool of the original's 20. The ripples take no dynamic light.",
+  "spacing": 0.8,
+  "refresh_seconds": 0.35,
+  "trail": 12,
+  "limit": 24,
+  "frame_rate": 30,
+  "growth": 0.15,
+  "follow_rate": 18,
+  "stretch": 0.04,
+  "stretch_limit": 1.5,
+  "fade": 1.0
+}

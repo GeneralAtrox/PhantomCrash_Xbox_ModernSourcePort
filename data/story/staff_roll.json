@@ -1,0 +1,30 @@
+{
+ "notes": [
+  "The staff roll (original scene 37: factory 0xa3c92, create 0x03c270, steps 0x03c2e7 .. 0x03c4b6, exit 0xa3cdd), played once the game is won. Starting it marks the game cleared (0x06df71; the quest save's \"cleared\"). The movies are the table at 0x259524 (index 3 staff, 5 epilogue, 9 the_end, 4 kudryavka, 10 cloud).",
+  "staff.sfd and epilogue.sfd play through with no skip (0x03c38a, 0x03c3e7 test only for the movie's end); the picture then fades to black over a second (0x09f6e0). THE END (the_end.sfd, 0x03c469 .. 0x03c4b6) fades in over half a second (the game rate x 0.5) and plays again whenever it ends, for 30 seconds from the fade-in (the rate x 30), fading out over the last half second.",
+  "From two seconds into THE END (the rate x 28 left) A or START ends it at once with the confirm sound (0x0df390); the scene's exit (0xa3cdd, result 0) then goes to sleep in the garage (scene 24). Left to run out (result 1) it goes to scene 12 instead (0xa3d42, 0x01c6a7 .. 0x01c78a): kudryavka.sfd, which cannot be skipped, then cloud.sfd, which A or START ends without a sound (0x0df310) from two seconds in, then sleep.",
+  "skip.buttons confirm stands for the original's A or START."
+ ],
+ "steps": [
+  { "id": "staff", "type": "movie", "file": "movie/staff.sfd" },
+  { "id": "epilogue", "type": "movie", "file": "movie/epilogue.sfd", "fade_out": 1.0 },
+  {
+   "id": "the_end",
+   "type": "movie",
+   "file": "movie/the_end.sfd",
+   "loop": true,
+   "fade_in": 0.5,
+   "hold": 29.5,
+   "fade_out": 0.5,
+   "skip": { "buttons": "confirm", "after": 2.0, "fade_out": 0.0, "sound": "confirm", "then": "sleep" }
+  },
+  { "id": "kudryavka", "type": "movie", "file": "movie/kudryavka.sfd" },
+  {
+   "id": "cloud",
+   "type": "movie",
+   "file": "movie/cloud.sfd",
+   "skip": { "buttons": "confirm", "after": 2.0, "fade_out": 0.0 }
+  }
+ ],
+ "then": "sleep"
+}

@@ -1,0 +1,633 @@
+{
+ "notes": [
+  "CHIPs the port adds after the original's 96 (indices 0-95), and its retunes of original CHIPs. docs/CUSTOM_CHIPS.md explains how to recreate or add one: the face picture, the stats and the chatter.",
+  "Each family becomes one record per entry of \"chatter\" (the personality table in tables/chatter.json), numbered on from first_index in this order: Cat V 96-100, Cat VI 101-105, Cat VII 106-110, Fox I 111-115, Bear I 116-120, Tortoise I 121-125, Boar I 126-130, Hawk I 131-135, Monkey I 136-140, Meerkat I 141-145, then the bosses' CHIPs of one personality each, Retriever 146 to Labrador 160. Saves and shop days name CHIPs by number, so only ever append families or personalities at the end.",
+  "\"stats\" are the original record fields (inner/outer sight shape and size curves, track, lock_frames, weight, critical_percent, dodge_percent = Repulsion Shield chance, knockdown_resistance, price), as in the converted tables/parts.json. A curve is base at level 0, base+mid at its knee and base+top at level 99. Sight sizes stop growing at 999; track is Aim Speed on the port's 0..10 scale (ui/battle_hud.json control).",
+  "\"retune\" replaces the listed stats of every original record whose name is in \"names\"; \"why\" records the reason. Delete an entry to get the original's values back.",
+  "\"shop\" adds BUY CHIP offers to the given rotating shop day (0-23, garage.json chip_lineups), naming the family and its personality: each day one added cat and one specialist. \"boss_shop\" sells a boss's CHIP (a family whose \"face\" is the boss's portrait cell in the original's atlas) at \"level\" on the calendar days any of its \"contests\" is held, once the player has won one of them; it is offered once a day however many are held. The shop help texts are ui/chip_shop.json and ui/uplift.json chip_help at the same index.",
+  "Not applied to S.L.A.I.'s tables, which are another game's."
+ ],
+ "first_index": 96,
+ "families": [
+  {
+   "name": "Cat V",
+   "breed": "Norwegian Forest Cat",
+   "face": "textures/chips/cat_v.png",
+   "chatter": [0, 1, 2, 3, 4],
+   "traits": "Black; very playful; hunts flies very well (track 3, lock 8 frames); would never attack a human and uses the softest touch (low critical); very fast (best Repulsion Shield, 1% rising to 10.5%); indoor cat, so not a survivor (low knockdown resistance).",
+   "stats": {
+    "inner_shape": 0,
+    "inner_value": {"base": 200, "mid": 490, "top": 700, "knee": 50, "low_scale": -1},
+    "track": 3,
+    "outer_shape": 1,
+    "outer_value": {"base": 70, "mid": 945, "top": 1350, "knee": 50, "low_scale": -1},
+    "lock_frames": 8,
+    "weight": {"base": 22.0, "mid": 0.0, "top": 0.0, "knee": 50, "low_scale": -1},
+    "critical_percent": {"base": 0.5, "mid": 2.45, "top": 3.5, "knee": 50, "low_scale": -1},
+    "dodge_percent": {"base": 1.0, "mid": 6.65, "top": 9.5, "knee": 60, "low_scale": -1},
+    "knockdown_resistance": {"base": 2.0, "mid": 6.3, "top": 9.0, "knee": 60, "low_scale": -1},
+    "price": {"base": 6500, "mid": 262500, "top": 775000, "knee": 50, "low_scale": 1}
+   }
+  },
+  {
+   "name": "Cat VI",
+   "breed": "Maine Coon",
+   "face": "textures/chips/cat_vi.png",
+   "chatter": [0, 1, 2, 3, 4],
+   "traits": "Orange; playful but can get aggressive (higher critical than the other cats); very talkative (help text only; chatter is the shared cat set); hunts flies well (track 3, lock 10 frames); hyperactive (Repulsion Shield 1% to 7%); small for a Maine Coon (low knockdown resistance, Cat IV weight). Price x1.15 of the other cats. Toned down from lock 8 frames, critical 10% and shield 10%, which out-locked Bird II and matched the Wolf's rates.",
+   "stats": {
+    "inner_shape": 0,
+    "inner_value": {"base": 200, "mid": 490, "top": 700, "knee": 50, "low_scale": -1},
+    "track": 3,
+    "outer_shape": 1,
+    "outer_value": {"base": 70, "mid": 945, "top": 1350, "knee": 50, "low_scale": -1},
+    "lock_frames": 10,
+    "weight": {"base": 20.1, "mid": 0.0, "top": 0.0, "knee": 50, "low_scale": -1},
+    "critical_percent": {"base": 2.0, "mid": 4.5, "top": 6.0, "knee": 50, "low_scale": -1},
+    "dodge_percent": {"base": 1.0, "mid": 4.2, "top": 6.0, "knee": 60, "low_scale": -1},
+    "knockdown_resistance": {"base": 1.5, "mid": 5.6, "top": 8.0, "knee": 60, "low_scale": -1},
+    "price": {"base": 7475, "mid": 301875, "top": 891250, "knee": 50, "low_scale": 1}
+   }
+  },
+  {
+   "name": "Cat VII",
+   "breed": "Ragdoll",
+   "face": "textures/chips/cat_vii.png",
+   "chatter": [0, 1, 2, 3, 4],
+   "traits": "Grey; cuddly and playful when they want to be (Repulsion Shield starts at 0.5% and climbs late to 10.5%, level with Cat V); a princess in demands (once priced x1.3 of the other cats, now their price: its low critical and slow lock did not earn more); lazy (track 1, lock 22 frames); strokes things with the paws (lowest critical); a big cat (heaviest, best knockdown resistance).",
+   "stats": {
+    "inner_shape": 0,
+    "inner_value": {"base": 200, "mid": 490, "top": 700, "knee": 50, "low_scale": -1},
+    "track": 1,
+    "outer_shape": 1,
+    "outer_value": {"base": 70, "mid": 945, "top": 1350, "knee": 50, "low_scale": -1},
+    "lock_frames": 22,
+    "weight": {"base": 24.0, "mid": 0.0, "top": 0.0, "knee": 50, "low_scale": -1},
+    "critical_percent": {"base": 0.5, "mid": 2.1, "top": 3.0, "knee": 50, "low_scale": -1},
+    "dodge_percent": {"base": 0.5, "mid": 4.0, "top": 10.0, "knee": 60, "low_scale": -1},
+    "knockdown_resistance": {"base": 3.5, "mid": 10.5, "top": 15.0, "knee": 60, "low_scale": -1},
+    "price": {"base": 6500, "mid": 262500, "top": 775000, "knee": 50, "low_scale": 1}
+   }
+  },
+  {
+   "name": "Fox I",
+   "breed": "Red Fox",
+   "face": "textures/chips/fox.png",
+   "chatter": [0, 1, 2, 3, 4],
+   "traits": "Glass cannon: the highest critical (3% to 18%), never a Repulsion Shield, easily loses its weapons (knockdown resistance 1 to 5), light. Square sights of middling size (aiming 300 to 850, lock-on 150 to 700); track 4, lock 14 frames.",
+   "stats": {
+    "inner_shape": 0,
+    "inner_value": {"base": 300, "mid": 385, "top": 550, "knee": 50, "low_scale": -1},
+    "track": 4,
+    "outer_shape": 0,
+    "outer_value": {"base": 150, "mid": 385, "top": 550, "knee": 50, "low_scale": -1},
+    "lock_frames": 14,
+    "weight": {"base": 15.0, "mid": 0.0, "top": 0.0, "knee": 50, "low_scale": -1},
+    "critical_percent": {"base": 3.0, "mid": 9.0, "top": 15.0, "knee": 50, "low_scale": -1},
+    "dodge_percent": {"base": 0.0, "mid": 0.0, "top": 0.0, "knee": 60, "low_scale": -1},
+    "knockdown_resistance": {"base": 1.0, "mid": 2.5, "top": 4.0, "knee": 60, "low_scale": -1},
+    "price": {"base": 7500, "mid": 330000, "top": 900000, "knee": 50, "low_scale": 1}
+   }
+  },
+  {
+   "name": "Bear I",
+   "breed": "Brown Bear",
+   "face": "textures/chips/bear.png",
+   "chatter": [0, 1, 2, 3, 4],
+   "traits": "Brawler: the fastest aim of any CHIP (track 10) and the largest aiming sight early (600, full size by level 40), for arm weapons and close range; keeps its weapons (knockdown resistance 4 to 24). Pays with a slow lock (30 frames) for missiles, a low shield (0.5% to 4%) and the second highest weight.",
+   "stats": {
+    "inner_shape": 0,
+    "inner_value": {"base": 600, "mid": 399, "top": 450, "knee": 40, "low_scale": -1},
+    "track": 10,
+    "outer_shape": 0,
+    "outer_value": {"base": 300, "mid": 450, "top": 700, "knee": 50, "low_scale": -1},
+    "lock_frames": 30,
+    "weight": {"base": 38.0, "mid": 0.0, "top": 0.0, "knee": 50, "low_scale": -1},
+    "critical_percent": {"base": 2.0, "mid": 4.5, "top": 8.0, "knee": 50, "low_scale": -1},
+    "dodge_percent": {"base": 0.5, "mid": 2.0, "top": 3.5, "knee": 60, "low_scale": -1},
+    "knockdown_resistance": {"base": 4.0, "mid": 12.0, "top": 20.0, "knee": 60, "low_scale": -1},
+    "price": {"base": 8000, "mid": 350000, "top": 950000, "knee": 50, "low_scale": 1}
+   }
+  },
+  {
+   "name": "Tortoise I",
+   "breed": "Giant Tortoise",
+   "face": "textures/chips/tortoise.png",
+   "chatter": [0, 1, 2, 3, 4],
+   "traits": "Wall: the highest Repulsion Shield (3% to 20%) and keeps its weapons (knockdown resistance 6 to 22), but never a critical hit, small slow square sights (aiming 150 to 600, lock-on 100 to 500, track 1, lock 30 frames) and the heaviest CHIP.",
+   "stats": {
+    "inner_shape": 0,
+    "inner_value": {"base": 150, "mid": 250, "top": 450, "knee": 50, "low_scale": -1},
+    "track": 1,
+    "outer_shape": 0,
+    "outer_value": {"base": 100, "mid": 220, "top": 400, "knee": 50, "low_scale": -1},
+    "lock_frames": 30,
+    "weight": {"base": 40.0, "mid": 0.0, "top": 0.0, "knee": 50, "low_scale": -1},
+    "critical_percent": {"base": 0.0, "mid": 0.0, "top": 0.0, "knee": 50, "low_scale": -1},
+    "dodge_percent": {"base": 3.0, "mid": 9.0, "top": 17.0, "knee": 60, "low_scale": -1},
+    "knockdown_resistance": {"base": 6.0, "mid": 12.0, "top": 16.0, "knee": 60, "low_scale": -1},
+    "price": {"base": 7000, "mid": 300000, "top": 850000, "knee": 50, "low_scale": 1}
+   }
+  },
+  {
+   "name": "Boar I",
+   "breed": "Wild Boar",
+   "face": "textures/chips/boar.png",
+   "chatter": [0, 1, 2, 3, 4],
+   "traits": "Charger: keeps its weapons best of any CHIP (knockdown resistance 5 to 32) and cheap (about the Rat's price), with a horizontally long lock-on sight (70 to 999) for what is in front of it; never a Repulsion Shield, a small square aiming sight (200 to 600), track 2, lock 20 frames.",
+   "stats": {
+    "inner_shape": 0,
+    "inner_value": {"base": 200, "mid": 250, "top": 400, "knee": 50, "low_scale": -1},
+    "track": 2,
+    "outer_shape": 1,
+    "outer_value": {"base": 70, "mid": 600, "top": 930, "knee": 50, "low_scale": -1},
+    "lock_frames": 20,
+    "weight": {"base": 30.0, "mid": 0.0, "top": 0.0, "knee": 50, "low_scale": -1},
+    "critical_percent": {"base": 1.0, "mid": 4.0, "top": 8.0, "knee": 50, "low_scale": -1},
+    "dodge_percent": {"base": 0.0, "mid": 0.0, "top": 0.0, "knee": 60, "low_scale": -1},
+    "knockdown_resistance": {"base": 5.0, "mid": 15.0, "top": 27.0, "knee": 50, "low_scale": -1},
+    "price": {"base": 3500, "mid": 120000, "top": 420000, "knee": 40, "low_scale": 1}
+   }
+  },
+  {
+   "name": "Hawk I",
+   "breed": "Jackal Buzzard",
+   "face": "textures/chips/hawk.png",
+   "chatter": [0, 1, 2, 3, 4],
+   "traits": "Missile specialist: the fastest lock of any CHIP (4 frames) and a large square lock-on sight (500, full size by level 40) for shoulder weapons; a small horizontally long aiming sight (100 to 500, track 1) keeps it poor with arm weapons. Fragile (shield 0.5% to 4%, knockdown 2 to 9), light.",
+   "stats": {
+    "inner_shape": 1,
+    "inner_value": {"base": 100, "mid": 250, "top": 400, "knee": 50, "low_scale": -1},
+    "track": 1,
+    "outer_shape": 0,
+    "outer_value": {"base": 500, "mid": 499, "top": 550, "knee": 40, "low_scale": -1},
+    "lock_frames": 4,
+    "weight": {"base": 12.0, "mid": 0.0, "top": 0.0, "knee": 50, "low_scale": -1},
+    "critical_percent": {"base": 1.0, "mid": 3.0, "top": 5.0, "knee": 50, "low_scale": -1},
+    "dodge_percent": {"base": 0.5, "mid": 2.0, "top": 3.5, "knee": 60, "low_scale": -1},
+    "knockdown_resistance": {"base": 2.0, "mid": 4.5, "top": 7.0, "knee": 60, "low_scale": -1},
+    "price": {"base": 7000, "mid": 330000, "top": 880000, "knee": 50, "low_scale": 1}
+   }
+  },
+  {
+   "name": "Monkey I",
+   "breed": "Mandrill",
+   "face": "textures/chips/mandrill.png",
+   "chatter": [0, 1, 2, 3, 4],
+   "traits": "Front-loaded, for players who do not uplift: the best CHIP at level 0 (critical and shield 4%, knockdown 8, large sights, track 3, lock 12 frames), but its stats stop growing by level 15 and later CHIPs overtake it; dear to buy, cheap to uplift. A vertically long aiming sight (700 to 900) and a square lock-on sight (600 to 850). Critical and shield stop at 5% to 5.5% and knockdown at 10 to 11 so the Wolf passes it on critical by level 40 and overall by level 46.",
+   "stats": {
+    "inner_shape": 2,
+    "inner_value": {"base": 700, "mid": 150, "top": 200, "knee": 15, "low_scale": -1},
+    "track": 3,
+    "outer_shape": 0,
+    "outer_value": {"base": 600, "mid": 200, "top": 250, "knee": 15, "low_scale": -1},
+    "lock_frames": 12,
+    "weight": {"base": 22.0, "mid": 0.0, "top": 0.0, "knee": 50, "low_scale": -1},
+    "critical_percent": {"base": 4.0, "mid": 1.0, "top": 1.5, "knee": 15, "low_scale": -1},
+    "dodge_percent": {"base": 4.0, "mid": 1.0, "top": 1.5, "knee": 15, "low_scale": -1},
+    "knockdown_resistance": {"base": 8.0, "mid": 2.0, "top": 3.0, "knee": 15, "low_scale": -1},
+    "price": {"base": 20000, "mid": 30000, "top": 60000, "knee": 15, "low_scale": 1}
+   }
+  },
+  {
+   "name": "Meerkat I",
+   "breed": "Meerkat",
+   "face": "textures/chips/meerkat.png",
+   "chatter": [0, 1, 2, 3, 4],
+   "traits": "Anti-air sentinel: a vertically long lock-on sight that reaches full size by level 40 (400 at level 0) and a quick lock (6 frames, second only to the Hawk), so shoulder missiles catch robots jumping or flying overhead, with a solid square aiming sight (300 to 800, track 4) for arm weapons. Small and fragile: shield 1% to 6%, easily loses its weapons (knockdown resistance 1.5 to 7), critical 1% to 6%, light. Priced as the Rabbit, whose shield is twice its own.",
+   "stats": {
+    "inner_shape": 0,
+    "inner_value": {"base": 300, "mid": 350, "top": 500, "knee": 50, "low_scale": -1},
+    "track": 4,
+    "outer_shape": 2,
+    "outer_value": {"base": 400, "mid": 599, "top": 650, "knee": 40, "low_scale": -1},
+    "lock_frames": 6,
+    "weight": {"base": 14.0, "mid": 0.0, "top": 0.0, "knee": 50, "low_scale": -1},
+    "critical_percent": {"base": 1.0, "mid": 3.5, "top": 5.0, "knee": 50, "low_scale": -1},
+    "dodge_percent": {"base": 1.0, "mid": 3.5, "top": 5.0, "knee": 60, "low_scale": -1},
+    "knockdown_resistance": {"base": 1.5, "mid": 3.5, "top": 5.5, "knee": 60, "low_scale": -1},
+    "price": {"base": 4250, "mid": 112500, "top": 530000, "knee": 35, "low_scale": 1}
+   }
+  },
+  {
+   "name": "Retriever",
+   "breed": "Golden Retriever",
+   "boss": "Atsurou (Xeena)",
+   "face": {"image": "textures/scroll/fight_chara00_tex/0.png", "rect": [320.0, 64.0, 384.0, 128.0]},
+   "chatter": [0],
+   "traits": "Fetcher: the dog's square sights grown larger (aiming 250, lock-on 250 at level 1) and its steadiest lock (14 frames), but a soft touch (critical 0.5% to 5.5%).",
+   "stats": {
+    "inner_shape": 0,
+    "inner_value": {"base": 250, "mid": 600, "top": 750, "knee": 60, "low_scale": -1},
+    "track": 3,
+    "outer_shape": 0,
+    "outer_value": {"base": 250, "mid": 650, "top": 749, "knee": 60, "low_scale": -1},
+    "lock_frames": 14,
+    "weight": {"base": 27.0, "mid": 0.0, "top": 0.0, "knee": 50, "low_scale": -1},
+    "critical_percent": {"base": 0.5, "mid": 3.0, "top": 5.0, "knee": 50, "low_scale": -1},
+    "dodge_percent": {"base": 1.0, "mid": 6.7, "top": 9.5, "knee": 60, "low_scale": -1},
+    "knockdown_resistance": {"base": 3.0, "mid": 10.5, "top": 15.0, "knee": 60, "low_scale": -1},
+    "price": {"base": 8000, "mid": 350000, "top": 850000, "knee": 50, "low_scale": 1}
+   }
+  },
+  {
+   "name": "Macaque",
+   "breed": "Japanese Macaque",
+   "boss": "Kanb@TK23 (Aide)",
+   "face": {"image": "textures/scroll/fight_chara00_tex/0.png", "rect": [0.0, 64.0, 64.0, 128.0]},
+   "chatter": [1],
+   "traits": "Climber: a vertically long aiming sight from the start (500) and quick aim (track 7), but easily loses its weapons (knockdown resistance 1 to 7).",
+   "stats": {
+    "inner_shape": 2,
+    "inner_value": {"base": 500, "mid": 300, "top": 450, "knee": 40, "low_scale": -1},
+    "track": 7,
+    "outer_shape": 0,
+    "outer_value": {"base": 200, "mid": 500, "top": 700, "knee": 50, "low_scale": -1},
+    "lock_frames": 16,
+    "weight": {"base": 16.0, "mid": 0.0, "top": 0.0, "knee": 50, "low_scale": -1},
+    "critical_percent": {"base": 1.5, "mid": 5.0, "top": 7.5, "knee": 50, "low_scale": -1},
+    "dodge_percent": {"base": 1.0, "mid": 5.0, "top": 7.5, "knee": 60, "low_scale": -1},
+    "knockdown_resistance": {"base": 1.0, "mid": 4.0, "top": 6.0, "knee": 60, "low_scale": -1},
+    "price": {"base": 7500, "mid": 330000, "top": 820000, "knee": 50, "low_scale": 1}
+   }
+  },
+  {
+   "name": "Penguin",
+   "breed": "Emperor Penguin",
+   "boss": "Lunch (Daly)",
+   "face": {"image": "textures/scroll/fight_chara00_tex/0.png", "rect": [192.0, 64.0, 256.0, 128.0]},
+   "chatter": [2],
+   "traits": "Slider: a horizontally long lock-on sight (120 to 999) and keeps its weapons (knockdown resistance 7 to 22), but the slowest aim (track 1, lock 26 frames).",
+   "stats": {
+    "inner_shape": 0,
+    "inner_value": {"base": 200, "mid": 450, "top": 650, "knee": 50, "low_scale": -1},
+    "track": 1,
+    "outer_shape": 1,
+    "outer_value": {"base": 120, "mid": 800, "top": 1200, "knee": 50, "low_scale": -1},
+    "lock_frames": 26,
+    "weight": {"base": 30.0, "mid": 0.0, "top": 0.0, "knee": 50, "low_scale": -1},
+    "critical_percent": {"base": 1.0, "mid": 4.0, "top": 6.0, "knee": 50, "low_scale": -1},
+    "dodge_percent": {"base": 2.0, "mid": 6.0, "top": 9.0, "knee": 60, "low_scale": -1},
+    "knockdown_resistance": {"base": 7.0, "mid": 10.0, "top": 15.0, "knee": 60, "low_scale": -1},
+    "price": {"base": 7000, "mid": 300000, "top": 800000, "knee": 50, "low_scale": 1}
+   }
+  },
+  {
+   "name": "Borzoi",
+   "breed": "Borzoi",
+   "boss": "Shink (Blue)",
+   "face": {"image": "textures/scroll/fight_chara00_tex/0.png", "rect": [128.0, 64.0, 192.0, 128.0]},
+   "chatter": [3],
+   "traits": "Sighthound: the largest square lock-on sight early (550, near full size by level 40), but a weak Repulsion Shield (0% to 3.5%) and fragile (knockdown resistance 1.5 to 7.5).",
+   "stats": {
+    "inner_shape": 0,
+    "inner_value": {"base": 250, "mid": 500, "top": 700, "knee": 50, "low_scale": -1},
+    "track": 3,
+    "outer_shape": 0,
+    "outer_value": {"base": 550, "mid": 400, "top": 449, "knee": 40, "low_scale": -1},
+    "lock_frames": 14,
+    "weight": {"base": 15.0, "mid": 0.0, "top": 0.0, "knee": 50, "low_scale": -1},
+    "critical_percent": {"base": 1.5, "mid": 5.0, "top": 8.0, "knee": 50, "low_scale": -1},
+    "dodge_percent": {"base": 0.0, "mid": 2.0, "top": 3.5, "knee": 60, "low_scale": -1},
+    "knockdown_resistance": {"base": 1.5, "mid": 4.0, "top": 6.0, "knee": 60, "low_scale": -1},
+    "price": {"base": 8000, "mid": 350000, "top": 880000, "knee": 50, "low_scale": 1}
+   }
+  },
+  {
+   "name": "Tanuki",
+   "breed": "Raccoon Dog",
+   "boss": "Maiko (Tsuyoshi)",
+   "face": {"image": "textures/scroll/fight_chara00_tex/0.png", "rect": [384.0, 0.0, 448.0, 64.0]},
+   "chatter": [4],
+   "traits": "Trickster: a high Repulsion Shield (2.5% to 17.5%, second to the Tortoise), but small sights (aiming 150, lock-on 150) and a soft touch (critical 0.5% to 4.5%).",
+   "stats": {
+    "inner_shape": 0,
+    "inner_value": {"base": 150, "mid": 350, "top": 500, "knee": 50, "low_scale": -1},
+    "track": 3,
+    "outer_shape": 0,
+    "outer_value": {"base": 150, "mid": 400, "top": 550, "knee": 50, "low_scale": -1},
+    "lock_frames": 18,
+    "weight": {"base": 22.0, "mid": 0.0, "top": 0.0, "knee": 50, "low_scale": -1},
+    "critical_percent": {"base": 0.5, "mid": 2.5, "top": 4.0, "knee": 50, "low_scale": -1},
+    "dodge_percent": {"base": 2.5, "mid": 9.0, "top": 15.0, "knee": 60, "low_scale": -1},
+    "knockdown_resistance": {"base": 3.0, "mid": 9.0, "top": 13.0, "knee": 60, "low_scale": -1},
+    "price": {"base": 7500, "mid": 320000, "top": 820000, "knee": 50, "low_scale": 1}
+   }
+  },
+  {
+   "name": "Turtle",
+   "breed": "Sea Turtle",
+   "boss": "Edmond (Zee)",
+   "face": {"image": "textures/scroll/fight_chara00_tex/0.png", "rect": [384.0, 64.0, 448.0, 128.0]},
+   "chatter": [0],
+   "traits": "Armoured: keeps its weapons from the start (knockdown resistance 8 to 24) with middling square sights, but the heaviest CHIP (42) and slow (track 2, lock 24 frames).",
+   "stats": {
+    "inner_shape": 0,
+    "inner_value": {"base": 250, "mid": 450, "top": 650, "knee": 50, "low_scale": -1},
+    "track": 2,
+    "outer_shape": 0,
+    "outer_value": {"base": 200, "mid": 450, "top": 650, "knee": 50, "low_scale": -1},
+    "lock_frames": 24,
+    "weight": {"base": 42.0, "mid": 0.0, "top": 0.0, "knee": 50, "low_scale": -1},
+    "critical_percent": {"base": 0.5, "mid": 3.0, "top": 5.0, "knee": 50, "low_scale": -1},
+    "dodge_percent": {"base": 2.0, "mid": 6.0, "top": 10.0, "knee": 60, "low_scale": -1},
+    "knockdown_resistance": {"base": 8.0, "mid": 11.0, "top": 16.0, "knee": 60, "low_scale": -1},
+    "price": {"base": 7500, "mid": 320000, "top": 850000, "knee": 50, "low_scale": 1}
+   }
+  },
+  {
+   "name": "Chimp",
+   "breed": "Chimpanzee",
+   "boss": "Joker (Crackin)",
+   "face": {"image": "textures/scroll/fight_chara00_tex/0.png", "rect": [256.0, 0.0, 320.0, 64.0]},
+   "chatter": [1],
+   "traits": "Power: a high critical (3% to 14%) that keeps its weapons (knockdown resistance 4 to 18), but almost never a Repulsion Shield (0% to 2%) and a slow lock (22 frames).",
+   "stats": {
+    "inner_shape": 0,
+    "inner_value": {"base": 250, "mid": 550, "top": 750, "knee": 50, "low_scale": -1},
+    "track": 4,
+    "outer_shape": 0,
+    "outer_value": {"base": 200, "mid": 500, "top": 700, "knee": 50, "low_scale": -1},
+    "lock_frames": 22,
+    "weight": {"base": 30.0, "mid": 0.0, "top": 0.0, "knee": 50, "low_scale": -1},
+    "critical_percent": {"base": 3.0, "mid": 7.0, "top": 11.0, "knee": 50, "low_scale": -1},
+    "dodge_percent": {"base": 0.0, "mid": 1.0, "top": 2.0, "knee": 60, "low_scale": -1},
+    "knockdown_resistance": {"base": 4.0, "mid": 9.0, "top": 14.0, "knee": 60, "low_scale": -1},
+    "price": {"base": 8500, "mid": 360000, "top": 900000, "knee": 50, "low_scale": 1}
+   }
+  },
+  {
+   "name": "Siamese",
+   "breed": "Siamese",
+   "boss": "Pepper (Salsa)",
+   "face": {"image": "textures/scroll/fight_chara00_tex/0.png", "rect": [256.0, 64.0, 320.0, 128.0]},
+   "chatter": [2],
+   "traits": "Hunter: the cat's horizontally long lock-on sight with a quick lock (8 frames, track 4), but easily loses its weapons (knockdown resistance 1.5 to 9.5).",
+   "stats": {
+    "inner_shape": 0,
+    "inner_value": {"base": 200, "mid": 490, "top": 700, "knee": 50, "low_scale": -1},
+    "track": 4,
+    "outer_shape": 1,
+    "outer_value": {"base": 70, "mid": 945, "top": 1350, "knee": 50, "low_scale": -1},
+    "lock_frames": 8,
+    "weight": {"base": 18.0, "mid": 0.0, "top": 0.0, "knee": 50, "low_scale": -1},
+    "critical_percent": {"base": 2.0, "mid": 4.5, "top": 6.5, "knee": 50, "low_scale": -1},
+    "dodge_percent": {"base": 1.0, "mid": 5.5, "top": 8.5, "knee": 60, "low_scale": -1},
+    "knockdown_resistance": {"base": 1.5, "mid": 5.0, "top": 8.0, "knee": 60, "low_scale": -1},
+    "price": {"base": 7500, "mid": 300000, "top": 820000, "knee": 50, "low_scale": 1}
+   }
+  },
+  {
+   "name": "Leopard",
+   "breed": "Leopard",
+   "boss": "Mion (Hale)",
+   "face": {"image": "textures/scroll/fight_chara00_tex/0.png", "rect": [448.0, 0.0, 512.0, 64.0]},
+   "chatter": [3],
+   "traits": "Ambusher: fast aim (track 8, lock 10 frames) and a strong critical (2% to 13%), but a weak Repulsion Shield (0.5% to 5.5%) and fragile (knockdown resistance 2 to 12).",
+   "stats": {
+    "inner_shape": 0,
+    "inner_value": {"base": 250, "mid": 500, "top": 700, "knee": 50, "low_scale": -1},
+    "track": 8,
+    "outer_shape": 1,
+    "outer_value": {"base": 150, "mid": 850, "top": 1250, "knee": 50, "low_scale": -1},
+    "lock_frames": 10,
+    "weight": {"base": 21.0, "mid": 0.0, "top": 0.0, "knee": 50, "low_scale": -1},
+    "critical_percent": {"base": 2.0, "mid": 7.0, "top": 11.0, "knee": 50, "low_scale": -1},
+    "dodge_percent": {"base": 0.5, "mid": 3.0, "top": 5.0, "knee": 60, "low_scale": -1},
+    "knockdown_resistance": {"base": 2.0, "mid": 7.0, "top": 10.0, "knee": 60, "low_scale": -1},
+    "price": {"base": 9000, "mid": 380000, "top": 920000, "knee": 50, "low_scale": 1}
+   }
+  },
+  {
+   "name": "Black Cat",
+   "breed": "Black Cat",
+   "boss": "Screw (TIME)",
+   "face": {"image": "textures/scroll/fight_chara00_tex/0.png", "rect": [64.0, 64.0, 128.0, 128.0]},
+   "chatter": [4],
+   "traits": "Luck: critical and Repulsion Shield both high (2% to 13%), but slow (track 2, lock 20 frames) and easily loses its weapons (knockdown resistance 1.5 to 9.5).",
+   "stats": {
+    "inner_shape": 0,
+    "inner_value": {"base": 200, "mid": 490, "top": 700, "knee": 50, "low_scale": -1},
+    "track": 2,
+    "outer_shape": 1,
+    "outer_value": {"base": 70, "mid": 945, "top": 1350, "knee": 50, "low_scale": -1},
+    "lock_frames": 20,
+    "weight": {"base": 19.0, "mid": 0.0, "top": 0.0, "knee": 50, "low_scale": -1},
+    "critical_percent": {"base": 2.0, "mid": 7.0, "top": 11.0, "knee": 50, "low_scale": -1},
+    "dodge_percent": {"base": 2.0, "mid": 7.0, "top": 11.0, "knee": 60, "low_scale": -1},
+    "knockdown_resistance": {"base": 1.5, "mid": 5.0, "top": 8.0, "knee": 60, "low_scale": -1},
+    "price": {"base": 9000, "mid": 380000, "top": 920000, "knee": 50, "low_scale": 1}
+   }
+  },
+  {
+   "name": "Vixen",
+   "breed": "Fennec Fox",
+   "boss": "Milch (Charlotte)",
+   "face": {"image": "textures/scroll/fight_chara00_tex/0.png", "rect": [320.0, 0.0, 384.0, 64.0]},
+   "chatter": [0],
+   "traits": "Cunning: critical 2% to 14% and Repulsion Shield 2% to 12% with quick aim (track 5, lock 12 frames), but the most fragile (knockdown resistance 1 to 5) and small sights.",
+   "stats": {
+    "inner_shape": 0,
+    "inner_value": {"base": 300, "mid": 400, "top": 600, "knee": 50, "low_scale": -1},
+    "track": 5,
+    "outer_shape": 0,
+    "outer_value": {"base": 200, "mid": 400, "top": 600, "knee": 50, "low_scale": -1},
+    "lock_frames": 12,
+    "weight": {"base": 14.0, "mid": 0.0, "top": 0.0, "knee": 50, "low_scale": -1},
+    "critical_percent": {"base": 2.0, "mid": 7.0, "top": 12.0, "knee": 50, "low_scale": -1},
+    "dodge_percent": {"base": 2.0, "mid": 6.0, "top": 10.0, "knee": 60, "low_scale": -1},
+    "knockdown_resistance": {"base": 1.0, "mid": 2.5, "top": 4.0, "knee": 60, "low_scale": -1},
+    "price": {"base": 9000, "mid": 380000, "top": 920000, "knee": 50, "low_scale": 1}
+   }
+  },
+  {
+   "name": "Sparrow",
+   "breed": "Java Sparrow",
+   "boss": "Roy (Nichola)",
+   "face": {"image": "textures/scroll/fight_chara00_tex/0.png", "rect": [64.0, 0.0, 128.0, 64.0]},
+   "chatter": [1],
+   "traits": "Flier: the bird's horizontally long sights with a quick lock (7 frames, track 5) and light (8), but a weak Repulsion Shield (1% to 7%) and fragile (knockdown resistance 1 to 6).",
+   "stats": {
+    "inner_shape": 1,
+    "inner_value": {"base": 300, "mid": 700, "top": 1000, "knee": 60, "low_scale": -1},
+    "track": 5,
+    "outer_shape": 1,
+    "outer_value": {"base": 200, "mid": 1000, "top": 1400, "knee": 60, "low_scale": -1},
+    "lock_frames": 7,
+    "weight": {"base": 8.0, "mid": 0.0, "top": 0.0, "knee": 50, "low_scale": -1},
+    "critical_percent": {"base": 2.0, "mid": 5.0, "top": 8.0, "knee": 50, "low_scale": -1},
+    "dodge_percent": {"base": 1.0, "mid": 4.0, "top": 6.0, "knee": 60, "low_scale": -1},
+    "knockdown_resistance": {"base": 1.0, "mid": 3.0, "top": 5.0, "knee": 60, "low_scale": -1},
+    "price": {"base": 10000, "mid": 400000, "top": 950000, "knee": 50, "low_scale": 1}
+   }
+  },
+  {
+   "name": "Owl",
+   "breed": "Eagle Owl",
+   "boss": "Siba (Dromenon)",
+   "face": {"image": "textures/scroll/fight_chara00_tex/0.png", "rect": [192.0, 0.0, 256.0, 64.0]},
+   "chatter": [2],
+   "traits": "Night hunter: the largest square sights (aiming 450, lock-on 500, both near full size by level 45) and a high critical (3% to 15%), but heavy (34) and a weak Repulsion Shield (1% to 6%).",
+   "stats": {
+    "inner_shape": 0,
+    "inner_value": {"base": 450, "mid": 500, "top": 549, "knee": 45, "low_scale": -1},
+    "track": 3,
+    "outer_shape": 0,
+    "outer_value": {"base": 500, "mid": 450, "top": 499, "knee": 40, "low_scale": -1},
+    "lock_frames": 16,
+    "weight": {"base": 34.0, "mid": 0.0, "top": 0.0, "knee": 50, "low_scale": -1},
+    "critical_percent": {"base": 3.0, "mid": 8.0, "top": 12.0, "knee": 50, "low_scale": -1},
+    "dodge_percent": {"base": 1.0, "mid": 3.0, "top": 5.0, "knee": 60, "low_scale": -1},
+    "knockdown_resistance": {"base": 3.0, "mid": 10.0, "top": 15.0, "knee": 60, "low_scale": -1},
+    "price": {"base": 11000, "mid": 420000, "top": 1000000, "knee": 50, "low_scale": 1}
+   }
+  },
+  {
+   "name": "Ferret",
+   "breed": "Ferret",
+   "boss": "Tienxia (Nayuta)",
+   "face": {"image": "textures/scroll/fight_chara00_tex/0.png", "rect": [128.0, 0.0, 192.0, 64.0]},
+   "chatter": [3],
+   "traits": "Darting: fast aim (track 9, lock 8 frames) and a good Repulsion Shield (2% to 14%), light (10), but small sights (aiming 180, lock-on 150) and fragile (knockdown resistance 2 to 11).",
+   "stats": {
+    "inner_shape": 0,
+    "inner_value": {"base": 180, "mid": 350, "top": 500, "knee": 50, "low_scale": -1},
+    "track": 9,
+    "outer_shape": 0,
+    "outer_value": {"base": 150, "mid": 350, "top": 500, "knee": 50, "low_scale": -1},
+    "lock_frames": 8,
+    "weight": {"base": 10.0, "mid": 0.0, "top": 0.0, "knee": 50, "low_scale": -1},
+    "critical_percent": {"base": 1.5, "mid": 5.0, "top": 8.0, "knee": 50, "low_scale": -1},
+    "dodge_percent": {"base": 2.0, "mid": 7.0, "top": 12.0, "knee": 60, "low_scale": -1},
+    "knockdown_resistance": {"base": 2.0, "mid": 6.0, "top": 9.0, "knee": 60, "low_scale": -1},
+    "price": {"base": 11000, "mid": 420000, "top": 1000000, "knee": 50, "low_scale": 1}
+   }
+  },
+  {
+   "name": "Labrador",
+   "breed": "Black Labrador",
+   "boss": "Yuki (Kudryavka)",
+   "face": {"image": "textures/scroll/fight_chara00_tex/0.png", "rect": [0.0, 0.0, 64.0, 64.0]},
+   "chatter": [4],
+   "traits": "Champion, the best of the best for beating the final boss: near the top at everything by level 99 (sights 400 and 450 growing to 999, critical 3% to 16%, Repulsion Shield 3% to 17%, track 7, lock 6 frames) and the only CHIP that never loses its weapons once fully uplifted (knockdown resistance 5 to 50, the strongest weapon's knockdown); each specialist still beats it at its own one thing.",
+   "stats": {
+    "inner_shape": 0,
+    "inner_value": {"base": 400, "mid": 500, "top": 599, "knee": 50, "low_scale": -1},
+    "track": 7,
+    "outer_shape": 0,
+    "outer_value": {"base": 450, "mid": 500, "top": 549, "knee": 50, "low_scale": -1},
+    "lock_frames": 6,
+    "weight": {"base": 20.0, "mid": 0.0, "top": 0.0, "knee": 50, "low_scale": -1},
+    "critical_percent": {"base": 3.0, "mid": 7.0, "top": 13.0, "knee": 50, "low_scale": -1},
+    "dodge_percent": {"base": 3.0, "mid": 7.0, "top": 14.0, "knee": 50, "low_scale": -1},
+    "knockdown_resistance": {"base": 5.0, "mid": 25.0, "top": 45.0, "knee": 50, "low_scale": -1},
+    "price": {"base": 20000, "mid": 500000, "top": 1300000, "knee": 50, "low_scale": 1}
+   }
+  }
+ ],
+ "retune": [
+  {
+   "names": ["敵専用素子LV1"],
+   "why": "The enemy-only CHIP LV1 (bosses'; never sold) had Aim Speed 1 like every enemy CHIP. Only the player's sights read it, so the original never tuned it; scaled by tier (LV1 2 to LV5 6) for a player who comes to own one.",
+   "stats": {"track": 2}
+  },
+  {
+   "names": ["敵専用素子LV2"],
+   "why": "The enemy-only CHIP LV2 (bosses'; never sold) had Aim Speed 1 like every enemy CHIP. Only the player's sights read it, so the original never tuned it; scaled by tier (LV1 2 to LV5 6) for a player who comes to own one.",
+   "stats": {"track": 3}
+  },
+  {
+   "names": ["敵専用素子LV3"],
+   "why": "The enemy-only CHIP LV3 (bosses'; never sold) had Aim Speed 1 like every enemy CHIP. Only the player's sights read it, so the original never tuned it; scaled by tier (LV1 2 to LV5 6) for a player who comes to own one.",
+   "stats": {"track": 4}
+  },
+  {
+   "names": ["敵専用素子LV4"],
+   "why": "The enemy-only CHIP LV4 (bosses'; never sold) had Aim Speed 1 like every enemy CHIP. Only the player's sights read it, so the original never tuned it; scaled by tier (LV1 2 to LV5 6) for a player who comes to own one.",
+   "stats": {"track": 5}
+  },
+  {
+   "names": ["敵専用素子LV5"],
+   "why": "The enemy-only CHIP LV5 (bosses'; never sold) had Aim Speed 1 like every enemy CHIP. Only the player's sights read it, so the original never tuned it; scaled by tier (LV1 2 to LV5 6) for a player who comes to own one.",
+   "stats": {"track": 6}
+  },
+  {
+   "names": ["Rabbit I", "Rabbit II"],
+   "why": "The tall sights were the Rabbit's niche, but its lock-on sight started at the smallest box and it was the weakest CHIP. Now a jump fighter: its tall sights reach full size by level 35 (aiming 700, lock-on 500 at level 0), catching robots that jump above or drop below other CHIPs' sights; it locks in 10 frames (was 18) and its Repulsion Shield runs 2% to 12% (was 0.5% to 5.75%). Critical 0.5% to 5% (was 0 to 3%); knockdown resistance, weight and price stay the original's.",
+   "stats": {
+    "inner_value": {"base": 700, "mid": 299, "top": 350, "knee": 35, "low_scale": -1},
+    "outer_value": {"base": 500, "mid": 499, "top": 550, "knee": 35, "low_scale": -1},
+    "lock_frames": 10,
+    "critical_percent": {"base": 0.5, "mid": 3.0, "top": 4.5, "knee": 35, "low_scale": -1},
+    "dodge_percent": {"base": 2.0, "mid": 6.0, "top": 10.0, "knee": 45, "low_scale": -1}
+   }
+  }
+ ],
+ "shop": [
+  {"day": 0, "chip": "Cat V", "chatter": 0, "level": 0},
+  {"day": 0, "chip": "Fox I", "chatter": 0, "level": 0},
+  {"day": 1, "chip": "Cat VI", "chatter": 0, "level": 0},
+  {"day": 1, "chip": "Bear I", "chatter": 1, "level": 0},
+  {"day": 2, "chip": "Cat VII", "chatter": 0, "level": 0},
+  {"day": 2, "chip": "Tortoise I", "chatter": 2, "level": 0},
+  {"day": 3, "chip": "Cat V", "chatter": 1, "level": 0},
+  {"day": 3, "chip": "Boar I", "chatter": 3, "level": 0},
+  {"day": 4, "chip": "Cat VI", "chatter": 1, "level": 0},
+  {"day": 4, "chip": "Hawk I", "chatter": 4, "level": 0},
+  {"day": 5, "chip": "Cat VII", "chatter": 1, "level": 0},
+  {"day": 5, "chip": "Monkey I", "chatter": 0, "level": 0},
+  {"day": 6, "chip": "Cat V", "chatter": 2, "level": 0},
+  {"day": 6, "chip": "Meerkat I", "chatter": 1, "level": 0},
+  {"day": 7, "chip": "Cat VI", "chatter": 2, "level": 0},
+  {"day": 7, "chip": "Fox I", "chatter": 2, "level": 0},
+  {"day": 8, "chip": "Cat VII", "chatter": 2, "level": 0},
+  {"day": 8, "chip": "Bear I", "chatter": 3, "level": 0},
+  {"day": 9, "chip": "Cat V", "chatter": 3, "level": 0},
+  {"day": 9, "chip": "Tortoise I", "chatter": 4, "level": 0},
+  {"day": 10, "chip": "Cat VI", "chatter": 3, "level": 0},
+  {"day": 10, "chip": "Boar I", "chatter": 0, "level": 0},
+  {"day": 11, "chip": "Cat VII", "chatter": 3, "level": 0},
+  {"day": 11, "chip": "Hawk I", "chatter": 1, "level": 0},
+  {"day": 12, "chip": "Cat V", "chatter": 4, "level": 0},
+  {"day": 12, "chip": "Monkey I", "chatter": 2, "level": 0},
+  {"day": 13, "chip": "Cat VI", "chatter": 4, "level": 0},
+  {"day": 13, "chip": "Meerkat I", "chatter": 3, "level": 0},
+  {"day": 14, "chip": "Cat VII", "chatter": 4, "level": 0},
+  {"day": 14, "chip": "Fox I", "chatter": 4, "level": 0},
+  {"day": 15, "chip": "Cat V", "chatter": 0, "level": 0},
+  {"day": 15, "chip": "Bear I", "chatter": 0, "level": 0},
+  {"day": 16, "chip": "Cat VI", "chatter": 0, "level": 0},
+  {"day": 16, "chip": "Tortoise I", "chatter": 1, "level": 0},
+  {"day": 17, "chip": "Cat VII", "chatter": 0, "level": 0},
+  {"day": 17, "chip": "Boar I", "chatter": 2, "level": 0},
+  {"day": 18, "chip": "Cat V", "chatter": 1, "level": 0},
+  {"day": 18, "chip": "Hawk I", "chatter": 3, "level": 0},
+  {"day": 19, "chip": "Cat VI", "chatter": 1, "level": 0},
+  {"day": 19, "chip": "Monkey I", "chatter": 4, "level": 0},
+  {"day": 20, "chip": "Cat VII", "chatter": 1, "level": 0},
+  {"day": 20, "chip": "Meerkat I", "chatter": 0, "level": 0},
+  {"day": 21, "chip": "Cat V", "chatter": 2, "level": 0},
+  {"day": 21, "chip": "Fox I", "chatter": 1, "level": 0},
+  {"day": 22, "chip": "Cat VI", "chatter": 2, "level": 0},
+  {"day": 22, "chip": "Bear I", "chatter": 2, "level": 0},
+  {"day": 23, "chip": "Cat VII", "chatter": 2, "level": 0},
+  {"day": 23, "chip": "Tortoise I", "chatter": 3, "level": 0}
+ ],
+ "boss_shop": [
+  {"chip": "Retriever", "chatter": 0, "contests": [3, 7], "level": 0},
+  {"chip": "Macaque", "chatter": 1, "contests": [4], "level": 0},
+  {"chip": "Penguin", "chatter": 2, "contests": [10], "level": 0},
+  {"chip": "Borzoi", "chatter": 3, "contests": [20], "level": 0},
+  {"chip": "Tanuki", "chatter": 4, "contests": [21], "level": 0},
+  {"chip": "Turtle", "chatter": 0, "contests": [23], "level": 0},
+  {"chip": "Chimp", "chatter": 1, "contests": [25], "level": 0},
+  {"chip": "Siamese", "chatter": 2, "contests": [26], "level": 0},
+  {"chip": "Leopard", "chatter": 3, "contests": [37], "level": 0},
+  {"chip": "Black Cat", "chatter": 4, "contests": [40], "level": 0},
+  {"chip": "Vixen", "chatter": 0, "contests": [42], "level": 0},
+  {"chip": "Sparrow", "chatter": 1, "contests": [14], "level": 0},
+  {"chip": "Owl", "chatter": 2, "contests": [31], "level": 0},
+  {"chip": "Ferret", "chatter": 3, "contests": [48], "level": 0},
+  {"chip": "Labrador", "chatter": 4, "contests": [49], "level": 0}
+ ]
+}

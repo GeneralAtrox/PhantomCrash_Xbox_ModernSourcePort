@@ -1,0 +1,92 @@
+{
+ "notes": [
+  "SOUND CONFIG (original scene 35: init 0x3b6b8, list 0x3b52d, draw 0x3b426, exit 0x3b213; sprites 0x1fde30, selected 0x1fde10 at 0x1fdf48, digits at 0x1fdf68, help strings 0x1fdf98).",
+  "Up and down move the cursor (wrapping on a new press); left and right change the item's value, wrapping on a new press as the original's helper does (flags 0x17). The volumes are heard as they change and kept on EXIT, the only way out. Cancel moves the cursor to EXIT.",
+  "volume items show their level (0-255) as zero-padded digits ending at number, and a bar per_step units wide a level (the original scales an 8-texel strip by level/8).",
+  "The SE test counts through test_sounds in order (the original's four banks, 0x253800); confirm plays the effect and makes no other sound.",
+  "value_repeat is how fast a held left or right changes a value; the original's pad repeat timing is not known, so this is the port's.",
+  "The selected item pulses throughout. now_playing is the credit for the music (the original starts AWAKETO1 here)."
+ ],
+ "music": "title",
+ "fade_in": 0.5,
+ "fade_out": 0.5,
+ "exit_to": "option",
+ "confirm": { "buttons": "confirm" },
+ "cancel": { "buttons": "cancel" },
+ "cursor_repeat": { "delay": 0.4, "interval": 0.1 },
+ "value_repeat": { "delay": 0.4, "interval": 0.025 },
+ "sounds": { "move": "cursor", "select": "confirm" },
+ "layers": [
+  { "id": "background", "image": "textures/scroll/sound_config_tex/0.png", "rect": [0, 0, 640, 480], "layer": 1 , "extend_edges": "both", "edge_bands": [[0, 72], [376, 480]],
+ "edge_bands_left": [[0, 72], [414, 480]]},
+  { "id": "top", "image": "textures/scroll/sound_config_tex/0.png", "rect": [0, 584, 640, 680], "layer": 4 , "extend_edges": "both"},
+  { "id": "bottom", "image": "textures/scroll/sound_config_tex/0.png", "rect": [0, 480, 640, 584], "position": [0, 376], "layer": 4 , "extend_edges": "both"},
+  { "id": "bgm_frame", "image": "textures/scroll/sound_config_tex/0.png", "rect": [640, 344, 904, 360], "position": [308, 143], "layer": 4 },
+  { "id": "se_frame", "image": "textures/scroll/sound_config_tex/0.png", "rect": [640, 344, 904, 360], "position": [308, 186], "layer": 4 }
+ ],
+ "help": { "position": [0, 72], "clip": [0, 0, 640, 480], "colour": "#f0f0f0", "speed": 60, "lead": 306, "trail": 36, "layer": 263 },
+ "now_playing": { "format": "《 {title} : {artist} 》", "position": [0, 419], "clip": [0, 419, 396, 437], "colour": "#ffffff", "speed": 60, "trail": 45, "layer": 263 },
+ "meter": [435, 396],
+ "digits": {
+  "image": "textures/scroll/common_2d_tex/1.png",
+  "rects": [
+   [496, 288, 512, 304], [496, 328, 512, 344], [472, 288, 488, 304], [416, 328, 432, 344], [432, 328, 448, 344],
+   [480, 344, 496, 360], [496, 344, 512, 360], [360, 384, 376, 400], [376, 384, 392, 400], [392, 384, 408, 400]
+  ],
+  "advance": 11,
+  "digits": 3,
+  "layer": 264,
+  "colour": "#ffffff"
+ },
+ "test_sounds": [
+  { "folder": "sound/sfx/battle_player", "count": 51 },
+  { "folder": "sound/sfx/battle_old", "count": 3 },
+  { "folder": "sound/sfx/battle", "count": 48 },
+  { "folder": "sound/sfx/sys", "count": 48 }
+ ],
+ "default_cursor": "bgm",
+ "cancel_cursor": "exit",
+ "items": [
+  {
+   "id": "bgm",
+   "position": [62, 132],
+   "normal": { "image": "textures/scroll/sound_config_tex/0.png", "rect": [640, 120, 832, 160], "layer": 4 },
+   "selected": { "image": "textures/scroll/sound_config_tex/0.png", "rect": [832, 120, 1024, 160], "layer": 7, "animation": "pulse" },
+   "help": "{xbe:0x19d5b0}",
+   "help_trail": 0,
+   "volume": {
+    "option": "bgm_volume",
+    "number": [283, 143],
+    "bar": { "image": "textures/scroll/sound_config_tex/0.png", "rect": [888, 0, 896, 8], "position": [312, 148], "layer": 264, "per_step": 1 }
+   }
+  },
+  {
+   "id": "se",
+   "position": [62, 175],
+   "normal": { "image": "textures/scroll/sound_config_tex/0.png", "rect": [640, 240, 832, 280], "layer": 4 },
+   "selected": { "image": "textures/scroll/sound_config_tex/0.png", "rect": [832, 240, 1024, 280], "layer": 7, "animation": "pulse" },
+   "help": "{xbe:0x19d540}",
+   "volume": {
+    "option": "se_volume",
+    "number": [283, 186],
+    "bar": { "image": "textures/scroll/sound_config_tex/0.png", "rect": [888, 0, 896, 8], "position": [312, 191], "layer": 264, "per_step": 1 }
+   }
+  },
+  {
+   "id": "se_test",
+   "position": [62, 218],
+   "normal": { "image": "textures/scroll/sound_config_tex/0.png", "rect": [640, 200, 832, 240], "layer": 4 },
+   "selected": { "image": "textures/scroll/sound_config_tex/0.png", "rect": [832, 200, 1024, 240], "layer": 7, "animation": "pulse" },
+   "help": "{xbe:0x19d4c8}",
+   "test": { "number": [283, 230] }
+  },
+  {
+   "id": "exit",
+   "position": [62, 261],
+   "normal": { "image": "textures/scroll/sound_config_tex/0.png", "rect": [640, 160, 832, 200], "layer": 4 },
+   "selected": { "image": "textures/scroll/sound_config_tex/0.png", "rect": [832, 160, 1024, 200], "layer": 7, "animation": "pulse" },
+   "help": "{xbe:0x19d448}",
+   "exit": true
+  }
+ ]
+}

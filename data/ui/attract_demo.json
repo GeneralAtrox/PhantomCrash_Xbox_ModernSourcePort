@@ -1,0 +1,29 @@
+{
+ "notes": [
+  "The attract demo the title's idle timeout starts (original scene 1: factory 0xa2c0e, init 0x0135a0, task 0x0134cd, steps 0x013488, 0x013473, 0x013404, 0x0133e8, cleanup 0x013383; continuation 0xa2c54).",
+  "0x0134cd runs a fresh battle (0x04a6a0, quest +0x618c = 1: no HUD) of a contest drawn at random from contests (table 0x1d6f54, rand % 6) on the stage the save's stage index (+0x6104) names: area = index / 2, by night when the index is odd; 6 and 7 (the finale's) play stage 0. Up to six of the contest's roster stand up (0x045a68, 0x0456b7); the camera follows one at a time as RESULT's backdrop does (0x04a78c).",
+  "Once the battle is up, 0x013488 plays music (0x0133b1 track 5, 12SENTOU) and fades in over fade_in seconds; input waits for the fade (0x013473).",
+  "0x013404 counts seconds down (ac73b8 x 60) and draws PRESS START BUTTON (0x0135cd: sprite 0xe91 at (225, 336), layer 0x150, blinking). A fresh press of skip.buttons on any pad (0x01365b: mask 0xfff0, every button but the D-pad) cuts to skip.goto (result 1, scene 40) without a fade; running out fades out over fade_out seconds and goes to timeout_goto (result 0, scene 158: the intro movies).",
+  "The cleanup moves the stage index on by next_stage (table 0x1d6f34), so a session's demos go round stages 0, 2, 4, 1, 3, 5 from first_stage.",
+  "The battle runs unheard, as the receipt's backdrop does (a port reading: the battle's own sounds in the demo were not checked against the original)."
+ ],
+ "seconds": 60.0,
+ "fade_in": 0.5,
+ "fade_out": 0.5,
+ "music": "tutorial_battle",
+ "contests": [3, 7, 20, 24, 37, 41],
+ "first_stage": 0,
+ "next_stage": [2, 3, 4, 5, 1, 0],
+ "timeout_goto": "intro",
+ "skip": {
+  "buttons": ["a", "b", "x", "y", "black", "white", "start", "back", "left_trigger", "right_trigger", "left_thumb", "right_thumb"],
+  "goto": "title"
+ },
+ "prompt": {
+  "image": "textures/scroll/common_2d_tex/1.png",
+  "rect": [168, 432, 360, 472],
+  "position": [225, 336],
+  "layer": 336,
+  "animation": "blink"
+ }
+}

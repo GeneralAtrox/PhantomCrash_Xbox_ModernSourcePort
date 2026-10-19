@@ -1,0 +1,82 @@
+{
+ "notes": [
+  "OPTION screen (original scene 26: init 0x2eb8f, list 0x2e9eb, draw 0x2e710; sprite pairs 0x1fa368, positions 0x1fa398, help strings 0x1fa4ac).",
+  "The cursor moves with the D-pad or left stick and wraps on a new press. Cancel does not leave: it moves the cursor to EXIT, and in a YES/NO box to NO.",
+  "Each item has its own help line; it restarts when the cursor moves onto the item and scrolls left along the top at one unit per frame (help), repeating.",
+  "now_playing is the credit for the current music, scrolling in the CURRENT MUSIC band (0x2a85a), from the converted tables/music.json credits; meter places the band's seven bars (data/ui/frame.json), which move with the music as on the town screens. SOUND CONFIG and BUTTON CONFIG have the same band.",
+  "toggle asks the question and sets the named option (YES is on); reset asks, then restores every option's default and shows its done notice. The boxes' look is in message_box.json.",
+  "entered_from: opened from the garage's system menu (scene 39) the screen also shows the day and money (0xb1b56, 0xb1cdd) and EXIT returns there; the sub-screens do not show them."
+ ],
+ "music": "garage",
+ "fade_in": 0.5,
+ "fade_out": 0.5,
+ "exit_to": "main_menu",
+ "entered_from": { "system": { "exit_to": "system", "hud": true } },
+ "confirm": { "buttons": "confirm" },
+ "cancel": { "buttons": "cancel" },
+ "cursor_repeat": { "delay": 0.4, "interval": 0.1 },
+ "sounds": { "move": "cursor", "select": "confirm" },
+ "layers": [
+  { "id": "background", "image": "textures/scroll/option_tex/0.png", "rect": [0, 0, 640, 480], "layer": 1 , "extend_edges": "both",
+ "edge_bands_left": [[0, 95], [414, 480]], "edge_bands_right": [[0, 95], [376, 480]]}
+ ],
+ "help": { "position": [0, 72], "clip": [0, 0, 640, 480], "colour": "#f0f0f0", "speed": 60, "lead": 270, "trail": 36, "layer": 263 },
+ "now_playing": { "format": "《 {title} : {artist} 》", "position": [0, 419], "clip": [0, 419, 396, 437], "colour": "#ffffff", "speed": 60, "trail": 45, "layer": 263 },
+ "meter": [435, 396],
+ "default_cursor": "vibration",
+ "cancel_cursor": "exit",
+ "items": [
+  {
+   "id": "vibration",
+   "position": [225, 121],
+   "normal": { "image": "textures/scroll/option_tex/0.png", "rect": [728, 200, 920, 240], "layer": 3 },
+   "selected": { "image": "textures/scroll/option_tex/0.png", "rect": [816, 240, 1008, 280], "layer": 4, "animation": "pulse" },
+   "help": "{xbe:0x19b848}",
+   "toggle": { "option": "vibration", "question": ["{xbe:0x19b900}", "vibration feature?"] }
+  },
+  {
+   "id": "sound_config",
+   "position": [225, 164],
+   "normal": { "image": "textures/scroll/option_tex/0.png", "rect": [640, 160, 832, 200], "layer": 3 },
+   "selected": { "image": "textures/scroll/option_tex/0.png", "rect": [832, 160, 1024, 200], "layer": 4, "animation": "pulse" },
+   "help": "{xbe:0x19b790}",
+   "goto": "sound_config"
+  },
+  {
+   "id": "button_config",
+   "position": [225, 207],
+   "normal": { "image": "textures/scroll/option_tex/0.png", "rect": [640, 80, 832, 120], "layer": 3 },
+   "selected": { "image": "textures/scroll/option_tex/0.png", "rect": [832, 80, 1024, 120], "layer": 4, "animation": "pulse" },
+   "help": "{xbe:0x19b6f8}",
+   "goto": "button_config"
+  },
+  {
+   "id": "screen_adjust",
+   "position": [225, 250],
+   "normal": { "image": "textures/scroll/option_tex/0.png", "rect": [832, 320, 1024, 360], "layer": 3 },
+   "selected": { "image": "textures/scroll/option_tex/0.png", "rect": [832, 360, 1024, 400], "layer": 4, "animation": "pulse" },
+   "help": "Adjust screen.",
+   "goto": "screen_adjust"
+  },
+  {
+   "id": "default",
+   "position": [225, 293],
+   "normal": { "image": "textures/scroll/option_tex/0.png", "rect": [640, 40, 832, 80], "layer": 3 },
+   "selected": { "image": "textures/scroll/option_tex/0.png", "rect": [832, 40, 1024, 80], "layer": 4, "animation": "pulse" },
+   "help": "{xbe:0x19b600}",
+   "reset": {
+    "question": ["{xbe:0x19b9f0}", "{xbe:0x19b998}", "be recalled)"],
+    "done": ["{xbe:0x19b944}"],
+    "default_choice": 1
+   }
+  },
+  {
+   "id": "exit",
+   "position": [225, 336],
+   "normal": { "image": "textures/scroll/option_tex/0.png", "rect": [640, 0, 832, 40], "layer": 3 },
+   "selected": { "image": "textures/scroll/option_tex/0.png", "rect": [832, 0, 1024, 40], "layer": 4, "animation": "pulse" },
+   "help": "{xbe:0x19b5d4}",
+   "exit": true
+  }
+ ]
+}

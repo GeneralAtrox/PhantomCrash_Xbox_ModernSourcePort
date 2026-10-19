@@ -1,0 +1,37 @@
+{
+ "notes": [
+  "The finale (docs/FINAL_BATTLE.md). Winning the First Ranker's contest for the first time skips the RESULT screen: the original's victory state (0x089861) leads to robot state 0x17, whose end (0x089d1b) adds the prize, keeps the robot's armour and parts (save +0x10eac) and sends battle exit code 6 to scene 10 (0x0a302a). The port settles the match as usual and opens story/progression.json clear_exit, this screen.",
+  "Scene 10 (0x01c18e) is the epilogue on stage 4, Umihotaru by day, in battle mode 3: only the player's robot, with the armour it won with, frozen and out of the player's hands (0x080778, 0x082e60), plays robot states 8-18. Each state's camera and walk are its scene (tables/battle_scenes.json states 8-18, in world coordinates taken from robot_heading at the world's origin), its wait, fades and line its row of tables/finale.json (0x242f78). Before state 12 walks it, the robot stands where that walk starts.",
+  "Frames are 60 a second. The scene starts by fading out over start_fade_frames (0x01c18e). start_sound plays while state 8's wait passes its frame (sys entry 47, 0x08ac52); music starts as state 9's scene does (END1A, track 0x39). A line opens with script_sound unless it is the last state's (0x08b017). In state 18, DEF TV's call-in show, each caller rings with call_in_sound at the frames of tables/finale.json call_ins and every other frame once they are out; over its last banner.frames the banners (LINES ARE BUSY, FATAL ERROR OCCURED!!!) show on every other frame at banner.position, centred, each time with banner.sound. After the last state the end music plays (TVOFF3, track 0xb2, 0x01c138), the TV switches off: the last frame, captured (texture slot 549), is drawn over black, scaled about the centre through end.tv_off (0x06c933, the keys at 0x21ce18; scale and alpha between keys, frames since it went off), then the screen stays black for end.frames (twice the game rate, 0x01c0bf), then next: the ending movie (scene 11). States whose phase has dissolve_frames (12-15) end on a capture of their last frame, drawn over the next scene with its alpha falling from 1 to 0 over those frames (0x08b397 calls 0x0b29e0; 0x09fa85 draws it). The camera carrier (the supply carrier, 0x06789f) waits at the start of its phase's route of tables/finale.json carrier_routes and flies it as the scene plays, speed of a segment a frame; a phase without a route has none (0x0678da). Its effect groups (0x0878d0, switched by 0x068db0): carrier.effects at the carrier while the phase's carrier_flag is set, and light i's carrier.light_effects[i] at its point of light_points (or the carrier) while that light is on. 0x0689bb starts kinds 0, 0, 1, 2, 3 for the carrier and the first two lights, so their first group is listed twice. Every group heads along carrier.emitter_direction turned with the carrier (0x966c88); the carrier's own sit at carrier.emitter_offset in its frame (0x966960)."
+ ],
+ "stage": "umihotaru_day",
+ "next": "ending",
+ "frame_rate": 60,
+ "start_fade_frames": 2,
+ "robot_heading": 0,
+ "start_sound": {"state": 8, "frame": 15, "sound": "finale_start"},
+ "music": {"state": 9, "track": "ending_theme"},
+ "script_sound": "chatter",
+ "call_in_sound": "chatter",
+ "banner": {"frames": 60, "position": [320, 240], "sound": "warning"},
+ "stand_frames": 2,
+ "carrier": {
+  "effects": [65, 65, 66, 67, 68],
+  "light_effects": [[73, 73, 74, 75, 76], [69, 69, 70, 71, 72], [77, 78]],
+  "emitter_offset": [0, -0.5, -1.7],
+  "emitter_direction": [0, -0.62, -1]
+ },
+ "end": {
+  "music": "tv_off",
+  "frames": 120,
+  "tv_off": [
+   {"frame": 2, "scale": [0.25, 1.0], "alpha": 1.0},
+   {"frame": 3, "scale": [0.25, 1.0], "alpha": 1.0},
+   {"frame": 4, "scale": [1.0, 1.0], "alpha": 1.0},
+   {"frame": 6, "scale": [1.0, 0.05], "alpha": 1.0},
+   {"frame": 7, "scale": [1.0, 0.05], "alpha": 1.0},
+   {"frame": 8, "scale": [1.0, 1.0], "alpha": 1.0},
+   {"frame": 11, "scale": [0.0, 0.0], "alpha": 0.0}
+  ]
+ }
+}

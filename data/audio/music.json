@@ -1,0 +1,19 @@
+{
+ "notes": [
+  "Named music tracks. Files resolve like every other data path; the originals are 44.1 kHz stereo PCM WAVs in Media/sound.",
+  "Scene-to-track assignments of the original are in the converted tables/music.json (scene_music)."
+ ],
+ "tracks": {
+  "title": { "file": "sound/AWAKETO1.WAV", "loop": true, "volume": 1.0 },
+  "garage": { "file": "sound/5GARAGE.WAV", "loop": true, "volume": 1.0 },
+  "town_map": { "file": "sound/4TOWNMAP.WAV", "loop": true, "volume": 1.0 },
+  "wild_machines": { "file": "sound/6WILDMCN.WAV", "loop": true, "volume": 1.0 },
+  "plustech": { "file": "sound/7PLASTIC.WAV", "loop": true, "volume": 1.0 },
+  "dealer": { "file": "sound/8DEALER.WAV", "loop": true, "volume": 1.0 },
+  "tutorial_battle": { "file": "sound/12SENTOU.WAV", "loop": true, "volume": 1.0 },
+  "battle_play_in": { "file": "sound/9PLAYIN.WAV", "loop": false, "volume": 1.0 },
+  "boss_start": { "file": "sound/13BossStart.wav", "loop": false, "volume": 1.0 },
+  "ending_theme": { "file": "sound/END1A.WAV", "loop": false, "volume": 1.0 },
+  "tv_off": { "file": "sound/TVOFF3.WAV", "loop": false, "volume": 1.0 }
+ }
+}

@@ -1,0 +1,13 @@
+{
+ "notes": [
+  "The game's text font (tables/font.json, the atlas textures/scroll/ascii_font_sys_tex/0.png) is MS Gothic drawn 18 pixels high (its em) in 18-pixel cells, the pen at the cell's left edge and the baseline 15 pixels down, with plain antialiasing and no bold: rendering MS Gothic that way reproduces the atlas glyph for glyph (researcher's identification, 2026-10-03; the disc names no font). The atlas holds the full-width letters the game writes its text in, and the width table at 0x1C3FB0 crops each to its own width, which is where the wide letter spacing comes from.",
+  "With post_process.sharp_text on (the default), the port draws each glyph from the installed outline font at the window's own size into a cache, keeping the atlas's widths and positions, so text has the same glyphs, spacing and line breaks but stays sharp. MS Gothic is Microsoft's font and is not shipped: when it is not installed, or a glyph is missing from it, the atlas is drawn as before.",
+  "face names an installed font; file loads a font file instead (privately, for this run) whose family is face. em, baseline and pen_x are in font cell units.",
+  "pictures: atlas glyphs (row x 28 + column) the outline font does not draw. The disc's atlas puts the game's own art in Shift-JIS symbol places: Greek letters, faces, zodiac signs, card suits, a skull, a telephone, the NY money mark, tools, bold arrows and some kanji (found by drawing every atlas cell beside MS Gothic). These are drawn from the atlas as they are, so NAME ENTRY's Symbols page shows the original's pictures."
+ ],
+ "face": "MS Gothic",
+ "em": 18,
+ "baseline": 15,
+ "pen_x": 0,
+ "pictures": [11, 14, 18, 19, 20, 21, 22, 23, 25, 26, 28, 29, 33, 34, 36, 43, 44, 47, 48, 61, 63, 65, 66, 67, 68, 69, 70, 71, 74, 75, 79, 80, 81, 83, 87, 91, 92, 94, 98, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 142, 143, 144, 145, 146, 829]
+}

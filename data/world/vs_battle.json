@@ -1,0 +1,40 @@
+{
+ "notes": [
+  "The battle VS MODE (data/ui/vs_mode.json) leads to: the original's scene 6 with the VS flag (save +0x11074) on the chosen stage, battle.stages by the session's stage (area * 2 + night, 0x046674), with each entered player's Scoobee driven from that player's controller port, a screen for each. Every robot starts in its own gate and walks out of it with the original's gate entrance (robot state 1, 0x080778 and 0x082552), from the converted scene track, its controls waiting until it stands; with the scenes' rider_entrance off it starts where that walk ends, and a battle.gate_step of 0 or more instead starts it that many units straight out of the gate. There are no computer robots.",
+  "The rules (0x046f81): a robot is out once its armour is below 1, no weapon is left on it (0x09d6a3) or it is shot down. With fewer than two standing the round is decided: each screen fades in its result (overlay.results: YOU WIN 1468, YOU LOSE 1469, DRAW 1470 when nobody stands; at results.quarters with three or four screens, 0x205470, and results.halves with two, 0x2054c8) over results.fade_frames. After round.settle_frames (120, 0x19f884) the menu opens (window 1472, items 1473 RETRY, 1474 SELECT AREA, 1475 SELECT SV, 1471 EXIT): any player moves it with up and down; the chosen item pulses, the others are dim_colour. Cancel moves to EXIT. Confirm on EXIT asks overlay.question (0x2036e8, NO chosen): left and right choose, cancel moves to NO, YES leaves and NO closes it. A choice fades out over round.fade_frames (30, 0x17ccfc) and, unless it was a draw, adds a win to each standing player and a loss to the others (save +0x1107c, +0x1108c), then goes to its route (0x0a302a): RETRY fights again, SELECT AREA and SELECT SV open the VS mode's area select and Scoobee select, EXIT the main menu. Leaving from the pause overlay goes the EXIT way without a tally.",
+  "A quarter nobody plays (three players) is covered by overlay.cover (1439), which the original draws at (32, 32), (320, 32), (32, 240) or (320, 240) inside its safe area; the port stretches it over the whole quarter so that it covers it at any window shape. Frames are the original's, 60 a second."
+ ],
+ "battle": {
+  "return_to": "vs_mode",
+  "lesson": {"title": "VS MODE", "mode": 3},
+  "stages": ["shinjuku_day", "shinjuku_night", "shibuya_day", "shibuya_night", "umihotaru_day", "umihotaru_night", "choco_day", "choco_night"],
+  "gate_step": -1,
+  "routes": {"retry": "vs_battle", "select_area": "vs_mode", "select_sv": "vs_mode", "exit": "main_menu"}
+ },
+ "round": {
+  "frame_rate": 60,
+  "settle_frames": 120,
+  "fade_frames": 30,
+  "sounds": {"move": "cursor", "answer": "adjust", "confirm": "confirm", "cancel": "adjust"}
+ },
+ "overlay": {
+  "window": {"id": "vs_window", "image": "textures/scroll/game_vs_tex/0.png", "rect": [0, 0, 200, 216], "position": [221, 127], "layer": 262},
+  "items": [
+   {"id": "vs_retry", "image": "textures/scroll/game_vs_tex/0.png", "rect": [200, 312, 336, 344], "position": [254, 157], "layer": 263},
+   {"id": "vs_select_area", "image": "textures/scroll/game_vs_tex/0.png", "rect": [336, 312, 472, 344], "position": [254, 198], "layer": 263},
+   {"id": "vs_select_sv", "image": "textures/scroll/game_vs_tex/0.png", "rect": [0, 344, 136, 376], "position": [254, 239], "layer": 263},
+   {"id": "vs_exit", "image": "textures/scroll/game_vs_tex/0.png", "rect": [328, 280, 464, 312], "position": [254, 280], "layer": 263}
+  ],
+  "dim_colour": "#808080",
+  "results": {
+   "win": {"id": "vs_you_win", "image": "textures/scroll/game_vs_tex/0.png", "rect": [0, 216, 200, 280], "layer": 261},
+   "lose": {"id": "vs_you_lose", "image": "textures/scroll/game_vs_tex/0.png", "rect": [200, 216, 400, 280], "layer": 261},
+   "draw": {"id": "vs_draw", "image": "textures/scroll/game_vs_tex/0.png", "rect": [0, 280, 200, 344], "layer": 261},
+   "halves": [236, 86],
+   "quarters": [86, 86],
+   "fade_frames": 30
+  },
+  "cover": {"id": "vs_cover", "image": "textures/scroll/game_vs_tex/0.png", "rect": [200, 0, 488, 208], "layer": 260},
+  "question": ["{xbe:0x203660}", "{xbe:0x2036b8}"]
+ }
+}

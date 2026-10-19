@@ -1,0 +1,12 @@
+{
+ "notes": [
+  "The town's radio. Each time Club Wired opens (scene 8: 0x1ba45) it deals a playlist of 16 distinct songs from the 81 credits (tables/music.json; 0x1bae7) and plays one of them at random at once, through once, not looping.",
+  "The screens that run the radio task (0x2a972: Club Wired, NAME ENTRY, Pepper's guide via 0x298de; the schedule and the records opened from Club Wired, which keep its music) start another song at random from the playlist once no music has played for 5 seconds (60 x 5 frames). The original keeps per-song played flags that nothing sets, so a song can come round again.",
+  "A screen with music of its own (a talk scene's track, the town map's) plays that instead; the radio waits for silence. Before Club Wired has opened there is no playlist, so the radio is quiet."
+ ],
+ "playlist": 16,
+ "gap_seconds": 5.0,
+ "volume": 1.0,
+ "shuffle_on": ["club_wired"],
+ "plays_on": ["club_wired", "name_entry", "pepper_guide", "schedule", "records"]
+}

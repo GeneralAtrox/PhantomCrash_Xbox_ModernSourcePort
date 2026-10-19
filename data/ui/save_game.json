@@ -1,0 +1,41 @@
+{
+ "notes": [
+  "SAVE, the original's scene 31 (task 0x034fe0: init 0x035097, update 0x035242, draw 0x035693), opened by the garage's SYSTEM menu. It is LOAD GAME's screen (data/ui/load_game.json: the same slots, EXIT, details panel and message box) with the SAVE PLAY DATA band (0x1fc44c) and the day and money where every town screen draws them (0xb1b56 and 0xb1cdd are passed (139, 39) and (353, 39) but ignore them).",
+  "The original writes phantomcrash.sav, three slots (0x06b4bd); the cursor starts on the slot saved last (save + 0x113c0). The port keeps the three slots with its settings as save_slots, the game stamped with the time it is saved, and LOAD GAME loads from them; the cursor starts on the latest save, or the first slot.",
+  "left/right choose a slot (sys entry 4), up/down move between the slots and EXIT (entry 3), cancel moves to EXIT (entry 3). Confirm (entry 5) on an empty slot saves; on a used one it asks overwrite (NO chosen; left/right choose with entry 4, cancel moves to NO with entry 4), and YES saves. The saved (0x1fc808) or failed (0x1fc7bc) notice follows; confirm goes back to the slots. EXIT fades out to the SYSTEM menu.",
+  "When the saves cannot be read, SAVE shows only the unreadable notice (0x21ccdc) and confirm leaves, as LOAD does; for the port that is a settings file, or a save_slots entry, it cannot read.",
+  "The help line is the original's '               Save play data    ' (0x1fc5c0), padded as LOAD GAME's."
+ ],
+ "mode": "save",
+ "music": "garage",
+ "fade_in": 0.5,
+ "fade_out": 0.5,
+ "exit_to": "system",
+ "hud": true,
+ "confirm": {"buttons": "confirm"},
+ "cancel": {"buttons": "cancel"},
+ "cursor_repeat": {"delay": 0.4, "interval": 0.15},
+ "buttons": {"slot_back": "left", "slot_forward": "right", "row_back": "up", "row_forward": "down"},
+ "sounds": {"move": "adjust", "select": "confirm", "row": "cursor", "to_no": "adjust"},
+ "layers": [
+  {"id": "background", "image": "textures/scroll/save_load_tex/0.png", "rect": [0, 0, 640, 480], "position": [320, 240], "centered": true, "layer": 1},
+  {"id": "top_band", "image": "textures/scroll/save_load_tex/0.png", "rect": [0, 784, 640, 880], "position": [0, 0], "layer": 1, "extend_edges": "both"},
+  {"id": "music_strip", "image": "textures/scroll/save_load_tex/0.png", "rect": [0, 480, 640, 584], "position": [0, 376], "layer": 1, "extend_edges": "both"},
+  {"id": "details_panel", "image": "textures/scroll/save_load_tex/0.png", "rect": [768, 304, 912, 432], "position": [81, 281], "layer": 1}
+ ],
+ "help_text": "{xbe:0x19ded8}",
+ "help": {"position": [0, 72], "clip": [0, 0, 640, 480], "colour": "#f0f0f0", "speed": 60, "lead": 135, "trail": 36, "layer": 263},
+ "frame": {"hud": true, "meter": [435, 396], "now_playing": {"format": "《 {title} : {artist} 》", "position": [0, 419], "clip": [0, 419, 396, 437], "colour": "#ffffff", "speed": 60, "trail": 45, "layer": 263}},
+ "profile_image": {"offset": [32, 32], "size": [64, 64], "layer": 258},
+ "slots": [
+  {"plate": {"id": "slot_1", "image": "textures/scroll/save_load_tex/0.png", "rect": [640, 0, 768, 152], "position": [81, 107], "layer": 1}, "lit": {"id": "slot_1_lit", "image": "textures/scroll/save_load_tex/0.png", "rect": [768, 0, 896, 152], "position": [81, 107], "layer": 257, "animation": "pulse"}, "empty": {"id": "slot_1_empty", "image": "textures/scroll/save_load_tex/0.png", "rect": [640, 304, 768, 456], "position": [81, 107], "layer": 258}, "date": [104, 215], "time": [112, 230], "clear": {"id": "slot_1_clear", "image": "textures/scroll/save_load_tex/0.png", "rect": [952, 304, 1016, 320], "position": [114, 198], "layer": 260}},
+  {"plate": {"id": "slot_2", "image": "textures/scroll/save_load_tex/0.png", "rect": [896, 0, 1024, 152], "position": [256, 107], "layer": 1}, "lit": {"id": "slot_2_lit", "image": "textures/scroll/save_load_tex/0.png", "rect": [640, 152, 768, 304], "position": [256, 107], "layer": 257, "animation": "pulse"}, "empty": {"id": "slot_2_empty", "image": "textures/scroll/save_load_tex/0.png", "rect": [640, 304, 768, 456], "position": [256, 107], "layer": 258}, "date": [279, 215], "time": [287, 230], "clear": {"id": "slot_2_clear", "image": "textures/scroll/save_load_tex/0.png", "rect": [952, 304, 1016, 320], "position": [289, 198], "layer": 260}},
+  {"plate": {"id": "slot_3", "image": "textures/scroll/save_load_tex/0.png", "rect": [768, 152, 896, 304], "position": [431, 107], "layer": 1}, "lit": {"id": "slot_3_lit", "image": "textures/scroll/save_load_tex/0.png", "rect": [896, 152, 1024, 304], "position": [431, 107], "layer": 257, "animation": "pulse"}, "empty": {"id": "slot_3_empty", "image": "textures/scroll/save_load_tex/0.png", "rect": [640, 304, 768, 456], "position": [431, 107], "layer": 258}, "date": [456, 215], "time": [464, 230], "clear": {"id": "slot_3_clear", "image": "textures/scroll/save_load_tex/0.png", "rect": [952, 304, 1016, 320], "position": [466, 198], "layer": 260}}
+ ],
+ "exit": {"normal": {"id": "exit", "image": "textures/scroll/save_load_tex/0.png", "rect": [640, 480, 832, 520], "position": [400, 318], "layer": 1}, "selected": {"id": "exit_lit", "image": "textures/scroll/save_load_tex/0.png", "rect": [832, 480, 1024, 520], "layer": 257, "animation": "pulse"}},
+ "time_font": {"image": "textures/scroll/common_2d_tex/1.png", "digits": [[504, 0, 512, 16], [504, 16, 512, 32], [504, 32, 512, 48], [504, 48, 512, 64], [504, 64, 512, 80], [504, 80, 512, 96], [504, 96, 512, 112], [504, 112, 512, 128], [504, 128, 512, 144], [504, 144, 512, 160]], "advance": 8, "comma": [504, 248, 512, 264], "comma_advance": 8},
+ "time_separator": {"id": "time_colon", "image": "textures/scroll/common_2d_tex/1.png", "rect": [504, 160, 512, 176]},
+ "time_layer": 259,
+ "details": {"name": [224, 286], "riding": [224, 346], "max_glyphs": 9, "text_colour": "#ffffff", "text_layer": 258, "day_label": {"id": "day", "image": "textures/scroll/common_2d_tex/1.png", "rect": [360, 456, 400, 472], "position": [224, 380]}, "day": {"right": [281, 380], "digits": 2, "pad": true, "colour": "#ffffff"}, "money": [224, 318], "money_digits": 9, "money_colour": "#f0f0f0", "money_unit": {"id": "ny", "image": "textures/scroll/common_2d_tex/1.png", "rect": [464, 456, 496, 472]}, "number_layer": 258},
+ "messages": {"unreadable": [" {xbe:0x1ddc34}", " {xbe:0x21c9f8}", " {xbe:0x19ebc0}"], "overwrite": [" {xbe:0x1fc608}", " {xbe:0x1fc658}"], "saved": [" {xbe:0x1fc72c}"], "failed": [" {xbe:0x1fc6a8}", " {xbe:0x1fc6e8}"]}
+}

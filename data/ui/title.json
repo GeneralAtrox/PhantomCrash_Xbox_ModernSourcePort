@@ -1,0 +1,38 @@
+{
+ "notes": [
+  "Title screen, 640x480 layout coordinates (original scene 40: 0x3e8f2, layers from 0x1fe9c8, 0x3e6cd and 0x135cd).",
+  "rect is in texels of the image; size scales the rect (default: rect size); centered anchors position at the middle.",
+  "layer is the original's layer word: sprites draw from the lowest layer up, in file order within a layer.",
+  "animation: blink is the original's draw flag 0x4000 (0.7 s on, 0.65 s off), pulse is 0x2000, fade is 0x20.",
+  "The main menu (main_menu.json) is drawn over these layers; title_only layers are hidden there."
+ ],
+ "music": "title",
+ "fade_in": 0.5,
+ "layers": [
+  { "id": "background", "image": "textures/scroll/title_tex/0.png", "rect": [0, 0, 640, 480], "position": [0, 0], "layer": 1 },
+  {
+   "id": "scanlines",
+   "image": "textures/scroll/title_tex/0.png",
+   "rect": [0, 848, 640, 872],
+   "position": [320, 0],
+   "centered": true,
+   "layer": 4,
+   "repeat": { "count": 20, "step": [0, 24], "wrap": 480, "scroll_per_second": [0, 12], "scroll_reset": 640 }
+  },
+  { "id": "logo", "image": "textures/scroll/title_tex/0.png", "rect": [464, 480, 912, 664], "position": [96, 93], "layer": 257 },
+  { "id": "band_top", "image": "textures/scroll/title_tex/0.png", "rect": [1016, 0, 1024, 40], "position": [0, 0], "size": [640, 54], "layer": 259 },
+  { "id": "band_bottom", "image": "textures/scroll/title_tex/0.png", "rect": [1016, 0, 1024, 40], "position": [0, 427], "size": [640, 54], "layer": 259 },
+  { "id": "copyright", "image": "textures/scroll/title_tex/0.png", "rect": [640, 416, 800, 440], "position": [240, 402], "layer": 260 },
+  {
+   "id": "press_start",
+   "image": "textures/scroll/common_2d_tex/1.png",
+   "rect": [168, 432, 360, 472],
+   "position": [225, 335],
+   "layer": 264,
+   "animation": "blink",
+   "title_only": true
+  }
+ ],
+ "start": { "buttons": "start", "sound": "title_start", "goto": "main_menu" },
+ "idle": { "seconds": 30.0, "fade_out": 0.5, "goto": "attract_demo" }
+}

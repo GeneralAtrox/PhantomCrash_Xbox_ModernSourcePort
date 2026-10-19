@@ -1,0 +1,2057 @@
+{
+ "notes": [
+  "RUMBLING (scene 3, 0x0163e7 input, 0x015fce draw): the area select, each area's sub-menu, the gates and the contest's details. The rules it enters by (regulation, rentals, rankers) are data/world/rumbling.json; the contest held at a venue is the calendar's (tables/town.json).",
+  "layers: the backdrop 0x348, the strip 0x36c and the lower strip 0x349 (0x013902). The frame's RIDING SV plate is the screen's own: sprite 0x367 at (370, 335), layer 0x108, the name 76 right and 8 down (0x06db03 with its last argument 1), sliding in from the right.",
+  "areas: each area's day and night pictures (0x1d7160 records [day, night, label, title]) at (71, 115) in the picture frame 0x354, its name strip, its logo and its item on the bar (0x06c530; the lit sprite over the normal one, pulsing while the areas take input). The items slide in from item_from_x over slide_seconds and the bar 0x359 from bar_from_x. Changing area cross-fades the pictures over fade_seconds. A venue with no contest shows CLOSED 0x34b over the noise 0x35e. The last area is EXIT.",
+  "area_select: the contest's name, class and fee right-aligned on the info panel 0x352 (0x015c44), and CLEAR 0x34a once won (not for the contests in no_clear_mark).",
+  "menu: confirming an open area turns to its sub-menu over turn_seconds (0x014895): the pictures fade, the info slides right by info_slide, the logo moves to title_at and the six items (0x1d7100 sprites at 0x1d7130 places) come in from the left by item_slide, each trailing the last. ENTRY is greyed (#404040) without a ridden Scoobee that meets the regulation or in a rentals-only class, RENTAL where rentals are disallowed (0x0138da). The map 0x387 (0x014af3) builds the area's drawing up a frame every map_frame_seconds, the frame before fading out tinted map_fade_colour, and shows its H marks (0x21c72c).",
+  "gates: the gate window 0x37c (0x0150ea) with a label per gate the stage has (0x37d to 0x37f, left edge by count in label_x, label_step apart, the chosen one yellow), the gate markers 0x380 on the map and the ring 0x390 turning round the chosen one (0x013a84). In a ranker's contest the ranker holds a gate that cannot be chosen.",
+  "contest_info: the INFORMATION window 0x382 pops open (0x013d07) with the details the schedule's popup also draws (contest_info.hpp).",
+  "messages: the notices at message_text_at: fee (not enough New Yen, 0x016d0e), no_robot, regulation, rentals_only, no_rentals (0x0137d6), area_ranker and first_ranker (0x09700f).",
+  "character_info: WIRE HEADS DATA (0x015aa2, window 0x39b drawn by 0x013f5a). CHARACTER INFO opens (sys 5) when someone is out in the area today (data/world/rumbling.json roster) or the contest is a ranker's, whom it then shows alone; otherwise it refuses (sys 8). Left and right step through the opponents, wrapping (sounds.browse, sys 3); B goes back (sys 8). The window pops open like CONTEST INFO's, centred as 0x0bd3bd and 0x0bd396 place it: the pilot's name (the pilot record's first name entry, 0x0c7a09), the robot's name (the robot record's), the partner's name (the second name entry, shown only with a pilot), the team (0x05fa42; no_team, the original's own text at 0x17bea0, when it has none or \"None\"), and the bounty in NY with the HUD's number writer; the pilot's and partner's faces (the name entries' sprites) at pilot_face and partner_face; the B BACK hint (0x6ded3 at 241, 374). The help line stays the menu item's. Not ported: the markers on the area map. The original moves each opponent along the stage's enemy paths (ENPT resources 0x697 to 0x699 in b00_shinjuku, b01_shibuya and b02_umihotaru.bin) while the area's map is open: 0x0147ff places each at a random path point (0x0580bd, segment kinds other than 0, 1, 6 and 7) with a 120 s timer; 0x0148cf / 0x043db5 step them at 10 units a second (0x0444f7, 0x059fb0, 0x05a2a9, which picks a random next segment, not of kinds 0, 1 or 7), projected onto the map by 0x04407a with the area's placement at 0x1d6fb0, the one shown in yellow. When a timer runs out and more than one is out (0x01476f), that one leaves (0x045da4 puts it back in its pool) and 20 s later another is drawn (0x045a68, 0x0456b7) at a random battle entry point (0x0447cc, table 0x201598). Confirming a gate (0x0169e5) stores each one's path position in its roster record (0x044277: + 0x74, flag + 0x80), and the battle starts it there (0x0825df) unless the contest's class is 22 or 23; others start at a free random entry point. No armour or other state carries over. A ranker's contest shows the ranker's mark at its gate (0x1d7010). The port does not follow those paths yet. A cleared game also raises the opponents' part levels by its laps (0x0456b7), which only the battle would use. The original's tile wipe into the sub-menu (0x0143bf) is a fade here. routes.battle leads to the interim battle (data/world/rumbling.json battle).",
+  "robot_markers and each area's robot_map (0x01492b, 0x04407a, 0x04438d; placement 0x1d6fb0, scale 0x1d70d0, origin 0x17beb8, icons 0x200838 by maker and legs type): the opponents out on the area map, turned the way they face; the one CHARACTER INFO shows is chosen_colour with the ring. The live RUMBLING (data/world/rumbling.json live) gives where they stand. character_info armour is a port addition: the shown opponent's armour as it stands, or down while it is shot down."
+ ],
+ "scene": 3,
+ "music": "keep",
+ "fade_in": 0.5,
+ "fade_out": 0.5,
+ "exit_to": "club_wired",
+ "confirm": {
+  "buttons": "confirm"
+ },
+ "cancel": {
+  "buttons": "cancel"
+ },
+ "cursor_repeat": {
+  "delay": 0.4,
+  "interval": 0.15
+ },
+ "buttons": {
+  "left": "left",
+  "right": "right",
+  "up": "up",
+  "down": "down"
+ },
+ "sounds": {
+  "move": "adjust",
+  "row": "cursor",
+  "select": "confirm",
+  "to_exit": "adjust",
+  "no": "cancel",
+  "close": "window",
+  "open": "confirm",
+  "browse": "cursor"
+ },
+ "routes": {
+  "select_sv": "hangar",
+  "battle": "rumbling_battle"
+ },
+ "layers": [
+  {
+   "id": "840",
+   "image": "textures/scroll/area_select_tex/0.png",
+   "rect": [
+    0,
+    0,
+    640,
+    480
+   ],
+   "position": [
+    0,
+    0
+   ],
+   "layer": 1,
+   "extend_edges": "both", "edge_bands": [[0, 72], [376, 480]],
+ "edge_bands_left": [[0, 72], [414, 480]]
+  },
+  {
+   "id": "876",
+   "image": "textures/scroll/area_select_tex/0.png",
+   "rect": [
+    640,
+    384,
+    1280,
+    480
+   ],
+   "position": [
+    0,
+    0
+   ],
+   "layer": 257,
+   "extend_edges": "both"
+  },
+  {
+   "id": "841",
+   "image": "textures/scroll/area_select_tex/0.png",
+   "rect": [
+    576,
+    712,
+    1216,
+    816
+   ],
+   "position": [
+    0,
+    376
+   ],
+   "layer": 257,
+   "extend_edges": "both"
+  }
+ ],
+ "frame": {
+  "hud": true,
+  "meter": [
+   434,
+   395
+  ],
+  "now_playing": {
+   "format": "《 {title} : {artist} 》",
+   "position": [
+    0,
+    419
+   ],
+   "clip": [
+    0,
+    419,
+    396,
+    437
+   ],
+   "colour": "#ffffff",
+   "speed": 60,
+   "trail": 45,
+   "layer": 263
+  },
+  "riding_plate": true,
+  "riding_plate_y": 335,
+  "riding_plate_style": {
+   "plate": {
+    "id": "riding_sv_right",
+    "image": "textures/scroll/area_select_tex/0.png",
+    "rect": [
+     936,
+     232,
+     1208,
+     272
+    ],
+    "position": [
+     370,
+     335
+    ],
+    "layer": 264
+   },
+   "name_offset": [
+    76,
+    8
+   ],
+   "name_layer": 265,
+   "slide_from": 320,
+   "slide_seconds": 0.1333
+  }
+ },
+ "areas": [
+  {
+   "id": "shinjuku",
+   "help": "{xbe:0x17b3a8}",
+   "picture": {
+    "id": "874",
+    "image": "textures/scroll/area_select_tex/0.png",
+    "rect": [
+     1080,
+     480,
+     1296,
+     712
+    ],
+    "position": [
+     71,
+     115
+    ],
+    "layer": 3
+   },
+   "night_picture": {
+    "id": "875",
+    "image": "textures/scroll/area_select_tex/0.png",
+    "rect": [
+     1296,
+     480,
+     1512,
+     712
+    ],
+    "position": [
+     71,
+     115
+    ],
+    "layer": 3
+   },
+   "label": {
+    "id": "848",
+    "image": "textures/scroll/area_select_tex/0.png",
+    "rect": [
+     1968,
+     384,
+     1992,
+     472
+    ],
+    "position": [
+     41,
+     250
+    ],
+    "layer": 261
+   },
+   "title": {
+    "id": "867",
+    "image": "textures/scroll/area_select_tex/0.png",
+    "rect": [
+     1512,
+     592,
+     1800,
+     704
+    ],
+    "position": [
+     316,
+     111
+    ],
+    "layer": 258
+   },
+   "item": {
+    "id": "860",
+    "image": "textures/scroll/area_select_tex/0.png",
+    "rect": [
+     1736,
+     232,
+     1840,
+     264
+    ],
+    "position": [
+     50,
+     371
+    ],
+    "layer": 258
+   },
+   "item_lit": {
+    "id": "861",
+    "image": "textures/scroll/area_select_tex/0.png",
+    "rect": [
+     1840,
+     232,
+     1944,
+     264
+    ],
+    "position": [
+     50,
+     371
+    ],
+    "layer": 259,
+    "colour": "#ffffff",
+    "animation": "pulse"
+   },
+   "item_from_x": -520,
+   "map_frames": [
+    {
+     "id": "908",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      1128,
+      304,
+      1504,
+      608
+     ],
+     "position": [
+      234,
+      73
+     ],
+     "layer": 4
+    },
+    {
+     "id": "909",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      1504,
+      304,
+      1880,
+      608
+     ],
+     "position": [
+      234,
+      73
+     ],
+     "layer": 4
+    },
+    {
+     "id": "910",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      0,
+      608,
+      376,
+      912
+     ],
+     "position": [
+      234,
+      73
+     ],
+     "layer": 4
+    },
+    {
+     "id": "911",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      376,
+      608,
+      752,
+      912
+     ],
+     "position": [
+      234,
+      73
+     ],
+     "layer": 4
+    }
+   ],
+   "gates": [
+    [
+     580,
+     296
+    ],
+    [
+     532,
+     131
+    ],
+    [
+     324,
+     232
+    ]
+   ],
+   "marks": [
+    [
+     360,
+     228
+    ],
+    [
+     499,
+     147
+    ],
+    [
+     500,
+     295
+    ]
+   ],
+   "robot_map": {
+    "offset": [
+     167,
+     134
+    ],
+    "pivot": [
+     228,
+     181
+    ],
+    "angle": 0.785398,
+    "scale": 1.037872
+   }
+  },
+  {
+   "id": "shibuya",
+   "help": "{xbe:0x17b348}",
+   "picture": {
+    "id": "872",
+    "image": "textures/scroll/area_select_tex/0.png",
+    "rect": [
+     648,
+     480,
+     864,
+     712
+    ],
+    "position": [
+     71,
+     115
+    ],
+    "layer": 3
+   },
+   "night_picture": {
+    "id": "873",
+    "image": "textures/scroll/area_select_tex/0.png",
+    "rect": [
+     864,
+     480,
+     1080,
+     712
+    ],
+    "position": [
+     71,
+     115
+    ],
+    "layer": 3
+   },
+   "label": {
+    "id": "847",
+    "image": "textures/scroll/area_select_tex/0.png",
+    "rect": [
+     1944,
+     384,
+     1968,
+     472
+    ],
+    "position": [
+     41,
+     250
+    ],
+    "layer": 261
+   },
+   "title": {
+    "id": "866",
+    "image": "textures/scroll/area_select_tex/0.png",
+    "rect": [
+     1512,
+     480,
+     1800,
+     592
+    ],
+    "position": [
+     316,
+     111
+    ],
+    "layer": 258
+   },
+   "item": {
+    "id": "858",
+    "image": "textures/scroll/area_select_tex/0.png",
+    "rect": [
+     1528,
+     232,
+     1632,
+     264
+    ],
+    "position": [
+     152,
+     371
+    ],
+    "layer": 258
+   },
+   "item_lit": {
+    "id": "859",
+    "image": "textures/scroll/area_select_tex/0.png",
+    "rect": [
+     1632,
+     232,
+     1736,
+     264
+    ],
+    "position": [
+     152,
+     371
+    ],
+    "layer": 259,
+    "colour": "#ffffff",
+    "animation": "pulse"
+   },
+   "item_from_x": -378,
+   "map_frames": [
+    {
+     "id": "904",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      1504,
+      0,
+      1880,
+      304
+     ],
+     "position": [
+      234,
+      73
+     ],
+     "layer": 4
+    },
+    {
+     "id": "905",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      0,
+      304,
+      376,
+      608
+     ],
+     "position": [
+      234,
+      73
+     ],
+     "layer": 4
+    },
+    {
+     "id": "906",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      376,
+      304,
+      752,
+      608
+     ],
+     "position": [
+      234,
+      73
+     ],
+     "layer": 4
+    },
+    {
+     "id": "907",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      752,
+      304,
+      1128,
+      608
+     ],
+     "position": [
+      234,
+      73
+     ],
+     "layer": 4
+    }
+   ],
+   "gates": [
+    [
+     535,
+     222
+    ],
+    [
+     429,
+     305
+    ]
+   ],
+   "marks": [
+    [
+     479,
+     175
+    ]
+   ],
+   "robot_map": {
+    "offset": [
+     232,
+     167
+    ],
+    "pivot": [
+     0,
+     0
+    ],
+    "angle": 0,
+    "scale": 1.387872
+   }
+  },
+  {
+   "id": "aqualine",
+   "help": "{xbe:0x17b2e0}",
+   "picture": {
+    "id": "836",
+    "image": "textures/scroll/area_select_tex/0.png",
+    "rect": [
+     936,
+     0,
+     1152,
+     232
+    ],
+    "position": [
+     71,
+     115
+    ],
+    "layer": 3
+   },
+   "night_picture": {
+    "id": "837",
+    "image": "textures/scroll/area_select_tex/0.png",
+    "rect": [
+     1152,
+     0,
+     1368,
+     232
+    ],
+    "position": [
+     71,
+     115
+    ],
+    "layer": 3
+   },
+   "label": {
+    "id": "844",
+    "image": "textures/scroll/area_select_tex/0.png",
+    "rect": [
+     2016,
+     0,
+     2040,
+     88
+    ],
+    "position": [
+     41,
+     250
+    ],
+    "layer": 261
+   },
+   "title": {
+    "id": "863",
+    "image": "textures/scroll/area_select_tex/0.png",
+    "rect": [
+     920,
+     272,
+     1208,
+     384
+    ],
+    "position": [
+     316,
+     111
+    ],
+    "layer": 258
+   },
+   "item": {
+    "id": "853",
+    "image": "textures/scroll/area_select_tex/0.png",
+    "rect": [
+     1208,
+     232,
+     1312,
+     264
+    ],
+    "position": [
+     254,
+     371
+    ],
+    "layer": 258
+   },
+   "item_lit": {
+    "id": "854",
+    "image": "textures/scroll/area_select_tex/0.png",
+    "rect": [
+     1312,
+     232,
+     1416,
+     264
+    ],
+    "position": [
+     254,
+     371
+    ],
+    "layer": 259,
+    "colour": "#ffffff",
+    "animation": "pulse"
+   },
+   "item_from_x": -236,
+   "map_frames": [
+    {
+     "id": "899",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      0,
+      0,
+      376,
+      304
+     ],
+     "position": [
+      234,
+      73
+     ],
+     "layer": 4
+    },
+    {
+     "id": "900",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      376,
+      0,
+      752,
+      304
+     ],
+     "position": [
+      234,
+      73
+     ],
+     "layer": 4
+    },
+    {
+     "id": "901",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      752,
+      0,
+      1128,
+      304
+     ],
+     "position": [
+      234,
+      73
+     ],
+     "layer": 4
+    },
+    {
+     "id": "902",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      1128,
+      0,
+      1504,
+      304
+     ],
+     "position": [
+      234,
+      73
+     ],
+     "layer": 4
+    }
+   ],
+   "gates": [
+    [
+     285,
+     234
+    ],
+    [
+     590,
+     234
+    ]
+   ],
+   "marks": [
+    [
+     321,
+     180
+    ],
+    [
+     559,
+     244
+    ]
+   ],
+   "robot_map": {
+    "offset": [
+     226,
+     160
+    ],
+    "pivot": [
+     0,
+     0
+    ],
+    "angle": 0,
+    "scale": 0.787872
+   }
+  },
+  {
+   "id": "exit",
+   "help": "{xbe:0x17b280}",
+   "picture": {
+    "id": "851",
+    "image": "textures/scroll/area_select_tex/0.png",
+    "rect": [
+     0,
+     480,
+     216,
+     712
+    ],
+    "position": [
+     71,
+     115
+    ],
+    "layer": 3
+   },
+   "night_picture": {
+    "id": "851",
+    "image": "textures/scroll/area_select_tex/0.png",
+    "rect": [
+     0,
+     480,
+     216,
+     712
+    ],
+    "position": [
+     71,
+     115
+    ],
+    "layer": 3
+   },
+   "label": {
+    "id": "849",
+    "image": "textures/scroll/area_select_tex/0.png",
+    "rect": [
+     1992,
+     384,
+     2016,
+     472
+    ],
+    "position": [
+     41,
+     250
+    ],
+    "layer": 261
+   },
+   "title": {
+    "id": "869",
+    "image": "textures/scroll/area_select_tex/0.png",
+    "rect": [
+     288,
+     712,
+     576,
+     824
+    ],
+    "position": [
+     316,
+     111
+    ],
+    "layer": 258
+   },
+   "item": {
+    "id": "855",
+    "image": "textures/scroll/area_select_tex/0.png",
+    "rect": [
+     1416,
+     232,
+     1472,
+     264
+    ],
+    "position": [
+     356,
+     371
+    ],
+    "layer": 258
+   },
+   "item_lit": {
+    "id": "856",
+    "image": "textures/scroll/area_select_tex/0.png",
+    "rect": [
+     1472,
+     232,
+     1528,
+     264
+    ],
+    "position": [
+     356,
+     371
+    ],
+    "layer": 259,
+    "colour": "#ffffff",
+    "animation": "pulse"
+   },
+   "item_from_x": -94,
+   "exit": true
+  }
+ ],
+ "area_select": {
+  "slide_seconds": 0.4,
+  "bar": {
+   "id": "857",
+   "image": "textures/scroll/area_select_tex/0.png",
+   "rect": [
+    1376,
+    712,
+    1792,
+    736
+   ],
+   "position": [
+    0,
+    385
+   ],
+   "layer": 257
+  },
+  "bar_from_x": -450,
+  "bar_slide_seconds": 0.3833,
+  "picture_frame": {
+   "id": "852",
+   "image": "textures/scroll/area_select_tex/0.png",
+   "rect": [
+    640,
+    0,
+    936,
+    272
+   ],
+   "position": [
+    21,
+    97
+   ],
+   "layer": 260
+  },
+  "fade_seconds": 0.35,
+  "closed": {
+   "id": "843",
+   "image": "textures/scroll/area_select_tex/0.png",
+   "rect": [
+    1800,
+    0,
+    2016,
+    232
+   ],
+   "position": [
+    71,
+    115
+   ],
+   "layer": 262
+  },
+  "noise": {
+   "id": "862",
+   "image": "textures/scroll/area_select_tex/0.png",
+   "rect": [
+    216,
+    480,
+    432,
+    712
+   ],
+   "position": [
+    71,
+    115
+   ],
+   "layer": 261
+  },
+  "noise_alpha": 0.5,
+  "info_panel": {
+   "id": "850",
+   "image": "textures/scroll/area_select_tex/0.png",
+   "rect": [
+    640,
+    272,
+    920,
+    384
+   ],
+   "position": [
+    316,
+    219
+   ],
+   "layer": 259
+  },
+  "info_right": 571,
+  "contest_y": 235,
+  "class_y": 271,
+  "fee_right": 552,
+  "fee_y": 308,
+  "fee_digits": 9,
+  "text_colour": "#f0f0f0",
+  "text_layer": 260,
+  "clear": {
+   "id": "842",
+   "image": "textures/scroll/area_select_tex/0.png",
+   "rect": [
+    1864,
+    272,
+    2024,
+    376
+   ],
+   "position": [
+    127,
+    243
+   ],
+   "layer": 4
+  },
+  "no_clear_mark": [
+   52,
+   53,
+   54
+  ]
+ },
+ "menu": {
+  "turn_seconds": 0.1333,
+  "info_slide": 292,
+  "title_at": [
+   24,
+   111
+  ],
+  "items": [
+   {
+    "action": "entry",
+    "help": "{xbe:0x17b1d0}",
+    "normal": {
+     "id": "917",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      1744,
+      744,
+      1936,
+      776
+     ],
+     "position": [
+      65,
+      232
+     ],
+     "layer": 258
+    },
+    "lit": {
+     "id": "918",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      1784,
+      776,
+      1976,
+      808
+     ],
+     "position": [
+      65,
+      232
+     ],
+     "layer": 259,
+     "animation": "pulse"
+    }
+   },
+   {
+    "action": "rental",
+    "help": "{xbe:0x17b138}",
+    "normal": {
+     "id": "915",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      1856,
+      880,
+      2048,
+      912
+     ],
+     "position": [
+      65,
+      267
+     ],
+     "layer": 258
+    },
+    "lit": {
+     "id": "916",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      1728,
+      712,
+      1920,
+      744
+     ],
+     "position": [
+      65,
+      267
+     ],
+     "layer": 259,
+     "animation": "pulse"
+    }
+   },
+   {
+    "action": "select_sv",
+    "help": "{xbe:0x17b0c8}",
+    "normal": {
+     "id": "919",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      1728,
+      808,
+      1920,
+      840
+     ],
+     "position": [
+      65,
+      302
+     ],
+     "layer": 258
+    },
+    "lit": {
+     "id": "920",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      0,
+      912,
+      192,
+      944
+     ],
+     "position": [
+      65,
+      302
+     ],
+     "layer": 259,
+     "animation": "pulse"
+    }
+   },
+   {
+    "action": "character_info",
+    "help": "{xbe:0x17b048}",
+    "normal": {
+     "id": "921",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      192,
+      912,
+      384,
+      944
+     ],
+     "position": [
+      65,
+      337
+     ],
+     "layer": 258
+    },
+    "lit": {
+     "id": "922",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      384,
+      912,
+      576,
+      944
+     ],
+     "position": [
+      65,
+      337
+     ],
+     "layer": 259,
+     "animation": "pulse"
+    }
+   },
+   {
+    "action": "contest_info",
+    "help": "{xbe:0x17afe8}",
+    "normal": {
+     "id": "913",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      1784,
+      848,
+      1976,
+      880
+     ],
+     "position": [
+      65,
+      372
+     ],
+     "layer": 258
+    },
+    "lit": {
+     "id": "914",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      1664,
+      880,
+      1856,
+      912
+     ],
+     "position": [
+      65,
+      372
+     ],
+     "layer": 259,
+     "animation": "pulse"
+    }
+   },
+   {
+    "action": "back",
+    "help": "{xbe:0x17af70}",
+    "normal": {
+     "id": "855",
+     "image": "textures/scroll/area_select_tex/0.png",
+     "rect": [
+      1416,
+      232,
+      1472,
+      264
+     ],
+     "position": [
+      356,
+      371
+     ],
+     "layer": 258
+    },
+    "lit": {
+     "id": "856",
+     "image": "textures/scroll/area_select_tex/0.png",
+     "rect": [
+      1472,
+      232,
+      1528,
+      264
+     ],
+     "position": [
+      356,
+      371
+     ],
+     "layer": 259,
+     "animation": "pulse"
+    }
+   }
+  ],
+  "disabled_colour": "#404040",
+  "item_slide": 256,
+  "map": {
+   "id": "903",
+   "image": "textures/scroll/area_situation_tex/0.png",
+   "rect": [
+    752,
+    608,
+    1120,
+    904
+   ],
+   "position": [
+    263,
+    96
+   ],
+   "layer": 257
+  },
+  "map_frame_seconds": 0.1667,
+  "map_fade_colour": "#6dfff1",
+  "mark": {
+   "id": "897",
+   "image": "textures/scroll/area_situation_tex/0.png",
+   "rect": [
+    2024,
+    48,
+    2048,
+    72
+   ],
+   "position": [
+    0,
+    0
+   ],
+   "layer": 257,
+   "colour": "#808080"
+  }
+ },
+ "gates": {
+  "window": {
+   "id": "892",
+   "image": "textures/scroll/area_situation_tex/0.png",
+   "rect": [
+    1728,
+    608,
+    1936,
+    712
+   ],
+   "position": [
+    60,
+    159
+   ],
+   "layer": 260
+  },
+  "hint": [
+   {
+    "id": "3122",
+    "image": "textures/scroll/scr_common_tex/0.png",
+    "rect": [
+     256,
+     184,
+     272,
+     200
+    ],
+    "position": [
+     167,
+     229
+    ],
+    "layer": 261
+   },
+   {
+    "id": "3134",
+    "image": "textures/scroll/scr_common_tex/0.png",
+    "rect": [
+     600,
+     184,
+     664,
+     200
+    ],
+    "position": [
+     193,
+     231
+    ],
+    "layer": 261
+   }
+  ],
+  "labels": [
+   {
+    "id": "893",
+    "image": "textures/scroll/area_situation_tex/0.png",
+    "rect": [
+     1664,
+     848,
+     1704,
+     880
+    ],
+    "position": [
+     0,
+     193
+    ],
+    "layer": 261,
+    "colour": "#808080"
+   },
+   {
+    "id": "894",
+    "image": "textures/scroll/area_situation_tex/0.png",
+    "rect": [
+     1704,
+     848,
+     1744,
+     880
+    ],
+    "position": [
+     0,
+     193
+    ],
+    "layer": 261,
+    "colour": "#808080"
+   },
+   {
+    "id": "895",
+    "image": "textures/scroll/area_situation_tex/0.png",
+    "rect": [
+     1744,
+     848,
+     1784,
+     880
+    ],
+    "position": [
+     0,
+     193
+    ],
+    "layer": 261,
+    "colour": "#808080"
+   }
+  ],
+  "label_x": {
+   "2": 111,
+   "3": 81
+  },
+  "label_step": 59,
+  "chosen_colour": "#ffd300",
+  "chosen_layer": 262,
+  "marker": {
+   "id": "896",
+   "image": "textures/scroll/area_situation_tex/0.png",
+   "rect": [
+    2024,
+    0,
+    2048,
+    24
+   ],
+   "position": [
+    0,
+    0
+   ],
+   "layer": 257,
+   "centered": true,
+   "colour": "#808080"
+  },
+  "marker_lit": {
+   "id": "896",
+   "image": "textures/scroll/area_situation_tex/0.png",
+   "rect": [
+    2024,
+    0,
+    2048,
+    24
+   ],
+   "position": [
+    0,
+    0
+   ],
+   "layer": 258,
+   "centered": true,
+   "colour": "#ffcd00"
+  },
+  "ring": {
+   "id": "912",
+   "image": "textures/scroll/area_situation_tex/0.png",
+   "rect": [
+    1880,
+    0,
+    1928,
+    48
+   ],
+   "position": [
+    0,
+    0
+   ],
+   "layer": 259,
+   "centered": true
+  },
+  "ring_degrees_per_second": 343.8,
+  "help": "{xbe:0x17ad04}"
+ },
+ "robot_markers": {
+  "origin": [
+   234,
+   73
+  ],
+  "colour": "#6dfff1",
+  "chosen_colour": "#ffd300",
+  "ring": {
+   "id": "912",
+   "image": "textures/scroll/area_situation_tex/0.png",
+   "rect": [
+    1880,
+    0,
+    1928,
+    48
+   ],
+   "position": [
+    0,
+    0
+   ],
+   "layer": 259,
+   "centered": true,
+   "colour": "#81f834"
+  },
+  "ring_degrees_per_second": 343.8,
+  "fewest": 2,
+  "icons": [
+   {
+    "maker": 0,
+    "legs_type": 0,
+    "sprite": {
+     "id": "934",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      1976,
+      144,
+      2024,
+      192
+     ],
+     "position": [
+      0,
+      0
+     ],
+     "layer": 258,
+     "centered": true
+    }
+   },
+   {
+    "maker": 0,
+    "legs_type": 1,
+    "sprite": {
+     "id": "938",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      1880,
+      240,
+      1928,
+      288
+     ],
+     "position": [
+      0,
+      0
+     ],
+     "layer": 258,
+     "centered": true
+    }
+   },
+   {
+    "maker": 0,
+    "legs_type": 3,
+    "sprite": {
+     "id": "936",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      1928,
+      192,
+      1976,
+      240
+     ],
+     "position": [
+      0,
+      0
+     ],
+     "layer": 258,
+     "centered": true
+    }
+   },
+   {
+    "maker": 0,
+    "legs_type": 5,
+    "sprite": {
+     "id": "940",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      1976,
+      240,
+      2024,
+      288
+     ],
+     "position": [
+      0,
+      0
+     ],
+     "layer": 258,
+     "centered": true
+    }
+   },
+   {
+    "maker": 0,
+    "legs_type": 7,
+    "sprite": {
+     "id": "942",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      1928,
+      304,
+      1976,
+      352
+     ],
+     "position": [
+      0,
+      0
+     ],
+     "layer": 258,
+     "centered": true
+    }
+   },
+   {
+    "maker": 1,
+    "legs_type": 0,
+    "sprite": {
+     "id": "944",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      1880,
+      352,
+      1928,
+      400
+     ],
+     "position": [
+      0,
+      0
+     ],
+     "layer": 258,
+     "centered": true
+    }
+   },
+   {
+    "maker": 1,
+    "legs_type": 1,
+    "sprite": {
+     "id": "948",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      1928,
+      400,
+      1976,
+      448
+     ],
+     "position": [
+      0,
+      0
+     ],
+     "layer": 258,
+     "centered": true
+    }
+   },
+   {
+    "maker": 1,
+    "legs_type": 2,
+    "sprite": {
+     "id": "950",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      1880,
+      448,
+      1928,
+      496
+     ],
+     "position": [
+      0,
+      0
+     ],
+     "layer": 258,
+     "centered": true
+    }
+   },
+   {
+    "maker": 1,
+    "legs_type": 4,
+    "sprite": {
+     "id": "946",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      1976,
+      352,
+      2024,
+      400
+     ],
+     "position": [
+      0,
+      0
+     ],
+     "layer": 258,
+     "centered": true
+    }
+   },
+   {
+    "maker": 1,
+    "legs_type": 6,
+    "sprite": {
+     "id": "952",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      1976,
+      448,
+      2024,
+      496
+     ],
+     "position": [
+      0,
+      0
+     ],
+     "layer": 258,
+     "centered": true
+    }
+   },
+   {
+    "maker": 1,
+    "legs_type": 7,
+    "sprite": {
+     "id": "954",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      1928,
+      496,
+      1976,
+      544
+     ],
+     "position": [
+      0,
+      0
+     ],
+     "layer": 258,
+     "centered": true
+    }
+   },
+   {
+    "maker": 2,
+    "legs_type": 0,
+    "sprite": {
+     "id": "924",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      1928,
+      0,
+      1976,
+      48
+     ],
+     "position": [
+      0,
+      0
+     ],
+     "layer": 258,
+     "centered": true
+    }
+   },
+   {
+    "maker": 2,
+    "legs_type": 1,
+    "sprite": {
+     "id": "926",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      1880,
+      48,
+      1928,
+      96
+     ],
+     "position": [
+      0,
+      0
+     ],
+     "layer": 258,
+     "centered": true
+    }
+   },
+   {
+    "maker": 2,
+    "legs_type": 3,
+    "sprite": {
+     "id": "925",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      1976,
+      0,
+      2024,
+      48
+     ],
+     "position": [
+      0,
+      0
+     ],
+     "layer": 258,
+     "centered": true
+    }
+   },
+   {
+    "maker": 2,
+    "legs_type": 5,
+    "sprite": {
+     "id": "927",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      1928,
+      48,
+      1976,
+      96
+     ],
+     "position": [
+      0,
+      0
+     ],
+     "layer": 258,
+     "centered": true
+    }
+   },
+   {
+    "maker": 2,
+    "legs_type": 6,
+    "sprite": {
+     "id": "928",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      1976,
+      48,
+      2024,
+      96
+     ],
+     "position": [
+      0,
+      0
+     ],
+     "layer": 258,
+     "centered": true
+    }
+   },
+   {
+    "maker": 2,
+    "legs_type": 7,
+    "sprite": {
+     "id": "929",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      1880,
+      96,
+      1928,
+      144
+     ],
+     "position": [
+      0,
+      0
+     ],
+     "layer": 258,
+     "centered": true
+    }
+   },
+   {
+    "maker": 3,
+    "legs_type": 1,
+    "sprite": {
+     "id": "964",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      1568,
+      848,
+      1616,
+      896
+     ],
+     "position": [
+      0,
+      0
+     ],
+     "layer": 258,
+     "centered": true
+    }
+   },
+   {
+    "maker": 4,
+    "legs_type": 7,
+    "sprite": {
+     "id": "962",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      1472,
+      848,
+      1520,
+      896
+     ],
+     "position": [
+      0,
+      0
+     ],
+     "layer": 258,
+     "centered": true
+    }
+   },
+   {
+    "maker": 5,
+    "legs_type": 7,
+    "sprite": {
+     "id": "930",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      1928,
+      96,
+      1976,
+      144
+     ],
+     "position": [
+      0,
+      0
+     ],
+     "layer": 258,
+     "centered": true
+    }
+   },
+   {
+    "maker": 6,
+    "legs_type": 4,
+    "sprite": {
+     "id": "932",
+     "image": "textures/scroll/area_situation_tex/0.png",
+     "rect": [
+      1880,
+      144,
+      1928,
+      192
+     ],
+     "position": [
+      0,
+      0
+     ],
+     "layer": 258,
+     "centered": true
+    }
+   }
+  ]
+ },
+ "character_info": {
+  "window": {
+   "sprite": {
+    "id": "923",
+    "image": "textures/scroll/area_situation_tex/0.png",
+    "rect": [
+     1120,
+     608,
+     1424,
+     904
+    ],
+    "position": [
+     193.0,
+     261.0
+    ],
+    "layer": 265,
+    "centered": true
+   },
+   "seconds": 0.1667,
+   "thin": 0.05
+  },
+  "pilot": [
+   60,
+   213
+  ],
+  "robot": [
+   60,
+   248
+  ],
+  "partner": [
+   60,
+   283
+  ],
+  "team": [
+   60,
+   318
+  ],
+  "bounty": [
+   60,
+   353
+  ],
+  "bounty_digits": 9,
+  "bounty_unit": {
+   "id": "ny",
+   "image": "textures/scroll/common_2d_tex/1.png",
+   "rect": [
+    464,
+    456,
+    496,
+    472
+   ]
+  },
+  "no_team": "(無所属)",
+  "text_colour": "#f0f0f0",
+  "text_layer": 266,
+  "pilot_face": [
+   180,
+   126
+  ],
+  "partner_face": [
+   252,
+   126
+  ],
+  "face_layer": 267,
+  "close_hint": [
+   {
+    "id": "3122",
+    "image": "textures/scroll/scr_common_tex/0.png",
+    "rect": [
+     256,
+     184,
+     272,
+     200
+    ],
+    "position": [
+     241,
+     374
+    ],
+    "layer": 266
+   },
+   {
+    "id": "3134",
+    "image": "textures/scroll/scr_common_tex/0.png",
+    "rect": [
+     600,
+     184,
+     664,
+     200
+    ],
+    "position": [
+     267,
+     376
+    ],
+    "layer": 266
+   }
+  ],
+  "armour": {
+   "at": [
+    60,
+    374
+   ],
+   "label": "AP ",
+   "down": "SHOT DOWN"
+  }
+ },
+ "contest_info": {
+  "window": {
+   "sprite": {
+    "id": "898",
+    "image": "textures/scroll/area_situation_tex/0.png",
+    "rect": [
+     1424,
+     608,
+     1728,
+     848
+    ],
+    "position": [
+     192.0,
+     286.0
+    ],
+    "layer": 265,
+    "centered": true
+   },
+   "seconds": 0.1667,
+   "thin": 0.05
+  },
+  "contest": [
+   60,
+   213
+  ],
+  "body": [
+   60,
+   248
+  ],
+  "legs": [
+   60,
+   283
+  ],
+  "other": [
+   60,
+   318
+  ],
+  "fee": [
+   60,
+   353
+  ],
+  "fee_digits": 9,
+  "fee_unit": {
+   "id": "ny",
+   "image": "textures/scroll/common_2d_tex/1.png",
+   "rect": [
+    464,
+    456,
+    496,
+    472
+   ]
+  },
+  "no_limits": "No limits.",
+  "text_colour": "#f0f0f0",
+  "text_layer": 266,
+  "close_hint": [
+   {
+    "id": "3122",
+    "image": "textures/scroll/scr_common_tex/0.png",
+    "rect": [
+     256,
+     184,
+     272,
+     200
+    ],
+    "position": [
+     231,
+     374
+    ],
+    "layer": 266
+   },
+   {
+    "id": "3134",
+    "image": "textures/scroll/scr_common_tex/0.png",
+    "rect": [
+     600,
+     184,
+     664,
+     200
+    ],
+    "position": [
+     257,
+     376
+    ],
+    "layer": 266
+   }
+  ],
+  "help": "{xbe:0x17ad98}"
+ },
+ "message_text_at": [
+  139,
+  213
+ ],
+ "messages": {
+  "fee": [
+   "{xbe:0x17be4c}",
+   "{xbe:0x17be1c}",
+   "{xbe:0x17bdec}"
+  ],
+  "no_robot": [
+   "{xbe:0x17bdc8}",
+   "{xbe:0x17bd9c}",
+   "{xbe:0x17bd74}",
+   "menu."
+  ],
+  "regulation": [
+   "{xbe:0x17bd40}",
+   "regulations. Please",
+   "{xbe:0x17bce4}",
+   "are on."
+  ],
+  "rentals_only": [
+   "{xbe:0x17bd40}",
+   "regulations. This",
+   "{xbe:0x17bc78}",
+   "SVs only."
+  ],
+  "no_rentals": [
+   "{xbe:0x17bc40}",
+   "{xbe:0x17bc18}",
+   "{xbe:0x17bbec}",
+   "back again."
+  ],
+  "area_ranker": [
+   "{xbe:0x17bb9c}",
+   "{xbe:0x17bb6c}",
+   "{xbe:0x17bb48}",
+   "entering rights."
+  ],
+  "first_ranker": [
+   "{xbe:0x17bafc}",
+   "{xbe:0x17bacc}",
+   "{xbe:0x17baa0}",
+   "{xbe:0x17ba70}"
+  ]
+ },
+ "help": {
+  "position": [
+   0,
+   72
+  ],
+  "clip": [
+   0,
+   0,
+   640,
+   480
+  ],
+  "colour": "#f0f0f0",
+  "speed": 60,
+  "lead": 360,
+  "trail": 0,
+  "layer": 263
+ }
+}

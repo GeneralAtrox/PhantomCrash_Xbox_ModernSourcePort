@@ -1,0 +1,16 @@
+{
+ "notes": [
+  "Sleep in the garage (original scene 24: factory 0xa327e, create 0x2e47c, run 0x2e3ad, destroy 0x2e39d). It draws nothing, so the screen is black, and plays no music.",
+  "It plays sys entry 43 (\"sleep\") and waits the frame rate times four (seconds); A or START (0xdf310, the port's confirm) cuts the wait short. The sound stops as the screen closes.",
+  "Then the night passes: the calendar day (the save's + 0x9cc, bits 20-29, the HUD's DAY) moves on and wraps after days_in_cycle; as it wraps, a cleared game counts a lap (+ 0x604c). The days slept (+ 0x5ffc) count up to total_days_max. The town map's spin payments (+ 0x113c8) start again.",
+  "The original also redraws the rival teams' contest entries for the new day (0x6cf5a) and picks ten numbers into + 0xc28 (0x2a540); the port has neither table yet.",
+  "Result 0 leads to the garage (scene 13), whose cursor comes back to the hangar."
+ ],
+ "scene": 24,
+ "seconds": 4.0,
+ "skip": "confirm",
+ "sound": "sleep",
+ "exit_to": "garage",
+ "days_in_cycle": 60,
+ "total_days_max": 9999
+}

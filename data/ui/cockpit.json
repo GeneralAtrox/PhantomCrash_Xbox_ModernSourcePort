@@ -1,0 +1,187 @@
+{
+ "notes": [
+  "The first-person cockpit (0x04c459), drawn from the HUD pass 0x04eaa3 in view layer 0xb while the battle camera is in first person. The model is resource 216 (21 meshes, object slots 0x4dd-0x4f1; mesh n is slot 0x4dd + n) with texture pack 1590, converted by convert-robots.",
+  "Placement: each group turns about its own origin by the aim's heading less the camera's yaw, then stands distance ahead of the eye at height plus bob times the bob, then slides by slide times the change-of-view slide (0 in place, 1 out of view; HUD state +0x97c). The bob (HUD state +0x44, from robot +0x108 less the torso's height) is not reproduced: the port passes 0.",
+  "colour: every piece is drawn in 0xff64ff6e except the armour gauge (0x4e0: armour_colour, armour_low_colour below armour_low, flashing toward armour_flash_colour while the shown armour fills, as the DURABILITY gauge: data/ui/battle_panels.json) and the camouflage gauge (0x4e7: camouflage_colour, camouflage_low_colour below camouflage_low, flashing between colour and camouflage_colour while camouflaged).",
+  "Gauges: scale stretches the mesh along x. climb is robot +0x2568 (taken as the vertical speed) over gravity times climb_fall_ticks (falling) or climb_rise_ticks (rising) battle ticks; speed is the ground speed over robot +0x70 (taken as the dash speed). Both move at most 0.05 a 60 Hz frame (ease_per_second) and stay within 0..1.",
+  "cells step a piece's UVs through texel offsets in the 512 x 512 texture (0x0bf167): scanner (0x205620) cycles 15 cells at 30 a second; the others pick the cell from the gauge in cell_source: climb_display (0x205708, 12 cells), bar (0x205698) and bar_wide (0x2056d0), 7 cells each.",
+  "The visor: while the robot is camouflaged, mesh 0 (a unit quad) scaled 1.5 wide stands one unit ahead in 0x1e0f64 at the camouflage's strength (robot +0x3494/+0x3498: 60-tick fades). The port adds it over the view."
+ ],
+ "model": "models/binlink/216.gltf",
+ "texture_size": 512,
+ "distance": 8.0,
+ "height": -0.1,
+ "colour": "#64ff6e",
+ "ease_per_second": 3.0,
+ "climb_fall_ticks": 6,
+ "climb_rise_ticks": 2.5,
+ "tick_rate": 30,
+ "armour_colour": "#ffc823",
+ "armour_low_colour": "#c04040",
+ "armour_flash_colour": "#8080e1",
+ "armour_low": 0.25,
+ "camouflage_colour": "#3f77c1",
+ "camouflage_low_colour": "#c040c0",
+ "camouflage_low": 0.25,
+ "flash_frames": 10,
+ "visor_mesh": 0,
+ "visor_colour": "#1e0f64",
+ "visor_distance": 1.0,
+ "visor_width": 1.5,
+ "visor_fade_ticks": 60,
+ "groups": {
+  "top": {
+   "slide": 3.0,
+   "bob": -0.5
+  },
+  "upper": {
+   "slide": -3.0,
+   "bob": -0.5
+  },
+  "lower": {
+   "slide": -3.0,
+   "bob": 0.2
+  }
+ },
+ "cells": {
+  "scanner": {
+   "offsets": [
+    [0, 0],
+    [100, 0],
+    [200, 0],
+    [300, 0],
+    [400, 0],
+    [0, 48],
+    [100, 48],
+    [200, 48],
+    [300, 48],
+    [400, 48],
+    [0, 96],
+    [100, 96],
+    [200, 96],
+    [300, 96],
+    [400, 96]
+   ],
+   "per_second": 30
+  },
+  "climb_display": {
+   "offsets": [
+    [0, 0],
+    [80, 0],
+    [160, 0],
+    [240, 0],
+    [320, 0],
+    [400, 0],
+    [0, 52],
+    [80, 52],
+    [160, 52],
+    [240, 52],
+    [320, 52],
+    [400, 52]
+   ]
+  },
+  "bar": {
+   "offsets": [
+    [0, 0],
+    [36, 0],
+    [72, 0],
+    [108, 0],
+    [144, 0],
+    [180, 0],
+    [216, 0]
+   ]
+  },
+  "bar_wide": {
+   "offsets": [
+    [0, 0],
+    [72, 0],
+    [144, 0],
+    [216, 0],
+    [288, 0],
+    [360, 0],
+    [432, 0]
+   ]
+  }
+ },
+ "pieces": [
+  {
+   "mesh": 20,
+   "group": "top"
+  },
+  {
+   "mesh": 1,
+   "group": "upper"
+  },
+  {
+   "mesh": 12,
+   "group": "upper"
+  },
+  {
+   "mesh": 16,
+   "group": "upper",
+   "cells": "scanner"
+  },
+  {
+   "mesh": 4,
+   "group": "upper",
+   "cells": "climb_display",
+   "cell_source": "climb"
+  },
+  {
+   "mesh": 2,
+   "group": "lower"
+  },
+  {
+   "mesh": 5,
+   "group": "lower",
+   "cells": "bar",
+   "cell_source": "climb"
+  },
+  {
+   "mesh": 6,
+   "group": "lower",
+   "scale": "climb"
+  },
+  {
+   "mesh": 13,
+   "group": "lower",
+   "scale": "climb"
+  },
+  {
+   "mesh": 3,
+   "group": "lower",
+   "scale": "armour"
+  },
+  {
+   "mesh": 8,
+   "group": "lower",
+   "scale": "speed"
+  },
+  {
+   "mesh": 15,
+   "group": "lower",
+   "scale": "speed"
+  },
+  {
+   "mesh": 19,
+   "group": "lower",
+   "cells": "bar",
+   "cell_source": "speed"
+  },
+  {
+   "mesh": 18,
+   "group": "lower",
+   "cells": "bar_wide",
+   "cell_source": "speed"
+  },
+  {
+   "mesh": 11,
+   "group": "lower"
+  },
+  {
+   "mesh": 10,
+   "group": "lower",
+   "scale": "camouflage"
+  }
+ ]
+}

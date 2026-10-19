@@ -1,0 +1,71 @@
+{
+  "notes": [
+    "A player's robot (0x093637, robot +8 not -1) also plays: the upper body's servo, twist_start (bank 3 0x0e) as the twist stick (robot +0x2f68) pushes past twist_push while the twist (+0xf8) is inside twist_limit_degrees, twist_stop (0x0f) when either ends (0x0949a0); Optic Camouflage's camouflage_on (0x0c, state 1), camouflage_off (0x10, state 5) and, when a hit breaks it, camouflage_break twice (0x0d, state 7; 0x093c5d); arm_lost (0x25) every arm_lost_seconds while an arm weapon is knocked off (mount state 4 at +0x8c or +0x90; the original repeats it every 5 s, the port plays it once for each arm knocked off with 0); and locked_on (0x2a) looping while another robot has it locked (+0x8a2, set by 0x051045).",
+    "carrier_engine: bank 1 entry 0x2f, looping at the supply carrier from the battle's start (0x066940); the falling wreck carries it and its crash stops it (0x06828e). The original has no other carrier sound: the crash sets off effect 0x3f and a shot at the carrier sounds as any impact.",
+    "The battle's sounds, placed in the world where they happen and heard from the camera (docs/BATTLE_SOUNDS.md). File names are the extracted bank entries: sound/sfx/battle_player is bank 3 (Media/sound/battle_player.bin), which the players' robots play from; sound/sfx/battle is bank 1 and sound/sfx/battle_old bank 2, which the computer's robots play from (0x09df75 and 0x0493c0, told apart by the robot's +8). A pair gives the 'player' and 'computer' files, or one 'sound' for both; a side left out plays nothing.",
+    "falloff: DirectSound 3D's inverse distance law as the original sets it up: world distances halved (0x17accc), a minimum distance of 1 (0x0ddd4f) and a rolloff factor of 0.1 (0x0de616). So a sound is whole within 2 world units and half as loud 22 away.",
+    "robot: 0x093637 and what it calls every tick for each robot. Steps play entry 2 (0x093cf0, tables 0x249818 and 0x249830), landing 3 (0x093df2), a jump 6 (0x08ea5b, 0x08d7fa), a dash starts with 4 and loops 5 with the robot until it ends (0x0945c1), a dodge 7 (motions 13 and 14, 0x094a8d), and a player's air dodge 0x13 (motions 15 and 16). A robot shot down plays bank 1's 0x10 whoever it was (0x07675e). A player's robot below a quarter of its armour (0x199fd4) sounds 0x27 every 0x20 ticks. Steps play when a walking robot's foot contact node crosses a key (0x0ad737 counts them in +0x210c); footstep_seconds is the port's, used only for a robot without contact nodes.",
+    "fire: the muzzle's sound (0x099c02), by the weapon record's fire sound handler (+0x21, table 0x2537c0), its mount, its model (+8) and HUD kind (+0x1c). Handler 0 (0x099d26) picks by mount and model, 1 (0x09a0da) plays the plain shot, 2 (0x09a15e) the grenade's for HUD kind 3 and the missile's otherwise, 3 and 4 (0x09a3ab, 0x09a409) their own, 5 is the beam's (0x09b9fe) and 6 the melee swing, by model (0x09c337). The first rule a weapon matches wins. fire_fallback is for a weapon without a record.",
+    "landing_surfaces (0x094d86): landing where the robot's contact flags (robot +0x27f8; the port adds the surface under it) hold surface 5's or 7's plays bank 3 entry 0x11 for any robot, surface 6's entry 0x12, the first that matches; otherwise the robot's own landing sound.",
+    "impact: a shot or strike landing on a robot. A melee strike plays 0x1e or bank 1's 0x26 (0x098eda, impact kind 4); the other shots play bank 1's entries whoever fired them (0x047ed9): a missile 0x0f, the straight shots of models 6, 16, 26 and 34 0x0e, the rest 0x2e; beams and lobbed grenades none."
+  ],
+  "falloff": {
+    "distance_scale": 0.5,
+    "min_distance": 1.0,
+    "rolloff": 0.1
+  },
+  "robot": {
+    "footstep": {"player": "sound/sfx/battle_player/02.wav", "computer": "sound/sfx/battle/02.wav"},
+    "landing": {"player": "sound/sfx/battle_player/03.wav", "computer": "sound/sfx/battle/03.wav"},
+    "landing_surfaces": [{"surfaces": [5, 7], "sound": "sound/sfx/battle_player/17.wav"}, {"surfaces": [6], "sound": "sound/sfx/battle_player/18.wav"}],
+    "jump": {"player": "sound/sfx/battle_player/06.wav", "computer": "sound/sfx/battle/06.wav"},
+    "down_boost": {"player": "sound/sfx/battle_player/20.wav"},
+    "boost_start": {"player": "sound/sfx/battle_player/04.wav", "computer": "sound/sfx/battle/04.wav"},
+    "boost": {"player": "sound/sfx/battle_player/05.wav", "computer": "sound/sfx/battle/05.wav"},
+    "dodge": {"player": "sound/sfx/battle_player/07.wav", "computer": "sound/sfx/battle/07.wav"},
+    "air_dodge": {"player": "sound/sfx/battle_player/19.wav"},
+    "shot_down": {"sound": "sound/sfx/battle/16.wav"},
+    "low_armour": {"player": "sound/sfx/battle_player/39.wav"},
+    "twist_start": "sound/sfx/battle_player/14.wav",
+    "twist_stop": "sound/sfx/battle_player/15.wav",
+    "twist_push": 0.1,
+    "twist_limit_degrees": 45,
+    "camouflage_on": "sound/sfx/battle_player/12.wav",
+    "camouflage_off": "sound/sfx/battle_player/16.wav",
+    "camouflage_break": "sound/sfx/battle_player/13.wav",
+    "arm_lost": "sound/sfx/battle_player/37.wav",
+    "arm_lost_seconds": 0,
+    "locked_on": "sound/sfx/battle_player/42.wav"
+  },
+  "footstep_seconds": 0.5,
+  "carrier_engine": "sound/sfx/battle/47.wav",
+  "low_armour_share": 0.25,
+  "low_armour_seconds": 1.0667,
+  "beam_restart_seconds": 9.0,
+  "fire": [
+    {"style": 0, "mount": "shoulder", "models": [1, 11, 21, 31], "player": "sound/sfx/battle_player/25.wav", "computer": "sound/sfx/battle/33.wav"},
+    {"style": 0, "mount": "shoulder", "models": [6, 16, 26, 34], "player": "sound/sfx/battle_player/27.wav", "computer": "sound/sfx/battle/35.wav"},
+    {"style": 0, "mount": "arm", "models": [8, 29], "player": "sound/sfx/battle_player/28.wav", "computer": "sound/sfx/battle/36.wav"},
+    {"style": 0, "mount": "arm", "models": [32], "player": "sound/sfx/battle_player/29.wav", "computer": "sound/sfx/battle/37.wav"},
+    {"style": 0, "player": "sound/sfx/battle_player/44.wav", "computer": "sound/sfx/battle_old/00.wav"},
+    {"style": 1, "player": "sound/sfx/battle_player/44.wav", "computer": "sound/sfx/battle_old/00.wav"},
+    {"style": 2, "hud_kind": 3, "player": "sound/sfx/battle_player/24.wav", "computer": "sound/sfx/battle/32.wav"},
+    {"style": 2, "player": "sound/sfx/battle_player/48.wav", "computer": "sound/sfx/battle_old/02.wav"},
+    {"style": 3, "player": "sound/sfx/battle_player/24.wav", "computer": "sound/sfx/battle/32.wav"},
+    {"style": 4, "player": "sound/sfx/battle_player/23.wav", "computer": "sound/sfx/battle/31.wav"},
+    {"style": 5, "player": "sound/sfx/battle_player/47.wav", "computer": "sound/sfx/battle_old/01.wav"},
+    {"style": 6, "models": [5, 15, 23], "player": "sound/sfx/battle_player/31.wav"},
+    {"style": 6, "models": [6], "player": "sound/sfx/battle_player/33.wav", "computer": "sound/sfx/battle/40.wav"},
+    {"style": 6, "models": [7, 16, 25], "player": "sound/sfx/battle_player/35.wav", "computer": "sound/sfx/battle/42.wav"},
+    {"style": 6, "player": "sound/sfx/battle_player/36.wav", "computer": "sound/sfx/battle/43.wav"}
+  ],
+  "fire_fallback": {"player": "sound/sfx/battle_player/44.wav", "computer": "sound/sfx/battle_old/00.wav"},
+  "impact": [
+    {"hud_kind": 6, "player": "sound/sfx/battle_player/30.wav", "computer": "sound/sfx/battle/38.wav"},
+    {"hud_kind": 5},
+    {"flight": 2, "sound": "sound/sfx/battle/15.wav"},
+    {"flight": 1},
+    {"models": [6, 16, 26, 34], "sound": "sound/sfx/battle/14.wav"},
+    {"sound": "sound/sfx/battle/46.wav"}
+  ]
+}

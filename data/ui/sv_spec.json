@@ -1,0 +1,100 @@
+{
+ "notes": ["SV SPEC (original scene 36: setup 0x03c0b4, fade-in 0x03c076, pages 0x03bf07 and 0x03bfc0, drawn by 0x03ba94 with 0x03bc25 or 0x03b82e). Opened from a hangar's menu, ASSEMBLE's SPEC, a dealer's or the used SVs' SV SPEC; goes back to where it was opened from.", "The window (2544 at 51, 104, from 0x11cfa0) holds the SV's name and its CHIP's name at name_at and chip_name_at (0x03ba94: the window's corner + 116, + 29 and + 57), and the body maker's badge (0x19d628 by maker) at maker_at. The SV stands turning beside the window (0x03ba94 calling 0x08371b), as data/ui/robot_preview.json's sv_spec entry places it.", "left/right turn the page (0x06d1cd, flags 0x15, sys 9), cancel closes (sys 8). The panel and its arrows (2530, 2531, pulsing) sit at the window's corner + (25, 80) (0x11cfb5).", "Page 0, the vehicle (0x03bc25): TOTAL DURABILITY (0x076114), RUN SPEED and MAX SPEED in km/h and JUMP HEIGHT in m (0x07c27d: the legs' curves under the load, robot_load.hpp), TOTAL O.C TIME (the modules' active frames added, 0x05f8b3, over the display rate), TOTAL WEIGHT and WEIGHT CAPACITY in t, and the body's SOCKET HOLE (0x05f97c), right-aligned at values_right from y 193, 24 apart; decimals as the original's (0x03b9fd).", "Page 1, the weapons (0x03b82e): the right and left arm weapons and the right and left backpack weapons (the hangar's first and second slots of each pair), their names at weapons.x, or Not Equip in red.", "The help line (0x19d718 and 0x19d648) says how to turn to the other page.", "Page 2, combat (a port addition; \"show\" names what a page shows, a page without a panel letters its own): what the original shows only in the CHIP shop or not at all. MORTAL SHOT is the CHIP's critical chance and the modules' added, REPULSION SHIELD the CHIP's dodge chance, KNOCKDOWN RESIST the CHIP's and the modules', KNOCKBACK RESIST the legs', LASER REDUCTION the modules', O.C CHARGE TIME the modules' charge times added, LOCK ON TIME and AIM SPEED the CHIP's lock and reticle speed. Labels and units are lettered in combat.font (sprite_text.json) at origin + label_x / unit_x, ink rows from each line's top; values sit where the vehicle page's do."],
+ "scene": 36,
+ "music": "keep",
+ "fade_in": 0.5,
+ "fade_out": 0.5,
+ "exit_to": "back",
+ "confirm": {"buttons": "confirm"},
+ "cancel": {"buttons": "cancel"},
+ "cursor_repeat": {"delay": 0.4, "interval": 0.1},
+ "buttons": {"left": "left", "right": "right"},
+ "sounds": {"page": "page", "back": "cancel"},
+ "layers": [
+  {"id": "2538", "image": "textures/scroll/spec_scoobee_tex/0.png", "rect": [0, 0, 640, 480], "position": [0, 0], "layer": 1, "extend_edges": "both", "edge_bands": [[0, 72], [376, 480]],
+ "edge_bands_left": [[0, 72], [414, 480]]},
+  {"id": "2540", "image": "textures/scroll/spec_scoobee_tex/0.png", "rect": [0, 784, 640, 880], "position": [0, 0], "layer": 257, "extend_edges": "both"},
+  {"id": "2539", "image": "textures/scroll/spec_scoobee_tex/0.png", "rect": [0, 680, 640, 784], "position": [0, 376], "layer": 257, "extend_edges": "both", "edge_inset": [1, 1]},
+  {"id": "2544", "image": "textures/scroll/spec_scoobee_tex/0.png", "rect": [640, 0, 992, 304], "position": [51.0, 104.0], "layer": 257},
+  {"id": "2543", "image": "textures/scroll/spec_scoobee_tex/0.png", "rect": [712, 376, 816, 440], "position": [65.0, 124.0], "layer": 258, "colour": "#ffff00"}
+ ],
+ "frame": {
+  "hud": true,
+  "meter": [435, 396],
+  "now_playing": {"format": "《 {title} : {artist} 》", "position": [0, 419], "clip": [0, 419, 396, 437], "colour": "#ffffff", "speed": 60, "trail": 45, "layer": 263},
+  "riding_plate": false
+ },
+ "names": {"name_at": [167.0, 133.0], "chip_name_at": [167.0, 161.0], "colour": "#f0f0f0", "layer": 259, "max_glyphs": 9},
+ "maker_at": [308.0, 117.0],
+ "maker_icons": [
+  {"id": "2534", "image": "textures/scroll/spec_scoobee_tex/0.png", "rect": [784, 304, 856, 376], "layer": 259},
+  {"id": "2535", "image": "textures/scroll/spec_scoobee_tex/0.png", "rect": [856, 304, 928, 376], "layer": 259},
+  {"id": "2532", "image": "textures/scroll/spec_scoobee_tex/0.png", "rect": [640, 304, 712, 376], "layer": 259},
+  {"id": "2536", "image": "textures/scroll/spec_scoobee_tex/0.png", "rect": [928, 304, 1000, 376], "layer": 259},
+  {"id": "2537", "image": "textures/scroll/spec_scoobee_tex/0.png", "rect": [640, 376, 712, 448], "layer": 259},
+  {"id": "2533", "image": "textures/scroll/spec_scoobee_tex/0.png", "rect": [712, 304, 784, 376], "layer": 259}
+ ],
+ "arrows": [
+  {"id": "2530", "image": "textures/scroll/spec_scoobee_tex/0.png", "rect": [992, 0, 1008, 32], "position": [58.0, 267.0], "layer": 260, "animation": "pulse"},
+  {"id": "2531", "image": "textures/scroll/spec_scoobee_tex/0.png", "rect": [1008, 0, 1024, 32], "position": [375.0, 267.0], "layer": 260, "animation": "pulse"}
+ ],
+ "close_hint": [
+  {"id": "3122", "image": "textures/scroll/scr_common_tex/0.png", "rect": [256, 184, 272, 200], "position": [281, 380], "layer": 258},
+  {"id": "3134", "image": "textures/scroll/scr_common_tex/0.png", "rect": [600, 184, 664, 200], "position": [300, 382], "layer": 258}
+ ],
+ "pages": [
+  {
+   "show": "vehicle",
+   "panel": {"id": "2541", "image": "textures/scroll/spec_scoobee_tex/0.png", "rect": [0, 480, 296, 680], "position": [76.0, 184.0], "layer": 260, "colour": "#f0f0f0"},
+   "help": "Move the left Thumbstick/direction pad to show the weapon and combat specs."
+  },
+  {
+   "show": "weapons",
+   "panel": {"id": "2542", "image": "textures/scroll/spec_scoobee_tex/0.png", "rect": [296, 480, 552, 680], "position": [76.0, 184.0], "layer": 260, "colour": "#f0f0f0"},
+   "help": "Move the left Thumbstick/direction pad to show the combat and vehicle specs."
+  },
+  {
+   "show": "combat",
+   "help": "Move the left Thumbstick/direction pad to show the vehicle and weapon specs."
+  }
+ ],
+ "combat": {
+  "font": "futura_bold",
+  "unit_font": "condensed",
+  "colour": "#ffffff",
+  "shadow": {"offset": [-1.5, 1.5], "colour": "#202020", "alpha": 1, "blur": 0.5},
+  "origin": [76, 190],
+  "label_x": [3, 190],
+  "unit_x": [272, 294],
+  "ink": [0.5, 13.5],
+  "rows": [
+   {"stat": "mortal_shot", "label": "MORTAL SHOT", "unit": "%", "decimals": 0},
+   {"stat": "repulsion_shield", "label": "REPULSION SHIELD", "unit": "%", "decimals": 0},
+   {"stat": "knockdown_resistance", "label": "KNOCKDOWN RESIST", "unit": "%", "decimals": 1},
+   {"stat": "knockback_resistance", "label": "KNOCKBACK RESIST", "unit": "%", "decimals": 0},
+   {"stat": "laser_reduction", "label": "LASER REDUCTION", "unit": "%", "decimals": 0},
+   {"stat": "charge_time", "label": "O.C CHARGE TIME", "unit": "sec", "unit_ink": [5, 13.5], "decimals": 1},
+   {"stat": "lock_time", "label": "LOCK ON TIME", "unit": "sec", "unit_ink": [5, 13.5], "decimals": 2},
+   {"stat": "aim_speed", "label": "AIM SPEED", "decimals": 0}
+  ]
+ },
+ "vehicle": {
+  "right": 335,
+  "top": 193,
+  "step": 24,
+  "colour": "#f0f0f0",
+  "layer": 260,
+  "rows": [
+   {"stat": "armour", "decimals": 0},
+   {"stat": "walk", "decimals": 3},
+   {"stat": "dash", "decimals": 3},
+   {"stat": "jump", "decimals": 3},
+   {"stat": "overclock", "decimals": 1},
+   {"stat": "weight", "decimals": 3},
+   {"stat": "capacity", "decimals": 3},
+   {"stat": "sockets", "decimals": 0}
+  ]
+ },
+ "weapons": {"x": 145.0, "rows": [213, 261, 309, 357], "colour": "#f0f0f0", "none": "Not Equip", "none_colour": "#ff6060", "layer": 260, "slots": ["right_arm", "left_arm", "right_shoulder", "left_shoulder"]},
+ "help": {"position": [0, 72], "clip": [0, 0, 640, 480], "colour": "#f0f0f0", "speed": 60, "lead": 360, "trail": 0, "layer": 263}
+}

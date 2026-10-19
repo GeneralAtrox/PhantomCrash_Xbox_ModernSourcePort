@@ -1,0 +1,747 @@
+{
+  "notes": [
+    "two_sided_textures selects stage base-texture asset paths whose materials render both faces. Fence/post atlases use this port override so thin boundary panels and hollow posts stay visible from either side, including replay cameras. Extracted flags, alpha cut-outs and collision are unchanged.",
+    "monitor_nodes select the gate TV quads (view layer 8), independently of the sky that shares their placeholder texture. monitor controls the port spectator feed: seconds between random living combatants, TV aspect and chase camera. This random cycling is a port improvement.",
+    "Battle stages of the original's stage table at 0x2212ac, keyed by port names. model is the stage's converted glTF (tools/phantomcrash.py convert writes models/model/<name>.gltf from Media/model/<name>.bin).",
+    "sky_motion applies the stage object animation tags (0x06ea05): cloud rotation tags 1/2 are -0.015/-0.03 radians per second; UV tags 3/4 scroll V by 0.015/0.03 per second. Rates use the 30 Hz battle cadence. Tags 0 remain stationary.",
+    "sky_nodes are drawn around the camera and behind everything: the stage object list (0x2212ec) puts the sky mesh in view layer 1.",
+    "The training ground (stage 6, the tutorial battle of scene 42) is choco_mdl: resource 1564 texture/choco_tex binds its textures; its object slots 900-906 are meshes 0-6. Stage 7, choco_night, is the training ground at night: slots 907-916 are meshes 0-9, and meshes 4 and 5 are in view layer 1 (the sky).",
+    "scene_stage is the stage's number in the original's tables (0x2212ac): the battle takes its gates, doors, fixed cameras and supply routes from tables/battle_scenes.json under it. door_model is the effect model its gate doors' leaves are drawn from (city effect resources 198-203; training resources 204-205, mesh slots starting at 0x492 and 0x498). Either one left out keeps the training file's battle.scenes values. props_model is the city's separately placed scenery, converted from the object records at 0x22e638 with its own textures. It draws intact vehicles and other props; moving gate leaves are excluded and drawn by the door system.",
+    "collision is the stage's converted collision (tools/phantomcrash.py convert-robots writes collision/<name>.json from the resource at 0x2212cc: walls pushed against as spheres, floor under the robots). Without it the battle falls back to the training file's box arena.",
+    "lighting and fog are the stage's first environment preset (the list at 0x2014c8; tools/phantomcrash.py convert-robots writes them all to tables/environment.json): the training ground uses Fix1. sun_direction is the stage's light vector (0x2015f8), the way the light travels. sun_colour is the light colour times its diffuse scale and ambient the colour times its ambient scale (0x044e9f). Fog is linear in distance from the eye; clear_colour is the fog colour. shadow_colour is what the robots' shadow volumes lay over the stage (the table at 0x2014e8 by stage: 0x70030303, 0x32030303 on stage 3). Colours are 0-1, as the original's 0-255 over 255.",
+    "screen is the frame's last pass before the cockpit (0x0b7900): tint_argb is the preset's four ints at +0x24 (A, R, G, B, packed into 0x25b490 by 0x0b20a0), multiplied into every pixel; levels (optional, min and max as [r, g, b] bytes) is the preset's gamma ramp (+0x34, 0x044974), which turns each channel's bytes below min black and above max white and leaves the rest; every stage's first preset has 0 to 255, so it is left out, and the Stage colour tint option turns both off; depth_of_field is the battle blur (0x0b5fb0), on in every battle (0x046aa5). The blur mixes a twice-softened copy (320x240 then 160x120; four taps one texel out of each source; blur_texels) in by saturate((depth byte - (focus * focus_scale + focus_base)) * ramp), the depth byte being the top byte of the original's depth under its battle projection (depth_near 0.1, depth_far 10000, 0x0b7cc0). focus is the table at 0x203820 (80 on every stage); the original lowers it by up to 10 from the stored day's ten-day cycle (+0x9cc bits 20-29). Left out, focus_scale 0.0005, focus_base 0.95, ramp 32, blur_texels 1."
+  ],
+  "monitor": {
+    "switch_seconds": 8,
+    "aspect": 1.333333333,
+    "camera": {
+      "behind": 12,
+      "height": 4,
+      "look_ahead": 0,
+      "fov_degrees": 55
+    }
+  },
+  "stages": {
+    "choco_day": {
+      "model": "models/model/choco_mdl.gltf",
+      "collision": "collision/choco_col.json",
+      "scene_stage": 6,
+      "two_sided_textures": ["textures/texture/choco_tex/4.png"],
+      "shadow_nodes": [
+        "mesh0_node0"
+      ],
+      "door_model": "models/model/choco_effmodel_mdl.gltf",
+      "sky_nodes": [
+        "mesh1_node0"
+      ],
+      "monitor_nodes": [
+        "mesh3_node0",
+        "mesh4_node0",
+        "mesh5_node0",
+        "mesh6_node0"
+      ],
+      "lighting": {
+        "preset": "Fix1",
+        "ambient": [
+          0.23,
+          0.23,
+          0.23
+        ],
+        "sun_direction": [
+          10.52,
+          -16.43,
+          4.42
+        ],
+        "sun_colour": [
+          1.04,
+          1.04,
+          1.04
+        ],
+        "clear_colour": [
+          0.549,
+          0.4902,
+          0.4392
+        ],
+        "shadow_colour": [
+          0.0118,
+          0.0118,
+          0.0118,
+          0.4392
+        ]
+      },
+      "fog": {
+        "enabled": true,
+        "colour": [
+          0.549,
+          0.4902,
+          0.4392
+        ],
+        "start": 0,
+        "end": 350
+      },
+      "screen": {
+        "tint_argb": [
+          255,
+          250,
+          245,
+          205
+        ],
+        "depth_of_field": {
+          "enabled": true,
+          "focus": 80
+        }
+      }
+    },
+    "choco_night": {
+      "model": "models/model/choco_night_mdl.gltf",
+      "collision": "collision/choco_col.json",
+      "scene_stage": 7,
+      "two_sided_textures": ["textures/texture/choco_night_tex/1.png"],
+      "shadow_nodes": [],
+      "door_model": "models/model/choco_night_effmodel_mdl.gltf",
+      "sky_nodes": [
+        "mesh4_node0",
+        "mesh5_node0"
+      ],
+      "sky_motion": [
+        {
+          "node": "mesh5_node0",
+          "rotation_per_second": -0.015
+        }
+      ],
+      "monitor_nodes": [
+        "mesh6_node0",
+        "mesh7_node0",
+        "mesh8_node0",
+        "mesh9_node0"
+      ],
+      "lighting": {
+        "preset": "Mizuko1",
+        "ambient": [
+          0.2039,
+          0.2133,
+          0.2353
+        ],
+        "sun_direction": [
+          -220,
+          -550,
+          -620
+        ],
+        "sun_colour": [
+          0.3569,
+          0.3733,
+          0.4117
+        ],
+        "clear_colour": [
+          0.0157,
+          0.0235,
+          0.0431
+        ],
+        "shadow_colour": [
+          0.0118,
+          0.0118,
+          0.0118,
+          0.4392
+        ]
+      },
+      "fog": {
+        "enabled": true,
+        "colour": [
+          0.0157,
+          0.0235,
+          0.0431
+        ],
+        "start": -10,
+        "end": 140
+      },
+      "screen": {
+        "tint_argb": [
+          255,
+          220,
+          235,
+          230
+        ],
+        "depth_of_field": {
+          "enabled": true,
+          "focus": 80
+        }
+      }
+    },
+    "shinjuku_day": {
+      "model": "models/stages/186.gltf",
+      "collision": "collision/binlink/379.json",
+      "enemy_path": "enepath/b00_shinjuku_enepath.json",
+      "scene_stage": 0,
+      "two_sided_textures": ["textures/stages/1558/22.png"],
+      "shadow_nodes": [
+        "mesh103_node0",
+        "mesh104_node0",
+        "mesh105_node0",
+        "mesh106_node0",
+        "mesh106_node1",
+        "mesh107_node0",
+        "mesh107_node1",
+        "mesh108_node0",
+        "mesh108_node1",
+        "mesh109_node0",
+        "mesh110_node0"
+      ],
+      "props_model": "models/stages/0_props.gltf",
+      "door_model": "models/stages/0_objects.gltf",
+      "sky_nodes": [
+        "mesh112_node0",
+        "mesh113_node0"
+      ],
+      "sky_motion": [
+        {
+          "node": "mesh112_node0",
+          "rotation_per_second": -0.03
+        },
+        {
+          "node": "mesh113_node0",
+          "rotation_per_second": -0.015
+        }
+      ],
+      "monitor_nodes": [
+        "mesh61_node0",
+        "mesh152_node0",
+        "mesh153_node0",
+        "mesh154_node0"
+      ],
+      "lighting": {
+        "preset": "Fix1",
+        "ambient": [
+          0.23,
+          0.23,
+          0.23
+        ],
+        "sun_direction": [
+          10.52,
+          -16.43,
+          4.42
+        ],
+        "sun_colour": [
+          1.04,
+          1.04,
+          1.04
+        ],
+        "clear_colour": [
+          0.549,
+          0.4902,
+          0.4392
+        ],
+        "shadow_colour": [
+          0.0118,
+          0.0118,
+          0.0118,
+          0.4392
+        ]
+      },
+      "fog": {
+        "enabled": true,
+        "colour": [
+          0.549,
+          0.4902,
+          0.4392
+        ],
+        "start": 0,
+        "end": 350
+      },
+      "screen": {
+        "tint_argb": [
+          255,
+          250,
+          245,
+          205
+        ],
+        "depth_of_field": {
+          "enabled": true,
+          "focus": 80
+        },
+        "distortion": {
+          "enabled": true,
+          "amplitude": 50,
+          "phase_step": 0.2,
+          "update_hz": 30
+        }
+      }
+    },
+    "shinjuku_night": {
+      "model": "models/stages/187.gltf",
+      "collision": "collision/binlink/379.json",
+      "enemy_path": "enepath/b00_shinjuku_enepath.json",
+      "scene_stage": 1,
+      "two_sided_textures": ["textures/stages/1559/19.png"],
+      "shadow_nodes": [],
+      "props_model": "models/stages/1_props.gltf",
+      "door_model": "models/stages/1_objects.gltf",
+      "sky_nodes": [
+        "mesh105_node0",
+        "mesh106_node0",
+        "mesh107_node0",
+        "mesh145_node0",
+        "mesh146_node0"
+      ],
+      "sky_motion": [
+        {
+          "node": "mesh107_node0",
+          "rotation_per_second": -0.015
+        }
+      ],
+      "monitor_nodes": [
+        "mesh61_node0",
+        "mesh147_node0",
+        "mesh148_node0",
+        "mesh149_node0"
+      ],
+      "lighting": {
+        "preset": "Mizuko1",
+        "ambient": [
+          0.2039,
+          0.2133,
+          0.2353
+        ],
+        "sun_direction": [
+          -220,
+          -550,
+          -620
+        ],
+        "sun_colour": [
+          0.3569,
+          0.3733,
+          0.4118
+        ],
+        "clear_colour": [
+          0.0157,
+          0.0235,
+          0.0431
+        ],
+        "shadow_colour": [
+          0.0118,
+          0.0118,
+          0.0118,
+          0.4392
+        ]
+      },
+      "fog": {
+        "enabled": true,
+        "colour": [
+          0.0157,
+          0.0235,
+          0.0431
+        ],
+        "start": -10,
+        "end": 140
+      },
+      "screen": {
+        "tint_argb": [
+          255,
+          220,
+          235,
+          230
+        ],
+        "depth_of_field": {
+          "enabled": true,
+          "focus": 80
+        }
+      }
+    },
+    "shibuya_day": {
+      "model": "models/stages/188.gltf",
+      "collision": "collision/binlink/380.json",
+      "enemy_path": "enepath/b01_shibuya_enepath.json",
+      "scene_stage": 2,
+      "two_sided_textures": ["textures/stages/1560/4.png"],
+      "shadow_nodes": [
+        "mesh48_node0",
+        "mesh48_node1",
+        "mesh48_node2",
+        "mesh48_node3",
+        "mesh48_node4",
+        "mesh49_node0",
+        "mesh49_node1",
+        "mesh49_node2",
+        "mesh49_node3",
+        "mesh49_node4",
+        "mesh49_node5",
+        "mesh49_node6",
+        "mesh50_node0",
+        "mesh50_node1",
+        "mesh50_node2",
+        "mesh50_node3",
+        "mesh50_node4",
+        "mesh51_node1",
+        "mesh51_node2",
+        "mesh52_node0",
+        "mesh52_node1",
+        "mesh52_node2",
+        "mesh52_node3",
+        "mesh52_node4",
+        "mesh52_node5",
+        "mesh52_node6",
+        "mesh52_node7",
+        "mesh53_node0",
+        "mesh53_node1",
+        "mesh53_node2",
+        "mesh53_node3",
+        "mesh53_node4",
+        "mesh54_node0",
+        "mesh54_node1",
+        "mesh55_node0",
+        "mesh55_node1",
+        "mesh55_node2",
+        "mesh55_node3",
+        "mesh55_node4",
+        "mesh56_node0"
+      ],
+      "props_model": "models/stages/2_props.gltf",
+      "door_model": "models/stages/2_objects.gltf",
+      "sky_nodes": [
+        "mesh35_node0",
+        "mesh36_node0"
+      ],
+      "sky_motion": [
+        {
+          "node": "mesh35_node0",
+          "rotation_per_second": -0.03
+        },
+        {
+          "node": "mesh36_node0",
+          "rotation_per_second": -0.015
+        }
+      ],
+      "monitor_nodes": [
+        "mesh57_node0",
+        "mesh58_node0"
+      ],
+      "lighting": {
+        "preset": "Kid",
+        "ambient": [
+          0.23,
+          0.23,
+          0.23
+        ],
+        "sun_direction": [
+          -10.7,
+          -16.3,
+          4.4
+        ],
+        "sun_colour": [
+          1.04,
+          1.04,
+          1.04
+        ],
+        "clear_colour": [
+          0.498,
+          0.5294,
+          0.5686
+        ],
+        "shadow_colour": [
+          0.0118,
+          0.0118,
+          0.0118,
+          0.4392
+        ]
+      },
+      "fog": {
+        "enabled": true,
+        "colour": [
+          0.498,
+          0.5294,
+          0.5686
+        ],
+        "start": 0,
+        "end": 350
+      },
+      "screen": {
+        "tint_argb": [
+          255,
+          250,
+          245,
+          205
+        ],
+        "depth_of_field": {
+          "enabled": true,
+          "focus": 80
+        }
+      }
+    },
+    "shibuya_night": {
+      "model": "models/stages/189.gltf",
+      "collision": "collision/binlink/380.json",
+      "enemy_path": "enepath/b01_shibuya_enepath.json",
+      "scene_stage": 3,
+      "two_sided_textures": ["textures/stages/1561/6.png"],
+      "shadow_nodes": [
+        "mesh54_node0"
+      ],
+      "props_model": "models/stages/3_props.gltf",
+      "door_model": "models/stages/3_objects.gltf",
+      "sky_nodes": [
+        "mesh0_node0",
+        "mesh1_node0",
+        "mesh39_node0",
+        "mesh41_node0"
+      ],
+      "sky_motion": [
+        {
+          "node": "mesh41_node0",
+          "rotation_per_second": -0.015
+        }
+      ],
+      "monitor_nodes": [
+        "mesh55_node0",
+        "mesh56_node0"
+      ],
+      "lighting": {
+        "preset": "Mizuko1",
+        "ambient": [
+          0.2039,
+          0.2133,
+          0.2353
+        ],
+        "sun_direction": [
+          1000,
+          -500,
+          -225
+        ],
+        "sun_colour": [
+          0.3569,
+          0.3733,
+          0.4118
+        ],
+        "clear_colour": [
+          0.0784,
+          0.0784,
+          0.1373
+        ],
+        "shadow_colour": [
+          0.0118,
+          0.0118,
+          0.0118,
+          0.1961
+        ]
+      },
+      "fog": {
+        "enabled": true,
+        "colour": [
+          0.0784,
+          0.0784,
+          0.1373
+        ],
+        "start": 10,
+        "end": 230
+      },
+      "screen": {
+        "tint_argb": [
+          255,
+          220,
+          235,
+          230
+        ],
+        "depth_of_field": {
+          "enabled": true,
+          "focus": 80
+        }
+      }
+    },
+    "umihotaru_day": {
+      "model": "models/stages/190.gltf",
+      "collision": "collision/binlink/381.json",
+      "enemy_path": "enepath/b02_umihotaru_enepath.json",
+      "scene_stage": 4,
+      "two_sided_textures": ["textures/stages/1562/3.png"],
+      "shadow_nodes": [
+        "mesh212_node0",
+        "mesh213_node0",
+        "mesh214_node0",
+        "mesh215_node0",
+        "mesh216_node0",
+        "mesh216_node1",
+        "mesh217_node0",
+        "mesh218_node0",
+        "mesh219_node0",
+        "mesh220_node0",
+        "mesh221_node0",
+        "mesh222_node0",
+        "mesh223_node0",
+        "mesh224_node0",
+        "mesh225_node0",
+        "mesh226_node0",
+        "mesh227_node0",
+        "mesh228_node0",
+        "mesh229_node0"
+      ],
+      "props_model": "models/stages/4_props.gltf",
+      "door_model": "models/stages/4_objects.gltf",
+      "sky_nodes": [
+        "mesh205_node0",
+        "mesh206_node0",
+        "mesh207_node0",
+        "mesh208_node0"
+      ],
+      "sky_motion": [
+        {
+          "node": "mesh205_node0",
+          "rotation_per_second": -0.03
+        },
+        {
+          "node": "mesh206_node0",
+          "rotation_per_second": -0.015
+        },
+        {
+          "node": "mesh207_node0",
+          "uv_per_second": [
+            0,
+            0.03
+          ]
+        },
+        {
+          "node": "mesh208_node0",
+          "uv_per_second": [
+            0,
+            0.015
+          ]
+        }
+      ],
+      "monitor_nodes": [
+        "mesh201_node0",
+        "mesh203_node0"
+      ],
+      "lighting": {
+        "preset": "Mizuko1",
+        "ambient": [
+          0.2912,
+          0.3,
+          0.3
+        ],
+        "sun_direction": [
+          0.74,
+          -1,
+          1.05
+        ],
+        "sun_colour": [
+          0.6471,
+          0.6667,
+          0.6667
+        ],
+        "clear_colour": [
+          0.5882,
+          0.5882,
+          0.6667
+        ],
+        "shadow_colour": [
+          0.0118,
+          0.0118,
+          0.0118,
+          0.4392
+        ]
+      },
+      "fog": {
+        "enabled": true,
+        "colour": [
+          0.5882,
+          0.5882,
+          0.6667
+        ],
+        "start": 10,
+        "end": 350
+      },
+      "screen": {
+        "tint_argb": [
+          255,
+          202,
+          217,
+          206
+        ],
+        "depth_of_field": {
+          "enabled": true,
+          "focus": 80
+        }
+      }
+    },
+    "umihotaru_night": {
+      "model": "models/stages/191.gltf",
+      "collision": "collision/binlink/381.json",
+      "enemy_path": "enepath/b02_umihotaru_enepath.json",
+      "scene_stage": 5,
+      "two_sided_textures": ["textures/stages/1563/4.png"],
+      "shadow_nodes": [],
+      "props_model": "models/stages/5_props.gltf",
+      "door_model": "models/stages/5_objects.gltf",
+      "sky_nodes": [
+        "mesh210_node0",
+        "mesh211_node0",
+        "mesh212_node0"
+      ],
+      "sky_motion": [
+        {
+          "node": "mesh211_node0",
+          "rotation_per_second": -0.03
+        },
+        {
+          "node": "mesh212_node0",
+          "uv_per_second": [
+            0,
+            0.03
+          ]
+        }
+      ],
+      "monitor_nodes": [
+        "mesh205_node0",
+        "mesh207_node0"
+      ],
+      "lighting": {
+        "preset": "Mizuko1",
+        "ambient": [
+          0.1725,
+          0.1804,
+          0.2039
+        ],
+        "sun_direction": [
+          800,
+          -500,
+          680
+        ],
+        "sun_colour": [
+          0.302,
+          0.3157,
+          0.3569
+        ],
+        "clear_colour": [
+          0.0784,
+          0.098,
+          0.1176
+        ],
+        "shadow_colour": [
+          0.0118,
+          0.0118,
+          0.0118,
+          0.4392
+        ]
+      },
+      "fog": {
+        "enabled": true,
+        "colour": [
+          0.0784,
+          0.098,
+          0.1176
+        ],
+        "start": 10,
+        "end": 300
+      },
+      "screen": {
+        "tint_argb": [
+          255,
+          220,
+          235,
+          255
+        ],
+        "depth_of_field": {
+          "enabled": true,
+          "focus": 80
+        }
+      }
+    }
+  }
+}

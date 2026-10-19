@@ -1,0 +1,3 @@
+https://github.com/iryoku/smaa
+Revision: 71c806a838bdd7d517df19192a20f0c61b3ca29d
+Unmodified SMAA.hlsl, Textures/AreaTex.h, Textures/SearchTex.h and LICENSE.txt.

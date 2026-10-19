@@ -1,0 +1,16 @@
+{
+  "notes": "Combat pose overlay: 0x0764de raises each arm over five 30 Hz battle updates; 0x0acda4 blends frame zero of arm entries 21/22, and 0x0ad1a0 limits upper-joint pitch to 0.8 radians. Locomotion transitions use the port's existing six-frame fade.",
+  "raise_seconds": 0.1666666667,
+  "fade_frames": 6.0,
+  "aim_distance": 64.0,
+  "joint_pitch_limit": 0.8,
+  "arm_poses": [21, 22],
+  "auxiliary": {
+    "frame_rate": 60,
+    "release_turn": 14,
+    "loop_end": 44,
+    "loop_length": 30,
+    "last": 59,
+    "fire_rate": 0.5
+  }
+}

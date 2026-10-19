@@ -1,0 +1,37 @@
+{
+ "notes": [
+  "frame: the music meter animates over the background strip's slots at [434, 315], and the CURRENT MUSIC line runs while a credited track plays. The day and money remain hidden during talk; \"hud\": true restores them.",
+  "Talk scenes (story events, original scenes 48-157): the scripts come from tables/events.json, the backgrounds and characters from tables/talk.json.",
+  "The scene fades in over fade_in seconds showing only the background, then the script plays; once it ends the scene fades out the same way to the next scene (0xd0ec8, 0xd0f3f).",
+  "The script player (0xc5a1a) runs 60 frames a second. Each frame it re-runs the commands since the last finished wait, so the window, portraits and texts of a page are redrawn every frame, and it stops at the first command not done: a text still typing, a wait, or the wait for confirm.",
+  "Text types one character every frames_per_character frames with the type sound; glyphs past speaking_glyph_above (letters, not spaces or punctuation) move the speakers' mouths. confirm while typing shows the whole text next frame with the skip sound. The wait for confirm takes confirm from its confirm_delay_frames-th frame and plays the page sound.",
+  "Holding fast_forward (the original's triggers and stick clicks, mask 0xc0c0) hides the text and runs through every text, wait and confirm a page at a time. Texts marked skippable false ignore both.",
+  "Characters fade in or out over character_fade_frames. Once fully shown they blink: eyes open blink_wait_frames plus up to as long again, closed blink_frames plus up to blink_random more. While text types the mouth steps closed, half, open, half every mouth_hold_frames frames; otherwise it closes (0xc62ff).",
+  "music: an event starts its own track at its volume (tables/events.json), keeps the one playing (\"keep\"), or has none.",
+  "frame: over the talk the event runner draws the day and money (0xd0fc8: 0xb1b56, 0xb1cdd; data/ui/frame.json), the music meter in the strip's slots, and the CURRENT MUSIC line along y 339 while a credited track plays (0x2a85a).",
+  "\"background_edges\": widescreen edges for every talk background (a port addition; the extraction has none), as a UI sprite's extend_edges, edge_inset and edge_bands_left/right in rows from the sprite's top. Column 0 of each back and front is a dark outline, so the edges sample column 1. The back stretches its header (rows 0-72) on the left and the black above the header line (rows 0-33) on the right, leaving the picture's sides black; the front strip stretches whole."
+ ],
+ "background_edges": {
+  "back": { "extend_edges": "both", "edge_inset": [1, 0], "edge_bands_left": [[0, 72]], "edge_bands_right": [[0, 33]] },
+  "front": { "extend_edges": "both", "edge_inset": [1, 0] }
+ },
+ "fade_in": 0.5,
+ "fade_out": 0.5,
+ "character_fade_frames": 30,
+ "blink_wait_frames": 60,
+ "blink_frames": 8,
+ "blink_random": 4,
+ "mouth_hold_frames": 5,
+ "speaking_glyph_above": 146,
+ "confirm_delay_frames": 2,
+ "buttons": {
+  "confirm": "confirm",
+  "fast_forward": ["left_trigger", "right_trigger", "left_thumb", "right_thumb"]
+ },
+ "sounds": { "type": "talk_type", "page": "talk_page", "skip": "talk_skip" },
+ "frame": {
+  "hud": false,
+  "meter": [434, 315],
+  "now_playing": { "format": "《 {title} : {artist} 》", "position": [0, 339], "clip": [0, 339, 396, 357], "colour": "#ffffff", "speed": 60, "trail": 45, "layer": 263 }
+ }
+}

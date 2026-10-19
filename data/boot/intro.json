@@ -1,0 +1,59 @@
+{
+ "notes": [
+  "Boot sequence, in order. Files resolve against mods/, the converted assets and the extracted Media folder, first match wins.",
+  "Times are seconds. skip.after is 0 in the port; the original ignored buttons for the first second of each movie (original_after).",
+  "skip.buttons is any button in the port, so one tap skips one step; original_buttons is what the original accepted (confirm = A or START).",
+  "first_boot_only steps are left out when the intro plays again after the title idle timeout.",
+  "A rotate step plays its files in turn, the first on boot. The original (0x1372a) plays movie 0xaebf6(n % 2) with n starting at 1 (0x1d6f6c), so phantomcrash.sfd comes first and opening.sfd on the next visit.",
+  "Source: docs/OBJECTIVE_01_PLAN.md (scenes 158, 18, 45 and 2 of the original)."
+ ],
+ "steps": [
+  {
+   "id": "phantagram",
+   "type": "movie",
+   "file": "movie/phantagram.sfd",
+   "skip": { "buttons": "any", "original_buttons": "confirm", "after": 0.0, "original_after": 1.0 },
+   "fade_out": 0.0
+  },
+  {
+   "id": "genki",
+   "type": "image",
+   "layers": [
+    { "image": "textures/scroll/logo_tex/1.png", "rect": [0, 0, 192, 192], "position": [320, 240], "centered": true }
+   ],
+   "fade_in": 0.5,
+   "hold": 2.0,
+   "fade_out": 0.5,
+   "skip": { "buttons": "any", "original_buttons": "confirm", "after": 0.0, "fade_out": 0.0 }
+  },
+  {
+   "id": "middleware",
+   "type": "image",
+   "first_boot_only": true,
+   "layers": [
+    { "image": "textures/scroll/logo_tex/0.png", "rect": [0, 0, 640, 480], "position": [0, 0] }
+   ],
+   "fade_in": 0.5,
+   "hold": 2.0,
+   "fade_out": 0.5,
+   "skip": { "buttons": "any", "original_buttons": "confirm", "after": 0.0, "original_after": 1.0, "fade_out": 0.0 }
+  },
+  {
+   "id": "dolby",
+   "type": "movie",
+   "first_boot_only": true,
+   "file": "movie/dolby.sfd",
+   "skip": { "buttons": "any", "original_buttons": "confirm", "after": 0.0, "original_after": 1.0 }
+  },
+  {
+   "id": "opening",
+   "type": "movie",
+   "files": ["movie/phantomcrash.sfd", "movie/opening.sfd"],
+   "rotate": true,
+   "skip": { "buttons": "any", "after": 0.0, "original_after": 1.0 },
+   "end_hold": 0.267,
+   "fade_out": 0.0
+  }
+ ],
+ "then": "title"
+}

@@ -1,0 +1,35 @@
+{
+  "notes": "Port pause menu (desktop_pause_menu.cpp). START or Back opens it with RESUME chosen and EXIT beside it; left/right or the mouse moves between them and A or a click takes one. EXIT asks NO / YES first, on NO. B, START, Back or a right click resumes (in the question, answers NO). The buttons are the result screen's EXIT pill (result_tex: plain and lit) drawn width units wide: cap texels at each end as they are, the middle stretched from fill_column, the label in the game font centred over it in text_colour (lit_text_colour when chosen). title and help are centred on their x. In a live RUMBLING the full pre-boss roster appears between the title and buttons, with skulls for eliminated opponents; up/down pages through longer rosters. Roster colours follow ordinary, leader, champion and reserve status. All roster layout and skull pixels are editable below.",
+  "pause_buttons": ["start", "back"],
+  "back_buttons": ["start", "back", "b"],
+  "choose_buttons": ["a"],
+  "dim_alpha": 0.55,
+  "layer": 300,
+  "title": { "at": [320, 196], "colour": "#ffffff", "menu": "PAUSED", "asking": "Leave the match?" },
+  "help": { "at": [320, 300], "colour": "#c8c8c8", "menu": "A: OK   B / START: Resume", "asking": "A: OK   B: Back" },
+  "button": {
+    "image": "textures/scroll/result_tex/0.png",
+    "plain": [832, 264, 920, 296],
+    "lit": [920, 264, 1008, 296],
+    "cap": 20,
+    "fill_column": 20,
+    "width": 128,
+    "gap": 24,
+    "y": 240,
+    "text_colour": "#ffcc00",
+    "lit_text_colour": "#000000"
+  },
+  "labels": { "menu": ["RESUME", "EXIT"], "asking": ["NO", "YES"] },
+  "roster": {
+    "at": [40, 127], "column_width": 284, "row_height": 22, "rows": 10,
+    "scale": 0.65, "skull_pixel": 1.5,
+    "title_y": 24, "summary_y": 55, "footer_y": 365, "button_y": 397, "help_y": 444,
+    "boss_y": 75, "heading_y": 105, "boss_scale": 0.85,
+    "opponents": "Opponents", "leaders": "Team Leaders", "boss": "Boss",
+    "summary": "Opponents remaining before boss: ",
+    "cleared": "Roster cleared - boss unlocked",
+    "paging": "UP / DOWN: Roster page",
+    "colours": ["#ffff00", "#8080ff", "#ff8080", "#00e100"],
+    "skull": ["01111110", "11111111", "10011001", "10011001", "11100111", "01111110", "01011010", "01011010"]
+  }
+}

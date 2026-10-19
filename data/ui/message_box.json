@@ -1,0 +1,23 @@
+{
+ "notes": [
+  "The game's SYSTEM INFORMATION window (0xbec0f), with YES/NO (0xbe09e) or OK (0xbdfbd) buttons.",
+  "It opens at 0.1 scale and grows by 0.15 (x) and 0.3 (y) per frame, playing sys entry 12 on its first frame; the lines and buttons appear once it is full size.",
+  "Text lines start at (95, 193), 18 units apart. The chosen button is drawn over the plain one and pulses.",
+  "Layers follow the original: window 0x107, buttons 0x108 and 0x109."
+ ],
+ "window": { "image": "textures/scroll/common_2d_tex/1.png", "rect": [0, 0, 504, 192], "position": [320, 240], "centered": true, "layer": 263 },
+ "open": { "start_scale": 0.1, "grow_per_second": [9, 18], "sound": "window" },
+ "text": { "position": [95, 193], "line_height": 18, "colour": "#ffffff", "layer": 264 },
+ "yes": {
+  "normal": { "image": "textures/scroll/common_2d_tex/1.png", "rect": [312, 400, 408, 424], "position": [223, 297], "layer": 264 },
+  "selected": { "image": "textures/scroll/common_2d_tex/1.png", "rect": [408, 400, 504, 424], "layer": 265, "animation": "pulse" }
+ },
+ "no": {
+  "normal": { "image": "textures/scroll/common_2d_tex/1.png", "rect": [120, 400, 216, 424], "position": [322, 297], "layer": 264 },
+  "selected": { "image": "textures/scroll/common_2d_tex/1.png", "rect": [216, 400, 312, 424], "layer": 265, "animation": "pulse" }
+ },
+ "ok": {
+  "normal": { "image": "textures/scroll/scr_common_tex/0.png", "rect": [192, 160, 288, 184], "position": [273, 297], "layer": 264 },
+  "selected": { "image": "textures/scroll/scr_common_tex/0.png", "rect": [288, 160, 384, 184], "layer": 265, "animation": "pulse" }
+ }
+}

@@ -1,0 +1,94 @@
+{
+ "notes": [
+  "Pepper's guide, the BEGINNERS CLUB (original scene 19: create 0x298a4, controls 0x29587, draw 0x292da). It keeps the music playing (the radio runs on, data/audio/radio.json) and fades in and out over 0.5 s.",
+  "The picture (0x292da): the background (layer 1), the question window (layer 2; the original draws it 1.1 times as wide about its centre, so 352 wide from x 38), the arrows while a list has more than five questions (layer 3), the cursor's bar pulsing (layer 7), the questions (layer 8, white, the font's 18-unit cell, 30 apart), Pepper (layer 10), the CURRENT MUSIC strip (257) and the top band (262). Inside a topic the back button's hint shows below the window.",
+  "guide: Pepper is shown as a talk scene shows her (the character command 0x40e778, run by 0xc57e0): cast 12, pose 2, fading in, blinking.",
+  "The list scrolls round: the cursor moves down the rows shown, then the questions scroll under it, wrapping from the last to the first (0xdf6d0); a list of five or fewer wraps the cursor. Each level's row and scroll are kept between visits, so an answer comes back to the question asked.",
+  "confirm plays sys 5. A topic opens its questions; an answer fades out to its talk scene (events 105-127, which return to the guide); End fades out to Club Wired, or to the town map when the guide opened from event 49 (the first visit, after NAME ENTRY). cancel inside a topic plays 8 and closes it; at the top it moves the cursor to End with the cursor sound, unless it is there.",
+  "The lessons (FreePlay, basic controls, attack methods, Optic Camouflage) lead to the tutorial battle, scene 42, on the training ground (data/world/training.json names the four screens). The original picks the lesson in the save (0x2928c).",
+  "cleared_next: once the game has been cleared (the staff roll, scene 37, sets the flag 0x6dfc1 reads; the quest save's \"cleared\"), \"What is a Ranker?\" and \"Who is Mona Lisa?\" are answered by events 157 and 128 instead.",
+  "riding_plate: the RIDING SV plate with the ridden Scoobee's name slides in once the screen has faded in (0x6dd74, see data/ui/frame.json); a new game rides none, so it shows only once a Scoobee is ridden."
+ ],
+ "music": "keep",
+ "fade_in": 0.5,
+ "fade_out": 0.5,
+ "exit_to": "club_wired",
+ "end_exits": { "event_49": "town_map" },
+ "confirm": { "buttons": "confirm" },
+ "cancel": { "buttons": "cancel" },
+ "cursor_repeat": { "delay": 0.4, "interval": 0.15 },
+ "buttons": { "up": "up", "down": "down" },
+ "sounds": { "move": "cursor", "select": "confirm", "back": "cancel" },
+ "layers": [
+  { "id": "background", "image": "textures/scroll/club_beginner_tex/0.png", "rect": [0, 0, 640, 480], "layer": 1 , "extend_edges": "both", "edge_bands": [[0, 72], [376, 480]],
+ "edge_bands_left": [[0, 72], [414, 480]]},
+  { "id": "window", "image": "textures/scroll/club_beginner_tex/0.png", "rect": [640, 0, 960, 240], "position": [38, 86], "size": [352, 240], "layer": 2 },
+  { "id": "music_strip", "image": "textures/scroll/club_beginner_tex/0.png", "rect": [0, 480, 640, 664], "position": [0, 296], "layer": 257 , "extend_edges": "both"},
+  { "id": "top_band", "image": "textures/scroll/club_beginner_tex/0.png", "rect": [0, 664, 640, 736], "position": [0, 0], "layer": 262 , "extend_edges": "both", "edge_inset": [1, 0]}
+ ],
+ "topic_layers": [
+  { "id": "back_button", "image": "textures/scroll/scr_common_tex/0.png", "rect": [256, 184, 272, 200], "position": [230, 286], "layer": 257 },
+  { "id": "back_label", "image": "textures/scroll/scr_common_tex/0.png", "rect": [480, 184, 536, 200], "position": [250, 288], "layer": 257 }
+ ],
+ "list": {
+  "rows": 5,
+  "row_step": 30,
+  "text": [71, 142],
+  "text_layer": 8,
+  "text_colour": "#ffffff",
+  "cursor": { "image": "textures/scroll/club_beginner_tex/0.png", "rect": [640, 240, 928, 264], "position": [71, 142], "layer": 7, "animation": "fade" },
+  "more_above": { "image": "textures/scroll/club_beginner_tex/0.png", "rect": [976, 0, 992, 16], "position": [207, 123], "layer": 3 },
+  "more_below": { "image": "textures/scroll/club_beginner_tex/0.png", "rect": [960, 0, 976, 16], "position": [207, 289], "layer": 3 }
+ },
+ "guide": { "character": 12, "pose": 2, "position": [329, 37], "layer": 10, "colour": "#ffffff", "fade": "in" },
+ "frame": {
+  "hud": true,
+  "riding_plate": true,
+  "meter": [434, 315],
+  "now_playing": { "format": "《 {title} : {artist} 》", "position": [0, 339], "clip": [0, 339, 396, 357], "colour": "#ffffff", "speed": 60, "trail": 45, "layer": 263 }
+ },
+ "questions": [
+  { "text": "FreePlay", "next": "training_free" },
+  { "text": "About Rumbling", "questions": [
+   { "text": "{xbe:0x19b15c}", "next": "event_105" },
+   { "text": "{xbe:0x19b128}", "next": "event_106" },
+   { "text": "{xbe:0x19b108}", "next": "event_107" },
+   { "text": "Class Domination", "next": "event_108" },
+   { "text": "Provision Items", "next": "event_109" }
+  ] },
+  { "text": "{xbe:0x19b0a0}", "questions": [
+   { "text": "{xbe:0x19b074}", "next": "event_110" },
+   { "text": "Alias", "next": "event_111" },
+   { "text": "{xbe:0x19b044}", "next": "event_112", "cleared_next": "event_157" },
+   { "text": "{xbe:0x19b020}", "next": "event_113" }
+  ] },
+  { "text": "About Scoobees", "questions": [
+   { "text": "{xbe:0x19afd8}", "next": "event_114" },
+   { "text": "{xbe:0x19afac}", "next": "training_basic" },
+   { "text": "{xbe:0x19af7c}", "next": "training_attack" },
+   { "text": "{xbe:0x19af48}", "next": "training_optic" },
+   { "text": "{xbe:0x19af14}", "next": "event_115" },
+   { "text": "{xbe:0x19aee8}", "next": "event_116" },
+   { "text": "{xbe:0x19aebc}", "next": "event_117" }
+  ] },
+  { "text": "About modules", "questions": [
+   { "text": "{xbe:0x19ae7c}", "next": "event_118" },
+   { "text": "Upgrade! Upgrade!", "next": "event_119" },
+   { "text": "{xbe:0x19ae34}", "next": "event_120" }
+  ] },
+  { "text": "{xbe:0x19ae04}", "questions": [
+   { "text": "{xbe:0x19ade4}", "next": "event_121" },
+   { "text": "Applift Project", "next": "event_122" },
+   { "text": "{xbe:0x19ad94}", "next": "event_123" }
+  ] },
+  { "text": "{xbe:0x19ad70}", "questions": [
+   { "text": "{xbe:0x19ad3c}", "next": "event_124" },
+   { "text": "{xbe:0x19ad04}", "next": "event_125" },
+   { "text": "{xbe:0x19ace0}", "next": "event_126" }
+  ] },
+  { "text": "{xbe:0x19acbc}", "questions": [
+   { "text": "{xbe:0x19ac98}", "next": "event_127", "cleared_next": "event_128" }
+  ] },
+  { "text": "End", "end": true }
+ ]
+}

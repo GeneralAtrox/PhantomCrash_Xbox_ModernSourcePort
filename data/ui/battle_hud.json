@@ -1,0 +1,80 @@
+{
+ "notes": [
+  "The battle HUD drawn over the world, from the original's HUD pass 0x4e6b8 (its state is 0x984 bytes, set up by 0x4e318). In the behind view (camera view 1, the port's chase camera) it calls 0x4faad (inner reticle), 0x503b9 (sight, arrows, markers), 0x51499 (outer reticle, lock boxes) and 0x5218b (melee lock box). Sprites are game_tex's (slot 464, sprites 1354-1396); ids in the notes are the sprite table's. The panels are data/ui/battle_panels.json.",
+  "safe_area: the original maps its projected points into the 576x448 safe area (x = 288 (ndc + 1) + 32, y = 224 (1 - ndc) + 16), so every offset about a projected point is 0.9 and 0.93 times its 640x480 size. The port puts projected points where the world is drawn and keeps those scales for the offsets.",
+  "aim_distance: the sight marks the point 64 units along the aim (0x4e6b8 projects (0, 0, -64) in the robot's aim frame: its position plus its aim height, turned by heading + twist, then by the aim pitch). The aim height (robot +0xb4 + +0x14) is the leg type's collision radius above the feet (docs/PART_RECORDS.md); locks are sought from there too.",
+  "sight (0x503b9): ring 1392 at the sight, white at 0x4c alpha; the four triangles at the offsets from 0x203d08 (outline 1395, white at 0xcc). They fill (1393) in the pulse colour while a camouflaged robot is on screen within sense_range (0x74e2a: camouflage state at robot +0x3494). A robot within sense_range, off screen and less than 90 degrees off the robot's heading gets an arrow arrow_radius from the sight toward it: 1393 in the pulse colour and 1395 in white, both at 0x80 alpha, turned (angle - 90 degrees).",
+  "pulse: the fill's colour is red 0xc8 with green on a frame counter, ((wave & 0xff) << 8) | 0xc80000; the port uses the 2D renderer's fade wave for it.",
+  "control: the robot's fire control, robot +0x450c (inner shape) and +0x4510 (inner value), +0x4518 and +0x451c (outer), +0x4514 (tracking) and +0x4520 (lock time in frames). 0x92c6c fills them from the robot's AI chip record (tables/parts.json chips; the values grow with the chip's level), so the player's chip (data/world/training.json player.chip) replaces the values here, which only apply when the chip tables are missing. value_max is the original's 999. track_range is 0x19b55c. Aim Speed: the reticle moves track_base + track_scale * min(track_value / track_full, 1) NDC a frame. The original (0x4f6a0) uses 0.02 (0x19cad8) + 0.08 (0x19f8bc) * track / 999, and its CHIPs' tracks of 1 to 5 then differ by under 2%; the port reads track on a 0..10 scale instead (track_full 10, track_base 0.012), so track 1 keeps the original's 0.02 and each point adds 0.008 (track 10: 0.092). track_base 0.02 with track_full 999 gives the original's speeds back.",
+  "reticle (0x4faad, 0x51499): the box's half size is inner_sizes / outer_sizes [x_min, x_max, y_min, y_max] (0x203c48, 0x203c78) by shape, interpolated by value / value_max (0x4db69). The corner piece (1377-1379 inner, 1380-1382 outer, by shape) is the top-left one; the original draws it (size / 2 + pad) / 640 and / 480 NDC in from the box's corner, mirrored for the top right, turned 180 degrees for the bottom right and both for the bottom left, white at 0x7f alpha. The diamond (1387) marks the reticle's centre. The reticle follows the nearest enemy inside the inner box at (track_base + track_scale * track_value / value_max) NDC a frame, and returns to the sight when there is none (0x4f6a0).",
+  "locks (0x51045, 0x51499): a shoulder weapon's lock box opens at the outer reticle's corners and closes on the robot as the lock time runs out, each frame keeping (time left / lock time) of its spread (0x5239b); its corners end corner (0.028125 and 0.0375 NDC, 0x203d38) from the robot's point. The right shoulder's pieces are 1390, the left shoulder's 1389, a melee arm's 1391 (0x51e37, 0x5218b), each turned k * 90 degrees from the top-left one, colour 0xcc00b496. A missile or grenade locks only once the box has closed (the battle holds the target for the chip's lock time); guns and melee weapons use their target at once, while the melee box still closes.",
+  "markers (0x4de50): team_colours also indexes RUMBLING roster status: ordinary, leader, champion, reserve (yellow, blue, red, green; 0x0456b7, 0x045a68). The port keeps that selection separate from free-for-all combat IDs. Robots on screen, not camouflaged, within sense_range: frame 1376 at the robot's point + frame_offset in the team's colour (team 0 0xffffff00, or 0xff00e100 for robot +0x70 == 3; team 1 0xff8080ff; team 2 0xffff8080) and the armour bar 1386 at + bar_offset, its width scaled by armour / maximum (+0x44 / +0x48). markers.tag: a robot with a pilot (loadout +0x3c) gets its pilot's tag (the name table's second string, docs/PART_RECORDS.md) drawn by 0x0bdc9b in 12 x 12 glyphs, centred over the point + (-35, -30), in the team colour, when under 30 Shift-JIS bytes (14 glyphs). The training drones have no pilot, so no tag. markers.leader: a team leader (loadout +0x70 == 2) shows sprite 1383 left of its tag at the point + offset, less the tag's half advance. markers.player_numbers: in versus mode (save +0x11074) an untagged robot shows its 1P-4P label (sprites 1464-1467 in game_vs_tex) by its top-left at the point + offset. The training ground has neither."
+ ],
+ "sense_range": 75,
+ "safe_area": [576, 448],
+ "aim_distance": 64,
+ "sight": {
+  "ring": {"image": "textures/scroll/game_tex/0.png", "rect": [0, 0, 160, 160], "alpha": 0.3},
+  "outline": {"image": "textures/scroll/game_tex/0.png", "rect": [152, 160, 176, 184], "alpha": 0.8},
+  "fill": {"image": "textures/scroll/game_tex/0.png", "rect": [216, 88, 240, 112], "colour": "#c80000", "alpha": 0.8},
+  "markers": [[0, -55, 0], [55, 0, 90], [0, 55, 180], [-55, 0, 270]],
+  "arrow_radius": 96,
+  "arrow_alpha": 0.5
+ },
+ "control": {
+  "inner_shape": 0,
+  "inner_value": 500,
+  "outer_shape": 0,
+  "outer_value": 500,
+  "track_value": 5,
+  "value_max": 999,
+  "track_base": 0.012,
+  "track_scale": 0.08,
+  "track_full": 10,
+  "track_range": 75,
+  "lock_frames": 30
+ },
+ "reticle": {
+  "inner": [
+   {"image": "textures/scroll/game_tex/0.png", "rect": [216, 0, 248, 32], "alpha": 0.5},
+   {"image": "textures/scroll/game_tex/0.png", "rect": [216, 56, 248, 88], "alpha": 0.5},
+   {"image": "textures/scroll/game_tex/0.png", "rect": [160, 112, 192, 144], "alpha": 0.5}
+  ],
+  "inner_sizes": [[40, 120, 40, 120], [60, 180, 20, 60], [20, 60, 60, 180]],
+  "inner_pad": 2,
+  "outer": [
+   {"image": "textures/scroll/game_tex/0.png", "rect": [160, 0, 216, 56], "alpha": 0.5},
+   {"image": "textures/scroll/game_tex/0.png", "rect": [160, 56, 216, 112], "alpha": 0.5},
+   {"image": "textures/scroll/game_tex/0.png", "rect": [0, 160, 56, 216], "alpha": 0.5}
+  ],
+  "outer_sizes": [[70, 160, 70, 160], [135, 210, 45, 70], [45, 70, 135, 210]],
+  "outer_pad": 14,
+  "diamond": {"image": "textures/scroll/game_tex/0.png", "rect": [224, 112, 248, 136], "alpha": 0.5}
+ },
+ "locks": {
+  "right_shoulder": {"image": "textures/scroll/game_tex/0.png", "rect": [168, 200, 184, 216], "alpha": 0.8},
+  "left_shoulder": {"image": "textures/scroll/game_tex/0.png", "rect": [216, 32, 240, 56], "alpha": 0.8},
+  "melee": {"image": "textures/scroll/game_tex/0.png", "rect": [192, 112, 224, 144], "alpha": 0.8},
+  "corner": [9, 9],
+  "colour": "#00b496"
+ },
+ "markers": {
+  "frame": {"image": "textures/scroll/game_tex/0.png", "rect": [56, 160, 128, 184]},
+  "frame_offset": [-72, -18],
+  "bar": {"image": "textures/scroll/game_tex/0.png", "rect": [184, 200, 240, 208]},
+  "bar_offset": [-66, -13],
+  "team_colours": ["#ffff00", "#8080ff", "#ff8080", "#00e100"],
+  "tag": {"offset": [-35, -30], "cell": 12, "advance": 12, "max_glyphs": 14},
+  "defeated": {"image": "textures/scroll/game_tex/0.png", "rect": [56, 200, 88, 216], "offset": [-94, -30]},
+  "leader": {"image": "textures/scroll/game_tex/0.png", "rect": [232, 184, 256, 200], "offset": [-62, -30]},
+  "player_numbers": {
+   "offset": [-54, -34],
+   "sprites": [
+    {"image": "textures/scroll/game_vs_tex/0.png", "rect": [464, 280, 496, 296]},
+    {"image": "textures/scroll/game_vs_tex/0.png", "rect": [472, 312, 504, 328]},
+    {"image": "textures/scroll/game_vs_tex/0.png", "rect": [464, 296, 496, 312]},
+    {"image": "textures/scroll/game_vs_tex/0.png", "rect": [472, 328, 504, 344]}
+   ]
+  }
+ }
+}

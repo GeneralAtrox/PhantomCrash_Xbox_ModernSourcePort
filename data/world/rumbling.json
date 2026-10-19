@@ -1,0 +1,229 @@
+{
+ "notes": [
+  "The rules RUMBLING (scene 3, data/ui/rumbling.json) enters a contest by. A venue's contest is the calendar's for the day (tables/town.json, 0x06ce91); it is closed when there is none. Entering needs the class's play fee in hand (+0x0c of the class, 0x016d0e).",
+  "The regulation check (0x0137d6): the fee; a ridden Scoobee with a body, legs and a CHIP (0x01d4a4); the class's maker (0 to 2) is the body's (any other value allows any); one of the class's leg types is the legs' (a class without any allows any); and its other rule: 0 rentals only (never met with one's own Scoobee), 1 no O.C modules (the fitted modules' O.C active times add to 0, 0x0b9de3). legs_types gives each legs model's type (the legs record + 8, 0x0823cb).",
+  "RENTAL is allowed only in rental_classes (0x0138da) and rides one of rental_robots (tables/garage.json robots, 0x0169e5 picks one at random).",
+  "area_rankers: each area's Area Ranker contest opens once all its class leaders' contests are won (0x09700f, 0x096fd0; the leaders at 0x253368). first_ranker opens once first_ranker_needs of the area rankers are won (0x096ff3). In either, the ranker waits at one of the stage's gates, which the player cannot come in by (0x0169e5); the original picks it at random each day (0x016d0e), the port from the day and the area.",
+  "roster: each area's opponents for the day (0x06cf5a, as each day begins; the port draws them when RUMBLING first opens on a day). The contest's size is roster_size + 1 places (0x045270), at most max_size, the player's among them. Each entered team's members that fit the contest (0x046411: the entrant's level in the contest's levels, the class's maker, legs and weight range, and no O.C modules where the class forbids them) join the unbeaten or the beaten; a team's leader joins too once all its members are beaten. The contest's champion joins once every team and its leader are beaten, if the contest is won or its class is one of champion_classes. The extra team's members that fit form the reserve. Each place draws (0x045a68): past reserve_after unbeaten and beaten drawn, a number reaching reserve_share takes the reserve (a draw with none left gives nobody); otherwise below unbeaten_share the unbeaten, else the beaten (either when the other is empty). The entrant is the one at (left - 1) x a number from 0 to 1, rounded down, so the last one left is drawn only when it is alone, as in the original. closed_once_won contests have no roster once won; cleared_contest is drawn as one of cleared_picks once the game is cleared. area_rankers entrant and first_ranker_entrant are whom WIRE HEADS DATA shows in those contests (0x013f5a, 0x1b1008 entries 1, 10, 19 and 0). A cleared game raises an opponent's level by its laps, at most 99 (0x0466e4); the bounty is the pilot's curve at the unraised level, times 1 + level / bounty_level_scale (0x0456b7).",
+  "battle: where an entry leads. Until the area stages (the venue's gate is where the player comes in) and the contest's teams (the battle roster) are ported, it runs on the training ground's FreePlay (world/training.json) with the ridden or rented Scoobee as the player's, and returns to Club Wired. A contest is battle mode 0: each hit that damages another robot pays its attacker hit_reward_ny (0x09d2ce adds one stored unit to the robot's prize, robot +0x18; the tutorial and TEST DRIVE pay nothing), and while the player's robot lives every tick its prize grows plays prize_sound (0x093637: bank 1 entry 0x13, the same coin sound as the World Map's spin pay; mode 0 only).",
+  "live: the port keeps each area's opponents fighting while the player is away, a port addition (the original only draws the roster; see roster). live_size opponents' places, the player's among them, in place of roster_size + 1 (0 for the original's); settings.json rumble_robots or --rumble-robots N overrides it. The world runs at tick_hz from a NEW GAME or a loaded game on, on every screen but paused_screens, but the areas other than the player's fight only on fighting_screens (the area choice, so its map updates); elsewhere, the player's battle included, they wait, though downed opponents are still replaced. Each area fights on its day stage (stages: day, night by area; its collision and enemy path). Opponents are drones of a team each, fighting with their own robot (DroneAi, battle.hpp: ai), armour, weapons and chip. The daily boss checklist contains each eligible member, team leader and reserve. arrival_seconds after an opponent leaves, a replacement walks in with the entry shield. Defeated opponents still respawn, but their first player-credited defeat remains marked with a skull, including across saves. New eligible opponents are preferred over repeats. Leaders wait for their eligible members to be marked; the champion enters after the full checklist is marked, even while defeated pilots are fighting again, for champion_classes (including Class D) or a previously won contest. NPC kills do not mark the player checklist. Only the player's kills mark quest progression and pay bounties on leaving. Each opponent's place, heading, armour, ammunition and shield go into the save with its roster."
+ ],
+ "legs_types": [
+  0,
+  1,
+  3,
+  5,
+  7,
+  0,
+  1,
+  2,
+  4,
+  6,
+  7,
+  0,
+  1,
+  3,
+  5,
+  6,
+  7,
+  1,
+  7,
+  7,
+  4
+ ],
+ "rental_classes": [
+  0,
+  4,
+  25
+ ],
+ "rental_robots": [
+  84,
+  85,
+  86,
+  87
+ ],
+ "area_rankers": [
+  {
+   "contest": 14,
+   "leaders": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ],
+   "entrant": 1
+  },
+  {
+   "contest": 31,
+   "leaders": [
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27
+   ],
+   "entrant": 10
+  },
+  {
+   "contest": 48,
+   "leaders": [
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44
+   ],
+   "entrant": 19
+  }
+ ],
+ "first_ranker": 49,
+ "first_ranker_needs": 3,
+ "first_ranker_entrant": 0,
+ "roster": {
+  "max_size": 6,
+  "live_size": 11,
+  "reserve_share": 0.5,
+  "unbeaten_share": 0.7,
+  "champion_classes": [
+   4,
+   22,
+   23
+  ],
+  "closed_once_won": [
+   48
+  ],
+  "cleared_contest": 52,
+  "cleared_picks": [
+   52,
+   53,
+   54
+  ],
+  "bounty_level_scale": 64
+ },
+ "battle": {
+  "hit_reward_ny": 10,
+  "prize_sound": "spin_pay",
+  "return_to": "club_wired",
+  "quick_rentals": [
+   {
+    "label": "Class D: Fire Balloons (rental SV)",
+    "screen": "rumbling_d_rental",
+    "day": 0,
+    "area": 0,
+    "gate": 0,
+    "robot": 84
+   },
+   {
+    "label": "Class D: Night Electric (rental SV)",
+    "screen": "rumbling_d_night_rental",
+    "day": 3,
+    "area": 0,
+    "gate": 0,
+    "robot": 84
+   }
+  ],
+  "lesson": {
+   "title": "RUMBLING",
+   "mode": 3
+  }
+ },
+ "live": {
+  "tick_hz": 30,
+  "arrival_seconds": 8,
+  "stages": [
+   [
+    "shinjuku_day",
+    "shinjuku_night"
+   ],
+   [
+    "shibuya_day",
+    "shibuya_night"
+   ],
+   [
+    "umihotaru_day",
+    "umihotaru_night"
+   ]
+  ],
+  "paused_screens": [
+   "intro",
+   "title",
+   "main_menu",
+   "new_game",
+   "option",
+   "button_config",
+   "sound_config",
+   "screen_adjust",
+   "load_game",
+   "vs_mode",
+   "vs_battle",
+   "staff_roll",
+   "match_result",
+   "attract_demo"
+  ],
+  "fighting_screens": [
+   "rumbling"
+  ],
+  "ai": {
+   "fight": true,
+   "trace": false,
+   "nearest_fallback_target": false,
+   "jump_keeps_target": false,
+   "rivals_by_sight": false,
+   "jump_any_floor": false,
+   "assigned_ability_settings": false,
+   "navigation": {
+    "note": "Port addition. Computer robots plan routes over a grid built from the stage collision: they walk around walls, hold jumps up ledges and across gaps, and drop down, instead of the original's straight line to the next ENPT point. high_ground sends a robot in a fight to a spot above its target with a clear shot. A moved goal plans again no sooner than replan_min_seconds, and plans_per_tick caps the graph searches of all robots in one battle tick (0: no limit): route plans, high-ground searches and a rejoining robot's reach test. A robot over the limit searches in a later tick, so that many robots do not stall a frame. Rejoining its route, a robot tests the nearest rejoin_sight_tests reachable points for a clear line of sight and otherwise takes the nearest it can reach. A planned jump needs room for a body of body_radius to rise straight up from its take-off, reached within takeoff_reach; a route point counts as reachable over a node within point_rise of it. A robot that makes no headway (moves no farther than escalate_distance) for escalate_seconds or through escalate_recoveries recoveries drops its goal (skips the route point, leaves the high ground or the approach); still stuck, it steers the original way for fallback_seconds. A stalled robot with another within crowd_gap in its way steps aside. A robot plans only jumps its own held jump (its legs and load) clears by jump_margin; it lines up standing, walks on only with the press that takes off, and holds the jump until its feet are jump_hold_over above the landing. A route point with no route to it is skipped; after route_skips in a row the robot rejoins the route elsewhere. A jump that lands the robot back below the ledge makes it avoid that landing for failed_jump_seconds. Set enabled to false for the original routing.",
+    "enabled": true,
+    "cell": 2.0,
+    "step": 0.9,
+    "jump_rise": 12.0,
+    "jump_cells": 3,
+    "headroom": 4.4,
+    "wall_clearance": 1.6,
+    "jump_cost": 6.0,
+    "drop_cost": 2.0,
+    "waypoint_reach": 1.6,
+    "replan_seconds": 2.0,
+    "stuck_seconds": 1.0,
+    "give_up_seconds": 2.5,
+    "avoid_seconds": 10.0,
+    "avoid_cost": 250.0,
+    "goal_moved": 4.0,
+    "replan_min_seconds": 0.5,
+    "plans_per_tick": 2,
+    "high_ground": true,
+    "vantage_rise": 4.0,
+    "vantage_radius": 45.0,
+    "vantage_nearest": 10.0,
+    "vantage_range_share": 0.8,
+    "vantage_path_limit": 90.0,
+    "vantage_seconds": 8.0,
+    "vantage_chance": 0.6,
+    "vantage_sight_tests": 48,
+    "rejoin_sight_tests": 12,
+    "body_radius": 2.0,
+    "takeoff_reach": 1.0,
+    "point_rise": 4.0,
+    "escalate_seconds": 8.0,
+    "escalate_recoveries": 3,
+    "escalate_distance": 3.0,
+    "fallback_seconds": 4.0,
+    "crowd_gap": 1.5,
+    "jump_margin": 1.5,
+    "jump_hold_over": 1.5,
+    "route_skips": 4,
+    "failed_jump_seconds": 30.0
+   }
+  }
+ }
+}

@@ -1,0 +1,29 @@
+{
+ "notes": [
+  "SCREEN ADJUST (original scene 0: init 0x132d8, adjust 0x131d0, question 0x130ee, draw 0x13004; sprites 0x1d6e00 and 0x1d6e38).",
+  "Left and right move the picture one unit a step (range_x), up and down likewise (range_y); the ends do not wrap. The offset is the game options' screen_offset, and the whole picture follows it as it changes.",
+  "layers move with the picture; fixed sprites are drawn at their position minus the offset, so they hold still, as the original draws them.",
+  "reset centres the picture silently. Confirm asks the question: YES keeps the offset, NO puts back the one the screen started with; either way the screen fades out to exit_to. Cancel only answers NO in the question.",
+  "The horizontal step plays sys entry 4 (move_x), the vertical one and the question's choice entry 3."
+ ],
+ "music": "garage",
+ "fade_in": 0.5,
+ "fade_out": 0.5,
+ "exit_to": "option",
+ "confirm": { "buttons": "confirm" },
+ "cancel": { "buttons": "cancel" },
+ "reset": { "buttons": "x" },
+ "cursor_repeat": { "delay": 0.4, "interval": 0.1 },
+ "sounds": { "move": "cursor", "move_x": "adjust", "select": "confirm" },
+ "range_x": [-32, 30],
+ "range_y": [-16, 14],
+ "layers": [
+  { "id": "background", "image": "textures/scroll/adjust_tex/0.png", "rect": [0, 0, 640, 480], "layer": 1 }
+ ],
+ "fixed": [
+  { "id": "d_pad", "image": "textures/scroll/adjust_tex/0.png", "rect": [640, 0, 728, 48], "position": [67, 384], "layer": 2 },
+  { "id": "buttons", "image": "textures/scroll/adjust_tex/0.png", "rect": [640, 48, 952, 72], "position": [274, 404], "layer": 2 },
+  { "id": "title", "image": "textures/scroll/adjust_tex/0.png", "rect": [728, 0, 912, 40], "position": [226, 54], "layer": 2 }
+ ],
+ "question": { "lines": ["{xbe:0x17ac60}"], "default_choice": 1 }
+}

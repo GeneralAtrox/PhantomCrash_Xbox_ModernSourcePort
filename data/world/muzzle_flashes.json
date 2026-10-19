@@ -1,0 +1,10 @@
+{
+  "notes": [
+    "Original fire handlers 0x099d26 and 0x09a0da draw model slots 0x39e and 0x39f at scale 3. These are meshes 9 and 10 of binlink resource 194, already extracted for projectile effects.",
+    "style is the weapon record's +0x21 (fire_sound). A flash is held for one 30 Hz battle tick so presentation frames can display the original immediate draw. Scale and duration are editable."
+  ],
+  "flashes": [
+    {"style": 0, "model": "models/binlink/194.gltf", "mesh": 9, "scale": 3, "seconds": 0.03333333333333333},
+    {"style": 1, "model": "models/binlink/194.gltf", "mesh": 10, "scale": 3, "seconds": 0.03333333333333333}
+  ]
+}

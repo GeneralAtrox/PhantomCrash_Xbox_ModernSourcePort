@@ -1,0 +1,633 @@
+{
+ "notes": [
+  "The contest schedule (original scene 32: factory 0xa3437, create 0x36833, run 0x363e7, draw 0x35fc7 and 0x35a9f, destroy 0x359ba). Club Wired and the garage open it; it returns to the one it was opened from (0xa347d: result 0 the garage, 1 Club Wired).",
+  "It shows five days of the 60-day contest calendar (tables/town.json) in three rows, one per venue: Shinjuku East, Shibuya and 409 Tokyo Aqua, whose logos are in the grid picture. It opens on the day it is (the save's day, the window starting there).",
+  "Each cell (0x35a9f) at origin + step x (column, row): the venue's day or night tile (the contest's +8), lit in the cursor's column; with no contest, CLOSED. Over a contest, the class badge (layer 0x102; white in the cursor's column, #404040 otherwise and while scrolling) and CLEAR (0x103) once the contest has been won (save + 0x990 + contest), except for the three Burning Chrome contests (0x34-0x36). Contest 0x30 (Breaking Strain) shows as closed once won. Above each column, its day + 1 in two digits (0x359ec).",
+  "The cursor (0x35fc7): a frame, a pulsing frame and a pulsing mark over the column's day, while no popup is open and nothing scrolls; on the EXIT row, the lit EXIT.",
+  "Input (0x363e7): up/down move between the rows and EXIT (wrapping, sys entry 3); left/right move the column (entry 4), and past either end scroll the calendar a day, the cursor staying at the end. R and L scroll five days (entry 4), the cursor going to the first or last column. cancel moves to EXIT (entry 4). confirm (entry 5) on a contest opens its INFORMATION popup, on EXIT fades out over 0.5 s and leaves.",
+  "A scroll (0x35a9f) takes three steps of step_seconds a day: the column leaving folds away, the others slide one column across, the new day unfolds. The day numbers change at once.",
+  "The popup (0x35fc7) grows from the cell over grow_seconds from grow_from_scale, then shows the contest's name, class, body regulation (its class's text when the class names a maker), leg regulation (when it names leg types), other regulations (rentals only or no Optic Camouflage) and play fee, 'No limits.' for a rule the class lacks. cancel (entry 8) closes it.",
+  "While the cursor is on a contest, its name scrolls along the top (0x358c1: the name and eight wide spaces, a ticker at (0, 72) 40 glyphs wide, restarted when the cursor moves). The CURRENT MUSIC band at the bottom shows the credit (0x2a85a at y 419) once the screen has faded in.",
+  "Music: from the garage it plays 5GARAGE (0x133b1(12)); from Club Wired the radio carries on (0x2a972). The original also counts a 'month' (+0x2e4, 0-11) on every page that nothing reads."
+ ],
+ "scene": 32,
+ "music": "garage",
+ "music_from": {
+  "club_wired": "keep"
+ },
+ "fade_in": 0.5,
+ "fade_out": 0.5,
+ "exit_to": "back",
+ "confirm": {
+  "buttons": "confirm"
+ },
+ "cancel": {
+  "buttons": "cancel"
+ },
+ "cursor_repeat": {
+  "delay": 0.4,
+  "interval": 0.15
+ },
+ "buttons": {
+  "left": "left",
+  "right": "right",
+  "up": "up",
+  "down": "down",
+  "page_back": "left_trigger",
+  "page_forward": "right_trigger"
+ },
+ "sounds": {
+  "move": "adjust",
+  "row": "cursor",
+  "select": "confirm",
+  "page": "adjust",
+  "to_exit": "adjust",
+  "close": "cancel"
+ },
+ "layers": [
+  {
+   "id": "background",
+   "image": "textures/scroll/schedule_tex/0.png",
+   "rect": [
+    0,
+    0,
+    640,
+    480
+   ],
+   "position": [
+    0,
+    0
+   ],
+   "layer": 1,
+   "extend_edges": "both", "edge_bands": [[0, 72], [376, 480]],
+ "edge_bands_left": [[0, 72], [414, 480]]
+  },
+  {
+   "id": "top_band",
+   "image": "textures/scroll/schedule_tex/0.png",
+   "rect": [
+    0,
+    816,
+    640,
+    912
+   ],
+   "position": [
+    0,
+    0
+   ],
+   "layer": 2,
+   "extend_edges": "both", "edge_inset": [1, 1]
+  },
+  {
+   "id": "music_band",
+   "image": "textures/scroll/schedule_tex/0.png",
+   "rect": [
+    0,
+    712,
+    640,
+    816
+   ],
+   "position": [
+    0,
+    376
+   ],
+   "layer": 2,
+   "extend_edges": "both", "edge_inset": [1, 1]
+  },
+  {
+   "id": "grid",
+   "image": "textures/scroll/schedule_tex/0.png",
+   "rect": [
+    0,
+    480,
+    520,
+    712
+   ],
+   "position": [
+    57,
+    123
+   ],
+   "layer": 262
+  },
+  {
+   "id": "arrow_left",
+   "image": "textures/scroll/schedule_tex/0.png",
+   "rect": [
+    952,
+    0,
+    976,
+    32
+   ],
+   "position": [
+    38,
+    225
+   ],
+   "layer": 3
+  },
+  {
+   "id": "arrow_right",
+   "image": "textures/scroll/schedule_tex/0.png",
+   "rect": [
+    1000,
+    0,
+    1024,
+    32
+   ],
+   "position": [
+    577,
+    225
+   ],
+   "layer": 3
+  }
+ ],
+ "scroll_arrow": {
+  "id": "arrow_lit",
+  "image": "textures/scroll/schedule_tex/0.png",
+  "rect": [
+   976,
+   0,
+   1000,
+   32
+  ],
+  "position": [
+   38,
+   225
+  ],
+  "layer": 4
+ },
+ "exit": {
+  "normal": {
+   "id": "exit",
+   "image": "textures/scroll/schedule_tex/0.png",
+   "rect": [
+    520,
+    672,
+    640,
+    712
+   ],
+   "position": [
+    261,
+    349
+   ],
+   "layer": 259
+  },
+  "selected": {
+   "id": "exit_lit",
+   "image": "textures/scroll/schedule_tex/0.png",
+   "rect": [
+    640,
+    672,
+    760,
+    712
+   ],
+   "position": [
+    261,
+    349
+   ],
+   "layer": 260,
+   "animation": "pulse"
+  }
+ },
+ "cells": {
+  "image": "textures/scroll/schedule_tex/0.png",
+  "origin": [
+   158,
+   159
+  ],
+  "step": [
+   83,
+   62
+  ],
+  "columns": 5
+ },
+ "cursor": {
+  "frame": {
+   "id": "cursor",
+   "image": "textures/scroll/schedule_tex/0.png",
+   "rect": [
+    728,
+    344,
+    816,
+    408
+   ],
+   "layer": 257
+  },
+  "pulse": {
+   "id": "cursor_pulse",
+   "image": "textures/scroll/schedule_tex/0.png",
+   "rect": [
+    816,
+    344,
+    904,
+    408
+   ],
+   "layer": 263,
+   "animation": "pulse"
+  },
+  "day": {
+   "id": "cursor_day",
+   "image": "textures/scroll/schedule_tex/0.png",
+   "rect": [
+    760,
+    672,
+    848,
+    712
+   ],
+   "layer": 257,
+   "animation": "pulse"
+  },
+  "day_y": 125
+ },
+ "tile_layer": 8,
+ "venues": [
+  {
+   "day": [
+    696,
+    608,
+    784,
+    672
+   ],
+   "day_lit": [
+    784,
+    608,
+    872,
+    672
+   ],
+   "night": [
+    872,
+    608,
+    960,
+    672
+   ],
+   "night_lit": [
+    640,
+    712,
+    728,
+    776
+   ]
+  },
+  {
+   "day": [
+    696,
+    544,
+    784,
+    608
+   ],
+   "day_lit": [
+    784,
+    544,
+    872,
+    608
+   ],
+   "night": [
+    872,
+    544,
+    960,
+    608
+   ],
+   "night_lit": [
+    520,
+    608,
+    608,
+    672
+   ]
+  },
+  {
+   "day": [
+    784,
+    480,
+    872,
+    544
+   ],
+   "day_lit": [
+    872,
+    480,
+    960,
+    544
+   ],
+   "night": [
+    520,
+    544,
+    608,
+    608
+   ],
+   "night_lit": [
+    608,
+    544,
+    696,
+    608
+   ]
+  }
+ ],
+ "closed": [
+  640,
+  280,
+  728,
+  344
+ ],
+ "closed_lit": [
+  728,
+  280,
+  816,
+  344
+ ],
+ "badge_layer": 258,
+ "badge_dim": "#404040",
+ "badges": [
+  {
+   "classes": [
+    23
+   ],
+   "rect": [
+    520,
+    480,
+    608,
+    544
+   ]
+  },
+  {
+   "classes": [
+    22
+   ],
+   "rect": [
+    640,
+    408,
+    728,
+    472
+   ]
+  },
+  {
+   "classes": [
+    1
+   ],
+   "rect": [
+    904,
+    344,
+    992,
+    408
+   ]
+  },
+  {
+   "classes": [
+    2
+   ],
+   "rect": [
+    728,
+    408,
+    816,
+    472
+   ]
+  },
+  {
+   "classes": [
+    3
+   ],
+   "rect": [
+    816,
+    408,
+    904,
+    472
+   ]
+  },
+  {
+   "classes": [
+    4
+   ],
+   "rect": [
+    904,
+    408,
+    992,
+    472
+   ]
+  },
+  {
+   "classes": [
+    0
+   ],
+   "rect": [
+    608,
+    480,
+    696,
+    544
+   ]
+  },
+  {
+   "classes": [],
+   "rect": [
+    696,
+    480,
+    784,
+    544
+   ]
+  }
+ ],
+ "clear": {
+  "id": "clear",
+  "image": "textures/scroll/schedule_tex/0.png",
+  "rect": [
+   816,
+   280,
+   904,
+   344
+  ],
+  "layer": 259
+ },
+ "no_clear_mark": [
+  52,
+  53,
+  54
+ ],
+ "hidden_once_won": [
+  48
+ ],
+ "day_digits": {
+  "image": "textures/scroll/schedule_tex/0.png",
+  "digits": [
+   [
+    992,
+    344,
+    1008,
+    368
+   ],
+   [
+    1008,
+    344,
+    1024,
+    368
+   ],
+   [
+    992,
+    408,
+    1008,
+    432
+   ],
+   [
+    1008,
+    408,
+    1024,
+    432
+   ],
+   [
+    1000,
+    312,
+    1016,
+    336
+   ],
+   [
+    952,
+    120,
+    968,
+    144
+   ],
+   [
+    968,
+    120,
+    984,
+    144
+   ],
+   [
+    984,
+    120,
+    1000,
+    144
+   ],
+   [
+    1000,
+    120,
+    1016,
+    144
+   ],
+   [
+    952,
+    32,
+    968,
+    56
+   ]
+  ],
+  "tens": [
+   206,
+   133
+  ],
+  "units": [
+   216,
+   133
+  ],
+  "layer": 260
+ },
+ "scroll_step_seconds": 0.05,
+ "info": {
+  "panel": {
+   "id": "information",
+   "image": "textures/scroll/schedule_tex/0.png",
+   "rect": [
+    640,
+    0,
+    944,
+    280
+   ],
+   "position": [
+    170,
+    110
+   ],
+   "layer": 264
+  },
+  "grow_seconds": 0.2,
+  "grow_from_scale": 0.3,
+  "contest": [
+   184,
+   157
+  ],
+  "class": [
+   184,
+   192
+  ],
+  "body": [
+   184,
+   227
+  ],
+  "legs": [
+   184,
+   262
+  ],
+  "other": [
+   184,
+   297
+  ],
+  "fee": [
+   184,
+   334
+  ],
+  "fee_digits": 9,
+  "fee_unit": {
+   "id": "ny",
+   "image": "textures/scroll/common_2d_tex/1.png",
+   "rect": [
+    464,
+    456,
+    496,
+    472
+   ]
+  },
+  "no_limits": "No limits.",
+  "text_colour": "#f0f0f0",
+  "text_layer": 265
+ },
+ "ticker": {
+  "position": [
+   0,
+   72
+  ],
+  "clip": [
+   0,
+   72,
+   640,
+   90
+  ],
+  "colour": "#ffffff",
+  "speed": 60,
+  "lead": 0,
+  "trail": 144,
+  "layer": 263
+ },
+ "frame": {
+  "hud": true,
+  "meter": [
+   434,
+   395
+  ],
+  "now_playing": {
+   "format": "《 {title} : {artist} 》",
+   "position": [
+    0,
+    419
+   ],
+   "clip": [
+    0,
+    419,
+    396,
+    437
+   ],
+   "colour": "#ffffff",
+   "speed": 60,
+   "trail": 45,
+   "layer": 263
+  }
+ },
+ "skip": {
+  "notes": [
+   "The port's SKIP TO DAY (not in the original), offered beside EXIT (to its left, clear of the CURRENT MUSIC band) when the schedule is opened from the places in 'from' (\"*\": everywhere, the day on any screen's HUD included; the screen's unsaved changes, a shop's purchases, go along). Left/right on the EXIT row choose between the two; a click picks either.",
+   "It skips to the day of the cursor's last column: confirm asks the question (message_box.json's YES/NO window; NO is chosen first when the calendar would start over on a cleared game), YES sleeps every night but the last and leaves for 'to', the sleep screen, which passes the last one and wakes in the garage. Today itself shows the 'nothing' notice.",
+   "In the lines, {day} is the day woken on, {days} the days passing (day_words for one and several), {level} the opponents' level raise now and {next} after the lap. Each lap of the 60-day calendar on a cleared game raises every opponent's level by one (sleep.json, + 0x604c).",
+   "enemy_level: the raise, drawn while the game is cleared, in a sprite_text.json display font fitted to the canvas box."
+  ],
+  "from": ["*"],
+  "to": "sleep",
+  "normal": {"id": "skip", "image": "textures/scroll/schedule_tex/0.png", "rect": [520, 672, 640, 712], "position": [133, 349], "layer": 259},
+  "selected": {"id": "skip_lit", "image": "textures/scroll/schedule_tex/0.png", "rect": [640, 672, 760, 712], "position": [133, 349], "layer": 259},
+  "question": ["Skip to DAY-{day}?", "{days} will pass."],
+  "penalty": ["Skip to DAY-{day}? {days} will pass.", "The calendar starts over and every", "opponent grows stronger: LV +{level} -> +{next}."],
+  "nothing": ["Move the cursor to a later day", "to skip to it."],
+  "day_words": ["day", "days"],
+  "enemy_level": {"text": "ENEMY LV +{level}", "font": "futura_italic", "box": [62, 134, 150, 150], "colour": "#ff7a29", "layer": 260, "shadow": {"offset": [1, 1], "colour": "#000000", "alpha": 0.8, "blur": 0.6}}
+ }
+}

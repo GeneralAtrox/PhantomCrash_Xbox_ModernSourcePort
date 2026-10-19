@@ -1,0 +1,28 @@
+{
+ "notes": [
+  "What NEW GAME plays before name entry, in the intro's format (data/boot/intro.json).",
+  "The original stops the music (scene 28), creates the save (scenes 9 and 46; nothing to check on the PC), then plays opening.sfd followed by opening02.sfd in scene 25. The port takes any button to skip one movie at a time, as the intro does.",
+  "Then it points name entry at the player's name (0x2c5b4, mode 0) and goes to NAME ENTRY (scene 22).",
+  "quest: the fresh save's day (0, shown as DAY-01) and money. money is stored in tens of NY, so 20000 shows as the new game's 200,000 NY; 0x02bec6 sets the money word (cfg+0x9d0) to 0x4e20, keeping its top bit, the cleared-game flag. music is the fresh save's library (0xbab78): only credit 77 (Nuisance, 12SENTOU) is owned, already seen, and it is PROGRAM 1's one track; SEQUENTIAL; the programs have no names.",
+  "garage is the fresh save's hangars and stock (0xb9668, 0xb9774): the first three hangars are owned (the mask 7) and empty, the stock is empty, nothing is ridden, paint 0 and no emblem (205) are owned."
+ ],
+ "quest": { "player_name": "Mr. USA", "day": 0, "money": 20000, "music": { "owned": { "77": 2 }, "programs": [[77]], "program": 0, "random": false }, "garage": { "hangars": [{ "owned": true }, { "owned": true }, { "owned": true }], "riding": -1, "paints": [0], "emblems": [205] } },
+ "steps": [
+  {
+   "id": "opening",
+   "type": "movie",
+   "file": "movie/opening.sfd",
+   "skip": { "buttons": "any", "original_buttons": "confirm", "after": 0.0 },
+   "end_hold": 0.267,
+   "fade_out": 0.0
+  },
+  {
+   "id": "opening02",
+   "type": "movie",
+   "file": "movie/opening02.sfd",
+   "skip": { "buttons": "any", "after": 0.0 },
+   "fade_out": 0.0
+  }
+ ],
+ "then": "name_entry"
+}

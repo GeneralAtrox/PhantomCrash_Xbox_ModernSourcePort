@@ -1,0 +1,29 @@
+{
+  "notes": "Copy game context (scene dump) (docs/SCENE_DUMP.md): the files an agent reads for the screen showing. Every rule whose screens (exact, or a prefix ending in *) or kinds match adds its files; read_always comes first.",
+  "read_always": ["AGENTS.md", "docs/CODE_ORGANIZATION.md"],
+  "rules": [
+    {"screens": ["intro", "new_game", "staff_roll", "ending"], "read": ["data/boot/intro.json"], "edit": ["port/src/desktop_intro.cpp", "port/src/desktop_screens_story.cpp"]},
+    {"screens": ["title", "main_menu", "load_game", "save_game"], "read": ["docs/MAIN_MENU.md", "data/ui/main_menu.json", "data/ui/load_game.json"], "edit": ["port/src/desktop_front_end.cpp", "port/src/desktop_load_game.cpp", "port/src/desktop_screens_menus.cpp"]},
+    {"screens": ["option", "system", "sound_config", "button_config", "screen_adjust"], "read": ["docs/OPTION_SCREEN.md"], "edit": ["port/src/desktop_option.cpp", "port/src/desktop_option_screens.cpp"]},
+    {"screens": ["name_entry", "coop_name"], "read": ["data/ui/name_entry.json"], "edit": ["port/src/desktop_name_entry.cpp"]},
+    {"screens": ["event_*"], "read": ["docs/NEW_GAME.md", "data/story/scenes.json"], "edit": ["port/src/desktop_screens_story.cpp", "port/src/desktop_talk.cpp", "port/src/desktop_event_text.cpp"]},
+    {"screens": ["town_map"], "read": ["data/ui/town_map.json"], "edit": ["port/src/desktop_town_map.cpp", "port/src/desktop_town_screen.cpp"]},
+    {"screens": ["garage", "hangar", "assemble", "keep_sv", "sv_spec", "modules"], "read": ["data/ui/garage.json", "data/ui/hangar.json", "data/ui/assemble.json"], "edit": ["port/src/desktop_hangar_menu.cpp", "port/src/desktop_assemble.cpp", "port/src/desktop_assemble_list.cpp", "port/src/desktop_keep_sv.cpp", "port/src/desktop_sv_spec.cpp", "port/src/desktop_robot_preview.cpp"]},
+    {"screens": ["dealer_*", "wild_machines_*", "plustech_*", "sonic_amp"], "read": ["data/ui/dealer.json", "data/ui/wild_machines.json", "data/ui/plustech.json"], "edit": ["port/src/desktop_dealer.cpp", "port/src/desktop_chip_shop.cpp", "port/src/desktop_module_shop.cpp", "port/src/desktop_used_sv.cpp", "port/src/desktop_tune_shop.cpp", "port/src/desktop_sonic_amp.cpp", "port/src/desktop_shop_dialog.cpp"]},
+    {"screens": ["schedule", "sleep", "records", "pepper_guide", "battle_music"], "read": ["docs/PART_RECORDS.md"], "edit": ["port/src/desktop_schedule.cpp", "port/src/desktop_screens_schedule.cpp", "port/src/desktop_sleep.hpp", "port/src/sleep.cpp", "port/src/desktop_records.cpp", "port/src/desktop_pepper_guide.cpp", "port/src/desktop_screens_music.cpp"]},
+    {"screens": ["rumbling"], "read": ["data/ui/rumbling.json", "data/world/rumbling.json"], "edit": ["port/src/desktop_rumbling.cpp", "port/src/desktop_rumbling_robots.cpp", "port/src/desktop_screens_rumbling.cpp"]},
+    {"screens": ["vs_mode"], "read": ["data/ui/vs_mode.json"], "edit": ["port/src/desktop_vs_mode.cpp", "port/src/desktop_vs_mode_area.cpp", "port/src/desktop_game_screens_vs.cpp"]},
+    {"screens": ["match_result"], "read": ["docs/MATCH_RESULT.md", "docs/REPLAY.md", "data/ui/match_result.json"], "edit": ["port/src/desktop_match_result.cpp", "port/src/desktop_screens_result.cpp", "port/src/desktop_result_backdrop.cpp", "port/src/desktop_training_backdrop.cpp"]},
+    {"screens": ["coop"], "read": ["docs/LOCAL_COOP.md"], "edit": ["port/src/desktop_coop.cpp", "port/src/desktop_coop_draw.cpp", "port/src/desktop_screens_coop.cpp"]},
+    {"screens": ["training_*", "test_drive", "rumbling_battle", "vs_battle", "final_battle"], "read": ["docs/TRAINING_GROUND.md", "data/world/training.json", "data/world/stages.json"], "edit": ["port/src/desktop_training.cpp", "port/src/desktop_training_build.cpp", "port/src/desktop_training_camera.cpp", "port/src/desktop_screens_battle.cpp"]},
+    {"kinds": ["lesson"], "read": [], "edit": ["port/src/training_battle.cpp", "port/src/tutorial.cpp"]},
+    {"kinds": ["free_play"], "read": ["docs/ENTRY_SHIELD_RENDERING.md"], "edit": ["port/src/desktop_battle_scene.cpp", "port/src/desktop_supply.cpp"]},
+    {"kinds": ["test_drive"], "read": ["data/world/test_drive.json"], "edit": ["port/src/test_drive.cpp"]},
+    {"kinds": ["rumbling"], "read": ["data/world/rumbling.json"], "edit": ["port/src/desktop_training_live.cpp", "port/src/desktop_training_result.cpp"]},
+    {"kinds": ["coop_match"], "read": ["docs/LOCAL_COOP.md"], "edit": ["port/src/desktop_training_coop.cpp", "port/src/desktop_coop_matches.cpp", "port/src/desktop_screens_coop_battle.cpp"]},
+    {"kinds": ["vs"], "read": ["data/world/vs_battle.json"], "edit": ["port/src/desktop_training_vs.cpp", "port/src/desktop_training_split.cpp"]},
+    {"kinds": ["finale"], "read": ["docs/FINAL_BATTLE.md"], "edit": ["port/src/desktop_training_finale.cpp", "port/src/desktop_screens_finale.cpp"]},
+    {"kinds": ["scripted_scene"], "read": [], "edit": ["port/src/desktop_battle_scene.cpp"]},
+    {"kinds": ["paused"], "read": [], "edit": ["port/src/desktop_training_pause.cpp"]}
+  ]
+}

@@ -1,0 +1,207 @@
+{
+ "notes": ["SONIC AMP, the music shop on the town map (original scene 20: factory 0xa2807, create 0x2be8b and 0x2bc93, end 0x29a51; menu 0x2b1ec, SPOT 0x2af1a and 0x2ad11, catalogues 0x2b782 and 0x2a9f0, message 0x2ae92, dialog 0x2a714, preview 0x29fdc and 0x2bbaf, chart television 0x29de7). It loads scr_common, sonic_tex and resource 1658 (the jackets), plays 8DEALER (track 15) and goes back to the town map.", "menu: left/right over SPOT, 01, 02, 03 and EXIT (wrapping, sys 3), the chosen one lit and pulsing; confirm (sys 5) opens a grid, EXIT (sys 26) fades out; cancel moves to EXIT (sys 4). The shop slides in with sys 44. Over the catalogues three arrows (2429) drop 8 every 0.5 s as they fade, and 'Be sure to also watch these!' (2441) fades in and out.", "chart: the day's ten tracks (the save's + 0xc28, drawn again every night and by a new game, 0x2a540) on the television, from No. 10 down to No. 1, 11 s each, wrapping. The rank's CD jacket (the credit's large one) is centred at (467, 225) at 1.23 times its size, fading in over 16 frames and out over the last 15. The ring's segments (2452-2461) light for the ranks shown so far, the current one yellow and pulsing. The line to the left scrolls the original's strings (0x1de268 + rank + 0x1de26c + title + 0x1de270); The original's text boxes (0xbe287, set again on each rank by 0x2b351) show 16 glyphs of the rank line from (50, 246), 18 of the artist from (160, 320) and 20 of the help from (280, 45); the rank line's speed here is estimated so the title shows mid-rank. The static (2445, 2446) alternates every 10 frames, the tint (2468) is drawn at 25% and the scan band (2469) at 50% rolling 154 down; its period is estimated. The logo's zoom trail (0x29a8a) is not drawn yet.", "SPOT: the chart's ten tracks, 5 x 2, small jackets at (169 + 80 x column, 194 + 79 x row) on their frames (2440, placed by the shadow's position as an offset), SOLD OUT! (2439) on those owned, the cursor (2428) and the SPOT badge (2464). Catalogues 01-03: every track 6 x 2 a page (track = page x 12 + row x 6 + column, pages 2, 2 and 3); the last page has a row of six (tracks 72-77) set 39 lower. Triggers, or left/right off an edge, turn the page (sys 4); the page box (2447) shows the page of how many. Cancel (sys 8) goes back to the menu; confirm on a track opens the actions.", "actions: BUY, PREVIEW and CANCEL in the clerk's dialog, PREVIEW first; cancel moves to CANCEL (sys 4). BUY pays the price (200, 0x2b782; the original's text says 2000 New Yen, the port says the price it charges), marks the track new (+ 0x9d4 = 1) and says thanks (sys 27); without the money or when owned the clerk says so. Each message stays 2 s or until confirmed. PREVIEW plays the track over its panel (2422) with the large jacket, the artist's name and web address (the credit's + 0x198 images), and its original biography text script at + 0x1a0. The converter exports the biography into tables/music.json as artist_profile, retaining its glyph markup, line breaks, position, colour and layer; cancel after 5 frames (sys 8) returns to the grid and the shop's music. The preview pushes (64, 404) and (128, 424) for the day and money, but 0xb1b56 and 0xb1cdd ignore their coordinates, so they stay where every town screen draws them."],
+ "scene": 20,
+ "music": "dealer",
+ "fade_in": 0.5,
+ "fade_out": 0.5,
+ "exit_to": "town_map",
+ "confirm": {"buttons": "confirm"},
+ "cancel": {"buttons": "cancel"},
+ "cursor_repeat": {"delay": 0.4, "interval": 0.1},
+ "buttons": {"up": "up", "down": "down", "left": "left", "right": "right", "page_back": "left_trigger", "page_forward": "right_trigger"},
+ "sounds": {"move": "cursor", "select": "confirm", "jump": "adjust", "cancel": "cancel", "buy": "purchase", "leave": "club_exit", "open": "shop_open"},
+ "price": 200,
+ "layers": [
+  {"id": "background", "image": "textures/scroll/sonic_tex/2.png", "rect": [0, 0, 640, 480], "position": [0, 0], "layer": 1, "extend_edges": "both", "edge_bands": [[0, 72], [376, 480]],
+ "edge_bands_left": [[0, 72], [414, 480]]},
+  {"id": "top_band", "image": "textures/scroll/sonic_tex/2.png", "rect": [0, 816, 640, 888], "position": [0, 0], "layer": 264, "extend_edges": "both", "edge_inset": [1, 1]},
+  {"id": "bottom_band", "image": "textures/scroll/sonic_tex/2.png", "rect": [0, 640, 640, 744], "position": [0, 376], "layer": 3, "extend_edges": "both", "edge_inset": [1, 1]},
+  {"id": "logo", "image": "textures/scroll/sonic_tex/0.png", "rect": [0, 0, 256, 112], "position": [53, 81], "layer": 4}
+ ],
+ "help": {"position": [280, 45], "clip": [280, 45, 640, 63], "colour": "#ffffff", "speed": 60, "lead": 360, "trail": 27, "layer": 266},
+ "help_text": "{xbe:0x19b3a8}",
+ "help_trail": 27,
+ "track_help": "《 {title} : {artist} 》",
+ "track_help_trail": 45,
+ "menu": {
+  "items": [
+   {
+    "id": "spot",
+    "sprite": {"id": "spot", "image": "textures/scroll/sonic_tex/2.png", "rect": [600, 544, 656, 600], "position": [47, 360], "layer": 3},
+    "lit": {"id": "spot_lit", "image": "textures/scroll/sonic_tex/2.png", "rect": [640, 640, 696, 696], "position": [47, 360], "layer": 257, "animation": "pulse"}
+   },
+   {
+    "id": "catalogue_1",
+    "category": 0,
+    "sprite": {"id": "catalogue_1", "image": "textures/scroll/sonic_tex/2.png", "rect": [664, 480, 720, 536], "position": [122, 360], "layer": 3},
+    "lit": {"id": "catalogue_1_lit", "image": "textures/scroll/sonic_tex/2.png", "rect": [656, 544, 712, 600], "position": [122, 360], "layer": 257, "animation": "pulse"}
+   },
+   {
+    "id": "catalogue_2",
+    "category": 1,
+    "sprite": {"id": "catalogue_2", "image": "textures/scroll/sonic_tex/2.png", "rect": [720, 480, 776, 536], "position": [197, 360], "layer": 3},
+    "lit": {"id": "catalogue_2_lit", "image": "textures/scroll/sonic_tex/2.png", "rect": [712, 544, 768, 600], "position": [197, 360], "layer": 257, "animation": "pulse"}
+   },
+   {
+    "id": "catalogue_3",
+    "category": 2,
+    "sprite": {"id": "catalogue_3", "image": "textures/scroll/sonic_tex/2.png", "rect": [776, 480, 832, 536], "position": [272, 360], "layer": 3},
+    "lit": {"id": "catalogue_3_lit", "image": "textures/scroll/sonic_tex/2.png", "rect": [768, 544, 824, 600], "position": [272, 360], "layer": 257, "animation": "pulse"}
+   },
+   {
+    "id": "exit",
+    "sprite": {"id": "exit", "image": "textures/scroll/sonic_tex/2.png", "rect": [944, 480, 1000, 536], "position": [347, 360], "layer": 3},
+    "lit": {"id": "exit_lit", "image": "textures/scroll/sonic_tex/2.png", "rect": [936, 544, 992, 600], "position": [347, 360], "layer": 257, "animation": "pulse"}
+   }
+  ],
+  "arrows": [
+   {"id": "arrow_1", "image": "textures/scroll/sonic_tex/2.png", "rect": [768, 448, 792, 472], "position": [136, 332], "layer": 257},
+   {"id": "arrow_2", "image": "textures/scroll/sonic_tex/2.png", "rect": [768, 448, 792, 472], "position": [211, 332], "layer": 257},
+   {"id": "arrow_3", "image": "textures/scroll/sonic_tex/2.png", "rect": [768, 448, 792, 472], "position": [286, 332], "layer": 257}
+  ],
+  "arrow_drop": 8,
+  "arrow_seconds": 0.5,
+  "watch": {"id": "watch", "image": "textures/scroll/sonic_tex/2.png", "rect": [640, 696, 880, 720], "position": [104, 310], "layer": 257}
+ },
+ "chart": {
+  "seconds": 11,
+  "fade_in": 0.2667,
+  "fade_out": 0.25,
+  "ring": {"id": "ring", "image": "textures/scroll/sonic_tex/2.png", "rect": [640, 0, 920, 288], "position": [327, 83], "layer": 7},
+  "static": [
+   {"id": "static_a", "image": "textures/scroll/sonic_tex/2.png", "rect": [640, 288, 840, 448], "position": [367, 146], "layer": 3},
+   {"id": "static_b", "image": "textures/scroll/sonic_tex/2.png", "rect": [0, 480, 200, 640], "position": [367, 146], "layer": 3}
+  ],
+  "static_period": 0.3333,
+  "tint": {"id": "tint", "image": "textures/scroll/sonic_tex/2.png", "rect": [400, 480, 600, 640], "position": [367, 146], "layer": 6},
+  "tint_alpha": 0.25,
+  "scan": {"id": "scan", "image": "textures/scroll/sonic_tex/2.png", "rect": [768, 472, 920, 480], "position": [392, 146], "layer": 5},
+  "scan_distance": 154,
+  "scan_seconds": 4,
+  "scan_alpha": 0.5,
+  "jacket_centre": [467, 225],
+  "jacket_scale": 1.23,
+  "jacket_layer": 4,
+  "segments": [
+   {"id": "segment_1", "image": "textures/scroll/sonic_tex/2.png", "rect": [840, 400, 880, 440], "position": [371, 109], "layer": 257},
+   {"id": "segment_2", "image": "textures/scroll/sonic_tex/2.png", "rect": [880, 400, 920, 440], "position": [407, 89], "layer": 257},
+   {"id": "segment_3", "image": "textures/scroll/sonic_tex/2.png", "rect": [920, 400, 960, 440], "position": [450, 89], "layer": 257},
+   {"id": "segment_4", "image": "textures/scroll/sonic_tex/2.png", "rect": [960, 400, 1000, 440], "position": [492, 89], "layer": 257},
+   {"id": "segment_5", "image": "textures/scroll/sonic_tex/2.png", "rect": [952, 352, 992, 392], "position": [527, 109], "layer": 257},
+   {"id": "segment_6", "image": "textures/scroll/sonic_tex/2.png", "rect": [952, 152, 992, 192], "position": [527, 301], "layer": 257},
+   {"id": "segment_7", "image": "textures/scroll/sonic_tex/2.png", "rect": [600, 600, 640, 640], "position": [492, 325], "layer": 257},
+   {"id": "segment_8", "image": "textures/scroll/sonic_tex/2.png", "rect": [640, 600, 680, 640], "position": [450, 325], "layer": 257},
+   {"id": "segment_9", "image": "textures/scroll/sonic_tex/2.png", "rect": [680, 600, 720, 640], "position": [407, 325], "layer": 257},
+   {"id": "segment_10", "image": "textures/scroll/sonic_tex/2.png", "rect": [720, 600, 760, 640], "position": [371, 301], "layer": 257}
+  ],
+  "segment_colour": "#5afac8",
+  "segment_lit": {"id": "segment_lit", "image": "", "rect": [0, 0, 0, 0], "colour": "#fff05a", "animation": "pulse"},
+  "rank": {"position": [50, 246], "clip": [50, 246, 338, 264], "colour": "#ffffff", "speed": 110, "lead": 0, "trail": 0, "layer": 257},
+  "rank_format": "・・・・・・・・・・・・・・・・・・・・・・・・・RANK{rank}・・・{title}・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・",
+  "artist": {"position": [160, 320], "clip": [160, 320, 484, 338], "colour": "#ffffff", "speed": 60, "lead": 0, "trail": 90, "layer": 257}
+ },
+ "grid": {
+  "step": [80, 79],
+  "shadow": {"id": "shadow", "image": "textures/scroll/sonic_tex/2.png", "rect": [920, 192, 1000, 272], "position": [-8, -8], "layer": 260},
+  "jacket_layer": 261,
+  "cursor": {"id": "cursor", "image": "textures/scroll/sonic_tex/2.png", "rect": [928, 0, 1016, 88], "layer": 262, "animation": "pulse"},
+  "cursor_offset": [-11, -12],
+  "sold_out": {"id": "sold_out", "image": "textures/scroll/sonic_tex/2.png", "rect": [600, 480, 664, 544], "layer": 262},
+  "band": {"id": "band", "image": "textures/scroll/sonic_tex/2.png", "rect": [920, 0, 928, 192], "position": [0, 172], "layer": 258, "size": [640, 192]},
+  "band_seconds": 0.25,
+  "spot": {
+   "origin": [169, 194],
+   "columns": 5,
+   "badge": {"id": "spot_badge", "image": "textures/scroll/sonic_tex/2.png", "rect": [840, 288, 952, 400], "position": [54, 215], "layer": 259}
+  },
+  "catalogue": {
+   "origin": [89, 194],
+   "columns": 6,
+   "rows": 2,
+   "category_pages": [2, 2, 3],
+   "tracks": 78,
+   "short_page_offset": 39,
+   "page_box": {"id": "page_box", "image": "textures/scroll/sonic_tex/2.png", "rect": [640, 448, 768, 480], "position": [542, 163], "layer": 259},
+   "page_slash": {"id": "page_slash", "image": "textures/scroll/common_2d_tex/1.png", "rect": [480, 360, 496, 376], "position": [561, 169], "layer": 260},
+   "page_number": {"right": [551, 169], "digits": 1, "pad": false, "colour": "#ffffff"},
+   "total_at": [576, 169],
+   "page_arrows": [
+    {"id": "page_left", "image": "textures/scroll/sonic_tex/2.png", "rect": [952, 288, 984, 352], "position": [47, 235], "layer": 265},
+    {"id": "page_right", "image": "textures/scroll/sonic_tex/2.png", "rect": [928, 88, 960, 152], "position": [564, 235], "layer": 265}
+   ]
+  },
+  "hints": [
+   {"id": "b", "image": "textures/scroll/scr_common_tex/0.png", "rect": [256, 184, 272, 200], "position": [489, 359], "layer": 264},
+   {"id": "cancel", "image": "textures/scroll/scr_common_tex/0.png", "rect": [536, 184, 600, 200], "position": [515, 361], "layer": 264}
+  ]
+ },
+ "actions": {
+  "items": [
+   {
+    "id": "buy",
+    "sprite": {"id": "buy", "image": "textures/scroll/sonic_tex/2.png", "rect": [792, 448, 888, 472], "position": [140, 282], "layer": 264},
+    "lit": {"id": "buy_lit", "image": "textures/scroll/sonic_tex/2.png", "rect": [888, 448, 984, 472], "position": [140, 282], "layer": 265, "animation": "pulse"}
+   },
+   {
+    "id": "preview",
+    "sprite": {"id": "preview", "image": "textures/scroll/sonic_tex/2.png", "rect": [880, 696, 976, 720], "position": [235, 282], "layer": 264},
+    "lit": {"id": "preview_lit", "image": "textures/scroll/sonic_tex/2.png", "rect": [696, 664, 792, 688], "position": [235, 282], "layer": 265, "animation": "pulse"}
+   },
+   {
+    "id": "cancel",
+    "sprite": {"id": "cancel", "image": "textures/scroll/sonic_tex/2.png", "rect": [856, 600, 952, 624], "position": [330, 281], "layer": 264},
+    "lit": {"id": "cancel_lit", "image": "textures/scroll/sonic_tex/2.png", "rect": [696, 640, 792, 664], "position": [330, 281], "layer": 265, "animation": "pulse"}
+   }
+  ],
+  "first": 1
+ },
+ "dialog": {
+  "window": {"id": "window", "image": "textures/scroll/common_2d_tex/1.png", "rect": [0, 192, 416, 344], "position": [112, 164], "layer": 263},
+  "decorations": [
+   {"id": "name_plate", "image": "textures/scroll/scr_common_tex/0.png", "rect": [344, 72, 456, 104], "position": [120, 174], "layer": 265}
+  ],
+  "text_at": [139, 212],
+  "line_step": 20,
+  "text_colour": "#ffffff",
+  "text_layer": 265,
+  "says": {
+   "price": {
+    "face": {"id": "face_price", "image": "textures/scroll/sonic_tex/0.png", "rect": [64, 112, 128, 176], "position": [442, 212], "layer": 264},
+    "lines": [" {xbe:0x19b4d0}", " {price} New Yen."]
+   },
+   "thanks": {
+    "face": {"id": "face_thanks", "image": "textures/scroll/sonic_tex/0.png", "rect": [128, 112, 192, 176], "position": [442, 212], "layer": 264},
+    "lines": [" Thank you~♪"]
+   },
+   "poor": {
+    "face": {"id": "face_poor", "image": "textures/scroll/sonic_tex/0.png", "rect": [0, 112, 64, 176], "position": [442, 212], "layer": 264},
+    "lines": [" I think you don't have", " enough money."]
+   },
+   "owned": {
+    "face": {"id": "face_owned", "image": "textures/scroll/sonic_tex/0.png", "rect": [0, 112, 64, 176], "position": [442, 212], "layer": 264},
+    "lines": [" {xbe:0x19b418}", " {xbe:0x19b3f0}"]
+   }
+  }
+ },
+ "message_seconds": 2,
+ "preview": {
+  "layers": [
+   {"id": "panel", "image": "textures/scroll/sonic_tex/1.png", "rect": [0, 0, 560, 288], "position": [44, 101], "layer": 5},
+   {"id": "bottom_band", "image": "textures/scroll/sonic_tex/2.png", "rect": [0, 640, 640, 744], "position": [0, 376], "layer": 6, "extend_edges": "both", "edge_inset": [1, 1]}
+  ],
+  "jacket": [55, 144],
+  "name": [206, 110],
+  "link": [65, 340],
+  "layer": 264,
+  "hints": [
+   {"id": "b", "image": "textures/scroll/scr_common_tex/0.png", "rect": [256, 184, 272, 200], "position": [494, 359], "layer": 264},
+   {"id": "back", "image": "textures/scroll/scr_common_tex/0.png", "rect": [600, 184, 664, 200], "position": [520, 361], "layer": 264}
+  ],
+  "min_seconds": 0.0833
+ },
+ "frame": {
+  "hud": true,
+  "meter": [435, 396],
+  "now_playing": {"format": "《 {title} : {artist} 》", "position": [0, 419], "clip": [0, 419, 396, 437], "colour": "#ffffff", "speed": 60, "trail": 45, "layer": 263}
+ }
+}

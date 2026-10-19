@@ -1,0 +1,568 @@
+{
+ "text_replacements": [
+  {"source": {"image": "textures/scroll/game_vs_tex/0.png", "rect": [400, 344, 464, 360]}, "text": "WEAPON LOST"},
+  {"source": {"image": "textures/scroll/game_vs_tex/0.png", "rect": [400, 360, 464, 376]}, "text": "WEAPON LOST"},
+  {"source": {"image": "textures/scroll/game_vs_tex/0.png", "rect": [400, 264, 504, 280]}, "text": "MISSILE ALERT"},
+  {"source": {"image": "textures/scroll/game_vs_tex/0.png", "rect": [400, 216, 488, 240]}, "stroke_width": 0.8, "centered": true, "line_pitch": 8, "text": "SYS DURABILITY\nDOWN 50%", "colour": "#ffc823"},
+  {"source": {"image": "textures/scroll/game_vs_tex/0.png", "rect": [136, 344, 224, 368]}, "stroke_width": 0.8, "centered": true, "line_pitch": 8, "text": "SYS DURABILITY\nDOWN 75%", "colour": "#ff6060"},
+  {"source": {"image": "textures/scroll/game_vs_tex/0.png", "rect": [200, 280, 328, 312]}, "text": "DURABILITY", "region": [8, 2, 75, 14], "colour": "#b0ff20"},
+  {"source": {"image": "textures/scroll/game_vs_tex/0.png", "rect": [0, 376, 120, 392]}, "text": "O.C TIME", "region": [3, 3, 50, 14], "colour": "#b0ff20"}
+ ],
+ "notes": [
+  "The split-screen battle panels for three or four screens (0x203f50, the weapon records 0x204a20 left and 0x204d90 right), in the 320x240 canvas of one screen, from game_vs_tex (slot 466) and game_tex (slot 464). Same schema as battle_panels.json.",
+  "With more than one screen the original (0x4aaed, 0x4ad3b) draws no DAY, TIME, MONEY or SHOOTDOWN labels, no DAMAGED / HIT / BINGO! messages and no ammunition or charge bars: their sections are left out. The weapon panel is the 64x16 icon strip on its frame, the digits above it.",
+  "The warning and MISSILE ALERT sit near the screen's middle here, so they are centre-anchored (the anchors are the port's)."
+ ],
+ "layout": "widescreen",
+ "canvas": [
+  320,
+  240
+ ],
+ "flash_frames": 10,
+ "durability": {
+  "anchor": "centre",
+  "frame": {
+   "image": "textures/scroll/game_vs_tex/0.png",
+   "rect": [
+    200,
+    280,
+    328,
+    312
+   ],
+   "position": [
+    104,
+    188
+   ]
+  },
+  "fill": {
+   "image": "textures/scroll/game_vs_tex/0.png",
+   "rect": [
+    488,
+    0,
+    496,
+    8
+   ],
+   "position": [
+    113,
+    203
+   ]
+  },
+  "width": 102,
+  "colour": "#ffc823",
+  "low_colour": "#c04040",
+  "low": 0.25,
+  "flash_colour": "#8080e1"
+ },
+ "optic": {
+  "anchor": "centre",
+  "frame": {
+   "image": "textures/scroll/game_vs_tex/0.png",
+   "rect": [
+    0,
+    376,
+    120,
+    392
+   ],
+   "position": [
+    140,
+    211
+   ]
+  },
+  "fill": {
+   "image": "textures/scroll/game_vs_tex/0.png",
+   "rect": [
+    496,
+    0,
+    504,
+    8
+   ],
+   "position": [
+    191,
+    216
+   ]
+  },
+  "width": 58,
+  "colour": "#3f77c1",
+  "low_colour": "#c040c0",
+  "low": 0.25,
+  "active_colour": "#64ff6e"
+ },
+ "weapons": {
+  "ready_colour": "#32c88c",
+  "refill_colour": "#8080e1",
+  "bar_colour": "#32ff8c",
+  "bar_low_colour": "#c04040",
+  "bar_charging_colour": "#ffc823",
+  "bar_low": 0.25,
+  "left": {
+   "anchor": "left",
+   "arm": [
+    44,
+    187
+   ],
+   "shoulder": [
+    44,
+    51
+   ],
+   "frame": {
+    "image": "textures/scroll/game_vs_tex/0.png",
+    "rect": [
+     0,
+     408,
+     64,
+     424
+    ]
+   },
+   "digit_image": "textures/scroll/game_tex/0.png",
+   "digits": [
+    [
+     160,
+     144,
+     176,
+     160
+    ],
+    [
+     176,
+     144,
+     192,
+     160
+    ],
+    [
+     192,
+     144,
+     208,
+     160
+    ],
+    [
+     208,
+     144,
+     224,
+     160
+    ],
+    [
+     224,
+     144,
+     240,
+     160
+    ],
+    [
+     240,
+     144,
+     256,
+     160
+    ],
+    [
+     240,
+     88,
+     256,
+     104
+    ],
+    [
+     200,
+     160,
+     216,
+     176
+    ],
+    [
+     216,
+     160,
+     232,
+     176
+    ],
+    [
+     232,
+     160,
+     248,
+     176
+    ]
+   ],
+   "digit_positions": [
+    [
+     0,
+     -17
+    ],
+    [
+     12,
+     -17
+    ],
+    [
+     24,
+     -17
+    ],
+    [
+     36,
+     -17
+    ]
+   ],
+   "percent": {
+    "image": "textures/scroll/game_tex/0.png",
+    "rect": [
+     240,
+     32,
+     256,
+     48
+    ],
+    "position": [
+     36,
+     -17
+    ]
+   },
+   "icon": [
+    0,
+    0
+   ],
+   "lost": {
+    "image": "textures/scroll/game_vs_tex/0.png",
+    "rect": [
+     400,
+     344,
+     464,
+     360
+    ],
+    "position": [
+     0,
+     -17
+    ],
+    "colour": "#ff4040"
+   }
+  },
+  "right": {
+   "anchor": "right",
+   "arm": [
+    242,
+    187
+   ],
+   "shoulder": [
+    242,
+    51
+   ],
+   "frame": {
+    "image": "textures/scroll/game_vs_tex/0.png",
+    "rect": [
+     64,
+     408,
+     128,
+     424
+    ]
+   },
+   "digit_image": "textures/scroll/game_tex/0.png",
+   "digits": [
+    [
+     56,
+     184,
+     72,
+     200
+    ],
+    [
+     72,
+     184,
+     88,
+     200
+    ],
+    [
+     88,
+     184,
+     104,
+     200
+    ],
+    [
+     104,
+     184,
+     120,
+     200
+    ],
+    [
+     120,
+     184,
+     136,
+     200
+    ],
+    [
+     136,
+     184,
+     152,
+     200
+    ],
+    [
+     152,
+     184,
+     168,
+     200
+    ],
+    [
+     168,
+     184,
+     184,
+     200
+    ],
+    [
+     184,
+     184,
+     200,
+     200
+    ],
+    [
+     200,
+     184,
+     216,
+     200
+    ]
+   ],
+   "digit_positions": [
+    [
+     8,
+     -17
+    ],
+    [
+     20,
+     -17
+    ],
+    [
+     32,
+     -17
+    ],
+    [
+     44,
+     -17
+    ]
+   ],
+   "percent": {
+    "image": "textures/scroll/game_tex/0.png",
+    "rect": [
+     216,
+     184,
+     232,
+     200
+    ],
+    "position": [
+     44,
+     -17
+    ]
+   },
+   "icon": [
+    0,
+    0
+   ],
+   "lost": {
+    "image": "textures/scroll/game_vs_tex/0.png",
+    "rect": [
+     400,
+     360,
+     464,
+     376
+    ],
+    "position": [
+     0,
+     -17
+    ],
+    "colour": "#ff4040"
+   }
+  },
+  "icons": {
+   "0": {
+    "left": {
+     "image": "textures/scroll/game_vs_tex/0.png",
+     "rect": [
+      0,
+      392,
+      64,
+      408
+     ]
+    },
+    "right": {
+     "image": "textures/scroll/game_vs_tex/0.png",
+     "rect": [
+      64,
+      392,
+      128,
+      408
+     ]
+    }
+   },
+   "1": {
+    "left": {
+     "image": "textures/scroll/game_vs_tex/0.png",
+     "rect": [
+      248,
+      376,
+      312,
+      392
+     ]
+    },
+    "right": {
+     "image": "textures/scroll/game_vs_tex/0.png",
+     "rect": [
+      312,
+      376,
+      376,
+      392
+     ]
+    },
+    "homing": {
+     "left": {
+      "image": "textures/scroll/game_vs_tex/0.png",
+      "rect": [
+       120,
+       376,
+       184,
+       392
+      ]
+     },
+     "right": {
+      "image": "textures/scroll/game_vs_tex/0.png",
+      "rect": [
+       184,
+       376,
+       248,
+       392
+      ]
+     }
+    }
+   },
+   "2": {
+    "left": {
+     "image": "textures/scroll/game_vs_tex/0.png",
+     "rect": [
+      128,
+      392,
+      192,
+      408
+     ]
+    },
+    "right": {
+     "image": "textures/scroll/game_vs_tex/0.png",
+     "rect": [
+      192,
+      392,
+      256,
+      408
+     ]
+    }
+   },
+   "3": {
+    "left": {
+     "image": "textures/scroll/game_vs_tex/0.png",
+     "rect": [
+      376,
+      376,
+      440,
+      392
+     ]
+    },
+    "right": {
+     "image": "textures/scroll/game_vs_tex/0.png",
+     "rect": [
+      440,
+      376,
+      504,
+      392
+     ]
+    }
+   },
+   "5": {
+    "left": {
+     "image": "textures/scroll/game_vs_tex/0.png",
+     "rect": [
+      256,
+      392,
+      320,
+      408
+     ]
+    },
+    "right": {
+     "image": "textures/scroll/game_vs_tex/0.png",
+     "rect": [
+      320,
+      392,
+      384,
+      408
+     ]
+    },
+    "readout": "charge"
+   },
+   "6": {
+    "left": {
+     "image": "textures/scroll/game_vs_tex/0.png",
+     "rect": [
+      384,
+      392,
+      448,
+      408
+     ]
+    },
+    "right": {
+     "image": "textures/scroll/game_vs_tex/0.png",
+     "rect": [
+      448,
+      392,
+      512,
+      408
+     ]
+    },
+    "readout": "none"
+   }
+  }
+ },
+ "warning": {
+  "anchor": "centre",
+  "stripes": {
+   "image": "textures/scroll/game_vs_tex/0.png",
+   "rect": [
+    312,
+    344,
+    400,
+    368
+   ],
+   "position": [
+    129,
+    36
+   ]
+  },
+  "half": {
+   "image": "textures/scroll/game_vs_tex/0.png",
+   "rect": [
+    400,
+    216,
+    488,
+    240
+   ],
+   "position": [
+    129,
+    36
+   ]
+  },
+  "quarter": {
+   "image": "textures/scroll/game_vs_tex/0.png",
+   "rect": [
+    136,
+    344,
+    224,
+    368
+   ],
+   "position": [
+    129,
+    36
+   ]
+  },
+  "half_below": 0.5,
+  "quarter_below": 0.25
+ },
+ "missile_alert": {
+  "anchor": "centre",
+  "sprite": {
+   "image": "textures/scroll/game_vs_tex/0.png",
+   "rect": [
+    400,
+    264,
+    504,
+    280
+   ],
+   "position": [
+    124,
+    70
+   ],
+   "colour": "#ff8080"
+  },
+  "wave_frames": 60
+ }
+}

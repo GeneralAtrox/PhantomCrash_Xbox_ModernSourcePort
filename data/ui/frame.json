@@ -1,0 +1,66 @@
+{
+ "notes": [
+  "sort_hints: over a goods list while it takes input (ASSEMBLE 0x01b59d, BUY and SELL MODULE 0x024aab and 0x024de0, CUSTOMIZE 0x03215c, STOCK MODULE 0x03dfed all call 0x0178e0 with the list) the table at 0x1db0b8 (0xbbc3d): X (3129) and SORT NAME (3151), Y (3130) and SORT PRICE (3152), each with an arrow, on layer 0x101. All six are dimmed (0xff808080); the key the list is sorted by (list +0xff1, 0 name, 1 price) is lit, and its arrow is up (3171) while in the order the key starts in (+0xff2 set, 0x01733d) and down (3170) once turned round.",
+  "What the town screens share (Club Wired, the talk scenes, NAME ENTRY, Pepper's guide): the day and money in the top left, and the CURRENT MUSIC meter. Each screen's own data file places the meter and the credit ticker (its \"frame\").",
+  "hud: every screen draws it in the same place: callers push their own coordinates, but 0xb1b56 and 0xb1cdd overwrite them with (51, 49) and (253, 49), so no screen has a place of its own. \"DAY-\" (sprite 0xea7) with the day from 01 (0xb1ba5: number font 3, two digits, zero-padded, right edge 57 past the label), and the money (0xb1d37: nine digits with commas, right edge 253, colour #f0f0f0) with \"NY\" (0xeaa) one past it. Numbers are written right to left, a glyph one advance left of the one before (0xbc769, 0xbca52); a comma goes before every third digit.",
+  "save_button (a port addition): a memory unit with an arrow going into it, drawn as vector outlines (data/ui/sprite_shapes.json's outline format, box and paths in canvas units over size) in the black under the bar's slant just after the day, clear of the art on the town screens whose bar is black there. offset is from the DAY- label's top-left, so a placement that moves the day moves it too; a screen whose bar keeps its black elsewhere (the garage's, black above the slant) moves it with save_offset in its own frame. It is grey, and lit (yellow) while the mouse is over it; a click opens SAVE over the screen, which comes back to it. Screens without the SKIP TO DAY shortcut, SAVE and LOAD GAME themselves, and RESULT do not show it. Remove the entry to remove the button.",
+  "font: number font 3 (0x27dc18 + 0xc0): sprites 0xe96-0xe9f advance 11, the comma 0xea0 advance 5. The decimal point (for the CHIP shops' weights) is 0xea3, advance 5 (researcher's choice: the font table lists no point).",
+  "riding_plate: the RIDING SV plate (0x6dd74, 0x6db03; sprite 0xc08) at (0, 399), layer 0x102, with the ridden Scoobee's name (its hangar record + 0x22, nine glyphs at most, #f0f0f0) 106 right and 5 down. It starts when the screen has faded in and slides in from 320 to the left over 8 frames. It shows only while a Scoobee is ridden (the quest save's \"riding\"; save + 0x9c8's low five bits, slot 0-9); a new game rides none (0xb9668). The original passes the name layer 2 on its text scale; the port draws the name just over the plate.",
+  "meter: seven bars 4 wide and 24 high, 7 apart, in the strips' dark slots. Each screen's meter origin is the top left of its band's first painted slot (435,396 on most bands; 434,315 on the town bands), so the bars cover the slots exactly; an origin a texel off shows the slot's edge beside each bar. The original lights them with the swatches 0xe93 (dark) and 0xe94 (orange); its drawer is not identified, so the levels are the port's own and follow the music heard: each bar is a band of pitches from low_hz to high_hz (bass on the left), rising at once to its band's level and falling at fall_per_second, in level_step steps.",
+  "meter.music: each band is measured against its own last memory_seconds, so every bar is used rather than the bass full and the treble empty: at its running average a band stands at centre, and it takes reach running spreads (in dB, at least min_spread_db) above the average to fill the bar. A band quieter than gate_db is silent. window is the samples looked at, a power of two."
+ ],
+ "hud": {
+  "layer": 264,
+  "font": {
+   "image": "textures/scroll/common_2d_tex/1.png",
+   "digits": [[496, 288, 512, 304], [496, 328, 512, 344], [472, 288, 488, 304], [416, 328, 432, 344], [432, 328, 448, 344], [480, 344, 496, 360], [496, 344, 512, 360], [360, 384, 376, 400], [376, 384, 392, 400], [392, 384, 408, 400]],
+   "advance": 11,
+   "comma": [408, 384, 424, 400],
+   "comma_advance": 5,
+   "point": [456, 384, 472, 400],
+   "point_advance": 5
+  },
+  "day_label": { "id": "day", "image": "textures/scroll/common_2d_tex/1.png", "rect": [360, 456, 400, 472], "position": [51, 49], "layer": 264 },
+  "day": { "right": [108, 49], "digits": 2, "pad": true, "colour": "#ffffff" },
+  "money": { "right": [253, 49], "digits": 9, "commas": true, "colour": "#f0f0f0" },
+  "money_unit": { "id": "ny", "image": "textures/scroll/common_2d_tex/1.png", "rect": [464, 456, 496, 472], "position": [254, 49], "layer": 264 }
+,
+  "save_button": {
+   "offset": [59, 7],
+   "size": [10, 11],
+   "normal": [
+    { "box": [0, 4.5, 10, 11], "radius": 1.5, "stops": [[-1.2, "#a0a0a0", 0], [-1.2, "#a0a0a0"], [0, "#a0a0a0"], [0, "#a0a0a0", 0]] },
+    { "box": [2.5, 8.6, 7.5, 9.7], "stops": [[0, "#a0a0a0"], [0, "#a0a0a0", 0]] },
+    { "box": [4.1, 0, 5.9, 3.2], "stops": [[0, "#a0a0a0"], [0, "#a0a0a0", 0]] },
+    { "path": "M 2.2 2.7 L 7.8 2.7 L 5 6.2 Z", "stops": [[0, "#a0a0a0"], [0, "#a0a0a0", 0]] }
+   ],
+   "lit": [
+    { "box": [0, 4.5, 10, 11], "radius": 1.5, "stops": [[-1.2, "#ffcf00", 0], [-1.2, "#ffcf00"], [0, "#ffcf00"], [0, "#ffcf00", 0]] },
+    { "box": [2.5, 8.6, 7.5, 9.7], "stops": [[0, "#ffcf00"], [0, "#ffcf00", 0]] },
+    { "box": [4.1, 0, 5.9, 3.2], "stops": [[0, "#ffcf00"], [0, "#ffcf00", 0]] },
+    { "path": "M 2.2 2.7 L 7.8 2.7 L 5 6.2 Z", "stops": [[0, "#ffcf00"], [0, "#ffcf00", 0]] }
+   ]
+  }
+
+ },
+ "meter": {
+  "unlit": { "id": "meter_dark", "image": "textures/scroll/common_2d_tex/1.png", "rect": [449, 217, 455, 223], "layer": 264 },
+  "lit": { "id": "meter_lit", "image": "textures/scroll/common_2d_tex/1.png", "rect": [457, 217, 463, 223], "layer": 264 },
+  "bars": 7,
+  "step": 7,
+  "bar_size": [4, 24],
+  "level_step": 2,
+  "fall_per_second": 1.5,
+  "music": { "window": 2048, "low_hz": 60, "high_hz": 14000, "memory_seconds": 3, "centre": 0.3, "reach": 2, "min_spread_db": 3, "gate_db": -70 }
+ },
+ "riding_plate": {
+  "plate": { "id": "riding_sv", "image": "textures/scroll/scr_common_tex/0.png", "rect": [720, 0, 984, 32], "position": [0, 399], "layer": 258 },
+  "name_offset": [106, 5],
+  "name_colour": "#f0f0f0",
+  "name_layer": 259,
+  "max_glyphs": 9,
+  "slide_from": -320,
+  "slide_seconds": 0.1333
+ },
+ "sort_hints": {"keys": [{"button": {"id": "3129", "image": "textures/scroll/scr_common_tex/0.png", "rect": [352, 184, 368, 200], "position": [113, 99], "layer": 257}, "label": {"id": "3151", "image": "textures/scroll/scr_common_tex/0.png", "rect": [864, 200, 952, 216], "position": [132, 101], "layer": 257}, "arrow_at": [220, 101]}, {"button": {"id": "3130", "image": "textures/scroll/scr_common_tex/0.png", "rect": [368, 184, 384, 200], "position": [241, 99], "layer": 257}, "label": {"id": "3152", "image": "textures/scroll/scr_common_tex/0.png", "rect": [0, 216, 96, 232], "position": [260, 101], "layer": 257}, "arrow_at": [350, 101]}], "up": {"id": "3171", "image": "textures/scroll/scr_common_tex/0.png", "rect": [1008, 200, 1024, 216], "layer": 257}, "down": {"id": "3170", "image": "textures/scroll/scr_common_tex/0.png", "rect": [1008, 184, 1024, 200], "layer": 257}, "lit": "#ffffff", "dim": "#808080"}
+}

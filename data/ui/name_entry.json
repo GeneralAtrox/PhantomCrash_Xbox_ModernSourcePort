@@ -1,0 +1,109 @@
+{
+ "notes": [
+  "NAME ENTRY (original scene 22: create 0x2c614, init 0x2c8cb, controls 0x2cd21 and 0x2d194, animation 0x2ca50 and 0x2cb9e, draw 0x2d9ca, end 0x2d5f9, check 0x2d723, message 0x2d7ac).",
+  "pages are Alphabet, Symbols and End (0x1f99e8, 15 x 6 characters each; End has no grid). Row 6 is the tab row: the D-pad moves between the tabs there, and a tab is chosen as soon as the cursor lands on it.",
+  "confirm types the character under the cursor (or ends the entry on End); typing at the last place replaces it. delete removes the last character, space adds one, page_back and page_forward change page, wrapping only on a new press. end jumps to the End tab (the original's B/BACK mask 0x220).",
+  "A name of only spaces is no name: the notice opens and the name is emptied (0x2d723). Otherwise the screen fades out to exit_to and the name is kept.",
+  "animation: after the fade in the grid and tabs fade in (intro_per_second); halfway, the controls box slides in from slide_from to slide_to, then its button hints fade in. Once the box passes grow_below_x the name box grows (10 frames: wider than full, then taller) and the label and name appear. Each page's characters fade in when it is chosen, the previous page's out.",
+  "The cursors pulse: alpha is sin(phase) x 128 / 255, the phase going up 0.05 a frame and wrapping at pi (0x2e360). The grid cursor shows only on the grid.",
+  "The colums step with sys entry 4, rows with 3; a page change plays 9, typing and space 5, delete 21.",
+  "Scene 22 starts no music of its own (tables/music.json scene_music is -1), so the track playing carries on: from NEW GAME that is event 48's Awake to Love. It runs the radio (0x2c74b, data/audio/radio.json), so once the music stops another song from the playlist follows.",
+  "frame: the day and money (0x2e337: data/ui/frame.json), the music meter in the band's slots and the CURRENT MUSIC credit along y 419 (0x2c7c8: 0x2a85a at 0, 419, 23 characters) while a credited track plays.",
+  "labels: NAME ENTRY names the player (mode 0, label), a dealer's new CHIP (mode 2, labels.chip: 0x3ad84 names the CHIP's stock entry) or a battle music program (mode 3, labels.program); the label sprites are 0x1f96c0's, by mode.",
+  "Where the entry leads depends on the scene that opened it (0xa2e70): exits maps the screen before it to the next one, exit_to is the rest. After event 48 it is Pepper's guide (scene 19), which event 49 leads into."
+ ],
+ "music": "keep",
+ "fade_in": 0.5,
+ "fade_out": 0.5,
+ "exit_to": "club_wired",
+ "exits": { "event_48": "pepper_guide", "battle_music": "battle_music", "dealer_american_stars": "dealer_american_stars", "dealer_kojima": "dealer_kojima", "dealer_ventuno": "dealer_ventuno", "wild_machines_buy_chip": "wild_machines_buy_chip", "wild_machines_used_sv": "wild_machines_used_sv", "assemble": "assemble" },
+ "confirm": { "buttons": "confirm" },
+ "cancel": { "buttons": "cancel" },
+ "cursor_repeat": { "delay": 0.4, "interval": 0.1 },
+ "sounds": { "move": "cursor", "move_x": "adjust", "select": "confirm", "page": "page", "delete": "delete" },
+ "buttons": { "delete": "x", "space": "y", "page_back": "left_trigger", "page_forward": "right_trigger" },
+ "max_length": 8,
+ "keyboard": { "aliases": { "-": "ー", ".": "・", "*": "★", "[": "『", "]": "』", "^": "↑" } },
+ "pages": [
+  {
+   "id": "alphabet",
+   "help": "Input alphabet/numbers.",
+   "rows": [
+    "ＡＢＣＤＥａｂｃｄｅ１２３４５",
+    "ＦＧＨＩＪｆｇｈｉｊ６７８９０",
+    "ＫＬＭＮＯｋｌｍｎｏ　　　　　",
+    "ＰＱＲＳＴｐｑｒｓｔ　　　　　",
+    "ＵＶＷＸＹｕｖｗｘｙ　　　　　",
+    "Ｚ　　　　ｚ　　　　　　　　　"
+   ]
+  },
+  {
+   "id": "symbols",
+   "help": "Input symbols.",
+   "rows": [
+    "ⅠⅡⅢⅣⅤⅥⅦⅧⅨⅩ★★★★★",
+    "★★★★★★★★★★★★★？！",
+    "‥〔〕｛｝±×∞＆～ー…・『』",
+    "∂∇≡≒≪≫√∽∝∵∫∬ヾ＠ヽ",
+    "♪‡◯¶★÷‰ゝ∋⊆℃→←↑↓",
+    "≠＜＞≦≧°′Å∈♂♀†⊇⊂⊃"
+   ]
+  },
+  { "id": "end", "help": "{xbe:0x1fa2f8}" }
+ ],
+ "no_name": [" No input.", " {xbe:0x1f9fa0}", " {xbe:0x1f9ff0}", " Please cooperate.", "    {xbe:0x17e288}"],
+ "help": { "position": [0, 72], "clip": [0, 0, 640, 480], "colour": "#c0c0c0", "speed": 60, "lead": 45, "trail": 0, "layer": 263 },
+ "frame": {
+  "hud": true,
+  "meter": [435, 396],
+  "now_playing": { "format": "《 {title} : {artist} 》", "position": [0, 419], "clip": [0, 419, 396, 437], "colour": "#ffffff", "speed": 60, "trail": 45, "layer": 263 }
+ },
+ "animation": {
+  "intro_per_second": 3.0,
+  "slide_after": 0.5,
+  "slide_from": 640,
+  "slide_to": 289,
+  "slide_per_second": 1800,
+  "hints_per_second": 6.0,
+  "grow_below_x": 350,
+  "grow_steps": 10,
+  "grow_widen_steps": 5,
+  "grow_overshoot": 1.2,
+  "grow_start_height": 0.05,
+  "page_per_second": 6.0,
+  "pulse_per_second": 3.0,
+  "pulse_alpha": 0.502
+ },
+ "layers": [
+  { "id": "background", "image": "textures/scroll/name_entry_tex/1.png", "rect": [0, 0, 640, 480], "layer": 1 , "extend_edges": "both", "edge_bands": [[0, 72], [376, 480]],
+ "edge_bands_left": [[0, 72], [414, 480]]},
+  { "id": "music_band", "image": "textures/scroll/name_entry_tex/0.png", "rect": [0, 160, 640, 264], "position": [0, 376], "layer": 1 , "extend_edges": "both", "edge_inset": [1, 1]},
+  { "id": "title_band", "image": "textures/scroll/name_entry_tex/0.png", "rect": [0, 264, 640, 360], "layer": 1 , "extend_edges": "both"}
+ ],
+ "intro_layers": [
+  { "id": "grid", "image": "textures/scroll/name_entry_tex/0.png", "rect": [0, 0, 520, 160], "position": [64, 173], "layer": 2 },
+  { "id": "tabs", "image": "textures/scroll/name_entry_tex/0.png", "rect": [0, 360, 512, 392], "position": [64, 331], "layer": 3 }
+ ],
+ "slide_box": { "id": "controls", "image": "textures/scroll/name_entry_tex/0.png", "rect": [520, 0, 856, 56], "position": [640, 107], "layer": 4 },
+ "hints": [
+  { "id": "x", "image": "textures/scroll/scr_common_tex/0.png", "rect": [352, 184, 368, 200], "position": [314, 115], "layer": 5 },
+  { "id": "back_space", "image": "textures/scroll/scr_common_tex/0.png", "rect": [384, 184, 480, 200], "position": [334, 117], "layer": 5 },
+  { "id": "y", "image": "textures/scroll/scr_common_tex/0.png", "rect": [368, 184, 384, 200], "position": [432, 115], "layer": 5 },
+  { "id": "space", "image": "textures/scroll/scr_common_tex/0.png", "rect": [952, 200, 1008, 216], "position": [450, 117], "layer": 5 },
+  { "id": "l", "image": "textures/scroll/scr_common_tex/0.png", "rect": [304, 184, 320, 200], "position": [394, 139], "layer": 5 },
+  { "id": "r", "image": "textures/scroll/scr_common_tex/0.png", "rect": [320, 184, 336, 200], "position": [420, 139], "layer": 5 },
+  { "id": "list_change", "image": "textures/scroll/scr_common_tex/0.png", "rect": [848, 184, 952, 200], "position": [446, 141], "layer": 5 }
+ ],
+ "name_box": { "id": "name_box", "image": "textures/scroll/name_entry_tex/0.png", "rect": [520, 56, 728, 112], "position": [171, 135], "centered": true, "layer": 2 },
+ "label": { "id": "your_name", "image": "textures/scroll/name_entry_tex/0.png", "rect": [632, 112, 744, 128], "position": [95, 115], "layer": 4 },
+ "labels": {
+  "chip": { "id": "chip_name", "image": "textures/scroll/name_entry_tex/0.png", "rect": [520, 112, 632, 128], "position": [95, 115], "layer": 4 },
+  "program": { "id": "program_name", "image": "textures/scroll/name_entry_tex/0.png", "rect": [744, 112, 856, 128], "position": [95, 115], "layer": 4 }
+ },
+ "name": { "position": [95, 131], "advance": 18, "colour": "#ffffff", "layer": 4 },
+ "grid": { "position": [72, 180], "step": [34, 26], "colour": "#c0c0c0", "layer": 2 },
+ "grid_cursor": { "id": "grid_cursor", "image": "textures/scroll/name_entry_tex/0.png", "rect": [728, 56, 760, 80], "position": [82, 187], "centered": true, "layer": 4 },
+ "tab_cursor": { "id": "tab_cursor", "image": "textures/scroll/name_entry_tex/0.png", "rect": [856, 0, 1024, 32], "position": [151, 347], "centered": true, "layer": 4 },
+ "name_cursor": { "id": "name_cursor", "image": "textures/scroll/name_entry_tex/0.png", "rect": [760, 56, 784, 80], "position": [95, 131], "layer": 4 },
+ "tab_step": 170
+}

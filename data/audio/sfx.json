@@ -1,0 +1,42 @@
+{
+ "notes": [
+  "Menu cursors in the original go through 0xdf670/0xdf410 (and 0xdf7a0 for lists), whose arguments are (pad, cursor, first, count, flags, bank, entry): up/down menus play entry 3 (cursor) and left/right ones entry 4 (adjust), with a few exceptions per screen; the flags (0x11-0x17) are not sounds. Entry 23 (wheel) is played directly only by the turning wheels of the garage, Club Wired, Wild Machines and PlusTech.",
+  "Named sound effects, converted from Media/sound/sys.bin (entry numbers of the original bank).",
+  "The menu plays entry 3 when the cursor moves (0xdf410), 4 when SCREEN ADJUST moves the picture sideways, 5 on confirm, 8 on cancel and for an unavailable item, and the title 14 on START. A message box plays 12 as it opens (0xbec0f). NAME ENTRY plays 9 on a page change and 21 on delete. Talk scenes tick 16 as each character types, play 19 when a page is confirmed and 20 when typing is skipped (0xc5b9d, 0xc6bc4). The Club Wired and garage wheels turn with 23; arriving at either from the town map plays 25 and leaving for the town 26 (0x1bec1, 0x1ca21). Sleep plays 43 (0x2e47c). The schedule moves its rows with 22 and its days with 23 (0x363e7). The town map plays 4 and 24 together as its cursor moves (0x3eff2), and battle entry 19 (the original loads battle.bin into bank 1, 0x6cdc8) when spinning the rider pays. A battle chatter line opens with battle entry 45 (0x049552); the finale's lines and callers use it too, its first state plays sys entry 47 and its banners blink with battle_player entry 39, the low-armour warning (0x08ac52, 0x08b017). The entrance plays entry 0 as READY shows and 1 with GO! (0x08928c). Sonic Amp plays 44 as its menu slides in (0x2b4aa), 27 when a track is bought and 26 as it leaves for the town (0x2b1ec, 0x2af1a)."
+ ],
+ "effects": {
+  "cursor": { "file": "sound/sfx/sys/03.wav", "volume": 1.0 },
+  "adjust": { "file": "sound/sfx/sys/04.wav", "volume": 1.0 },
+  "confirm": { "file": "sound/sfx/sys/05.wav", "volume": 1.0 },
+  "cancel": { "file": "sound/sfx/sys/08.wav", "volume": 1.0 },
+  "title_start": { "file": "sound/sfx/sys/14.wav", "volume": 1.0 },
+  "window": { "file": "sound/sfx/sys/12.wav", "volume": 1.0 },
+  "page": { "file": "sound/sfx/sys/09.wav", "volume": 1.0 },
+  "delete": { "file": "sound/sfx/sys/21.wav", "volume": 1.0 },
+  "talk_type": { "file": "sound/sfx/sys/16.wav", "volume": 1.0 },
+  "talk_page": { "file": "sound/sfx/sys/19.wav", "volume": 1.0 },
+  "talk_skip": { "file": "sound/sfx/sys/20.wav", "volume": 1.0 },
+  "wheel": { "file": "sound/sfx/sys/23.wav", "volume": 1.0 },
+  "club_arrive": { "file": "sound/sfx/sys/25.wav", "volume": 1.0 },
+  "club_exit": { "file": "sound/sfx/sys/26.wav", "volume": 1.0 },
+  "town_move": { "file": "sound/sfx/sys/24.wav", "volume": 1.0 },
+  "sleep": { "file": "sound/sfx/sys/43.wav", "volume": 1.0 },
+  "record_row": { "file": "sound/sfx/sys/16.wav", "volume": 1.0 },
+  "spin_pay": { "file": "sound/sfx/battle/19.wav", "volume": 1.0 },
+  "chatter": { "file": "sound/sfx/battle/45.wav", "volume": 1.0 },
+  "finale_start": { "file": "sound/sfx/sys/47.wav", "volume": 1.0 },
+  "warning": { "file": "sound/sfx/battle_player/39.wav", "volume": 1.0 },
+  "battle_ready": { "file": "sound/sfx/sys/00.wav", "volume": 1.0 },
+  "battle_go": { "file": "sound/sfx/sys/01.wav", "volume": 1.0 },
+  "door_move": { "file": "sound/sfx/battle_player/49.wav", "volume": 1.0 },
+  "door_open": { "file": "sound/sfx/battle_player/50.wav", "volume": 1.0 },
+  "supply_take": { "file": "sound/sfx/battle_player/38.wav", "volume": 1.0 },
+  "purchase": { "file": "sound/sfx/sys/27.wav", "volume": 1.0 },
+  "hangar_exit": { "file": "sound/sfx/sys/28.wav", "volume": 1.0 },
+  "board": { "file": "sound/sfx/sys/42.wav", "volume": 1.0 },
+  "fit": { "file": "sound/sfx/sys/29.wav", "volume": 1.0 },
+  "question": { "file": "sound/sfx/sys/17.wav", "volume": 1.0 },
+  "dismantle": { "file": "sound/sfx/sys/41.wav", "volume": 1.0 },
+  "shop_open": { "file": "sound/sfx/sys/44.wav", "volume": 1.0 }
+ }
+}

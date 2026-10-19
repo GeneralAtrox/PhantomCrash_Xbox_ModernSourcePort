@@ -1,0 +1,82 @@
+{
+ "notes": ["SYSTEM, the garage's system menu (original scene 39: factory 0xa408f, task 0x3e606: init 0x3e506, fade in 0x3e4d3, list 0x3e3d9, draw 0x3e276, leave 0x3e3ac; sprite pairs 0x1fe960, positions 0x1fe988, help strings 0x1fe9b0). It is an OPTION-style list (data/ui/option.json's format): the same cursor (0x6d1cd flags 0x16, sys 3), confirm (sys 5, a 0.5 s fade out), and cancel moving the cursor to EXIT with sys 3.", "SAVE leads to the save screen (scene 31), LOAD to LOAD GAME (17), KEEP SV to the VS mode's Scoobee data (43), OPTION to the OPTION screen (26) and EXIT back to the garage (13). Back from one of them the cursor starts on its item (0x3e506).", "The items are drawn at layer 6 and the lit item over them at 0x101, pulsing (flag 0x2000). The help lines are padded with 29 ideographic spaces before (lead 261) and SAVE's with 4 and LOAD's with 3 after.", "Over the picture: the SYSTEM band (0xa44) at the top and the CURRENT MUSIC band (0xa45) at y 376, layer 4; the day and money (0xb1b56, 0xb1cdd, as on every town screen), the RIDING SV plate at y 379 once faded in (0x6dd74, 0x6daf4), the meter and the credit at y 419 (0x2a85a).", "The music carries on from the garage (the scene starts none).", "QUIT is a port addition, not in the original: a MAIN MENU plate drawn in code (item plate) that asks YES/NO and then goes to the main menu. The original's route to the title is the soft reset. EXIT moved down to make room."],
+ "music": "garage",
+ "fade_in": 0.5,
+ "fade_out": 0.5,
+ "exit_to": "garage",
+ "hud": true,
+ "confirm": {"buttons": "confirm"},
+ "cancel": {"buttons": "cancel"},
+ "cursor_repeat": {"delay": 0.4, "interval": 0.1},
+ "sounds": {"move": "cursor", "select": "confirm"},
+ "layers": [
+  {"id": "background", "image": "textures/scroll/system_tex/0.png", "rect": [0, 0, 640, 480], "position": [0, 0], "layer": 1, "extend_edges": "both", "edge_bands": [[0, 72], [376, 480]],
+ "edge_bands_left": [[0, 72], [414, 480]]},
+  {"id": "system_band", "image": "textures/scroll/system_tex/0.png", "rect": [0, 584, 640, 680], "position": [0, 0], "layer": 4, "extend_edges": "both"},
+  {"id": "music_band", "image": "textures/scroll/system_tex/0.png", "rect": [0, 480, 640, 584], "position": [0, 376], "layer": 4, "extend_edges": "both"}
+ ],
+ "help": {"position": [0, 72], "clip": [0, 0, 640, 480], "colour": "#f0f0f0", "speed": 60, "lead": 261, "trail": 0, "layer": 263},
+ "now_playing": {"format": "《 {title} : {artist} 》", "position": [0, 419], "clip": [0, 419, 396, 437], "colour": "#ffffff", "speed": 60, "trail": 45, "layer": 263},
+ "meter": [435, 396],
+ "riding_plate_y": 379,
+ "default_cursor": "save_game",
+ "cancel_cursor": "exit",
+ "items": [
+  {
+   "id": "save_game",
+   "position": [225, 133],
+   "normal": {"image": "textures/scroll/system_tex/0.png", "rect": [640, 120, 832, 160], "layer": 6},
+   "selected": {"image": "textures/scroll/system_tex/0.png", "rect": [832, 120, 1024, 160], "layer": 257, "animation": "pulse"},
+   "help": "{xbe:0x19ded8}",
+   "help_trail": 36,
+   "goto": "save_game"
+  },
+  {
+   "id": "load_game",
+   "position": [225, 176],
+   "normal": {"image": "textures/scroll/system_tex/0.png", "rect": [640, 40, 832, 80], "layer": 6},
+   "selected": {"image": "textures/scroll/system_tex/0.png", "rect": [832, 40, 1024, 80], "layer": 257, "animation": "pulse"},
+   "help": "{xbe:0x19de78}",
+   "help_trail": 27,
+   "goto": "load_game"
+  },
+  {
+   "id": "keep_sv",
+   "position": [225, 219],
+   "normal": {"image": "textures/scroll/system_tex/0.png", "rect": [640, 160, 832, 200], "layer": 6},
+   "selected": {"image": "textures/scroll/system_tex/0.png", "rect": [832, 160, 1024, 200], "layer": 257, "animation": "pulse"},
+   "help": "{xbe:0x19dde8}",
+   "help_trail": 0,
+   "goto": "keep_sv"
+  },
+  {
+   "id": "option",
+   "position": [225, 262],
+   "normal": {"image": "textures/scroll/system_tex/0.png", "rect": [640, 80, 832, 120], "layer": 6},
+   "selected": {"image": "textures/scroll/system_tex/0.png", "rect": [832, 80, 1024, 120], "layer": 257, "animation": "pulse"},
+   "help": "{xbe:0x19dd30}",
+   "help_trail": 0,
+   "goto": "option"
+  },
+  {
+   "id": "quit",
+   "position": [225, 305],
+   "normal": {"image": "textures/scroll/system_tex/0.png", "rect": [640, 0, 832, 40], "layer": 6},
+   "selected": {"image": "textures/scroll/system_tex/0.png", "rect": [832, 0, 1024, 40], "layer": 257, "animation": "pulse"},
+   "help": "Quit to the main menu. Play data not saved is lost.",
+   "help_trail": 0,
+   "quit": {"question": ["Do you wish to quit to the main menu?", "(Play data not saved will be lost.)"]},
+   "goto": "main_menu",
+   "plate": {"text": "MAIN MENU"}
+  },
+  {
+   "id": "exit",
+   "position": [225, 348],
+   "normal": {"image": "textures/scroll/system_tex/0.png", "rect": [640, 0, 832, 40], "layer": 6},
+   "selected": {"image": "textures/scroll/system_tex/0.png", "rect": [832, 0, 1024, 40], "layer": 257, "animation": "pulse"},
+   "help": "{xbe:0x19dcd0}",
+   "help_trail": 0,
+   "exit": true
+  }
+ ]
+}

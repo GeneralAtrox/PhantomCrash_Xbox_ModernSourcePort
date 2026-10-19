@@ -1,0 +1,60 @@
+{
+  "notes": [
+    "Native handling values are intentionally editable port tuning, not recovered S.L.A.I. constants.",
+    "Compiled per-node callbacks assign rolling geometry. A mod can supply an explicit wheel_nodes override.",
+    "Model suffixes follow the executable's leg model order, not model filenames or shop order."
+  ],
+  "first_resource": 9100,
+  "movement": {
+    "mode": "wheeled",
+    "acceleration": 28,
+    "braking": 44,
+    "lateral_grip": 5,
+    "turn_scale": 0.7,
+    "reverse_turn_scale": 0.65,
+    "radius": 0.42
+  },
+  "model_names": {
+    "0": [
+      "2LEGS",
+      "4LEGS",
+      "6LEGS",
+      "2WHEEL",
+      "4WHEEL",
+      "6WHEEL"
+    ],
+    "1": [
+      "2LEGS",
+      "4LEGS",
+      "6LEGS",
+      "3WHEEL",
+      "4WHEEL",
+      "HOVER"
+    ],
+    "2": [
+      "2LEGS",
+      "4LEGS",
+      "2WHEEL",
+      "4WHEEL",
+      "6WHEEL",
+      "CRAWLER"
+    ],
+    "3": [
+      "2LEGS",
+      "4LEGS",
+      "2WHEEL",
+      "4WHEEL",
+      "ROLLER",
+      "BOWLER"
+    ],
+    "4": [
+      "2LEGS",
+      "4LEGS",
+      "2WHEEL",
+      "4WHEEL",
+      "ROLLER",
+      "BOWLER"
+    ]
+  },
+  "parts": {}
+}

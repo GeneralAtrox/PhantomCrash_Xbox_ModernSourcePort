@@ -1,0 +1,1336 @@
+{
+  "rules": {
+    "base_repair_share": 0.2,
+    "level_repair_share": 0.01,
+    "rental_prize_divisor": 2
+  },
+  "values_right": 312,
+  "value_rows": [
+    142,
+    162,
+    209,
+    229,
+    249,
+    269,
+    289,
+    313,
+    338
+  ],
+  "sprites": [
+    {
+      "id": "2279",
+      "image": "textures/scroll/result_tex/0.png",
+      "rect": [
+        272.0,
+        104.0,
+        912.0,
+        200.0
+      ],
+      "position": [
+        0,
+        0
+      ],
+      "layer": 258,
+      "colour": "#ffffff",
+     "extend_edges": "both"
+    },
+    {
+      "id": "2258",
+      "image": "textures/scroll/result_tex/0.png",
+      "rect": [
+        272.0,
+        0.0,
+        912.0,
+        104.0
+      ],
+      "position": [
+        0,
+        376
+      ],
+      "layer": 258,
+      "colour": "#ffffff",
+     "extend_edges": "both"
+    },
+    {
+      "id": "2270",
+      "image": "textures/scroll/result_tex/0.png",
+      "rect": [
+        0.0,
+        0.0,
+        272.0,
+        264.0
+      ],
+      "position": [
+        55,
+        105
+      ],
+      "layer": 258,
+      "colour": "#ffffff",
+      "reveal_row": 0
+    },
+    {
+      "id": "2269",
+      "image": "textures/scroll/result_tex/0.png",
+      "rect": [
+        216.0,
+        400.0,
+        344.0,
+        416.0
+      ],
+      "position": [
+        64,
+        142
+      ],
+      "layer": 258,
+      "colour": "#ffd300",
+      "reveal_row": 1
+    },
+    {
+      "id": "2273",
+      "image": "textures/scroll/result_tex/0.png",
+      "rect": [
+        344.0,
+        400.0,
+        472.0,
+        416.0
+      ],
+      "position": [
+        64,
+        189
+      ],
+      "layer": 258,
+      "colour": "#ffffff",
+      "reveal_row": 3
+    },
+    {
+      "id": "2276",
+      "image": "textures/scroll/result_tex/0.png",
+      "rect": [
+        472.0,
+        400.0,
+        600.0,
+        416.0
+      ],
+      "position": [
+        64,
+        209
+      ],
+      "layer": 258,
+      "colour": "#ffffff",
+      "reveal_row": 4
+    },
+    {
+      "id": "2266",
+      "image": "textures/scroll/result_tex/0.png",
+      "rect": [
+        856.0,
+        296.0,
+        984.0,
+        312.0
+      ],
+      "position": [
+        64,
+        229
+      ],
+      "layer": 258,
+      "colour": "#ffffff",
+      "reveal_row": 5
+    },
+    {
+      "id": "2277",
+      "image": "textures/scroll/result_tex/0.png",
+      "rect": [
+        600.0,
+        400.0,
+        728.0,
+        416.0
+      ],
+      "position": [
+        64,
+        249
+      ],
+      "layer": 258,
+      "colour": "#ffffff",
+      "reveal_row": 6
+    },
+    {
+      "id": "2267",
+      "image": "textures/scroll/result_tex/0.png",
+      "rect": [
+        864.0,
+        352.0,
+        992.0,
+        368.0
+      ],
+      "position": [
+        64,
+        269
+      ],
+      "layer": 258,
+      "colour": "#ffffff",
+      "reveal_row": 7
+    },
+    {
+      "id": "2257",
+      "image": "textures/scroll/result_tex/0.png",
+      "rect": [
+        672.0,
+        248.0,
+        800.0,
+        264.0
+      ],
+      "position": [
+        64,
+        289
+      ],
+      "layer": 258,
+      "colour": "#ffffff",
+      "reveal_row": 8
+    },
+    {
+      "id": "2281",
+      "image": "textures/scroll/result_tex/0.png",
+      "rect": [
+        872.0,
+        400.0,
+        1000.0,
+        416.0
+      ],
+      "position": [
+        64,
+        313
+      ],
+      "layer": 258,
+      "colour": "#ffffff",
+      "reveal_row": 9
+    },
+    {
+      "id": "2280",
+      "image": "textures/scroll/result_tex/0.png",
+      "rect": [
+        728.0,
+        400.0,
+        872.0,
+        416.0
+      ],
+      "position": [
+        64,
+        338
+      ],
+      "layer": 258,
+      "colour": "#ffffff",
+      "reveal_row": 10
+    },
+    {
+      "id": "2278",
+      "image": "textures/scroll/result_tex/0.png",
+      "rect": [
+        256.0,
+        416.0,
+        512.0,
+        440.0
+      ],
+      "position": [
+        336,
+        311
+      ],
+      "layer": 258,
+      "colour": "#ffffff"
+    },
+    {
+      "id": "2268",
+      "image": "textures/scroll/result_tex/0.png",
+      "rect": [
+        0.0,
+        416.0,
+        256.0,
+        440.0
+      ],
+      "position": [
+        336,
+        336
+      ],
+      "layer": 258,
+      "colour": "#ffffff"
+    }
+  ],
+  "prize": {
+    "id": "2261",
+    "image": "textures/scroll/result_tex/0.png",
+    "rect": [
+      800.0,
+      248.0,
+      928.0,
+      264.0
+    ],
+    "position": [
+      64,
+      162
+    ],
+    "layer": 258,
+    "colour": "#ffd300"
+  },
+  "rental_prize": {
+    "id": "2272",
+    "image": "textures/scroll/result_tex/0.png",
+    "rect": [
+      912.0,
+      184.0,
+      984.0,
+      200.0
+    ],
+    "position": [
+      135,
+      162
+    ],
+    "layer": 258,
+    "colour": "#ffd300"
+  },
+  "retire": {
+    "id": "2312",
+    "image": "textures/scroll/result_tex/0.png",
+    "rect": [
+      0.0,
+      368.0,
+      216.0,
+      416.0
+    ],
+    "position": [
+      356,
+      249
+    ],
+    "layer": 258,
+    "colour": "#ffffff"
+  },
+  "exit": {
+    "id": "2259",
+    "image": "textures/scroll/result_tex/0.png",
+    "rect": [
+      832.0,
+      264.0,
+      920.0,
+      296.0
+    ],
+    "position": [
+      196,
+      376
+    ],
+    "layer": 258,
+    "colour": "#ffffff"
+  },
+  "replay": {
+    "id": "2274",
+    "image": "textures/scroll/result_tex/0.png",
+    "rect": [
+      864.0,
+      320.0,
+      952.0,
+      352.0
+    ],
+    "position": [
+      108,
+      376
+    ],
+    "layer": 258,
+    "colour": "#ffffff"
+  },
+  "hint": {
+    "text": "Choose REPLAY to watch the match. Choose EXIT to finish the day and return to the Garage.",
+    "position": [
+      0,
+      66
+    ],
+    "clip": [
+      0,
+      66,
+      640,
+      84
+    ],
+    "colour": "#ffffff",
+    "speed": 60,
+    "trail": 45,
+    "layer": 263
+  },
+  "music": {
+    "retire": "sound/11LOSE.WAV",
+    "survive": "sound/10WIN.WAV"
+  },
+  "frame": {
+    "hud": true,
+    "meter": [
+      434,
+      395
+    ],
+    "now_playing": {
+      "format": "\u300a {title} : {artist} \u300b",
+      "position": [
+        0,
+        419
+      ],
+      "clip": [
+        0,
+        419,
+        396,
+        437
+      ],
+      "colour": "#ffffff",
+      "speed": 60,
+      "trail": 45,
+      "layer": 263
+    },
+    "riding_plate": false
+  },
+  "replay_selected": {
+    "id": "2275",
+    "image": "textures/scroll/result_tex/0.png",
+    "rect": [
+      840.0,
+      368.0,
+      928.0,
+      400.0
+    ],
+    "position": [
+      108,
+      376
+    ],
+    "layer": 258,
+    "colour": "#ffffff"
+  },
+  "exit_selected": {
+    "id": "2260",
+    "image": "textures/scroll/result_tex/0.png",
+    "rect": [
+      920.0,
+      264.0,
+      1008.0,
+      296.0
+    ],
+    "position": [
+      196,
+      376
+    ],
+    "layer": 258,
+    "colour": "#ffffff"
+  },
+  "exit_to": "sleep",
+  "replay_settings": {
+    "views": [
+      "Fixed",
+      "Cockpit",
+      "Rear",
+      "Right Side",
+      "Left Side",
+      "Front View",
+      "Free view",
+      "Player View"
+    ],
+    "free_speed": 30,
+    "turn_speed": 2,
+    "drag_radians_per_unit": 0.006,
+    "help": "D-pad: view / LB/RB: robot / A: pause / B: stop / X: controls",
+    "camera_help": "R-stick / left-drag: rotate. R3 / double-click: reset. Free: WASD/L-stick move, LT/RT down/up.",
+    "play": "Play",
+    "pause": "Pause",
+    "stop": "Stop",
+    "time_unit": "sec"
+  },
+  "presentation": {
+    "intro_seconds": 0.5,
+    "row_reveal_seconds": 0.16666666666666666,
+    "row_count_seconds": 0.5,
+    "rental_label_seconds": 1.0
+  },
+  "rental_counting": {
+    "id": "2271",
+    "image": "textures/scroll/result_tex/0.png",
+    "rect": [
+      928,
+      248,
+      1000,
+      264
+    ],
+    "position": [
+      135,
+      162
+    ],
+    "layer": 258,
+    "colour": "#ffd300"
+  },
+  "verdicts": {
+    "win": [
+      {
+        "min_shootdowns": 0,
+        "sprite": {
+          "id": "2306",
+          "image": "textures/scroll/result_tex/0.png",
+          "rect": [
+            400.0,
+            264.0,
+            616.0,
+            312.0
+          ],
+          "position": [
+            356,
+            249
+          ],
+          "layer": 258,
+          "colour": "#ffffff"
+        }
+      },
+      {
+        "min_shootdowns": 20,
+        "sprite": {
+          "id": "2307",
+          "image": "textures/scroll/result_tex/0.png",
+          "rect": [
+            616.0,
+            264.0,
+            832.0,
+            312.0
+          ],
+          "position": [
+            356,
+            249
+          ],
+          "layer": 258,
+          "colour": "#ffffff"
+        }
+      },
+      {
+        "min_shootdowns": 40,
+        "sprite": {
+          "id": "2310",
+          "image": "textures/scroll/result_tex/0.png",
+          "rect": [
+            432.0,
+            320.0,
+            648.0,
+            368.0
+          ],
+          "position": [
+            356,
+            249
+          ],
+          "layer": 258,
+          "colour": "#ffffff"
+        }
+      }
+    ],
+    "leave": [
+      {
+        "min_shootdowns": 1,
+        "sprite": {
+          "id": "2308",
+          "image": "textures/scroll/result_tex/0.png",
+          "rect": [
+            0.0,
+            320.0,
+            216.0,
+            368.0
+          ],
+          "position": [
+            356,
+            249
+          ],
+          "layer": 258,
+          "colour": "#ffffff"
+        }
+      },
+      {
+        "min_shootdowns": 5,
+        "sprite": {
+          "id": "2311",
+          "image": "textures/scroll/result_tex/0.png",
+          "rect": [
+            648.0,
+            320.0,
+            864.0,
+            368.0
+          ],
+          "position": [
+            356,
+            249
+          ],
+          "layer": 258,
+          "colour": "#ffffff"
+        }
+      },
+      {
+        "min_shootdowns": 20,
+        "sprite": {
+          "id": "2309",
+          "image": "textures/scroll/result_tex/0.png",
+          "rect": [
+            216.0,
+            320.0,
+            432.0,
+            368.0
+          ],
+          "position": [
+            356,
+            249
+          ],
+          "layer": 258,
+          "colour": "#ffffff"
+        }
+      }
+    ]
+  },
+  "sounds": {
+    "cursor": "cursor",
+    "confirm": "confirm",
+    "cancel": "cancel"
+  },
+  "counting_hint": "Counting the match receipt. Press A / START, B / BACK or click a button to show the final totals.",
+  "shootdowns_font": {
+    "image": "textures/scroll/result_tex/0.png",
+    "advance": 28,
+    "digits": [
+      [
+        912.0,
+        0.0,
+        952.0,
+        40.0
+      ],
+      [
+        952.0,
+        0.0,
+        992.0,
+        40.0
+      ],
+      [
+        912.0,
+        104.0,
+        952.0,
+        144.0
+      ],
+      [
+        952.0,
+        104.0,
+        992.0,
+        144.0
+      ],
+      [
+        888.0,
+        200.0,
+        928.0,
+        240.0
+      ],
+      [
+        928.0,
+        200.0,
+        968.0,
+        240.0
+      ],
+      [
+        968.0,
+        200.0,
+        1008.0,
+        240.0
+      ],
+      [
+        912.0,
+        40.0,
+        952.0,
+        80.0
+      ],
+      [
+        952.0,
+        40.0,
+        992.0,
+        80.0
+      ],
+      [
+        912.0,
+        144.0,
+        952.0,
+        184.0
+      ]
+    ],
+    "comma": [
+      832.0,
+      296.0,
+      856.0,
+      320.0
+    ],
+    "comma_advance": 6
+  },
+  "time_font": {
+    "image": "textures/scroll/result_tex/0.png",
+    "advance": 13,
+    "digits": [
+      [
+        992.0,
+        0.0,
+        1016.0,
+        24.0
+      ],
+      [
+        992.0,
+        104.0,
+        1016.0,
+        128.0
+      ],
+      [
+        992.0,
+        40.0,
+        1016.0,
+        64.0
+      ],
+      [
+        952.0,
+        144.0,
+        976.0,
+        168.0
+      ],
+      [
+        976.0,
+        144.0,
+        1000.0,
+        168.0
+      ],
+      [
+        1000.0,
+        144.0,
+        1024.0,
+        168.0
+      ],
+      [
+        912.0,
+        80.0,
+        936.0,
+        104.0
+      ],
+      [
+        936.0,
+        80.0,
+        960.0,
+        104.0
+      ],
+      [
+        960.0,
+        80.0,
+        984.0,
+        104.0
+      ],
+      [
+        984.0,
+        80.0,
+        1008.0,
+        104.0
+      ]
+    ],
+    "comma": [
+      832.0,
+      296.0,
+      856.0,
+      320.0
+    ],
+    "comma_advance": 6
+  },
+  "shootdowns_number": {
+    "right": [
+      578,
+      295
+    ],
+    "digits": 4,
+    "pad": true
+  },
+  "time_number": {
+    "right": [
+      577,
+      334
+    ],
+    "digits": 2,
+    "pad": true
+  },
+  "time_colon": {
+    "id": "2303",
+    "image": "textures/scroll/result_tex/0.png",
+    "rect": [
+      992.0,
+      168.0,
+      1016.0,
+      192.0
+    ],
+    "position": [
+      0,
+      0
+    ],
+    "layer": 260,
+    "colour": "#ffffff"
+  },
+  "time_colon_advance": 6,
+  "trophy": {
+    "notes": [
+      "RESULT's award on a contest's first champion win (0x04a184; 0x096466 draws it). contests pairs a contest with its award (0x249e10); each award names its trophy model (0x249dd0: resources 218-225), where it stands and turns as it comes on and where it ends (start/start_turn and end/end_turn, radians about x, y and z; 0x98cbb8, 0x98cb58, 0x98cc18 and 0x98cc78, set up by 0x11e6b0) and its name plate (0x249cb8). The camera and light are RESULT's (0x094fee). A countdown starts at hold_frames (RESULT +0xa4) and runs at frame_rate: while it is above 0 the tally waits (0x095c55), the plate slides in from the right at plate_speed canvas units a frame until plate_still_frames, and dim (sprite 3708, black at dim_alpha out of 255) covers the backdrop. Below 0 the trophy moves from its start to its end over move_frames and spins spin_per_frame about its own y, the plate slides out to the left and the dim fades by dim_fade_per_frame a frame.",
+      "Researcher readings: the trophy is drawn on layer, after the dim (0x101) and under the receipt, and near_plane and far_plane are the port's; where the original's 3D pass falls among the 2D layers was not traced."
+    ],
+    "camera": {
+      "eye": [
+        0,
+        0,
+        -10
+      ],
+      "target": [
+        0,
+        0,
+        0
+      ],
+      "fov_degrees": 52,
+      "near_plane": 0.5,
+      "far_plane": 100
+    },
+    "light_direction": [
+      0,
+      0,
+      1
+    ],
+    "frame_rate": 60,
+    "hold_frames": 180,
+    "move_frames": 30,
+    "spin_per_frame": 0.02,
+    "plate_still_frames": 150,
+    "plate_speed": 30,
+    "plate_travel": 640,
+    "dim_alpha": 160,
+    "dim_fade_per_frame": 0.01,
+    "layer": 257,
+    "dim": {
+      "id": "3708",
+      "image": "textures/scroll/common_2d_tex/1.png",
+      "rect": [
+        416.0,
+        192.0,
+        448.0,
+        224.0
+      ],
+      "position": [
+        -32,
+        -32
+      ],
+      "size": [
+        704,
+        544
+      ],
+      "layer": 257,
+      "colour": "#000000"
+    },
+    "contests": [
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        4
+      ],
+      [
+        5,
+        4
+      ],
+      [
+        6,
+        4
+      ],
+      [
+        7,
+        4
+      ],
+      [
+        8,
+        4
+      ],
+      [
+        9,
+        4
+      ],
+      [
+        10,
+        4
+      ],
+      [
+        20,
+        4
+      ],
+      [
+        21,
+        4
+      ],
+      [
+        22,
+        4
+      ],
+      [
+        23,
+        4
+      ],
+      [
+        24,
+        4
+      ],
+      [
+        25,
+        4
+      ],
+      [
+        26,
+        4
+      ],
+      [
+        27,
+        4
+      ],
+      [
+        37,
+        4
+      ],
+      [
+        38,
+        4
+      ],
+      [
+        39,
+        4
+      ],
+      [
+        40,
+        4
+      ],
+      [
+        41,
+        4
+      ],
+      [
+        42,
+        4
+      ],
+      [
+        43,
+        4
+      ],
+      [
+        44,
+        4
+      ],
+      [
+        14,
+        1
+      ],
+      [
+        31,
+        2
+      ],
+      [
+        48,
+        3
+      ],
+      [
+        49,
+        0
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        2,
+        6
+      ],
+      [
+        11,
+        7
+      ],
+      [
+        12,
+        5
+      ],
+      [
+        13,
+        6
+      ],
+      [
+        15,
+        7
+      ],
+      [
+        16,
+        7
+      ],
+      [
+        17,
+        6
+      ],
+      [
+        18,
+        5
+      ],
+      [
+        19,
+        7
+      ],
+      [
+        28,
+        6
+      ],
+      [
+        29,
+        5
+      ],
+      [
+        30,
+        5
+      ],
+      [
+        32,
+        6
+      ],
+      [
+        33,
+        7
+      ],
+      [
+        34,
+        5
+      ],
+      [
+        35,
+        6
+      ],
+      [
+        36,
+        7
+      ],
+      [
+        45,
+        5
+      ],
+      [
+        46,
+        6
+      ],
+      [
+        47,
+        5
+      ],
+      [
+        50,
+        5
+      ]
+    ],
+    "awards": [
+      {
+        "model": "models/model/trophy_lastboss_mdl.gltf",
+        "start": [
+          0.0,
+          -2.0,
+          -3.0
+        ],
+        "end": [
+          4.6,
+          0.1,
+          3.6
+        ],
+        "start_turn": [
+          -0.39,
+          0.0,
+          0.0
+        ],
+        "end_turn": [
+          -0.4,
+          0.0,
+          0.11
+        ],
+        "plate": {
+          "id": "2263",
+          "image": "textures/scroll/result_tex/0.png",
+          "rect": [
+            0.0,
+            264.0,
+            400.0,
+            320.0
+          ],
+          "position": [
+            117,
+            212
+          ],
+          "layer": 4096,
+          "colour": "#ffffff"
+        }
+      },
+      {
+        "model": "models/model/trophy_shinjuku_mdl.gltf",
+        "start": [
+          0.0,
+          -2.0,
+          -3.0
+        ],
+        "end": [
+          4.6,
+          0.1,
+          3.6
+        ],
+        "start_turn": [
+          -0.39,
+          0.0,
+          0.0
+        ],
+        "end_turn": [
+          -0.4,
+          0.0,
+          0.11
+        ],
+        "plate": {
+          "id": "2262",
+          "image": "textures/scroll/result_tex/0.png",
+          "rect": [
+            272.0,
+            200.0,
+            672.0,
+            256.0
+          ],
+          "position": [
+            117,
+            212
+          ],
+          "layer": 4096,
+          "colour": "#ffffff"
+        }
+      },
+      {
+        "model": "models/model/trophy_shibuya_mdl.gltf",
+        "start": [
+          0.0,
+          -2.0,
+          -3.0
+        ],
+        "end": [
+          4.6,
+          0.1,
+          3.6
+        ],
+        "start_turn": [
+          -0.39,
+          0.0,
+          0.0
+        ],
+        "end_turn": [
+          -0.4,
+          0.0,
+          0.11
+        ],
+        "plate": {
+          "id": "2262",
+          "image": "textures/scroll/result_tex/0.png",
+          "rect": [
+            272.0,
+            200.0,
+            672.0,
+            256.0
+          ],
+          "position": [
+            117,
+            212
+          ],
+          "layer": 4096,
+          "colour": "#ffffff"
+        }
+      },
+      {
+        "model": "models/model/trophy_aqualine_mdl.gltf",
+        "start": [
+          0.0,
+          -2.0,
+          -3.0
+        ],
+        "end": [
+          4.6,
+          0.1,
+          3.6
+        ],
+        "start_turn": [
+          -0.39,
+          0.0,
+          0.0
+        ],
+        "end_turn": [
+          -0.4,
+          0.0,
+          0.11
+        ],
+        "plate": {
+          "id": "2262",
+          "image": "textures/scroll/result_tex/0.png",
+          "rect": [
+            272.0,
+            200.0,
+            672.0,
+            256.0
+          ],
+          "position": [
+            117,
+            212
+          ],
+          "layer": 4096,
+          "colour": "#ffffff"
+        }
+      },
+      {
+        "model": "models/model/trophy_groupboss_mdl.gltf",
+        "start": [
+          0.0,
+          -0.6,
+          -3.0
+        ],
+        "end": [
+          4.3,
+          0.6,
+          2.3
+        ],
+        "start_turn": [
+          -0.25,
+          0.0,
+          0.0
+        ],
+        "end_turn": [
+          -0.33,
+          0.0,
+          0.07
+        ],
+        "plate": {
+          "id": "2264",
+          "image": "textures/scroll/result_tex/0.png",
+          "rect": [
+            216.0,
+            368.0,
+            528.0,
+            400.0
+          ],
+          "position": [
+            164,
+            221
+          ],
+          "layer": 4096,
+          "colour": "#ffffff"
+        }
+      },
+      {
+        "model": "models/model/trophy_regulation_0_mdl.gltf",
+        "start": [
+          0.0,
+          -0.8,
+          -4.0
+        ],
+        "end": [
+          3.2,
+          0.2,
+          -0.7
+        ],
+        "start_turn": [
+          -0.33,
+          0.0,
+          0.0
+        ],
+        "end_turn": [
+          -0.33,
+          0.0,
+          0.07
+        ],
+        "plate": {
+          "id": "2265",
+          "image": "textures/scroll/result_tex/0.png",
+          "rect": [
+            528.0,
+            368.0,
+            840.0,
+            400.0
+          ],
+          "position": [
+            164,
+            221
+          ],
+          "layer": 4096,
+          "colour": "#ffffff"
+        }
+      },
+      {
+        "model": "models/model/trophy_regulation_1_mdl.gltf",
+        "start": [
+          0.0,
+          -0.8,
+          -4.0
+        ],
+        "end": [
+          3.2,
+          0.2,
+          -0.7
+        ],
+        "start_turn": [
+          -0.33,
+          0.0,
+          0.0
+        ],
+        "end_turn": [
+          -0.33,
+          0.0,
+          0.07
+        ],
+        "plate": {
+          "id": "2265",
+          "image": "textures/scroll/result_tex/0.png",
+          "rect": [
+            528.0,
+            368.0,
+            840.0,
+            400.0
+          ],
+          "position": [
+            164,
+            221
+          ],
+          "layer": 4096,
+          "colour": "#ffffff"
+        }
+      },
+      {
+        "model": "models/model/trophy_regulation_2_mdl.gltf",
+        "start": [
+          0.0,
+          -0.8,
+          -4.0
+        ],
+        "end": [
+          3.2,
+          0.2,
+          -0.7
+        ],
+        "start_turn": [
+          -0.33,
+          0.0,
+          0.0
+        ],
+        "end_turn": [
+          -0.33,
+          0.0,
+          0.07
+        ],
+        "plate": {
+          "id": "2265",
+          "image": "textures/scroll/result_tex/0.png",
+          "rect": [
+            528.0,
+            368.0,
+            840.0,
+            400.0
+          ],
+          "position": [
+            164,
+            221
+          ],
+          "layer": 4096,
+          "colour": "#ffffff"
+        }
+      }
+    ]
+  }
+}

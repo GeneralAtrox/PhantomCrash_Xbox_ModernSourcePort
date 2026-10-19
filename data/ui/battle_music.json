@@ -1,0 +1,151 @@
+{
+ "notes": ["BATTLE MUSIC, the garage's music programmer (original scene 33: factory 0xa3620, task 0x392c4: create 0x39068, end 0x369bd; menu 0x38607, PROGRAM SET 0x38247, PROGRAM EDIT 0x38aaa and its stock 0x38b7f, PLAY MODE 0x38522, PROGRAM NAME 0x38350, leaving 0x381ee; draws 0x36d13, 0x36d6b, 0x37d6f, 0x376d0). It loads media_playlist_tex and plays 8DEALER (0x133b1 track 15).", "The save keeps eight programs of up to twelve tracks (+ 0xaa8), which program battles play (+ 0xd74), SEQUENTIAL or RANDOM (+ 0xd70), the programs' names (+ 0xd78) and a byte per credit for the tracks owned (+ 0x9d4: 1 new, 2 seen); leaving marks the new ones seen. A new game owns credit 77 only (0xbab78, data/story/new_game.json).", "menu: up/down move over PROGRAM SET, PROGRAM EDIT, PLAY MODE, PROGRAM NAME and EXIT (0x6d1cd flags 0x16, sys 3), confirm (sys 5) opens the item, cancel moves to EXIT (sys 4). EXIT fades out to the garage.", "menu cursor: the pulsing cursor (1715) over the chosen item and the sweep (1713) under it move by item_y (0x1fcdcc, 0x1fcddc); the sweep arrives with the original's overshoot, one offset a frame, negated going up, except round the ends or from EXIT (0x37d6f).", "television: the TV (1691) stays beside the menu. Its static (1695 and 1696) alternates every 1/10 s, a scan band (1712) rolls 116 down it every 4 s, and the bars (1725-1727) flash 1/10 s each at the start of every 2.2 s. The chosen item's caption (1732-1737) rises 19 into place at (362, 262) as it fades in over 0.2 s; on PLAY MODE it reads 'Play in order' or 'Play randomly' while choosing. The original draws the scan band with its flags 0x5, which the port does not.", "slide: moving between the menu and a program list or the stock, the old panel slides 320 left out over the first half of 0.3 s and the new one in from the left over the second (0x383c7, 0x373a3).", "programs: the PROGRAM 1-8 list (1709, 0x36a51) with the pulsing cursor (1710, flag 0x2000) on the browsed row at cursor_y. PROGRAM SET asks SET? (1718) and confirm sets the program battles play, OK (1697) showing as it slides back; PROGRAM EDIT's confirm opens the stock. Cancel (sys 8) goes back. The discs across the top (1692, 45 apart from 295.5, y 125) fan out as the screen opens and show the chosen program's tracks by credit number (number font 3, three digits) at y 147.", "discs: under them the tray (1700 at 77, 95, layer 2) opens over tray_seconds (36 frames), its scale growing from tray_from to 1. Once it is open the browsed program's label (1701-1708, 0x1fcd3c) pops into the tray's slot at (257, 102) over label_seconds (9 frames), its scale going from label_from to 1; a program with a name of its own shows the name instead, centred on name_centre in 18-pixel cells (0x36aba).", "stock: the owned tracks, 5 x 3 a page, numbered at (99 + 47 x column, 247 + 30 x row), with EXIT as the OK row. left/right move (sys 3; off an edge, or with the triggers, the page turns, sys 4), up/down move between the rows and OK. A adds the track to the program (twelve at most, sys 5), X removes the last (sys 8), Y previews it, B moves to OK (sys 4); OK goes back to the programs. The help line shows the track's credit. The frame (1690) shows the track's CD jacket at (415, 216), layer 4 (the credit's jacket, + 0x198: resource 1658's sprites).", "stock.heading: STOCK (1721) over the grid (0x376d0), drawn once the stock has been open heading_seconds and growing in over heading_grow from heading_from (x, y scale) to full size; it stays while the stock slides out. The atlas's TOTAL TIME (1722) has no reference in the original's code and is not drawn.", "play_mode: SEQUENTIAL or RANDOM (1716) with the ring (1717) moving 118 for RANDOM; left/right (sys 4), confirm stores it, cancel (sys 8) keeps the old one.", "PROGRAM NAME opens NAME ENTRY on the program's name (0x2c5d9 mode 3; nine characters) and comes back here. An empty name shows as PROGRAM n."],
+ "scene": 33,
+ "music": "dealer",
+ "fade_in": 0.5,
+ "fade_out": 0.5,
+ "exit_to": "garage",
+ "confirm": {"buttons": "confirm"},
+ "cancel": {"buttons": "cancel"},
+ "cursor_repeat": {"delay": 0.4, "interval": 0.1},
+ "buttons": {"up": "up", "down": "down", "left": "left", "right": "right", "page_back": "left_trigger", "page_forward": "right_trigger", "preview": "y", "back_space": "x"},
+ "sounds": {"move": "cursor", "select": "confirm", "jump": "adjust", "cancel": "cancel", "add": "confirm", "remove": "cancel"},
+ "layers": [
+  {"id": "background", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [0, 0, 640, 480], "position": [0, 0], "layer": 1, "extend_edges": "both", "edge_bands": [[0, 72], [376, 480]],
+ "edge_bands_left": [[0, 72], [414, 480]], "edge_inset": [1, 1]},
+  {"id": "music_band", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [944, 288, 1584, 392], "position": [0, 376], "layer": 3, "extend_edges": "both"}
+ ],
+ "help": {"position": [0, 72], "clip": [0, 0, 640, 480], "colour": "#f0f0f0", "speed": 60, "lead": 270, "trail": 27, "layer": 263},
+ "help_text": "{xbe:0x19cb7c}",
+ "help_trail": 27,
+ "track_help": "《 {title} : {artist} 》",
+ "track_help_trail": 45,
+ "menu": {
+  "panel": {"id": "menu", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [1480, 0, 1664, 176], "position": [91, 216], "layer": 259},
+  "items": ["program_set", "program_edit", "play_mode", "program_name"],
+  "exit": {"id": "exit", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [1944, 480, 2040, 512], "position": [288, 378], "layer": 259},
+  "exit_lit": {"id": "exit_lit", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [1944, 512, 2040, 544], "position": [288, 378], "layer": 260, "animation": "pulse"},
+  "cursor": {"id": "cursor", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [920, 440, 1064, 480], "position": [113, 225], "layer": 260, "animation": "pulse"},
+  "sweep": {"id": "sweep", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [1840, 256, 2024, 264], "position": [95, 242], "layer": 260},
+  "item_y": [0, 37, 75, 111],
+  "arrive": [-31.45, -25.9, -20.35, -14.8, -9.25, -3.7, 1.85, 7.4, 4.93, 2.47, 0.0],
+  "slide_seconds": 0.3,
+  "slide_distance": 320
+ },
+ "television": {
+  "frame": {"id": "tv", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [640, 288, 944, 440], "position": [307, 206], "layer": 263},
+  "static": [
+   {"id": "static_a", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [1840, 0, 2024, 104], "position": [361, 225], "layer": 259},
+   {"id": "static_b", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [1584, 288, 1768, 392], "position": [361, 225], "layer": 259}
+  ],
+  "static_period": 0.2,
+  "roll": {"id": "roll", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [1768, 368, 1976, 392], "position": [361, 206], "layer": 262},
+  "roll_distance": 116,
+  "roll_seconds": 4,
+  "bars": [
+   {"id": "bars_a", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [1200, 200, 1504, 264], "position": [307, 256], "layer": 261},
+   {"id": "bars_b", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [1504, 200, 1808, 264], "position": [307, 256], "layer": 261},
+   {"id": "bars_c", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [488, 480, 792, 544], "position": [307, 256], "layer": 261}
+  ],
+  "bars_seconds": 0.1,
+  "bars_cycle": 2.2,
+  "caption_at": [362, 262],
+  "caption_rise": 19,
+  "caption_seconds": 0.2
+ },
+ "captions": {
+  "program_set": {"id": "select_program", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [944, 392, 1128, 440], "layer": 261},
+  "program_edit": {"id": "edit_program", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [1128, 392, 1312, 440], "layer": 261},
+  "play_mode": {"id": "select_play_mode", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [1312, 392, 1496, 440], "layer": 261},
+  "random": {"id": "play_randomly", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [1496, 392, 1680, 440], "layer": 261},
+  "sequential": {"id": "play_in_order", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [1680, 392, 1864, 440], "layer": 261},
+  "program_name": {"id": "edit_program_name", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [1864, 392, 2048, 440], "layer": 261}
+ },
+ "programs": {
+  "panel": {"id": "programs", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [1200, 0, 1480, 200], "position": [97, 206], "layer": 258},
+  "cursor": {"id": "program_cursor", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [752, 440, 920, 480], "position": [151, 203], "layer": 259, "animation": "pulse"},
+  "cursor_y": [203, 227, 252, 276, 300, 324, 349, 373],
+  "lit": [
+   {"id": "program_1", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [1480, 264, 1608, 288], "position": [257, 102], "layer": 257},
+   {"id": "program_2", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [1608, 264, 1736, 288], "position": [257, 102], "layer": 257},
+   {"id": "program_3", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [1736, 264, 1864, 288], "position": [257, 102], "layer": 257},
+   {"id": "program_4", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [1864, 264, 1992, 288], "position": [257, 102], "layer": 257},
+   {"id": "program_5", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [1480, 176, 1608, 200], "position": [257, 102], "layer": 257},
+   {"id": "program_6", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [1608, 176, 1736, 200], "position": [257, 102], "layer": 257},
+   {"id": "program_7", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [1736, 176, 1864, 200], "position": [257, 102], "layer": 257},
+   {"id": "program_8", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [1864, 176, 1992, 200], "position": [257, 102], "layer": 257}
+  ],
+  "set_prompt": {"id": "set", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [1928, 200, 2048, 256], "position": [377, 278], "layer": 265},
+  "set_ok": {"id": "ok", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [1808, 200, 1928, 256], "position": [377, 278], "layer": 265},
+  "back_hints": [
+   {"id": "b", "image": "textures/scroll/scr_common_tex/0.png", "rect": [256, 184, 272, 200], "position": [66, 389], "layer": 262},
+   {"id": "back", "image": "textures/scroll/scr_common_tex/0.png", "rect": [480, 184, 536, 200], "position": [85, 391], "layer": 262}
+  ]
+ },
+ "play_mode": {
+  "panel": {"id": "modes", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [1064, 440, 1312, 480], "position": [60, 300], "layer": 262},
+  "ring": {"id": "mode_ring", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [1312, 440, 1440, 480], "position": [63, 302], "layer": 263, "animation": "pulse"},
+  "step": 118,
+  "hints": [
+   {"id": "b", "image": "textures/scroll/scr_common_tex/0.png", "rect": [256, 184, 272, 200], "position": [66, 389], "layer": 262},
+   {"id": "cancel", "image": "textures/scroll/scr_common_tex/0.png", "rect": [536, 184, 600, 200], "position": [85, 391], "layer": 262}
+  ]
+ },
+ "discs": {
+  "disc": {"id": "disc", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [1896, 288, 1952, 344], "layer": 267},
+  "centre": 295.5,
+  "step": 45,
+  "y": 125,
+  "fan_seconds": 0.4,
+  "number_stagger": 0.05,
+  "number_offset": [9, 22],
+  "number": {"right": [0, 0], "digits": 3, "pad": true, "colour": "#ffffff"},
+  "first_layer": 267,
+  "tray": {"id": "tray", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [0, 480, 488, 584], "position": [77, 95], "layer": 2},
+  "tray_seconds": 0.6,
+  "tray_from": [0.6, 0.8],
+  "label_seconds": 0.15,
+  "label_from": [1.2, 0],
+  "name_centre": [320, 111],
+  "name_colour": "#ffffff"
+ },
+ "stock": {
+  "columns": 5,
+  "rows": 3,
+  "origin": [88, 235],
+  "step": [47, 30],
+  "slot": {"id": "slot", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [640, 440, 696, 480], "layer": 257},
+  "number_offset": [11, 12],
+  "cursor": {"id": "cursor", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [1440, 440, 1496, 480], "layer": 259, "animation": "pulse"},
+  "fresh": {"id": "new", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [696, 440, 752, 480], "layer": 260},
+  "fresh_offset": [24, -16],
+  "ok": {"id": "ok", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [1944, 480, 2040, 512], "position": [288, 378], "layer": 257},
+  "ok_lit": {"id": "ok_lit", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [1944, 512, 2040, 544], "position": [288, 378], "layer": 258, "animation": "pulse"},
+  "portrait_frame": {"id": "portrait", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [1664, 0, 1840, 160], "position": [396, 202], "layer": 3},
+  "portrait_at": [415, 216],
+  "heading": {"id": "stock_heading", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [1200, 264, 1280, 288], "position": [173, 215], "layer": 257},
+  "heading_seconds": 0.7,
+  "heading_grow": 0.15,
+  "heading_from": [1.2, 0],
+  "arrows": [
+   {"id": "page_back", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [1864, 288, 1896, 360], "position": [48, 226], "layer": 258},
+   {"id": "page_forward", "image": "textures/scroll/media_playlist_tex/0.png", "rect": [1768, 288, 1800, 368], "position": [338, 226], "layer": 258}
+  ],
+  "hints": [
+   {"id": "x", "image": "textures/scroll/scr_common_tex/0.png", "rect": [352, 184, 368, 200], "position": [55, 341], "layer": 257},
+   {"id": "back_space", "image": "textures/scroll/scr_common_tex/0.png", "rect": [384, 184, 480, 200], "position": [79, 343], "layer": 257},
+   {"id": "y", "image": "textures/scroll/scr_common_tex/0.png", "rect": [368, 184, 384, 200], "position": [203, 341], "layer": 257},
+   {"id": "preview", "image": "textures/scroll/scr_common_tex/0.png", "rect": [544, 200, 624, 216], "position": [230, 343], "layer": 257},
+   {"id": "l", "image": "textures/scroll/scr_common_tex/0.png", "rect": [304, 184, 320, 200], "position": [55, 370], "layer": 257},
+   {"id": "page_left", "image": "textures/scroll/scr_common_tex/0.png", "rect": [360, 200, 448, 216], "position": [77, 372], "layer": 257},
+   {"id": "r", "image": "textures/scroll/scr_common_tex/0.png", "rect": [320, 184, 336, 200], "position": [55, 393], "layer": 257},
+   {"id": "page_right", "image": "textures/scroll/scr_common_tex/0.png", "rect": [448, 200, 544, 216], "position": [77, 395], "layer": 257}
+  ]
+ },
+ "name_entry": "name_entry",
+ "frame": {
+  "hud": true,
+  "meter": [435, 396],
+  "now_playing": {"format": "《 {title} : {artist} 》", "position": [0, 419], "clip": [0, 419, 396, 437], "colour": "#ffffff", "speed": 60, "trail": 45, "layer": 263}
+ }
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
+  "name": "phantomcrash-modern-port",
+  "version-string": "0.5.21",
+  "builtin-baseline": "ea1a7396b05637a53bf23c078647ecc0edee4b80",
+  "dependencies": [
+    "cgltf",
+    {
+      "name": "libdeflate",
+      "default-features": false,
+      "features": [
+        "compression",
+        "zlib"
+      ]
+    },
+    "sdl3",
+    "zlib",
+    {
+      "name": "sdl3-image",
+      "features": [
+        "png"
+      ]
+    },
+    {
+      "name": "ffmpeg",
+      "default-features": false,
+      "features": [
+        "avcodec",
+        "avformat",
+        "swresample",
+        "swscale"
+      ]
+    }
+  ]
+}

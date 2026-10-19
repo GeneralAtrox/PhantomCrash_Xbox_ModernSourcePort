@@ -1,0 +1,44 @@
+# User-supplied copyrighted disc images.
+/GameFiles/
+*.iso
+*.xiso
+*.xbe
+
+# Reproducible extraction and research products.
+/artifacts/
+/extracted/
+/research-output/
+
+# Local mods, built from the user's own discs (S.L.A.I., MechAssault).
+/mods/
+
+# Pinned external reverse-engineering checkouts and Ghidra project databases.
+/.tools/
+*.gpr
+*.gpr.bak
+*.rep/
+
+# Python tooling.
+/.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Native build products and agent scratch output.
+/build/
+/out/
+/.tmp/
+/tmp/
+research-runtime-*/
+CMakeUserPresets.json
+
+# IDE and operating-system files.
+.vs/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+Desktop.ini

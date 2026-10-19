@@ -1,0 +1,30 @@
+{
+ "notes": [
+  "The original's scene ids of the ported screens. A story event (tables/events.json) plays instead of the move from one of these scenes to another when its from_scene and to_scene match, it has not played yet, and the events it needs have (0xd1861). It then carries on to the screen it interrupted.",
+  "NEW GAME's opening movies are scene 25, NAME ENTRY 22, Pepper's guide 19 Club Wired 8 and the garage 13: so NEW GAME plays opening.sfd, opening02.sfd, event 48 (Salsa and Pepper), NAME ENTRY, event 49, then Pepper's guide; leaving the guide for the town map (41) plays event 50 first. The first visit to Wild Machines (15), PlusTech (27) and Sonic Amp (20) plays events 156, 155 and 154; the dealers share scene 34.",
+  "return_scene: the answers on Pepper's list (events 105-128 and 157) lead from and to scene 159, which the original reads as the scene they were opened from; they return to that screen."
+ ],
+ "return_scene": 159,
+ "scenes": {
+  "new_game": 25,
+  "name_entry": 22,
+  "pepper_guide": 19,
+  "club_wired": 8,
+  "garage": 13,
+  "sleep": 24,
+  "schedule": 32,
+  "records": 29,
+  "system": 39,
+  "battle_music": 33,
+  "town_map": 41,
+  "wild_machines": 15,
+  "plustech": 27,
+  "sonic_amp": 20,
+  "dealer_ventuno": 34,
+  "dealer_kojima": 34,
+  "dealer_american_stars": 34,
+  "match_result": 30,
+  "rumbling": 3,
+  "rumbling_battle": 6
+ }
+}

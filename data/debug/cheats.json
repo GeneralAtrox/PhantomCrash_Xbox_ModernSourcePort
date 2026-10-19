@@ -1,0 +1,13 @@
+{
+  "notes": [
+    "Tools > Cheats (docs/CHEATS.md), a port addition. The switches live in the settings file; these tune the one-off changes.",
+    "hangar_robots: robot records (tables/garage.json robots, by index) FILL HANGARS fits into the empty hangars, in order, skipping a robot whose body model (its maker) a hangar already holds.",
+    "The seven makers' showroom SVs, one for each of the seven body models: 0 Plain Holy (HLBody), 68 PH-8.10 (PHBody), 52 AE-M5A2 (AEBody), 89 TR-T3-4 (TLBody, Tolomeo), 90 TR-R-45 (TRBody, Tolomeo R), 88 CG-F5.6 (CGBody, Charga), 87 DRONES (Drones body). The bosses' robots (7 SPUTNIK, 6 SNOWHITE, 9 MUTOS, 8 GOU) are left out: their bodies are enemy copies of the Holy, Charga, Tolomeo and Tolomeo R models; add their indices here to have them.",
+    "ALL ITEMS gives one record of each distinct part: each body, legs and weapon model (the shop's record where one is sold, else the enemy's or boss's own) and each CHIP and module name. The enemy-only copies, the Spare and Roy weapons and the CHIPs that differ only in their chatter are left out.",
+    "weapon_copies / part_copies: the loose copies ALL ITEMS keeps of each weapon (one per side) and of each other part and module. stock_size: the parts stock it raises the garage to (the original holds 255)."
+  ],
+  "hangar_robots": [0, 68, 52, 89, 90, 88, 87],
+  "weapon_copies": 2,
+  "part_copies": 1,
+  "stock_size": 1024
+}

@@ -1,0 +1,3436 @@
+{
+  "source": "European default.xbe: 0x057c71 / 0x05c680 / 0x05b1ed / 0x05c905",
+  "profiles": [
+    [
+      33,
+      13,
+      24,
+      30,
+      17,
+      38,
+      37,
+      3,
+      3,
+      3,
+      38,
+      3,
+      14,
+      14,
+      14,
+      27,
+      24,
+      3,
+      3,
+      3,
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    [
+      33,
+      32,
+      40,
+      24,
+      24,
+      33,
+      40,
+      40,
+      24,
+      3,
+      33,
+      33,
+      40,
+      40,
+      3,
+      24,
+      24,
+      3,
+      3,
+      3,
+      4,
+      4,
+      40,
+      24,
+      3
+    ],
+    [
+      33,
+      32,
+      24,
+      3,
+      3,
+      33,
+      32,
+      24,
+      3,
+      3,
+      33,
+      33,
+      24,
+      24,
+      3,
+      24,
+      24,
+      3,
+      3,
+      3,
+      4,
+      35,
+      24,
+      24,
+      3
+    ],
+    [
+      3,
+      3,
+      24,
+      24,
+      0,
+      3,
+      3,
+      24,
+      24,
+      1,
+      34,
+      34,
+      24,
+      24,
+      1,
+      3,
+      3,
+      3,
+      3,
+      24,
+      26,
+      3,
+      24,
+      24,
+      24
+    ],
+    [
+      30,
+      30,
+      30,
+      30,
+      30,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      39,
+      39,
+      39,
+      39,
+      39
+    ],
+    [
+      23,
+      21,
+      11,
+      7,
+      24,
+      21,
+      12,
+      12,
+      7,
+      24,
+      22,
+      33,
+      7,
+      24,
+      24,
+      22,
+      12,
+      24,
+      24,
+      3,
+      4,
+      4,
+      7,
+      24,
+      24
+    ],
+    [
+      4,
+      2,
+      21,
+      27,
+      1,
+      4,
+      4,
+      21,
+      27,
+      27,
+      4,
+      2,
+      21,
+      21,
+      27,
+      4,
+      2,
+      3,
+      3,
+      1,
+      4,
+      4,
+      4,
+      4,
+      3
+    ],
+    [
+      4,
+      32,
+      24,
+      7,
+      7,
+      4,
+      4,
+      24,
+      7,
+      7,
+      4,
+      22,
+      24,
+      24,
+      7,
+      4,
+      7,
+      24,
+      7,
+      3,
+      4,
+      4,
+      22,
+      22,
+      22
+    ],
+    [
+      4,
+      4,
+      33,
+      20,
+      25,
+      4,
+      4,
+      33,
+      18,
+      21,
+      4,
+      4,
+      33,
+      18,
+      29,
+      4,
+      4,
+      33,
+      20,
+      3,
+      4,
+      4,
+      4,
+      35,
+      33
+    ],
+    [
+      4,
+      35,
+      24,
+      7,
+      7,
+      4,
+      35,
+      7,
+      7,
+      7,
+      35,
+      35,
+      7,
+      24,
+      23,
+      35,
+      35,
+      24,
+      3,
+      3,
+      4,
+      35,
+      6,
+      6,
+      23
+    ],
+    [
+      23,
+      21,
+      11,
+      7,
+      24,
+      21,
+      12,
+      12,
+      7,
+      24,
+      22,
+      33,
+      7,
+      24,
+      24,
+      22,
+      12,
+      24,
+      24,
+      3,
+      4,
+      4,
+      7,
+      24,
+      24
+    ],
+    [
+      41,
+      41,
+      41,
+      41,
+      41,
+      41,
+      41,
+      41,
+      41,
+      41,
+      41,
+      41,
+      41,
+      41,
+      41,
+      41,
+      41,
+      41,
+      41,
+      41,
+      41,
+      41,
+      41,
+      41,
+      41
+    ]
+  ],
+  "decisions": [
+    [
+      255,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      255,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      255,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      255,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      255
+    ],
+    [
+      153,
+      0,
+      51,
+      0,
+      51
+    ],
+    [
+      153,
+      51,
+      51,
+      0,
+      0
+    ],
+    [
+      153,
+      51,
+      0,
+      51,
+      0
+    ],
+    [
+      153,
+      51,
+      0,
+      0,
+      51
+    ],
+    [
+      153,
+      0,
+      51,
+      51,
+      0
+    ],
+    [
+      153,
+      0,
+      0,
+      51,
+      51
+    ],
+    [
+      51,
+      153,
+      51,
+      0,
+      0
+    ],
+    [
+      51,
+      153,
+      0,
+      51,
+      0
+    ],
+    [
+      51,
+      153,
+      0,
+      0,
+      51
+    ],
+    [
+      0,
+      153,
+      51,
+      51,
+      0
+    ],
+    [
+      0,
+      153,
+      51,
+      0,
+      51
+    ],
+    [
+      0,
+      153,
+      0,
+      51,
+      51
+    ],
+    [
+      0,
+      204,
+      0,
+      51,
+      0
+    ],
+    [
+      51,
+      51,
+      153,
+      0,
+      0
+    ],
+    [
+      51,
+      0,
+      153,
+      51,
+      0
+    ],
+    [
+      51,
+      0,
+      153,
+      0,
+      51
+    ],
+    [
+      0,
+      51,
+      153,
+      51,
+      0
+    ],
+    [
+      0,
+      51,
+      153,
+      0,
+      51
+    ],
+    [
+      0,
+      0,
+      153,
+      51,
+      51
+    ],
+    [
+      51,
+      51,
+      0,
+      153,
+      0
+    ],
+    [
+      51,
+      0,
+      51,
+      153,
+      0
+    ],
+    [
+      51,
+      0,
+      0,
+      153,
+      51
+    ],
+    [
+      0,
+      51,
+      51,
+      153,
+      0
+    ],
+    [
+      0,
+      51,
+      0,
+      153,
+      51
+    ],
+    [
+      0,
+      0,
+      51,
+      153,
+      51
+    ],
+    [
+      0,
+      51,
+      0,
+      204,
+      0
+    ],
+    [
+      0,
+      102,
+      0,
+      153,
+      0
+    ],
+    [
+      51,
+      51,
+      0,
+      0,
+      153
+    ],
+    [
+      51,
+      0,
+      51,
+      0,
+      153
+    ],
+    [
+      51,
+      0,
+      0,
+      51,
+      153
+    ],
+    [
+      0,
+      51,
+      51,
+      0,
+      153
+    ],
+    [
+      0,
+      51,
+      0,
+      51,
+      153
+    ],
+    [
+      0,
+      0,
+      51,
+      51,
+      153
+    ],
+    [
+      0,
+      0,
+      76,
+      0,
+      178
+    ],
+    [
+      0,
+      0,
+      0,
+      102,
+      153
+    ],
+    [
+      51,
+      51,
+      51,
+      51,
+      51
+    ],
+    [
+      0,
+      75,
+      0,
+      180,
+      0
+    ]
+  ],
+  "state_order": [
+    0,
+    1,
+    5,
+    3,
+    6
+  ],
+  "search_weights": [
+    0,
+    0,
+    0,
+    1,
+    10
+  ],
+  "levels": [
+    {
+      "durations": [
+        8.0,
+        15.0,
+        30.0,
+        20.0,
+        20.0,
+        8.0,
+        300.0
+      ],
+      "memory_seconds": 0.6666666666666666,
+      "control_scale": 1,
+      "sight_yaw": 0.523598796189899,
+      "sight_pitch": 0.523598796189899,
+      "max_weapon_requests": 2,
+      "fire_probability": 92,
+      "fire_interval": 0.8888888888888888,
+      "fire_delay": 1.0,
+      "camouflage_interval": 6.35,
+      "camouflage_probability": 64,
+      "camouflage_duration": 0.5,
+      "movement_chances": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 0.6666666666666666,
+      "control_scale": 1,
+      "sight_yaw": 0.5500431783272728,
+      "sight_pitch": 0.5500431783272728,
+      "max_weapon_requests": 2,
+      "fire_probability": 94,
+      "fire_interval": 0.8802469135802469,
+      "fire_delay": 0.9857142857142858,
+      "camouflage_interval": 6.4,
+      "camouflage_probability": 67,
+      "camouflage_duration": 0.50390625,
+      "movement_chances": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 0.7,
+      "control_scale": 1,
+      "sight_yaw": 0.5764875604646464,
+      "sight_pitch": 0.5764875604646464,
+      "max_weapon_requests": 2,
+      "fire_probability": 96,
+      "fire_interval": 0.871604938271605,
+      "fire_delay": 0.9714285714285714,
+      "camouflage_interval": 6.45,
+      "camouflage_probability": 70,
+      "camouflage_duration": 0.5078125,
+      "movement_chances": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 0.7,
+      "control_scale": 1,
+      "sight_yaw": 0.6029319426020202,
+      "sight_pitch": 0.6029319426020202,
+      "max_weapon_requests": 2,
+      "fire_probability": 98,
+      "fire_interval": 0.862962962962963,
+      "fire_delay": 0.9571428571428572,
+      "camouflage_interval": 6.5,
+      "camouflage_probability": 73,
+      "camouflage_duration": 0.51171875,
+      "movement_chances": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 0.7333333333333333,
+      "control_scale": 1,
+      "sight_yaw": 0.6293763247393939,
+      "sight_pitch": 0.6293763247393939,
+      "max_weapon_requests": 2,
+      "fire_probability": 100,
+      "fire_interval": 0.854320987654321,
+      "fire_delay": 0.9428571428571428,
+      "camouflage_interval": 6.55,
+      "camouflage_probability": 76,
+      "camouflage_duration": 0.515625,
+      "movement_chances": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 0.7333333333333333,
+      "control_scale": 1,
+      "sight_yaw": 0.6558207068767676,
+      "sight_pitch": 0.6558207068767676,
+      "max_weapon_requests": 2,
+      "fire_probability": 102,
+      "fire_interval": 0.845679012345679,
+      "fire_delay": 0.9285714285714286,
+      "camouflage_interval": 6.6,
+      "camouflage_probability": 80,
+      "camouflage_duration": 0.51953125,
+      "movement_chances": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 0.7666666666666667,
+      "control_scale": 1,
+      "sight_yaw": 0.6822650890141414,
+      "sight_pitch": 0.6822650890141414,
+      "max_weapon_requests": 2,
+      "fire_probability": 104,
+      "fire_interval": 0.8370370370370371,
+      "fire_delay": 0.9142857142857143,
+      "camouflage_interval": 6.65,
+      "camouflage_probability": 83,
+      "camouflage_duration": 0.5234375,
+      "movement_chances": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 0.8,
+      "control_scale": 1,
+      "sight_yaw": 0.7087094711515152,
+      "sight_pitch": 0.7087094711515152,
+      "max_weapon_requests": 2,
+      "fire_probability": 106,
+      "fire_interval": 0.828395061728395,
+      "fire_delay": 0.9,
+      "camouflage_interval": 6.7,
+      "camouflage_probability": 86,
+      "camouflage_duration": 0.52734375,
+      "movement_chances": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 0.8,
+      "control_scale": 1,
+      "sight_yaw": 0.7351538532888889,
+      "sight_pitch": 0.7351538532888889,
+      "max_weapon_requests": 2,
+      "fire_probability": 108,
+      "fire_interval": 0.8197530864197531,
+      "fire_delay": 0.8857142857142857,
+      "camouflage_interval": 6.75,
+      "camouflage_probability": 89,
+      "camouflage_duration": 0.53125,
+      "movement_chances": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        5.0
+      ],
+      "memory_seconds": 0.8333333333333334,
+      "control_scale": 1,
+      "sight_yaw": 0.7615982354262626,
+      "sight_pitch": 0.7615982354262626,
+      "max_weapon_requests": 2,
+      "fire_probability": 110,
+      "fire_interval": 0.811111111111111,
+      "fire_delay": 0.8714285714285714,
+      "camouflage_interval": 6.8,
+      "camouflage_probability": 92,
+      "camouflage_duration": 0.53515625,
+      "movement_chances": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "durations": [
+        5.0,
+        60.0,
+        60.0,
+        90.0,
+        90.0,
+        4.0,
+        300.0
+      ],
+      "memory_seconds": 0.8333333333333334,
+      "control_scale": 1,
+      "sight_yaw": 0.7880426175636364,
+      "sight_pitch": 0.7880426175636364,
+      "max_weapon_requests": 2,
+      "fire_probability": 112,
+      "fire_interval": 0.8024691358024691,
+      "fire_delay": 0.8571428571428571,
+      "camouflage_interval": 6.85,
+      "camouflage_probability": 96,
+      "camouflage_duration": 0.5390625,
+      "movement_chances": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 0.8666666666666667,
+      "control_scale": 1,
+      "sight_yaw": 0.8144869997010101,
+      "sight_pitch": 0.8144869997010101,
+      "max_weapon_requests": 2,
+      "fire_probability": 114,
+      "fire_interval": 0.7938271604938272,
+      "fire_delay": 0.8428571428571429,
+      "camouflage_interval": 6.9,
+      "camouflage_probability": 99,
+      "camouflage_duration": 0.54296875,
+      "movement_chances": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 0.8666666666666667,
+      "control_scale": 1,
+      "sight_yaw": 0.8409313818383839,
+      "sight_pitch": 0.8409313818383839,
+      "max_weapon_requests": 2,
+      "fire_probability": 116,
+      "fire_interval": 0.7851851851851852,
+      "fire_delay": 0.8285714285714286,
+      "camouflage_interval": 6.95,
+      "camouflage_probability": 102,
+      "camouflage_duration": 0.546875,
+      "movement_chances": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 0.9,
+      "control_scale": 1,
+      "sight_yaw": 0.8673757639757577,
+      "sight_pitch": 0.8673757639757577,
+      "max_weapon_requests": 2,
+      "fire_probability": 118,
+      "fire_interval": 0.7765432098765432,
+      "fire_delay": 0.8142857142857143,
+      "camouflage_interval": 7.0,
+      "camouflage_probability": 105,
+      "camouflage_duration": 0.55078125,
+      "movement_chances": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 0.9333333333333333,
+      "control_scale": 1,
+      "sight_yaw": 0.8938201461131313,
+      "sight_pitch": 0.8938201461131313,
+      "max_weapon_requests": 3,
+      "fire_probability": 120,
+      "fire_interval": 0.7679012345679013,
+      "fire_delay": 0.8,
+      "camouflage_interval": 7.05,
+      "camouflage_probability": 108,
+      "camouflage_duration": 0.5546875,
+      "movement_chances": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 0.9333333333333333,
+      "control_scale": 1,
+      "sight_yaw": 0.9202645282505051,
+      "sight_pitch": 0.9202645282505051,
+      "max_weapon_requests": 3,
+      "fire_probability": 122,
+      "fire_interval": 0.7592592592592593,
+      "fire_delay": 0.7857142857142857,
+      "camouflage_interval": 7.1,
+      "camouflage_probability": 112,
+      "camouflage_duration": 0.55859375,
+      "movement_chances": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 0.9666666666666667,
+      "control_scale": 1,
+      "sight_yaw": 0.9467089103878789,
+      "sight_pitch": 0.9467089103878789,
+      "max_weapon_requests": 3,
+      "fire_probability": 124,
+      "fire_interval": 0.7506172839506172,
+      "fire_delay": 0.7714285714285715,
+      "camouflage_interval": 7.15,
+      "camouflage_probability": 115,
+      "camouflage_duration": 0.5625,
+      "movement_chances": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 0.9666666666666667,
+      "control_scale": 1,
+      "sight_yaw": 0.9731532925252526,
+      "sight_pitch": 0.9731532925252526,
+      "max_weapon_requests": 3,
+      "fire_probability": 126,
+      "fire_interval": 0.7419753086419753,
+      "fire_delay": 0.7571428571428571,
+      "camouflage_interval": 7.2,
+      "camouflage_probability": 118,
+      "camouflage_duration": 0.56640625,
+      "movement_chances": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 1.0,
+      "control_scale": 1,
+      "sight_yaw": 0.9995976746626264,
+      "sight_pitch": 0.9995976746626264,
+      "max_weapon_requests": 3,
+      "fire_probability": 129,
+      "fire_interval": 0.7333333333333334,
+      "fire_delay": 0.7428571428571429,
+      "camouflage_interval": 7.25,
+      "camouflage_probability": 121,
+      "camouflage_duration": 0.5703125,
+      "movement_chances": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 1.0333333333333334,
+      "control_scale": 1,
+      "sight_yaw": 1.0260420568,
+      "sight_pitch": 1.0260420568,
+      "max_weapon_requests": 3,
+      "fire_probability": 131,
+      "fire_interval": 0.7246913580246913,
+      "fire_delay": 0.7285714285714285,
+      "camouflage_interval": 7.3,
+      "camouflage_probability": 124,
+      "camouflage_duration": 0.57421875,
+      "movement_chances": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 1.0333333333333334,
+      "control_scale": 1,
+      "sight_yaw": 1.0524864389373738,
+      "sight_pitch": 1.0524864389373738,
+      "max_weapon_requests": 3,
+      "fire_probability": 133,
+      "fire_interval": 0.7160493827160493,
+      "fire_delay": 0.7142857142857143,
+      "camouflage_interval": 7.35,
+      "camouflage_probability": 128,
+      "camouflage_duration": 0.578125,
+      "movement_chances": [
+        64,
+        192,
+        0
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 1.0666666666666667,
+      "control_scale": 1,
+      "sight_yaw": 1.0789308210747475,
+      "sight_pitch": 1.0789308210747475,
+      "max_weapon_requests": 3,
+      "fire_probability": 135,
+      "fire_interval": 0.7074074074074075,
+      "fire_delay": 0.7,
+      "camouflage_interval": 7.4,
+      "camouflage_probability": 131,
+      "camouflage_duration": 0.58203125,
+      "movement_chances": [
+        64,
+        192,
+        0
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 1.1,
+      "control_scale": 1,
+      "sight_yaw": 1.1053752032121211,
+      "sight_pitch": 1.1053752032121211,
+      "max_weapon_requests": 3,
+      "fire_probability": 137,
+      "fire_interval": 0.6987654320987654,
+      "fire_delay": 0.6857142857142857,
+      "camouflage_interval": 7.45,
+      "camouflage_probability": 134,
+      "camouflage_duration": 0.5859375,
+      "movement_chances": [
+        64,
+        192,
+        0
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 1.1,
+      "control_scale": 1,
+      "sight_yaw": 1.131819585349495,
+      "sight_pitch": 1.131819585349495,
+      "max_weapon_requests": 3,
+      "fire_probability": 139,
+      "fire_interval": 0.6901234567901234,
+      "fire_delay": 0.6714285714285714,
+      "camouflage_interval": 7.5,
+      "camouflage_probability": 137,
+      "camouflage_duration": 0.58984375,
+      "movement_chances": [
+        64,
+        192,
+        0
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 1.1333333333333333,
+      "control_scale": 1,
+      "sight_yaw": 1.1582639674868687,
+      "sight_pitch": 1.1582639674868687,
+      "max_weapon_requests": 3,
+      "fire_probability": 141,
+      "fire_interval": 0.6814814814814815,
+      "fire_delay": 0.6571428571428571,
+      "camouflage_interval": 7.55,
+      "camouflage_probability": 140,
+      "camouflage_duration": 0.59375,
+      "movement_chances": [
+        64,
+        192,
+        0
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 1.1666666666666667,
+      "control_scale": 1,
+      "sight_yaw": 1.1847083496242425,
+      "sight_pitch": 1.1847083496242425,
+      "max_weapon_requests": 3,
+      "fire_probability": 143,
+      "fire_interval": 0.6728395061728395,
+      "fire_delay": 0.6428571428571429,
+      "camouflage_interval": 7.6,
+      "camouflage_probability": 144,
+      "camouflage_duration": 0.59765625,
+      "movement_chances": [
+        64,
+        192,
+        0
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 1.1666666666666667,
+      "control_scale": 1,
+      "sight_yaw": 1.2111527317616162,
+      "sight_pitch": 1.2111527317616162,
+      "max_weapon_requests": 3,
+      "fire_probability": 145,
+      "fire_interval": 0.6641975308641975,
+      "fire_delay": 0.6285714285714286,
+      "camouflage_interval": 7.65,
+      "camouflage_probability": 147,
+      "camouflage_duration": 0.6015625,
+      "movement_chances": [
+        64,
+        192,
+        0
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 1.2,
+      "control_scale": 1,
+      "sight_yaw": 1.2375971138989899,
+      "sight_pitch": 1.2375971138989899,
+      "max_weapon_requests": 3,
+      "fire_probability": 147,
+      "fire_interval": 0.6555555555555556,
+      "fire_delay": 0.6142857142857143,
+      "camouflage_interval": 7.7,
+      "camouflage_probability": 150,
+      "camouflage_duration": 0.60546875,
+      "movement_chances": [
+        64,
+        192,
+        0
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 1.2333333333333334,
+      "control_scale": 1,
+      "sight_yaw": 1.2640414960363637,
+      "sight_pitch": 1.2640414960363637,
+      "max_weapon_requests": 3,
+      "fire_probability": 149,
+      "fire_interval": 0.6469135802469137,
+      "fire_delay": 0.6,
+      "camouflage_interval": 7.75,
+      "camouflage_probability": 153,
+      "camouflage_duration": 0.609375,
+      "movement_chances": [
+        64,
+        192,
+        0
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 1.2333333333333334,
+      "control_scale": 1,
+      "sight_yaw": 1.2904858781737374,
+      "sight_pitch": 1.2904858781737374,
+      "max_weapon_requests": 3,
+      "fire_probability": 151,
+      "fire_interval": 0.6382716049382716,
+      "fire_delay": 0.5857142857142857,
+      "camouflage_interval": 7.8,
+      "camouflage_probability": 156,
+      "camouflage_duration": 0.61328125,
+      "movement_chances": [
+        64,
+        192,
+        0
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 1.2666666666666666,
+      "control_scale": 1,
+      "sight_yaw": 1.316930260311111,
+      "sight_pitch": 1.316930260311111,
+      "max_weapon_requests": 3,
+      "fire_probability": 153,
+      "fire_interval": 0.6296296296296297,
+      "fire_delay": 0.5714285714285714,
+      "camouflage_interval": 7.85,
+      "camouflage_probability": 160,
+      "camouflage_duration": 0.6171875,
+      "movement_chances": [
+        64,
+        192,
+        0
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 1.3,
+      "control_scale": 1,
+      "sight_yaw": 1.343374642448485,
+      "sight_pitch": 1.343374642448485,
+      "max_weapon_requests": 3,
+      "fire_probability": 155,
+      "fire_interval": 0.6209876543209876,
+      "fire_delay": 0.5571428571428572,
+      "camouflage_interval": 7.9,
+      "camouflage_probability": 163,
+      "camouflage_duration": 0.62109375,
+      "movement_chances": [
+        64,
+        192,
+        0
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 1.3333333333333333,
+      "control_scale": 1,
+      "sight_yaw": 1.3698190245858586,
+      "sight_pitch": 1.3698190245858586,
+      "max_weapon_requests": 3,
+      "fire_probability": 157,
+      "fire_interval": 0.6123456790123456,
+      "fire_delay": 0.5428571428571428,
+      "camouflage_interval": 7.95,
+      "camouflage_probability": 166,
+      "camouflage_duration": 0.625,
+      "movement_chances": [
+        64,
+        192,
+        0
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 1.3333333333333333,
+      "control_scale": 1,
+      "sight_yaw": 1.3962634067232325,
+      "sight_pitch": 1.3962634067232325,
+      "max_weapon_requests": 3,
+      "fire_probability": 159,
+      "fire_interval": 0.6037037037037037,
+      "fire_delay": 0.5285714285714286,
+      "camouflage_interval": 8.0,
+      "camouflage_probability": 169,
+      "camouflage_duration": 0.62890625,
+      "movement_chances": [
+        64,
+        192,
+        0
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 1.3666666666666667,
+      "control_scale": 1,
+      "sight_yaw": 1.4227077888606061,
+      "sight_pitch": 1.4227077888606061,
+      "max_weapon_requests": 3,
+      "fire_probability": 161,
+      "fire_interval": 0.5950617283950618,
+      "fire_delay": 0.5142857142857142,
+      "camouflage_interval": 8.05,
+      "camouflage_probability": 172,
+      "camouflage_duration": 0.6328125,
+      "movement_chances": [
+        64,
+        192,
+        0
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 1.4,
+      "control_scale": 1,
+      "sight_yaw": 1.4491521709979798,
+      "sight_pitch": 1.4491521709979798,
+      "max_weapon_requests": 3,
+      "fire_probability": 163,
+      "fire_interval": 0.5864197530864198,
+      "fire_delay": 0.5,
+      "camouflage_interval": 8.1,
+      "camouflage_probability": 176,
+      "camouflage_duration": 0.63671875,
+      "movement_chances": [
+        64,
+        192,
+        0
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 1.4333333333333333,
+      "control_scale": 1,
+      "sight_yaw": 1.4755965531353537,
+      "sight_pitch": 1.4755965531353537,
+      "max_weapon_requests": 3,
+      "fire_probability": 165,
+      "fire_interval": 0.5777777777777778,
+      "fire_delay": 0.4857142857142857,
+      "camouflage_interval": 8.15,
+      "camouflage_probability": 179,
+      "camouflage_duration": 0.640625,
+      "movement_chances": [
+        64,
+        192,
+        0
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 1.4666666666666666,
+      "control_scale": 1,
+      "sight_yaw": 1.5020409352727273,
+      "sight_pitch": 1.5020409352727273,
+      "max_weapon_requests": 3,
+      "fire_probability": 167,
+      "fire_interval": 0.5691358024691359,
+      "fire_delay": 0.4714285714285714,
+      "camouflage_interval": 8.2,
+      "camouflage_probability": 182,
+      "camouflage_duration": 0.64453125,
+      "movement_chances": [
+        64,
+        192,
+        0
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 1.4666666666666666,
+      "control_scale": 1,
+      "sight_yaw": 1.5284853174101012,
+      "sight_pitch": 1.5284853174101012,
+      "max_weapon_requests": 3,
+      "fire_probability": 169,
+      "fire_interval": 0.5604938271604938,
+      "fire_delay": 0.45714285714285713,
+      "camouflage_interval": 8.25,
+      "camouflage_probability": 185,
+      "camouflage_duration": 0.6484375,
+      "movement_chances": [
+        64,
+        192,
+        0
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 1.5,
+      "control_scale": 1,
+      "sight_yaw": 1.5549296995474748,
+      "sight_pitch": 1.5549296995474748,
+      "max_weapon_requests": 3,
+      "fire_probability": 172,
+      "fire_interval": 0.5518518518518518,
+      "fire_delay": 0.44285714285714284,
+      "camouflage_interval": 8.3,
+      "camouflage_probability": 188,
+      "camouflage_duration": 0.65234375,
+      "movement_chances": [
+        64,
+        192,
+        0
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 1.5333333333333334,
+      "control_scale": 1,
+      "sight_yaw": 1.5813740816848485,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 3,
+      "fire_probability": 174,
+      "fire_interval": 0.5432098765432098,
+      "fire_delay": 0.42857142857142855,
+      "camouflage_interval": 8.35,
+      "camouflage_probability": 192,
+      "camouflage_duration": 0.65625,
+      "movement_chances": [
+        128,
+        64,
+        64
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 1.5666666666666667,
+      "control_scale": 1,
+      "sight_yaw": 1.6078184638222224,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 3,
+      "fire_probability": 176,
+      "fire_interval": 0.5345679012345679,
+      "fire_delay": 0.4142857142857143,
+      "camouflage_interval": 8.4,
+      "camouflage_probability": 195,
+      "camouflage_duration": 0.66015625,
+      "movement_chances": [
+        128,
+        64,
+        64
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 1.6,
+      "control_scale": 1,
+      "sight_yaw": 1.634262845959596,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 3,
+      "fire_probability": 178,
+      "fire_interval": 0.5259259259259259,
+      "fire_delay": 0.4,
+      "camouflage_interval": 8.45,
+      "camouflage_probability": 198,
+      "camouflage_duration": 0.6640625,
+      "movement_chances": [
+        128,
+        64,
+        64
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 1.6333333333333333,
+      "control_scale": 1,
+      "sight_yaw": 1.66070722809697,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 3,
+      "fire_probability": 180,
+      "fire_interval": 0.5172839506172839,
+      "fire_delay": 0.38571428571428573,
+      "camouflage_interval": 8.5,
+      "camouflage_probability": 201,
+      "camouflage_duration": 0.66796875,
+      "movement_chances": [
+        128,
+        64,
+        64
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 1.6666666666666667,
+      "control_scale": 1,
+      "sight_yaw": 1.6871516102343436,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 3,
+      "fire_probability": 182,
+      "fire_interval": 0.508641975308642,
+      "fire_delay": 0.37142857142857144,
+      "camouflage_interval": 8.55,
+      "camouflage_probability": 204,
+      "camouflage_duration": 0.671875,
+      "movement_chances": [
+        128,
+        64,
+        64
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 1.6666666666666667,
+      "control_scale": 1,
+      "sight_yaw": 1.7135959923717172,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 3,
+      "fire_probability": 184,
+      "fire_interval": 0.5,
+      "fire_delay": 0.35714285714285715,
+      "camouflage_interval": 8.6,
+      "camouflage_probability": 208,
+      "camouflage_duration": 0.67578125,
+      "movement_chances": [
+        128,
+        64,
+        64
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 1.7,
+      "control_scale": 1,
+      "sight_yaw": 1.740040374509091,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 4,
+      "fire_probability": 186,
+      "fire_interval": 0.491358024691358,
+      "fire_delay": 0.34285714285714286,
+      "camouflage_interval": 8.65,
+      "camouflage_probability": 211,
+      "camouflage_duration": 0.6796875,
+      "movement_chances": [
+        128,
+        64,
+        64
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 1.7333333333333334,
+      "control_scale": 1,
+      "sight_yaw": 1.7664847566464648,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 4,
+      "fire_probability": 188,
+      "fire_interval": 0.48271604938271606,
+      "fire_delay": 0.32857142857142857,
+      "camouflage_interval": 8.7,
+      "camouflage_probability": 214,
+      "camouflage_duration": 0.68359375,
+      "movement_chances": [
+        128,
+        64,
+        64
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 1.7666666666666666,
+      "control_scale": 1,
+      "sight_yaw": 1.7929291387838386,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 4,
+      "fire_probability": 190,
+      "fire_interval": 0.4740740740740741,
+      "fire_delay": 0.3142857142857143,
+      "camouflage_interval": 8.75,
+      "camouflage_probability": 217,
+      "camouflage_duration": 0.6875,
+      "movement_chances": [
+        128,
+        64,
+        64
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        4.0
+      ],
+      "memory_seconds": 1.8,
+      "control_scale": 1,
+      "sight_yaw": 1.8193735209212123,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 4,
+      "fire_probability": 192,
+      "fire_interval": 0.46543209876543207,
+      "fire_delay": 0.3,
+      "camouflage_interval": 8.8,
+      "camouflage_probability": 220,
+      "camouflage_duration": 0.69140625,
+      "movement_chances": [
+        128,
+        64,
+        64
+      ]
+    },
+    {
+      "durations": [
+        4.0,
+        60.0,
+        40.0,
+        40.0,
+        30.0,
+        4.0,
+        300.0
+      ],
+      "memory_seconds": 1.8333333333333333,
+      "control_scale": 1,
+      "sight_yaw": 1.8458179030585862,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 4,
+      "fire_probability": 194,
+      "fire_interval": 0.45679012345679015,
+      "fire_delay": 0.2857142857142857,
+      "camouflage_interval": 8.85,
+      "camouflage_probability": 224,
+      "camouflage_duration": 0.6953125,
+      "movement_chances": [
+        128,
+        64,
+        64
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 1.8666666666666667,
+      "control_scale": 1,
+      "sight_yaw": 1.8722622851959598,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 4,
+      "fire_probability": 196,
+      "fire_interval": 0.44814814814814813,
+      "fire_delay": 0.2714285714285714,
+      "camouflage_interval": 8.9,
+      "camouflage_probability": 227,
+      "camouflage_duration": 0.69921875,
+      "movement_chances": [
+        128,
+        64,
+        64
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 1.9,
+      "control_scale": 1,
+      "sight_yaw": 1.8987066673333335,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 4,
+      "fire_probability": 198,
+      "fire_interval": 0.4395061728395062,
+      "fire_delay": 0.2571428571428571,
+      "camouflage_interval": 8.95,
+      "camouflage_probability": 230,
+      "camouflage_duration": 0.703125,
+      "movement_chances": [
+        128,
+        64,
+        64
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 1.9333333333333333,
+      "control_scale": 1,
+      "sight_yaw": 1.9251510494707074,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 4,
+      "fire_probability": 200,
+      "fire_interval": 0.4308641975308642,
+      "fire_delay": 0.24285714285714285,
+      "camouflage_interval": 9.0,
+      "camouflage_probability": 233,
+      "camouflage_duration": 0.70703125,
+      "movement_chances": [
+        128,
+        64,
+        64
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 1.9666666666666666,
+      "control_scale": 1,
+      "sight_yaw": 1.951595431608081,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 4,
+      "fire_probability": 202,
+      "fire_interval": 0.4222222222222222,
+      "fire_delay": 0.22857142857142856,
+      "camouflage_interval": 9.05,
+      "camouflage_probability": 236,
+      "camouflage_duration": 0.7109375,
+      "movement_chances": [
+        128,
+        64,
+        64
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 2.0,
+      "control_scale": 1,
+      "sight_yaw": 1.9780398137454547,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 4,
+      "fire_probability": 204,
+      "fire_interval": 0.41358024691358025,
+      "fire_delay": 0.21428571428571427,
+      "camouflage_interval": 9.1,
+      "camouflage_probability": 240,
+      "camouflage_duration": 0.71484375,
+      "movement_chances": [
+        128,
+        64,
+        64
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 2.033333333333333,
+      "control_scale": 1,
+      "sight_yaw": 2.0044841958828283,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 4,
+      "fire_probability": 206,
+      "fire_interval": 0.4049382716049383,
+      "fire_delay": 0.2,
+      "camouflage_interval": 9.15,
+      "camouflage_probability": 243,
+      "camouflage_duration": 0.71875,
+      "movement_chances": [
+        128,
+        64,
+        64
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 2.066666666666667,
+      "control_scale": 1,
+      "sight_yaw": 2.030928578020202,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 4,
+      "fire_probability": 208,
+      "fire_interval": 0.39629629629629626,
+      "fire_delay": 0.18571428571428572,
+      "camouflage_interval": 9.2,
+      "camouflage_probability": 246,
+      "camouflage_duration": 0.72265625,
+      "movement_chances": [
+        128,
+        64,
+        64
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 2.1,
+      "control_scale": 1,
+      "sight_yaw": 2.057372960157576,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 4,
+      "fire_probability": 210,
+      "fire_interval": 0.38765432098765434,
+      "fire_delay": 0.17142857142857143,
+      "camouflage_interval": 9.25,
+      "camouflage_probability": 249,
+      "camouflage_duration": 0.7265625,
+      "movement_chances": [
+        128,
+        64,
+        64
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 2.1333333333333333,
+      "control_scale": 1,
+      "sight_yaw": 2.0838173422949495,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 4,
+      "fire_probability": 212,
+      "fire_interval": 0.3790123456790123,
+      "fire_delay": 0.15714285714285714,
+      "camouflage_interval": 9.3,
+      "camouflage_probability": 252,
+      "camouflage_duration": 0.73046875,
+      "movement_chances": [
+        128,
+        64,
+        64
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 2.1666666666666665,
+      "control_scale": 1,
+      "sight_yaw": 2.1102617244323234,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 4,
+      "fire_probability": 215,
+      "fire_interval": 0.37037037037037035,
+      "fire_delay": 0.14285714285714285,
+      "camouflage_interval": 9.35,
+      "camouflage_probability": 256,
+      "camouflage_duration": 0.734375,
+      "movement_chances": [
+        64,
+        32,
+        160
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 2.2,
+      "control_scale": 1,
+      "sight_yaw": 2.1367061065696973,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 4,
+      "fire_probability": 217,
+      "fire_interval": 0.3617283950617284,
+      "fire_delay": 0.12857142857142856,
+      "camouflage_interval": 9.4,
+      "camouflage_probability": 259,
+      "camouflage_duration": 0.73828125,
+      "movement_chances": [
+        64,
+        32,
+        160
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 2.2333333333333334,
+      "control_scale": 1,
+      "sight_yaw": 2.1631504887070707,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 4,
+      "fire_probability": 219,
+      "fire_interval": 0.3530864197530864,
+      "fire_delay": 0.11428571428571428,
+      "camouflage_interval": 9.45,
+      "camouflage_probability": 262,
+      "camouflage_duration": 0.7421875,
+      "movement_chances": [
+        64,
+        32,
+        160
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 2.2666666666666666,
+      "control_scale": 1,
+      "sight_yaw": 2.1895948708444446,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 4,
+      "fire_probability": 221,
+      "fire_interval": 0.3444444444444444,
+      "fire_delay": 0.1,
+      "camouflage_interval": 9.5,
+      "camouflage_probability": 265,
+      "camouflage_duration": 0.74609375,
+      "movement_chances": [
+        64,
+        32,
+        160
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 2.3,
+      "control_scale": 1,
+      "sight_yaw": 2.2160392529818185,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 4,
+      "fire_probability": 223,
+      "fire_interval": 0.3358024691358025,
+      "fire_delay": 0.08571428571428572,
+      "camouflage_interval": 9.55,
+      "camouflage_probability": 268,
+      "camouflage_duration": 0.75,
+      "movement_chances": [
+        64,
+        32,
+        160
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 2.3333333333333335,
+      "control_scale": 1,
+      "sight_yaw": 2.242483635119192,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 4,
+      "fire_probability": 225,
+      "fire_interval": 0.3271604938271605,
+      "fire_delay": 0.07142857142857142,
+      "camouflage_interval": 9.6,
+      "camouflage_probability": 272,
+      "camouflage_duration": 0.75390625,
+      "movement_chances": [
+        64,
+        32,
+        160
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 2.3666666666666667,
+      "control_scale": 1,
+      "sight_yaw": 2.268928017256566,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 4,
+      "fire_probability": 227,
+      "fire_interval": 0.3185185185185185,
+      "fire_delay": 0.05714285714285714,
+      "camouflage_interval": 9.65,
+      "camouflage_probability": 275,
+      "camouflage_duration": 0.7578125,
+      "movement_chances": [
+        64,
+        32,
+        160
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 2.433333333333333,
+      "control_scale": 1,
+      "sight_yaw": 2.2953723993939397,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 4,
+      "fire_probability": 229,
+      "fire_interval": 0.30987654320987656,
+      "fire_delay": 0.04285714285714286,
+      "camouflage_interval": 9.7,
+      "camouflage_probability": 278,
+      "camouflage_duration": 0.76171875,
+      "movement_chances": [
+        64,
+        32,
+        160
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 2.466666666666667,
+      "control_scale": 1,
+      "sight_yaw": 2.3218167815313135,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 4,
+      "fire_probability": 231,
+      "fire_interval": 0.30123456790123454,
+      "fire_delay": 0.02857142857142857,
+      "camouflage_interval": 9.75,
+      "camouflage_probability": 281,
+      "camouflage_duration": 0.765625,
+      "movement_chances": [
+        64,
+        32,
+        160
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 2.5,
+      "control_scale": 1,
+      "sight_yaw": 2.348261163668687,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 4,
+      "fire_probability": 233,
+      "fire_interval": 0.2925925925925925,
+      "fire_delay": 0.014285714285714285,
+      "camouflage_interval": 9.8,
+      "camouflage_probability": 284,
+      "camouflage_duration": 0.76953125,
+      "movement_chances": [
+        64,
+        32,
+        160
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 2.533333333333333,
+      "control_scale": 1,
+      "sight_yaw": 2.374705545806061,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 4,
+      "fire_probability": 235,
+      "fire_interval": 0.28395061728395066,
+      "fire_delay": 0.0,
+      "camouflage_interval": 9.85,
+      "camouflage_probability": 288,
+      "camouflage_duration": 0.7734375,
+      "movement_chances": [
+        64,
+        32,
+        160
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 2.566666666666667,
+      "control_scale": 1,
+      "sight_yaw": 2.4011499279434347,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 4,
+      "fire_probability": 237,
+      "fire_interval": 0.27530864197530863,
+      "fire_delay": -0.014285714285714285,
+      "camouflage_interval": 9.9,
+      "camouflage_probability": 291,
+      "camouflage_duration": 0.77734375,
+      "movement_chances": [
+        64,
+        32,
+        160
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 2.6,
+      "control_scale": 1,
+      "sight_yaw": 2.427594310080808,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 5,
+      "fire_probability": 239,
+      "fire_interval": 0.26666666666666666,
+      "fire_delay": -0.02857142857142857,
+      "camouflage_interval": 9.95,
+      "camouflage_probability": 294,
+      "camouflage_duration": 0.78125,
+      "movement_chances": [
+        64,
+        32,
+        160
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 2.6666666666666665,
+      "control_scale": 1,
+      "sight_yaw": 2.454038692218182,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 5,
+      "fire_probability": 241,
+      "fire_interval": 0.25802469135802464,
+      "fire_delay": -0.04285714285714286,
+      "camouflage_interval": 10.0,
+      "camouflage_probability": 297,
+      "camouflage_duration": 0.78515625,
+      "movement_chances": [
+        64,
+        32,
+        160
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 2.7,
+      "control_scale": 1,
+      "sight_yaw": 2.480483074355556,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 5,
+      "fire_probability": 243,
+      "fire_interval": 0.24938271604938275,
+      "fire_delay": -0.05714285714285714,
+      "camouflage_interval": 10.05,
+      "camouflage_probability": 300,
+      "camouflage_duration": 0.7890625,
+      "movement_chances": [
+        64,
+        32,
+        160
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 2.7333333333333334,
+      "control_scale": 1,
+      "sight_yaw": 2.5069274564929294,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 5,
+      "fire_probability": 245,
+      "fire_interval": 0.24074074074074073,
+      "fire_delay": -0.07142857142857142,
+      "camouflage_interval": 10.1,
+      "camouflage_probability": 304,
+      "camouflage_duration": 0.79296875,
+      "movement_chances": [
+        64,
+        32,
+        160
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 2.7666666666666666,
+      "control_scale": 1,
+      "sight_yaw": 2.5333718386303032,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 5,
+      "fire_probability": 247,
+      "fire_interval": 0.23209876543209873,
+      "fire_delay": -0.08571428571428572,
+      "camouflage_interval": 10.15,
+      "camouflage_probability": 307,
+      "camouflage_duration": 0.796875,
+      "movement_chances": [
+        64,
+        32,
+        160
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 2.8,
+      "control_scale": 1,
+      "sight_yaw": 2.559816220767677,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 5,
+      "fire_probability": 249,
+      "fire_interval": 0.22345679012345673,
+      "fire_delay": -0.1,
+      "camouflage_interval": 10.2,
+      "camouflage_probability": 310,
+      "camouflage_duration": 0.80078125,
+      "movement_chances": [
+        64,
+        32,
+        160
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 2.8666666666666667,
+      "control_scale": 1,
+      "sight_yaw": 2.5862606029050506,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 5,
+      "fire_probability": 251,
+      "fire_interval": 0.21481481481481485,
+      "fire_delay": -0.11428571428571428,
+      "camouflage_interval": 10.25,
+      "camouflage_probability": 313,
+      "camouflage_duration": 0.8046875,
+      "movement_chances": [
+        64,
+        32,
+        160
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 2.9,
+      "control_scale": 1,
+      "sight_yaw": 2.6127049850424244,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 5,
+      "fire_probability": 253,
+      "fire_interval": 0.20617283950617282,
+      "fire_delay": -0.12857142857142856,
+      "camouflage_interval": 10.3,
+      "camouflage_probability": 316,
+      "camouflage_duration": 0.80859375,
+      "movement_chances": [
+        64,
+        32,
+        160
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 2.933333333333333,
+      "control_scale": 1,
+      "sight_yaw": 2.639149367179798,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 5,
+      "fire_probability": 256,
+      "fire_interval": 0.19753086419753083,
+      "fire_delay": -0.14285714285714285,
+      "camouflage_interval": 10.35,
+      "camouflage_probability": 320,
+      "camouflage_duration": 0.8125,
+      "movement_chances": [
+        112,
+        16,
+        128
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 2.966666666666667,
+      "control_scale": 1,
+      "sight_yaw": 2.6655937493171717,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 5,
+      "fire_probability": 258,
+      "fire_interval": 0.18888888888888894,
+      "fire_delay": -0.15714285714285714,
+      "camouflage_interval": 10.4,
+      "camouflage_probability": 323,
+      "camouflage_duration": 0.81640625,
+      "movement_chances": [
+        112,
+        16,
+        128
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 3.033333333333333,
+      "control_scale": 1,
+      "sight_yaw": 2.6920381314545456,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 5,
+      "fire_probability": 260,
+      "fire_interval": 0.18024691358024694,
+      "fire_delay": -0.17142857142857143,
+      "camouflage_interval": 10.45,
+      "camouflage_probability": 326,
+      "camouflage_duration": 0.8203125,
+      "movement_chances": [
+        112,
+        16,
+        128
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 3.066666666666667,
+      "control_scale": 1,
+      "sight_yaw": 2.718482513591919,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 5,
+      "fire_probability": 262,
+      "fire_interval": 0.17160493827160492,
+      "fire_delay": -0.18571428571428572,
+      "camouflage_interval": 10.5,
+      "camouflage_probability": 329,
+      "camouflage_duration": 0.82421875,
+      "movement_chances": [
+        112,
+        16,
+        128
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 3.1,
+      "control_scale": 1,
+      "sight_yaw": 2.744926895729293,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 5,
+      "fire_probability": 264,
+      "fire_interval": 0.16296296296296292,
+      "fire_delay": -0.2,
+      "camouflage_interval": 10.55,
+      "camouflage_probability": 332,
+      "camouflage_duration": 0.828125,
+      "movement_chances": [
+        112,
+        16,
+        128
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 3.1666666666666665,
+      "control_scale": 1,
+      "sight_yaw": 2.771371277866667,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 5,
+      "fire_probability": 266,
+      "fire_interval": 0.15432098765432103,
+      "fire_delay": -0.21428571428571427,
+      "camouflage_interval": 10.6,
+      "camouflage_probability": 336,
+      "camouflage_duration": 0.83203125,
+      "movement_chances": [
+        112,
+        16,
+        128
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 3.2,
+      "control_scale": 1,
+      "sight_yaw": 2.7978156600040407,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 5,
+      "fire_probability": 268,
+      "fire_interval": 0.145679012345679,
+      "fire_delay": -0.22857142857142856,
+      "camouflage_interval": 10.65,
+      "camouflage_probability": 339,
+      "camouflage_duration": 0.8359375,
+      "movement_chances": [
+        112,
+        16,
+        128
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 3.2666666666666666,
+      "control_scale": 1,
+      "sight_yaw": 2.824260042141414,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 5,
+      "fire_probability": 270,
+      "fire_interval": 0.137037037037037,
+      "fire_delay": -0.24285714285714285,
+      "camouflage_interval": 10.7,
+      "camouflage_probability": 342,
+      "camouflage_duration": 0.83984375,
+      "movement_chances": [
+        112,
+        16,
+        128
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 3.3,
+      "control_scale": 1,
+      "sight_yaw": 2.850704424278788,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 5,
+      "fire_probability": 272,
+      "fire_interval": 0.128395061728395,
+      "fire_delay": -0.2571428571428571,
+      "camouflage_interval": 10.75,
+      "camouflage_probability": 345,
+      "camouflage_duration": 0.84375,
+      "movement_chances": [
+        112,
+        16,
+        128
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 3.3333333333333335,
+      "control_scale": 1,
+      "sight_yaw": 2.877148806416162,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 5,
+      "fire_probability": 274,
+      "fire_interval": 0.11975308641975312,
+      "fire_delay": -0.2714285714285714,
+      "camouflage_interval": 10.8,
+      "camouflage_probability": 348,
+      "camouflage_duration": 0.84765625,
+      "movement_chances": [
+        112,
+        16,
+        128
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 3.4,
+      "control_scale": 1,
+      "sight_yaw": 2.9035931885535353,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 5,
+      "fire_probability": 276,
+      "fire_interval": 0.1111111111111111,
+      "fire_delay": -0.2857142857142857,
+      "camouflage_interval": 10.85,
+      "camouflage_probability": 352,
+      "camouflage_duration": 0.8515625,
+      "movement_chances": [
+        112,
+        16,
+        128
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 3.433333333333333,
+      "control_scale": 1,
+      "sight_yaw": 2.930037570690909,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 5,
+      "fire_probability": 278,
+      "fire_interval": 0.1024691358024691,
+      "fire_delay": -0.3,
+      "camouflage_interval": 10.9,
+      "camouflage_probability": 355,
+      "camouflage_duration": 0.85546875,
+      "movement_chances": [
+        112,
+        16,
+        128
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 3.5,
+      "control_scale": 1,
+      "sight_yaw": 2.956481952828283,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 5,
+      "fire_probability": 280,
+      "fire_interval": 0.0938271604938271,
+      "fire_delay": -0.3142857142857143,
+      "camouflage_interval": 10.95,
+      "camouflage_probability": 358,
+      "camouflage_duration": 0.859375,
+      "movement_chances": [
+        112,
+        16,
+        128
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 3.533333333333333,
+      "control_scale": 1,
+      "sight_yaw": 2.9829263349656565,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 5,
+      "fire_probability": 282,
+      "fire_interval": 0.08518518518518521,
+      "fire_delay": -0.32857142857142857,
+      "camouflage_interval": 11.0,
+      "camouflage_probability": 361,
+      "camouflage_duration": 0.86328125,
+      "movement_chances": [
+        112,
+        16,
+        128
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 3.566666666666667,
+      "control_scale": 1,
+      "sight_yaw": 3.0093707171030304,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 5,
+      "fire_probability": 284,
+      "fire_interval": 0.0765432098765432,
+      "fire_delay": -0.34285714285714286,
+      "camouflage_interval": 11.05,
+      "camouflage_probability": 364,
+      "camouflage_duration": 0.8671875,
+      "movement_chances": [
+        112,
+        16,
+        128
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 3.6333333333333333,
+      "control_scale": 1,
+      "sight_yaw": 3.0358150992404043,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 5,
+      "fire_probability": 286,
+      "fire_interval": 0.06790123456790119,
+      "fire_delay": -0.35714285714285715,
+      "camouflage_interval": 11.1,
+      "camouflage_probability": 368,
+      "camouflage_duration": 0.87109375,
+      "movement_chances": [
+        112,
+        16,
+        128
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 3.6666666666666665,
+      "control_scale": 1,
+      "sight_yaw": 3.062259481377778,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 6,
+      "fire_probability": 288,
+      "fire_interval": 0.05925925925925931,
+      "fire_delay": -0.37142857142857144,
+      "camouflage_interval": 11.15,
+      "camouflage_probability": 371,
+      "camouflage_duration": 0.875,
+      "movement_chances": [
+        112,
+        16,
+        128
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0
+      ],
+      "memory_seconds": 3.7333333333333334,
+      "control_scale": 1,
+      "sight_yaw": 3.0887038635151516,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 6,
+      "fire_probability": 290,
+      "fire_interval": 0.0506172839506173,
+      "fire_delay": -0.38571428571428573,
+      "camouflage_interval": 11.2,
+      "camouflage_probability": 374,
+      "camouflage_duration": 0.87890625,
+      "movement_chances": [
+        112,
+        16,
+        128
+      ]
+    },
+    {
+      "durations": [
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        300.0,
+        1.0
+      ],
+      "memory_seconds": 3.7666666666666666,
+      "control_scale": 1,
+      "sight_yaw": 3.1151482456525255,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 6,
+      "fire_probability": 292,
+      "fire_interval": 0.04197530864197529,
+      "fire_delay": -0.4,
+      "camouflage_interval": 11.25,
+      "camouflage_probability": 377,
+      "camouflage_duration": 0.8828125,
+      "movement_chances": [
+        112,
+        16,
+        128
+      ]
+    },
+    {
+      "durations": [
+        1.0,
+        20.0,
+        10.0,
+        30.0,
+        120.0,
+        1.0,
+        300.0
+      ],
+      "memory_seconds": 3.8333333333333335,
+      "control_scale": 1,
+      "sight_yaw": 3.1415926277898993,
+      "sight_pitch": 1.5707963267948966,
+      "max_weapon_requests": 6,
+      "fire_probability": 294,
+      "fire_interval": 0.03333333333333328,
+      "fire_delay": -0.4142857142857143,
+      "camouflage_interval": 11.3,
+      "camouflage_probability": 380,
+      "camouflage_duration": 0.88671875,
+      "movement_chances": [
+        112,
+        16,
+        128
+      ]
+    }
+  ],
+  "parameters": {
+    "pickup_range": 25,
+    "pickup_money_ability": 31,
+    "pickup_money_last_kind": 3,
+    "pickup_timeout": 5.0,
+    "pickup_full_speed_angle": 0.261799395,
+    "pickup_slow_distance": 5.0,
+    "pickup_overhead_radius": 0.5,
+    "pickup_overhead_height": 3.0,
+    "tick_hz": 30,
+    "acquire_range": 100,
+    "cloak_proximity": 5,
+    "transition_guard": 4,
+    "idle_seconds": 2,
+    "movement_interval": 3,
+    "route_retry_seconds": 4,
+    "route_walk": 0.69,
+    "route_dash_walk": 0.7,
+    "route_turn_radians": 0.7853981634,
+    "route_pause_seconds": 1,
+    "route_pause_cycle": 4,
+    "blocked_reverse_seconds": 0.5,
+    "blocked_pause_seconds": 1,
+    "blocked_jump_seconds": 3,
+    "approach_stop_distance": 12.0,
+    "threat_ticks_ahead": 8.5,
+    "threat_margin": 1.5,
+    "dodge_ability_scale": 2,
+    "defensive_dodge_chance": 245,
+    "threat_angle_base": 15,
+    "threat_angle_max": 60,
+    "probability_scale": 255,
+    "fire_probability_scale": 256,
+    "cloak_detect_scale": 99,
+    "cloak_detect_seconds": 1,
+    "ranker_route_seconds": 8,
+    "ranker_engage_seconds": 8,
+    "ranker_close_distance": 18.0,
+    "idle_route_chance": 128,
+    "melee_submode_chance": 220,
+    "ranker_full_health_chance": 40,
+    "ranker_route_attack_chance": 10,
+    "ranker_orbit_chance": 10,
+    "ranker_first_rival_orbit_chance": 50,
+    "ranker_orbit_range": 25.0,
+    "ranker_defensive_seconds": 180,
+    "ranker_blocked_seconds": 2,
+    "ranker_no_random_cloak": 1,
+    "cloak_minimum": 0.1,
+    "withdraw_fire_share": 0.5,
+    "search_seconds": 3,
+    "trace_interval": 10,
+    "fire_hold_jitter": 0.20000000298023224,
+    "facing_fire_scale": 1.5,
+    "facing_fire_angle": 0.7071067657322372,
+    "beam_sustain_ranker_seconds": 5.0,
+    "beam_sustain_champion_seconds": 0.5,
+    "forced_weapon_mask": 12,
+    "lock_range": 75.0,
+    "jump_reaction_chance": 15,
+    "jump_reaction_near": 5.0,
+    "jump_reaction_far": 20.0,
+    "jump_reaction_angle": 0.2617993950843811,
+    "jump_reaction_aim_seconds": 3.0,
+    "jump_reaction_skipped_area": 1,
+    "ranker_class": 2,
+    "retaliation_ranker_chance": 10,
+    "retaliation_cloaked_floor": 10,
+    "retaliation_seen_bonus": 127,
+    "retaliation_memory_seconds": 2,
+    "retaliation_memory_per_ability": 0.1,
+    "retaliation_fetch_first_kind": 4,
+    "retaliation_fetch_last_kind": 6,
+    "retaliation_ranker_hold_seconds": 8,
+    "showcase_ability": 99,
+    "high_ground_centre_x": 30.52199935913086,
+    "high_ground_centre_z": 59.59410095214844,
+    "high_ground_radius": 39.29499816894531,
+    "high_ground_outside_floor": -2.5,
+    "high_ground_inside_floor": -0.5
+  },
+  "ranker_entrants": [
+    0,
+    1,
+    10,
+    19
+  ],
+  "ranker_weapon_masks": [
+    0,
+    0,
+    12,
+    2,
+    1
+  ],
+  "initialization_note": "0x080778 runs 0x057863 (0x809da), whose setters cache sight, firing, camouflage and movement chances, before 0x057820 assigns the ability (0x80a1c): they hold ability 0's values, or the showcase's 99."
+}

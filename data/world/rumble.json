@@ -1,0 +1,19 @@
+{
+ "notes": [
+  "Controller vibration. The original rumbles a pad only when the robot it pilots takes damage (0x07675e): that frame's damage is clamped to [floor, ceiling]; below short_below every step lasts short_scale as long; each motor's speed is scaled by the damage over full. The steps are the pattern at 0x232678, three {frames, heavy motor, light motor} ending at frames -1; speeds are XInput's 0-65535 (low is XInputSetState's left, low-frequency motor, high its right). frames are the original's 60 Hz frames (frame_rate).",
+  "The vibration option (OPTION > VIBRATION, saved with the settings) silences the motors; the original keeps running the pattern on a silent pad (bit 30 of 0x9cc passed to 0x0decb0). Pausing and leaving the battle stop the pad at once (0x0debc0)."
+ ],
+ "frame_rate": 60,
+ "damage": {
+  "floor": 300,
+  "ceiling": 1000,
+  "full": 1000,
+  "short_below": 500,
+  "short_scale": 0.5,
+  "steps": [
+   { "frames": 20, "low": 65000, "high": 45000 },
+   { "frames": 10, "low": 50000, "high": 35000 },
+   { "frames": 5, "low": 30000, "high": 25000 }
+  ]
+ }
+}

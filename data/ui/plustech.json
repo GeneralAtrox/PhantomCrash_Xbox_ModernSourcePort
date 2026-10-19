@@ -1,0 +1,268 @@
+{
+ "notes": [
+  "The PlusTech menu (original scene 27: create 0x32121, init 0x31eae, menu 0x31946, draw 0x2ee45). It is Club Wired's wheel with plus_tec_tex and three items, the slots showing the items modulo three; the help line is dark (0xff3c3c3c).",
+  "Items (0x31946): customize (the Scoobee's tune-up), uplift (the CHIP's level) and out to the town map. Each fades out to its screen and back (0x316eb); the port makes each its own screen, returning here (start_items).",
+  "confirm plays 5, or 26 on the way out; cancel moves the cursor to the way out. Arriving from the town map plays 25.",
+  "The help lines are the original's (0x1fa7c0), ten leading spaces each (the lead), 9 units a space; the window is at (85, 211) (0x1fb0dc)."
+ ],
+ "scene": 27,
+ "music": "plustech",
+ "fade_in": 0.5,
+ "fade_out": 0.5,
+ "exit_to": "town_map",
+ "confirm": {
+  "buttons": "confirm"
+ },
+ "cancel": {
+  "buttons": "cancel"
+ },
+ "cursor_repeat": {
+  "delay": 0.4,
+  "interval": 0.15
+ },
+ "buttons": {
+  "back": "left",
+  "forward": "right"
+ },
+ "sounds": {
+  "move": "wheel",
+  "select": "confirm"
+ },
+ "cancel_item": "exit",
+ "start_items": {
+  "plustech_customize": "customize",
+  "plustech_uplift": "uplift"
+ },
+ "arrive_sounds": {
+  "town_map": "club_arrive"
+ },
+ "image": "textures/scroll/plus_tec_tex/0.png",
+ "layers": [
+  {
+   "id": "background",
+   "image": "textures/scroll/plus_tec_tex/0.png",
+   "rect": [
+    0,
+    0,
+    640,
+    480
+   ],
+   "layer": 1,
+   "extend_edges": "both", "edge_bands_right": [[0, 41], [376, 480]],
+ "edge_bands_left": [[0, 72], [414, 480]]
+  },
+  {
+   "id": "help_panel",
+   "image": "textures/scroll/plus_tec_tex/0.png",
+   "rect": [
+    0,
+    664,
+    432,
+    840
+   ],
+   "position": [
+    240,
+    208
+   ],
+   "centered": true,
+   "layer": 3
+  },
+  {
+   "id": "music_strip",
+   "image": "textures/scroll/plus_tec_tex/0.png",
+   "rect": [
+    0,
+    480,
+    640,
+    664
+   ],
+   "position": [
+    0,
+    296
+   ],
+   "layer": 4,
+   "extend_edges": "both"
+  }
+ ],
+ "help": {
+  "position": [
+   85,
+   211
+  ],
+  "clip": [
+   85,
+   211,
+   265,
+   229
+  ],
+  "colour": "#3c3c3c",
+  "speed": 60,
+  "lead": 180,
+  "trail": 0,
+  "layer": 11
+ },
+ "frame": {
+  "hud": true,
+  "riding_plate": true,
+  "meter": [
+   434,
+   315
+  ],
+  "now_playing": {
+   "format": "《 {title} : {artist} 》",
+   "position": [
+    0,
+    339
+   ],
+   "clip": [
+    0,
+    339,
+    396,
+    357
+   ],
+   "colour": "#ffffff",
+   "speed": 60,
+   "trail": 45,
+   "layer": 263
+  }
+ },
+ "wheel": {
+  "position": [
+   262,
+   139
+  ],
+  "pivot": [
+   231.5,
+   156.5
+  ],
+  "step_degrees": 45,
+  "slots": 8,
+  "turn_seconds": 0.1333
+ },
+ "items": [
+  {
+   "id": "customize",
+   "next": "plustech_customize",
+   "help": "{xbe:0x19bf88}",
+   "help_trail": 0,
+   "wedge": {
+    "rect": [
+     640,
+     0,
+     784,
+     152
+    ],
+    "layer": 3
+   },
+   "highlight": {
+    "rect": [
+     784,
+     0,
+     928,
+     152
+    ],
+    "position": [
+     262,
+     139
+    ],
+    "layer": 4
+   },
+   "label": {
+    "rect": [
+     640,
+     576,
+     880,
+     624
+    ],
+    "position": [
+     75,
+     153
+    ],
+    "layer": 4
+   }
+  },
+  {
+   "id": "uplift",
+   "next": "plustech_uplift",
+   "help": "{xbe:0x19be60}",
+   "help_trail": 0,
+   "wedge": {
+    "rect": [
+     640,
+     304,
+     784,
+     456
+    ],
+    "layer": 3
+   },
+   "highlight": {
+    "rect": [
+     784,
+     304,
+     928,
+     456
+    ],
+    "position": [
+     262,
+     139
+    ],
+    "layer": 4
+   },
+   "label": {
+    "rect": [
+     672,
+     664,
+     912,
+     712
+    ],
+    "position": [
+     75,
+     153
+    ],
+    "layer": 4
+   }
+  },
+  {
+   "id": "exit",
+   "next": "town_map",
+   "select_sound": "club_exit",
+   "help": "{xbe:0x19bd90}",
+   "help_trail": 0,
+   "wedge": {
+    "rect": [
+     640,
+     152,
+     784,
+     304
+    ],
+    "layer": 3
+   },
+   "highlight": {
+    "rect": [
+     784,
+     152,
+     928,
+     304
+    ],
+    "position": [
+     262,
+     139
+    ],
+    "layer": 4
+   },
+   "label": {
+    "rect": [
+     432,
+     664,
+     672,
+     712
+    ],
+    "position": [
+     75,
+     153
+    ],
+    "layer": 4
+   }
+  }
+ ]
+}

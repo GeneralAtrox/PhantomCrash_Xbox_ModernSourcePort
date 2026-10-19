@@ -1,0 +1,160 @@
+{
+ "notes": ["The garage's HANGAR (original scene 14: setup 0x01eb3a, the hangars 0x01e81b drawn by 0x01debc and 0x01d4d1, the menu 0x01e4d3 drawn by 0x01d1e9, buying a hangar 0x01e706, notices 0x01e2d1, 0x01e37e, 0x01e3cc and 0x01ea59). The garage menu (data/ui/garage.json) opens it; EXIT goes back to it. Rumbling (scene 3) and the VS mode's KEEP SV (scene 43) open the same screen with their own way out and menu.", "The twelve hangars and EXIT are cards on a wheel: the chosen card at cards.centre_x, the next ones step apart to the right and wrapped past reach by period. Choosing another card scrolls the wheel so it comes to the centre over scroll_seconds (0x01d0df). left/right move along it (sys 3 and 28, wrapping), X jumps to the ridden hangar and cancel to EXIT (sys 8 and 28). A card is grey, orange for the ridden hangar, and shows the hangar's number, For Sale! with the price when not owned, EMPTY with nothing fitted, or RIDE for the ridden one, the body's maker's emblem, the Scoobee's name, and Equipment Imperfection without a body, legs or CHIP, Underkill without weapons and Overweight when the robot weighs overweight_margin or more past its legs' capacity (0x01cd33).", "The numbers' plates along the bottom slide in over plates.slide_seconds, with the line and EXIT; the ridden hangar's plate is orange, the chosen one gold and pulsing while the wheel takes input.", "Hangars 11 and 12 have no art of their own: the original builds their numbers, plates and marks from pieces of the others' (two digits side by side). Each is listed as one sprite over hangar 10's (or 02's) art, keyed by its id in data/ui/sprite_text.json so its number is drawn as text there, with its original pieces as fallback, drawn when sharp text is off.", "confirm on a hangar not owned asks the buy question (NO chosen; cancel moves to NO, sys 4): YES pays hangar_price (sys 27) and owns it, or says poor. confirm on an owned hangar opens its menu: RIDE (needs a body, legs and CHIP; boards it, sys 42, or says it is ridden already), TEST DRIVE (the ridden hangar only), SPEC, ASSEMBLE and CLOSE; a hangar without a body, legs and CHIP offers only ASSEMBLE and CLOSE. up/down choose (sys 3), cancel moves to CLOSE (sys 3). The struck-out marks cover what cannot be chosen.", "The help line for buying reads 100,000 New Yen, but the original charges and shows 10,000 (0x01e706, 0x01d4d1). The price's place in For Sale!, the name's place on the card and the menu's lit colour are the researcher's readings.", "robots: each owned hangar with something fitted within robots.neighbours cards of the chosen one has its Scoobee standing on its card (0x01dd99, 0x01d8ba), through the robot preview in mode 6 (robot_preview.json's hangar): at x = spacing x (card x - cards.centre_x) / cards.step, so it moves with the wheel, and the preview's y and z. The chosen one turns from the preview's yaw at its spin, starting over each time it is chosen; the others face the yaw plus yaw_per_step x the same offset. A Scoobee without a body and legs shows its parts one by one (0x08371b).", "origins are the screens other than the garage that open the hangar, by name, each with its own EXIT card (0x01d4d1: 1524 from Rumbling, 1525 from KEEP SV) and EXIT help. From KEEP SV the menu is KEEP, SPEC and CLOSE in a smaller window (0x01d1e9); refuse turns away a hangar not owned or without a body, legs and CHIP (0x01e2d1) and one without weapons (0x01e281) with those notices, and no hangar is sold. KEEP leaves by routes.keep with the hangar chosen. The original also refuses when no controller's key config has an attack mode (0x0ba6ef); the port's key configs always have one. The original shows the garage menu's help by the item's place, RIDE's for KEEP and TEST DRIVE's for SPEC; the port gives each item its own."],
+ "scene": 14,
+ "music": "garage",
+ "fade_in": 0.5,
+ "fade_out": 0.5,
+ "exit_to": "garage",
+ "confirm": {"buttons": "confirm"},
+ "cancel": {"buttons": "cancel"},
+ "cursor_repeat": {"delay": 0.4, "interval": 0.1},
+ "buttons": {"left": "left", "right": "right", "up": "up", "down": "down", "riding": "x"},
+ "sounds": {"move": "cursor", "turn": "hangar_exit", "row": "cursor", "select": "confirm", "back": "cancel", "exit": "hangar_exit", "close": "cursor", "no": "adjust", "trade": "purchase", "board": "board", "board_notices": ["boarded", "keep_board"]},
+ "layers": [
+  {"id": "1526", "image": "textures/scroll/hanger_tex/0.png", "rect": [0, 0, 640, 480], "position": [0, 0], "layer": 1,
+   "extend_edges": "both", "edge_bands": [[0, 95], [376, 480]], "edge_bands_left": [[0, 95], [414, 480]]}
+ ],
+ "bands": [
+  {"id": "1574", "image": "textures/scroll/hanger_tex/0.png", "rect": [816, 600, 968, 608], "position": [0, 95], "layer": 257, "size": [319.0, 8]},
+  {"id": "1575", "image": "textures/scroll/hanger_tex/0.png", "rect": [112, 752, 264, 760], "position": [488, 95], "layer": 257, "size": [281.0, 8]}
+ ],
+ "frame": {
+  "hud": true,
+  "meter": [435, 396],
+  "now_playing": {"format": "《 {title} : {artist} 》", "position": [0, 419], "clip": [0, 419, 396, 437], "colour": "#ffffff", "speed": 60, "trail": 45, "layer": 263},
+  "riding_plate": true,
+  "riding_plate_y": 378
+ },
+ "cards": {
+  "centre_x": 149.0,
+  "y": 121.0,
+  "step": 269.0,
+  "reach": 1494.0,
+  "period": 3497.0,
+  "scroll_seconds": 0.1333,
+  "card": {"id": "1531", "image": "textures/scroll/hanger_tex/0.png", "rect": [344, 480, 688, 696], "layer": 258},
+  "colour": "#f0f0f0",
+  "riding_colour": "#ff9400",
+  "numbers": [
+   {"id": "1538", "image": "textures/scroll/hanger_tex/0.png", "rect": [640, 432, 736, 480], "position": [238.0, 13.0], "layer": 259},
+   {"id": "1539", "image": "textures/scroll/hanger_tex/0.png", "rect": [736, 432, 832, 480], "position": [238.0, 13.0], "layer": 259},
+   {"id": "1540", "image": "textures/scroll/hanger_tex/0.png", "rect": [832, 432, 928, 480], "position": [238.0, 13.0], "layer": 259},
+   {"id": "1541", "image": "textures/scroll/hanger_tex/0.png", "rect": [928, 432, 1024, 480], "position": [238.0, 13.0], "layer": 259},
+   {"id": "1542", "image": "textures/scroll/hanger_tex/0.png", "rect": [216, 696, 312, 744], "position": [238.0, 13.0], "layer": 259},
+   {"id": "1543", "image": "textures/scroll/hanger_tex/0.png", "rect": [312, 696, 408, 744], "position": [238.0, 13.0], "layer": 259},
+   {"id": "1544", "image": "textures/scroll/hanger_tex/0.png", "rect": [408, 696, 504, 744], "position": [238.0, 13.0], "layer": 259},
+   {"id": "1545", "image": "textures/scroll/hanger_tex/0.png", "rect": [504, 696, 600, 744], "position": [238.0, 13.0], "layer": 259},
+   {"id": "1546", "image": "textures/scroll/hanger_tex/0.png", "rect": [600, 696, 696, 744], "position": [238.0, 13.0], "layer": 259},
+   {"id": "1547", "image": "textures/scroll/hanger_tex/0.png", "rect": [696, 696, 792, 744], "position": [238.0, 13.0], "layer": 259},
+   {"id": "hangar_11", "image": "textures/scroll/hanger_tex/0.png", "rect": [640, 432, 736, 480], "position": [238.0, 13.0], "layer": 259, "fallback": [{"id": "1538-digit", "image": "textures/scroll/hanger_tex/0.png", "rect": [688.0, 432, 736, 480], "position": [0, 0]}, {"id": "1538-digit", "image": "textures/scroll/hanger_tex/0.png", "rect": [688.0, 432, 736, 480], "position": [48, 0]}]},
+   {"id": "hangar_12", "image": "textures/scroll/hanger_tex/0.png", "rect": [640, 432, 736, 480], "position": [238.0, 13.0], "layer": 259, "fallback": [{"id": "1538-digit", "image": "textures/scroll/hanger_tex/0.png", "rect": [688.0, 432, 736, 480], "position": [0, 0]}, {"id": "1539-digit", "image": "textures/scroll/hanger_tex/0.png", "rect": [784.0, 432, 832, 480], "position": [48, 0]}]}
+  ],
+  "for_sale": {"id": "1529", "image": "textures/scroll/hanger_tex/0.png", "rect": [688, 608, 936, 672], "position": [47.0, 58.0], "layer": 259},
+  "price": {"right": [247, 93], "digits": 6, "commas": true, "colour": "#f0f0f0"},
+  "price_layer": 260,
+  "empty": {"id": "1528", "image": "textures/scroll/hanger_tex/0.png", "rect": [632, 760, 744, 792], "position": [152.0, 136.0], "layer": 259},
+  "ride": {"id": "1549", "image": "textures/scroll/hanger_tex/0.png", "rect": [744, 760, 832, 792], "position": [176.0, 136.0], "layer": 259},
+  "emblems": [
+   {"id": "1579", "image": "textures/scroll/hanger_tex/0.png", "rect": [944, 528, 1008, 576], "position": [25.0, 136.0], "layer": 260},
+   {"id": "1580", "image": "textures/scroll/hanger_tex/0.png", "rect": [792, 696, 856, 744], "position": [25.0, 136.0], "layer": 260},
+   {"id": "1577", "image": "textures/scroll/hanger_tex/0.png", "rect": [944, 480, 1008, 528], "position": [25.0, 136.0], "layer": 260},
+   {"id": "1582", "image": "textures/scroll/hanger_tex/0.png", "rect": [920, 696, 984, 744], "position": [25.0, 136.0], "layer": 260},
+   {"id": "1581", "image": "textures/scroll/hanger_tex/0.png", "rect": [856, 696, 920, 744], "position": [25.0, 136.0], "layer": 260},
+   {"id": "1578", "image": "textures/scroll/hanger_tex/0.png", "rect": [936, 608, 1000, 656], "position": [25.0, 136.0], "layer": 260}
+  ],
+  "name": {"position": [80, 181], "colour": "#f0f0f0", "layer": 260, "max_glyphs": 9},
+  "name_line": {"id": "1576", "image": "textures/scroll/hanger_tex/0.png", "rect": [488, 744, 688, 760], "position": [19.0, 187.0], "layer": 260},
+  "incomplete": {"id": "1585", "image": "textures/scroll/hanger_tex/0.png", "rect": [0, 696, 112, 760], "position": [116.0, 76.0], "layer": 258},
+  "underkill": {"id": "1586", "image": "textures/scroll/hanger_tex/0.png", "rect": [0, 760, 112, 808], "position": [116.0, 89.0], "layer": 258},
+  "overweight": {"id": "1587", "image": "textures/scroll/hanger_tex/0.png", "rect": [112, 760, 224, 808], "position": [116.0, 89.0], "layer": 258},
+  "warning_step": 48.0,
+  "exit": {"id": "1530", "image": "textures/scroll/hanger_tex/0.png", "rect": [0, 480, 344, 696], "layer": 258}
+ },
+ "robots": {"spacing": 7.0, "yaw_per_step": 0.4, "neighbours": 2},
+ "plates": {
+  "plates": [
+   {"id": "1555", "image": "textures/scroll/hanger_tex/0.png", "rect": [984, 216, 1024, 240], "layer": 3},
+   {"id": "1557", "image": "textures/scroll/hanger_tex/0.png", "rect": [984, 240, 1024, 264], "layer": 3},
+   {"id": "1559", "image": "textures/scroll/hanger_tex/0.png", "rect": [984, 264, 1024, 288], "layer": 3},
+   {"id": "1561", "image": "textures/scroll/hanger_tex/0.png", "rect": [984, 288, 1024, 312], "layer": 3},
+   {"id": "1563", "image": "textures/scroll/hanger_tex/0.png", "rect": [984, 312, 1024, 336], "layer": 3},
+   {"id": "1565", "image": "textures/scroll/hanger_tex/0.png", "rect": [984, 336, 1024, 360], "layer": 3},
+   {"id": "1567", "image": "textures/scroll/hanger_tex/0.png", "rect": [984, 360, 1024, 384], "layer": 3},
+   {"id": "1569", "image": "textures/scroll/hanger_tex/0.png", "rect": [984, 384, 1024, 408], "layer": 3},
+   {"id": "1571", "image": "textures/scroll/hanger_tex/0.png", "rect": [984, 408, 1024, 432], "layer": 3},
+   {"id": "1573", "image": "textures/scroll/hanger_tex/0.png", "rect": [984, 672, 1024, 696], "layer": 3},
+   {"id": "plate_11", "image": "textures/scroll/hanger_tex/0.png", "rect": [984, 672, 1024, 696], "layer": 3, "fallback": [{"id": "1573-digit-0", "image": "textures/scroll/hanger_tex/0.png", "rect": [984, 672.0, 1009.25, 675.0], "position": [0, 0.0]}, {"id": "1555-digit-0", "image": "textures/scroll/hanger_tex/0.png", "rect": [1009.25, 216.0, 1024, 219.0], "position": [25.25, 0.0]}, {"id": "1573-digit-1", "image": "textures/scroll/hanger_tex/0.png", "rect": [984, 675.0, 1007.75, 678.0], "position": [0, 3.0]}, {"id": "1555-digit-1", "image": "textures/scroll/hanger_tex/0.png", "rect": [1007.75, 219.0, 1024, 222.0], "position": [23.75, 3.0]}, {"id": "1573-digit-2", "image": "textures/scroll/hanger_tex/0.png", "rect": [984, 678.0, 1006.25, 681.0], "position": [0, 6.0]}, {"id": "1555-digit-2", "image": "textures/scroll/hanger_tex/0.png", "rect": [1006.25, 222.0, 1024, 225.0], "position": [22.25, 6.0]}, {"id": "1573-digit-3", "image": "textures/scroll/hanger_tex/0.png", "rect": [984, 681.0, 1004.75, 684.0], "position": [0, 9.0]}, {"id": "1555-digit-3", "image": "textures/scroll/hanger_tex/0.png", "rect": [1004.75, 225.0, 1024, 228.0], "position": [20.75, 9.0]}, {"id": "1573-digit-4", "image": "textures/scroll/hanger_tex/0.png", "rect": [984, 684.0, 1003.25, 687.0], "position": [0, 12.0]}, {"id": "1555-digit-4", "image": "textures/scroll/hanger_tex/0.png", "rect": [1003.25, 228.0, 1024, 231.0], "position": [19.25, 12.0]}, {"id": "1573-digit-5", "image": "textures/scroll/hanger_tex/0.png", "rect": [984, 687.0, 1001.75, 690.0], "position": [0, 15.0]}, {"id": "1555-digit-5", "image": "textures/scroll/hanger_tex/0.png", "rect": [1001.75, 231.0, 1024, 234.0], "position": [17.75, 15.0]}, {"id": "1573-digit-6", "image": "textures/scroll/hanger_tex/0.png", "rect": [984, 690.0, 1000.25, 693.0], "position": [0, 18.0]}, {"id": "1555-digit-6", "image": "textures/scroll/hanger_tex/0.png", "rect": [1000.25, 234.0, 1024, 237.0], "position": [16.25, 18.0]}, {"id": "1573-digit-7", "image": "textures/scroll/hanger_tex/0.png", "rect": [984, 693.0, 998.75, 696.0], "position": [0, 21.0]}, {"id": "1555-digit-7", "image": "textures/scroll/hanger_tex/0.png", "rect": [998.75, 237.0, 1024, 240.0], "position": [14.75, 21.0]}]},
+   {"id": "plate_12", "image": "textures/scroll/hanger_tex/0.png", "rect": [984, 672, 1024, 696], "layer": 3, "fallback": [{"id": "1573-digit-0", "image": "textures/scroll/hanger_tex/0.png", "rect": [984, 672.0, 1009.25, 675.0], "position": [0, 0.0]}, {"id": "1557-digit-0", "image": "textures/scroll/hanger_tex/0.png", "rect": [1009.25, 240.0, 1024, 243.0], "position": [25.25, 0.0]}, {"id": "1573-digit-1", "image": "textures/scroll/hanger_tex/0.png", "rect": [984, 675.0, 1007.75, 678.0], "position": [0, 3.0]}, {"id": "1557-digit-1", "image": "textures/scroll/hanger_tex/0.png", "rect": [1007.75, 243.0, 1024, 246.0], "position": [23.75, 3.0]}, {"id": "1573-digit-2", "image": "textures/scroll/hanger_tex/0.png", "rect": [984, 678.0, 1006.25, 681.0], "position": [0, 6.0]}, {"id": "1557-digit-2", "image": "textures/scroll/hanger_tex/0.png", "rect": [1006.25, 246.0, 1024, 249.0], "position": [22.25, 6.0]}, {"id": "1573-digit-3", "image": "textures/scroll/hanger_tex/0.png", "rect": [984, 681.0, 1004.75, 684.0], "position": [0, 9.0]}, {"id": "1557-digit-3", "image": "textures/scroll/hanger_tex/0.png", "rect": [1004.75, 249.0, 1024, 252.0], "position": [20.75, 9.0]}, {"id": "1573-digit-4", "image": "textures/scroll/hanger_tex/0.png", "rect": [984, 684.0, 1003.25, 687.0], "position": [0, 12.0]}, {"id": "1557-digit-4", "image": "textures/scroll/hanger_tex/0.png", "rect": [1003.25, 252.0, 1024, 255.0], "position": [19.25, 12.0]}, {"id": "1573-digit-5", "image": "textures/scroll/hanger_tex/0.png", "rect": [984, 687.0, 1001.75, 690.0], "position": [0, 15.0]}, {"id": "1557-digit-5", "image": "textures/scroll/hanger_tex/0.png", "rect": [1001.75, 255.0, 1024, 258.0], "position": [17.75, 15.0]}, {"id": "1573-digit-6", "image": "textures/scroll/hanger_tex/0.png", "rect": [984, 690.0, 1000.25, 693.0], "position": [0, 18.0]}, {"id": "1557-digit-6", "image": "textures/scroll/hanger_tex/0.png", "rect": [1000.25, 258.0, 1024, 261.0], "position": [16.25, 18.0]}, {"id": "1573-digit-7", "image": "textures/scroll/hanger_tex/0.png", "rect": [984, 693.0, 998.75, 696.0], "position": [0, 21.0]}, {"id": "1557-digit-7", "image": "textures/scroll/hanger_tex/0.png", "rect": [998.75, 261.0, 1024, 264.0], "position": [14.75, 21.0]}]}
+  ],
+  "marks": [
+   {"id": "1554", "image": "textures/scroll/hanger_tex/0.png", "rect": [984, 0, 1024, 24], "layer": 260},
+   {"id": "1556", "image": "textures/scroll/hanger_tex/0.png", "rect": [984, 24, 1024, 48], "layer": 260},
+   {"id": "1558", "image": "textures/scroll/hanger_tex/0.png", "rect": [984, 48, 1024, 72], "layer": 260},
+   {"id": "1560", "image": "textures/scroll/hanger_tex/0.png", "rect": [984, 72, 1024, 96], "layer": 260},
+   {"id": "1562", "image": "textures/scroll/hanger_tex/0.png", "rect": [984, 96, 1024, 120], "layer": 260},
+   {"id": "1564", "image": "textures/scroll/hanger_tex/0.png", "rect": [984, 120, 1024, 144], "layer": 260},
+   {"id": "1566", "image": "textures/scroll/hanger_tex/0.png", "rect": [984, 144, 1024, 168], "layer": 260},
+   {"id": "1568", "image": "textures/scroll/hanger_tex/0.png", "rect": [984, 168, 1024, 192], "layer": 260},
+   {"id": "1570", "image": "textures/scroll/hanger_tex/0.png", "rect": [984, 192, 1024, 216], "layer": 260},
+   {"id": "1572", "image": "textures/scroll/hanger_tex/0.png", "rect": [944, 672, 984, 696], "layer": 260},
+   {"id": "mark_11", "image": "textures/scroll/hanger_tex/0.png", "rect": [944, 672, 984, 696], "layer": 260, "fallback": [{"id": "1572-digit-0", "image": "textures/scroll/hanger_tex/0.png", "rect": [944, 672.0, 969.25, 675.0], "position": [0, 0.0]}, {"id": "1554-digit-0", "image": "textures/scroll/hanger_tex/0.png", "rect": [1009.25, 0.0, 1024, 3.0], "position": [25.25, 0.0]}, {"id": "1572-digit-1", "image": "textures/scroll/hanger_tex/0.png", "rect": [944, 675.0, 967.75, 678.0], "position": [0, 3.0]}, {"id": "1554-digit-1", "image": "textures/scroll/hanger_tex/0.png", "rect": [1007.75, 3.0, 1024, 6.0], "position": [23.75, 3.0]}, {"id": "1572-digit-2", "image": "textures/scroll/hanger_tex/0.png", "rect": [944, 678.0, 966.25, 681.0], "position": [0, 6.0]}, {"id": "1554-digit-2", "image": "textures/scroll/hanger_tex/0.png", "rect": [1006.25, 6.0, 1024, 9.0], "position": [22.25, 6.0]}, {"id": "1572-digit-3", "image": "textures/scroll/hanger_tex/0.png", "rect": [944, 681.0, 964.75, 684.0], "position": [0, 9.0]}, {"id": "1554-digit-3", "image": "textures/scroll/hanger_tex/0.png", "rect": [1004.75, 9.0, 1024, 12.0], "position": [20.75, 9.0]}, {"id": "1572-digit-4", "image": "textures/scroll/hanger_tex/0.png", "rect": [944, 684.0, 963.25, 687.0], "position": [0, 12.0]}, {"id": "1554-digit-4", "image": "textures/scroll/hanger_tex/0.png", "rect": [1003.25, 12.0, 1024, 15.0], "position": [19.25, 12.0]}, {"id": "1572-digit-5", "image": "textures/scroll/hanger_tex/0.png", "rect": [944, 687.0, 961.75, 690.0], "position": [0, 15.0]}, {"id": "1554-digit-5", "image": "textures/scroll/hanger_tex/0.png", "rect": [1001.75, 15.0, 1024, 18.0], "position": [17.75, 15.0]}, {"id": "1572-digit-6", "image": "textures/scroll/hanger_tex/0.png", "rect": [944, 690.0, 960.25, 693.0], "position": [0, 18.0]}, {"id": "1554-digit-6", "image": "textures/scroll/hanger_tex/0.png", "rect": [1000.25, 18.0, 1024, 21.0], "position": [16.25, 18.0]}, {"id": "1572-digit-7", "image": "textures/scroll/hanger_tex/0.png", "rect": [944, 693.0, 958.75, 696.0], "position": [0, 21.0]}, {"id": "1554-digit-7", "image": "textures/scroll/hanger_tex/0.png", "rect": [998.75, 21.0, 1024, 24.0], "position": [14.75, 21.0]}]},
+   {"id": "mark_12", "image": "textures/scroll/hanger_tex/0.png", "rect": [944, 672, 984, 696], "layer": 260, "fallback": [{"id": "1572-digit-0", "image": "textures/scroll/hanger_tex/0.png", "rect": [944, 672.0, 969.25, 675.0], "position": [0, 0.0]}, {"id": "1556-digit-0", "image": "textures/scroll/hanger_tex/0.png", "rect": [1009.25, 24.0, 1024, 27.0], "position": [25.25, 0.0]}, {"id": "1572-digit-1", "image": "textures/scroll/hanger_tex/0.png", "rect": [944, 675.0, 967.75, 678.0], "position": [0, 3.0]}, {"id": "1556-digit-1", "image": "textures/scroll/hanger_tex/0.png", "rect": [1007.75, 27.0, 1024, 30.0], "position": [23.75, 3.0]}, {"id": "1572-digit-2", "image": "textures/scroll/hanger_tex/0.png", "rect": [944, 678.0, 966.25, 681.0], "position": [0, 6.0]}, {"id": "1556-digit-2", "image": "textures/scroll/hanger_tex/0.png", "rect": [1006.25, 30.0, 1024, 33.0], "position": [22.25, 6.0]}, {"id": "1572-digit-3", "image": "textures/scroll/hanger_tex/0.png", "rect": [944, 681.0, 964.75, 684.0], "position": [0, 9.0]}, {"id": "1556-digit-3", "image": "textures/scroll/hanger_tex/0.png", "rect": [1004.75, 33.0, 1024, 36.0], "position": [20.75, 9.0]}, {"id": "1572-digit-4", "image": "textures/scroll/hanger_tex/0.png", "rect": [944, 684.0, 963.25, 687.0], "position": [0, 12.0]}, {"id": "1556-digit-4", "image": "textures/scroll/hanger_tex/0.png", "rect": [1003.25, 36.0, 1024, 39.0], "position": [19.25, 12.0]}, {"id": "1572-digit-5", "image": "textures/scroll/hanger_tex/0.png", "rect": [944, 687.0, 961.75, 690.0], "position": [0, 15.0]}, {"id": "1556-digit-5", "image": "textures/scroll/hanger_tex/0.png", "rect": [1001.75, 39.0, 1024, 42.0], "position": [17.75, 15.0]}, {"id": "1572-digit-6", "image": "textures/scroll/hanger_tex/0.png", "rect": [944, 690.0, 960.25, 693.0], "position": [0, 18.0]}, {"id": "1556-digit-6", "image": "textures/scroll/hanger_tex/0.png", "rect": [1000.25, 42.0, 1024, 45.0], "position": [16.25, 18.0]}, {"id": "1572-digit-7", "image": "textures/scroll/hanger_tex/0.png", "rect": [944, 693.0, 958.75, 696.0], "position": [0, 21.0]}, {"id": "1556-digit-7", "image": "textures/scroll/hanger_tex/0.png", "rect": [998.75, 45.0, 1024, 48.0], "position": [14.75, 21.0]}]}
+  ],
+  "from_x": [-889, -817, -745, -673, -601, -529, -457, -385, -313, -241, -169, -97],
+  "to_x": [1, 33, 65, 97, 129, 161, 193, 225, 257, 289, 321, 353],
+  "y": 346,
+  "slide_seconds": 0.5333,
+  "riding_colour": "#ff9400",
+  "chosen_colour": "#ffcd00",
+  "chosen_layer": 261,
+  "line": {"id": "1553", "image": "textures/scroll/hanger_tex/0.png", "rect": [224, 760, 632, 800], "position": [0, 358], "layer": 2},
+  "exit": {"id": "1552", "image": "textures/scroll/hanger_tex/0.png", "rect": [880, 672, 944, 696], "position": [346, 384], "layer": 3},
+  "exit_lit": {"id": "1551", "image": "textures/scroll/hanger_tex/0.png", "rect": [816, 672, 880, 696], "position": [346, 384], "layer": 261, "colour": "#ffcd00", "animation": "pulse"}
+ },
+ "menu": {
+  "window": {
+   "sprite": {"id": "1532", "image": "textures/scroll/hanger_tex/0.png", "rect": [688, 480, 816, 608], "position": [319.0, 221.0], "layer": 260, "centered": true},
+   "seconds": 0.1333,
+   "thin": 0.05
+  },
+  "items": [
+   {
+    "id": "ride",
+    "sprite": {"id": "1535", "image": "textures/scroll/hanger_tex/0.png", "rect": [688, 672, 760, 688], "position": [282.0, 169.0], "layer": 261, "colour": "#808080"},
+    "help": "{xbe:0x17db60}"
+   },
+   {
+    "id": "test_drive",
+    "sprite": {"id": "1537", "image": "textures/scroll/hanger_tex/0.png", "rect": [312, 744, 400, 760], "position": [274.0, 190.0], "layer": 261, "colour": "#808080"},
+    "help": "{xbe:0x17daf8}"
+   },
+   {
+    "id": "spec",
+    "sprite": {"id": "1536", "image": "textures/scroll/hanger_tex/0.png", "rect": [936, 656, 1008, 672], "position": [282.0, 211.0], "layer": 261, "colour": "#808080"},
+    "help": "{xbe:0x17da88}"
+   },
+   {
+    "id": "assemble",
+    "sprite": {"id": "1533", "image": "textures/scroll/hanger_tex/0.png", "rect": [816, 584, 904, 600], "position": [274.0, 231.0], "layer": 261, "colour": "#808080"},
+    "help": "{xbe:0x17d9c8}"
+   },
+   {
+    "id": "close",
+    "sprite": {"id": "1534", "image": "textures/scroll/hanger_tex/0.png", "rect": [904, 584, 976, 600], "position": [282.0, 253.0], "layer": 261, "colour": "#808080"},
+    "help": "Close menu."
+   }
+  ],
+  "lit_colour": "#ffffff",
+  "lit_layer": 262,
+  "strike": {"id": "1548", "image": "textures/scroll/hanger_tex/0.png", "rect": [400, 744, 488, 760], "position": [274, 0], "layer": 263, "colour": "#ff4040"},
+  "strike_alpha": 0.5
+ },
+ "routes": {"test_drive": "test_drive", "spec": "sv_spec", "assemble": "assemble", "keep": "keep_sv"},
+ "hangar_price": 10000,
+ "overweight_margin": 0.05000000074505806,
+ "message_text_at": [139, 213],
+ "messages": {"buy": ["{xbe:0x17e1d0}", "{xbe:0x17e288}"], "thanks": ["{xbe:0x17e198}", "{xbe:0x17e288}"], "poor": ["{xbe:0x17e140}", "new hangar.", "{xbe:0x17e288}"], "boarded": ["{xbe:0x17e2dc}", "{xbe:0x17e288}"], "ridden": ["{xbe:0x17e0e0}", "{xbe:0x17e090}", "{xbe:0x17e040}", "{xbe:0x17e288}"], "keep_board": ["{xbe:0x17e254}", "{xbe:0x17e21c}"], "keep_unarmed": ["{xbe:0x17dff8}", "{xbe:0x17def8}", "the hangar."]},
+ "help": {"position": [0, 72], "clip": [0, 0, 640, 480], "colour": "#f0f0f0", "speed": 60, "lead": 360, "trail": 0, "layer": 263},
+ "help_text": {"hangar": "{xbe:0x17ddd0}", "exit": "{xbe:0x17dd40}", "buy": ["{xbe:0x17d808}", "Close Menu."]},
+ "origins": {"keep_sv": {"exit": {"id": "1525", "image": "textures/scroll/hanger_tex/0.png", "rect": [640, 216, 984, 432], "layer": 258}, "exit_help": "{xbe:0x17dc18}", "refuse": {"incomplete": "keep_board", "unarmed": "keep_unarmed"}, "menu": {"window": {"sprite": {"id": "1583", "image": "textures/scroll/hanger_tex/0.png", "rect": [816, 480, 944, 584], "position": [319.0, 234.0], "layer": 260, "centered": true}, "seconds": 0.1333, "thin": 0.05}, "items": [{"id": "keep", "sprite": {"id": "1584", "image": "textures/scroll/hanger_tex/0.png", "rect": [688, 744, 776, 760], "position": [274.0, 202.0], "layer": 261, "colour": "#808080"}, "help": "{xbe:0x19f7e8}"}, {"id": "spec", "sprite": {"id": "1536", "image": "textures/scroll/hanger_tex/0.png", "rect": [936, 656, 1008, 672], "position": [283.0, 223.0], "layer": 261, "colour": "#808080"}, "help": "{xbe:0x17da88}"}, {"id": "close", "sprite": {"id": "1534", "image": "textures/scroll/hanger_tex/0.png", "rect": [904, 584, 976, 600], "position": [283.0, 245.0], "layer": 261, "colour": "#808080"}, "help": "Close menu."}]}}, "rumbling": {"exit": {"id": "1524", "image": "textures/scroll/hanger_tex/0.png", "rect": [640, 0, 984, 216], "layer": 258}, "exit_help": "{xbe:0x17dca8}"}}
+}

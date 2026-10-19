@@ -1,0 +1,142 @@
+{
+ "notes": ["Wild Machines' used SVs (original scene 15, state 3: setup 0x27607 and 0x1ee3d, input 0x27910, draws 0x230f4 and 0x2022b; trade 0x268c0 and 0x2605f, hangars 0x25126 and 0x203bd, notices 0x27ae2). Opened from the Wild Machines menu (data/ui/wild_machines.json), which it goes back to. layers: the list at 0x1dd090 (0xbbc3d): the background (2958), the BUY SV banner (2960) at the top and the CURRENT MUSIC band (2959) at y 376, both on layer 0x101.", "The lineup is the calendar day's used_svs (tables/garage.json used_sv_lineups, 0x252ee8: up to six robot records); SVs whose body's maker is from_maker (Tolomeo) on show only once contest 49 is won (0x5f750, 0x96f64). The price is the SV's parts added up (0x392ff). With fewer than six the last slots are used.", "opening: the strip (3021) fades in over 20 frames, then shop_open (sys 44) plays and the USED-SV plate (3032) slides in from x -400, 20 a frame; the SVs take input once it is in. The icons slide in meanwhile, 20 a frame, each from its slide_from (x - 1220 + 60 a slot). The three gears turn together, 0.01 radians a frame.", "slots: each SV's icon is its legs' (0x1dd170: the lit sprite, the plain one the sprite before it), EXIT 2976/2977; the chosen one is lit over its plain one. left/right move (sys 3); confirm (sys 5) opens the trade window or goes back; cancel jumps to EXIT (sys 4).", "info: over an SV the panel (3022) grows open over 10 frames and shrinks on EXIT; once open it shows the maker's badge (0x1dd06c by the body's maker: Holy, Photon, Aeron, Tolomeo, Tolomeo R, Charga), the SV's name and the price. The original centres the panel on (200, 244) and the gears on their positions. The SV under the cursor stands turning on the right (0x22612 loads it, 0x226c6 shows it once loaded, 0x836b8 swaps it in), in Wild Machines' preview (mode 3, 0x026d86: data/ui/robot_preview.json's module_shop, sliding in from the right); none over EXIT.", "trade: SV SPEC, BUY, CANCEL on the window (2962), the chosen label (0x1dd438) orange and pulsing. SV SPEC opens its spec screen (0x10f5c), which comes back here. BUY checks the money (poor), the stock (no_stock) and an empty hangar of the player's (no_hangar), then the hangars.", "hangars: the carousel (2974, numbers 0x1dd48c) scrolls 60 a step over 8 frames; confirm on one that does not fit says in_use or not_yours, otherwise pays, fits the SV with its CHIP named after its record (sys 27) and says delivered, then asks to board it (0x25741); boarding says boarded; either way name_chip leads to NAME ENTRY for the CHIP (0x2c5d9 mode 2), which comes back here. B CANCEL (0x6ded3) goes back to the trade window (sys 8).", "The help lines (0x1dce74, 0x1dce7c, 0x1dce88) scroll at y 72 with 40 leading spaces (the lead, 9 units a space)."],
+ "scene": 15,
+ "music": "keep",
+ "fade_in": 0.5,
+ "fade_out": 0.5,
+ "exit_to": "wild_machines",
+ "confirm": {"buttons": "confirm"},
+ "cancel": {"buttons": "cancel"},
+ "cursor_repeat": {"delay": 0.4, "interval": 0.1},
+ "buttons": {"left": "left", "right": "right"},
+ "sounds": {"move": "cursor", "select": "confirm", "jump": "adjust", "cancel": "cancel", "buy": "purchase", "open": "shop_open"},
+ "layers": [
+  {"id": "2958", "image": "textures/scroll/wild_tex/4.png", "rect": [0, 0, 640, 480], "position": [0, 0], "layer": 1, "extend_edges": "both", "edge_bands": [[0, 72], [376, 480]],
+ "edge_bands_left": [[0, 72], [414, 480]]},
+  {"id": "2960", "image": "textures/scroll/wild_tex/4.png", "rect": [0, 584, 640, 680], "position": [0, 0], "layer": 257, "extend_edges": "both", "edge_inset": [1, 1]},
+  {"id": "2959", "image": "textures/scroll/wild_tex/4.png", "rect": [0, 480, 640, 584], "position": [0, 376], "layer": 257, "extend_edges": "both"}
+ ],
+ "frame": {
+  "hud": true,
+  "meter": [435, 396],
+  "now_playing": {"format": "《 {title} : {artist} 》", "position": [0, 419], "clip": [0, 419, 396, 437], "colour": "#ffffff", "speed": 60, "trail": 45, "layer": 263}
+ },
+ "opening": {"strip_seconds": 0.3333, "plate_seconds": 0.3333, "plate_from": -400},
+ "strip": {"id": "3021", "image": "textures/scroll/wild_tex/4.png", "rect": [392, 680, 816, 736], "position": [0, 337], "layer": 4},
+ "plate": {"id": "3032", "image": "textures/scroll/wild_tex/4.png", "rect": [0, 680, 392, 776], "position": [0, 116], "layer": 257},
+ "gears": [
+  {"id": "2978", "image": "textures/scroll/wild_tex/4.png", "rect": [640, 0, 800, 160], "position": [102, 179], "layer": 2, "centered": true},
+  {"id": "2979", "image": "textures/scroll/wild_tex/4.png", "rect": [800, 0, 864, 64], "position": [347, 182], "layer": 2, "centered": true},
+  {"id": "2980", "image": "textures/scroll/wild_tex/4.png", "rect": [968, 160, 1016, 208], "position": [374, 155], "layer": 3, "centered": true}
+ ],
+ "gear_spin": 34.3775,
+ "slots": {
+  "at": [
+   [48, 314],
+   [112, 314],
+   [176, 314],
+   [143, 364],
+   [207, 364],
+   [271, 364],
+   [347, 374]
+  ],
+  "slide_from": [-1172, -1048, -924, -897, -773, -649, -513],
+  "slide_speed": 1200,
+  "layer": 257,
+  "lit_layer": 258,
+  "exit": {"id": "exit", "sprite": {"id": "2976", "image": "textures/scroll/wild_tex/4.png", "rect": [960, 64, 1024, 96], "layer": 257}, "lit": {"id": "2977", "image": "textures/scroll/wild_tex/4.png", "rect": [800, 112, 864, 144], "layer": 257}},
+  "legs_icons": {
+   "0": {"id": "sv", "sprite": {"id": "2997", "image": "textures/scroll/wild_tex/4.png", "rect": [720, 528, 800, 576], "layer": 257}, "lit": {"id": "2998", "image": "textures/scroll/wild_tex/4.png", "rect": [800, 528, 880, 576], "layer": 257}},
+   "1": {"id": "sv", "sprite": {"id": "3001", "image": "textures/scroll/wild_tex/4.png", "rect": [720, 584, 800, 632], "layer": 257}, "lit": {"id": "3002", "image": "textures/scroll/wild_tex/4.png", "rect": [800, 584, 880, 632], "layer": 257}},
+   "2": {"id": "sv", "sprite": {"id": "2999", "image": "textures/scroll/wild_tex/4.png", "rect": [880, 528, 960, 576], "layer": 257}, "lit": {"id": "3000", "image": "textures/scroll/wild_tex/4.png", "rect": [640, 584, 720, 632], "layer": 257}},
+   "3": {"id": "sv", "sprite": {"id": "3003", "image": "textures/scroll/wild_tex/4.png", "rect": [880, 584, 960, 632], "layer": 257}, "lit": {"id": "3004", "image": "textures/scroll/wild_tex/4.png", "rect": [640, 632, 720, 680], "layer": 257}},
+   "4": {"id": "sv", "sprite": {"id": "2995", "image": "textures/scroll/wild_tex/4.png", "rect": [880, 480, 960, 528], "layer": 257}, "lit": {"id": "2996", "image": "textures/scroll/wild_tex/4.png", "rect": [640, 528, 720, 576], "layer": 257}},
+   "5": {"id": "sv", "sprite": {"id": "3007", "image": "textures/scroll/wild_tex/4.png", "rect": [880, 632, 960, 680], "layer": 257}, "lit": {"id": "3008", "image": "textures/scroll/wild_tex/4.png", "rect": [816, 680, 896, 728], "layer": 257}},
+   "6": {"id": "sv", "sprite": {"id": "3011", "image": "textures/scroll/wild_tex/4.png", "rect": [80, 776, 160, 824], "layer": 257}, "lit": {"id": "3012", "image": "textures/scroll/wild_tex/4.png", "rect": [160, 776, 240, 824], "layer": 257}},
+   "7": {"id": "sv", "sprite": {"id": "3013", "image": "textures/scroll/wild_tex/4.png", "rect": [240, 776, 320, 824], "layer": 257}, "lit": {"id": "3014", "image": "textures/scroll/wild_tex/4.png", "rect": [320, 776, 400, 824], "layer": 257}},
+   "8": {"id": "sv", "sprite": {"id": "3009", "image": "textures/scroll/wild_tex/4.png", "rect": [896, 680, 976, 728], "layer": 257}, "lit": {"id": "3010", "image": "textures/scroll/wild_tex/4.png", "rect": [0, 776, 80, 824], "layer": 257}},
+   "9": {"id": "sv", "sprite": {"id": "3015", "image": "textures/scroll/wild_tex/4.png", "rect": [400, 776, 480, 824], "layer": 257}, "lit": {"id": "3016", "image": "textures/scroll/wild_tex/4.png", "rect": [480, 776, 560, 824], "layer": 257}},
+   "10": {"id": "sv", "sprite": {"id": "3005", "image": "textures/scroll/wild_tex/4.png", "rect": [720, 632, 800, 680], "layer": 257}, "lit": {"id": "3006", "image": "textures/scroll/wild_tex/4.png", "rect": [800, 632, 880, 680], "layer": 257}},
+   "11": {"id": "sv", "sprite": {"id": "2983", "image": "textures/scroll/wild_tex/4.png", "rect": [864, 320, 944, 368], "layer": 257}, "lit": {"id": "2984", "image": "textures/scroll/wild_tex/4.png", "rect": [944, 320, 1024, 368], "layer": 257}},
+   "12": {"id": "sv", "sprite": {"id": "2987", "image": "textures/scroll/wild_tex/4.png", "rect": [936, 216, 1016, 264], "layer": 257}, "lit": {"id": "2988", "image": "textures/scroll/wild_tex/4.png", "rect": [864, 112, 944, 160], "layer": 257}},
+   "13": {"id": "sv", "sprite": {"id": "2985", "image": "textures/scroll/wild_tex/4.png", "rect": [640, 264, 720, 312], "layer": 257}, "lit": {"id": "2986", "image": "textures/scroll/wild_tex/4.png", "rect": [720, 264, 800, 312], "layer": 257}},
+   "14": {"id": "sv", "sprite": {"id": "2989", "image": "textures/scroll/wild_tex/4.png", "rect": [944, 112, 1024, 160], "layer": 257}, "lit": {"id": "2990", "image": "textures/scroll/wild_tex/4.png", "rect": [640, 320, 720, 368], "layer": 257}},
+   "15": {"id": "sv", "sprite": {"id": "2991", "image": "textures/scroll/wild_tex/4.png", "rect": [720, 320, 800, 368], "layer": 257}, "lit": {"id": "2992", "image": "textures/scroll/wild_tex/4.png", "rect": [640, 480, 720, 528], "layer": 257}},
+   "16": {"id": "sv", "sprite": {"id": "2981", "image": "textures/scroll/wild_tex/4.png", "rect": [800, 64, 880, 112], "layer": 257}, "lit": {"id": "2982", "image": "textures/scroll/wild_tex/4.png", "rect": [880, 64, 960, 112], "layer": 257}},
+   "17": {"id": "sv", "sprite": {"id": "2993", "image": "textures/scroll/wild_tex/4.png", "rect": [720, 480, 800, 528], "layer": 257}, "lit": {"id": "2994", "image": "textures/scroll/wild_tex/4.png", "rect": [800, 480, 880, 528], "layer": 257}},
+   "18": {"id": "sv", "sprite": {"id": "3019", "image": "textures/scroll/wild_tex/4.png", "rect": [720, 776, 800, 824], "layer": 257}, "lit": {"id": "3020", "image": "textures/scroll/wild_tex/4.png", "rect": [800, 776, 880, 824], "layer": 257}},
+   "19": {"id": "sv", "sprite": {"id": "3017", "image": "textures/scroll/wild_tex/4.png", "rect": [560, 776, 640, 824], "layer": 257}, "lit": {"id": "3018", "image": "textures/scroll/wild_tex/4.png", "rect": [640, 776, 720, 824], "layer": 257}},
+   "20": {"id": "sv", "sprite": {"id": "2993", "image": "textures/scroll/wild_tex/4.png", "rect": [720, 480, 800, 528], "layer": 257}, "lit": {"id": "2994", "image": "textures/scroll/wild_tex/4.png", "rect": [800, 480, 880, 528], "layer": 257}},
+   "21": {"id": "sv", "sprite": {"id": "3019", "image": "textures/scroll/wild_tex/4.png", "rect": [720, 776, 800, 824], "layer": 257}, "lit": {"id": "3020", "image": "textures/scroll/wild_tex/4.png", "rect": [800, 776, 880, 824], "layer": 257}},
+   "22": {"id": "sv", "sprite": {"id": "3017", "image": "textures/scroll/wild_tex/4.png", "rect": [560, 776, 640, 824], "layer": 257}, "lit": {"id": "3018", "image": "textures/scroll/wild_tex/4.png", "rect": [640, 776, 720, 824], "layer": 257}}
+  },
+  "default_icon": {"id": "sv", "sprite": {"id": "2997", "image": "textures/scroll/wild_tex/4.png", "rect": [720, 528, 800, 576], "layer": 257}, "lit": {"id": "2998", "image": "textures/scroll/wild_tex/4.png", "rect": [800, 528, 880, 576], "layer": 257}}
+ },
+ "info": {
+  "panel": {"id": "3022", "image": "textures/scroll/wild_tex/4.png", "rect": [640, 368, 952, 448], "position": [44, 204], "layer": 257},
+  "growth": {"grow_seconds": 0.1667, "grow_from_scale": 0.1},
+  "badges": [
+   {"id": "3026", "image": "textures/scroll/wild_tex/4.png", "rect": [896, 160, 968, 216], "position": [52, 212], "layer": 258},
+   {"id": "3027", "image": "textures/scroll/wild_tex/4.png", "rect": [800, 264, 872, 320], "position": [52, 212], "layer": 258},
+   {"id": "3024", "image": "textures/scroll/wild_tex/4.png", "rect": [864, 0, 936, 56], "position": [52, 212], "layer": 258},
+   {"id": "3028", "image": "textures/scroll/wild_tex/4.png", "rect": [872, 264, 944, 320], "position": [52, 212], "layer": 258},
+   {"id": "3029", "image": "textures/scroll/wild_tex/4.png", "rect": [944, 264, 1016, 320], "position": [52, 212], "layer": 258},
+   {"id": "3025", "image": "textures/scroll/wild_tex/4.png", "rect": [936, 0, 1008, 56], "position": [52, 212], "layer": 258}
+  ],
+  "name": {"position": [129, 222], "colour": "#ffffff", "layer": 258},
+  "price_label": {"id": "3030", "image": "textures/scroll/wild_tex/4.png", "rect": [712, 448, 752, 464], "position": [156, 249], "layer": 258},
+  "price": {"right": [307, 249], "digits": 9, "commas": true, "colour": "#f0f0f0"}
+ },
+ "maker_gate": {"from_maker": 3, "contest": 49},
+ "help": {"position": [0, 72], "clip": [0, 0, 640, 480], "colour": "#f2e8e8", "speed": 60, "lead": 360, "trail": 0, "layer": 263},
+ "help_text": {"sv": "{xbe:0x17e658}", "exit": "{xbe:0x17e708}", "hangars": "{xbe:0x17e3b8}"},
+ "trade_help": ["{xbe:0x17e5c8}", "{xbe:0x17e550}", "{xbe:0x17e4c0}"],
+ "trade": {
+  "window": {"id": "2962", "image": "textures/scroll/wild_tex/4.png", "rect": [392, 736, 656, 776], "position": [187, 228], "layer": 259},
+  "actions": [
+   {"id": "spec", "sprite": {"id": "3031", "image": "textures/scroll/wild_tex/4.png", "rect": [752, 448, 816, 464], "position": [205, 238], "layer": 260}, "lit": {"id": "3031", "image": "textures/scroll/wild_tex/4.png", "rect": [752, 448, 816, 464], "position": [205, 238], "layer": 260, "colour": "#ff9400", "animation": "pulse"}},
+   {"id": "buy", "sprite": {"id": "2961", "image": "textures/scroll/wild_tex/4.png", "rect": [896, 216, 936, 232], "position": [300, 238], "layer": 260}, "lit": {"id": "2961", "image": "textures/scroll/wild_tex/4.png", "rect": [896, 216, 936, 232], "position": [300, 238], "layer": 260, "colour": "#ff9400", "animation": "pulse"}},
+   {"id": "cancel", "sprite": {"id": "2963", "image": "textures/scroll/wild_tex/4.png", "rect": [640, 448, 712, 464], "position": [360, 238], "layer": 260}, "lit": {"id": "2963", "image": "textures/scroll/wild_tex/4.png", "rect": [640, 448, 712, 464], "position": [360, 238], "layer": 260, "colour": "#ff9400", "animation": "pulse"}}
+  ],
+  "spec_screen": "sv_spec"
+ },
+ "hangars": {
+  "panel": {"id": "2974", "image": "textures/scroll/wild_tex/4.png", "rect": [640, 160, 896, 264], "position": [190, 202], "layer": 259},
+  "arrows": [
+   {"id": "2975", "image": "textures/scroll/wild_tex/4.png", "rect": [1008, 0, 1024, 24], "position": [201, 243], "layer": 260},
+   {"id": "2975", "image": "textures/scroll/wild_tex/4.png", "rect": [1008, 0, 1024, 24], "position": [422, 243], "layer": 260, "flip_x": true}
+  ],
+  "arrow_lit": "#ff9400",
+  "numbers": [
+   {"id": "2964", "image": "textures/scroll/wild_tex/4.png", "rect": [952, 368, 1024, 408], "layer": 260},
+   {"id": "2965", "image": "textures/scroll/wild_tex/4.png", "rect": [952, 408, 1024, 448], "layer": 260},
+   {"id": "2966", "image": "textures/scroll/wild_tex/4.png", "rect": [656, 736, 728, 776], "layer": 260},
+   {"id": "2967", "image": "textures/scroll/wild_tex/4.png", "rect": [728, 736, 800, 776], "layer": 260},
+   {"id": "2968", "image": "textures/scroll/wild_tex/4.png", "rect": [800, 736, 872, 776], "layer": 260},
+   {"id": "2969", "image": "textures/scroll/wild_tex/4.png", "rect": [872, 736, 944, 776], "layer": 260},
+   {"id": "2970", "image": "textures/scroll/wild_tex/4.png", "rect": [944, 736, 1016, 776], "layer": 260},
+   {"id": "2971", "image": "textures/scroll/wild_tex/4.png", "rect": [880, 776, 952, 816], "layer": 260},
+   {"id": "2972", "image": "textures/scroll/wild_tex/4.png", "rect": [952, 776, 1024, 816], "layer": 260},
+   {"id": "2973", "image": "textures/scroll/wild_tex/4.png", "rect": [0, 824, 72, 864], "layer": 260},
+   [{"id": "2973-digit-0", "image": "textures/scroll/wild_tex/4.png", "rect": [0, 824.0, 44.75, 829.0], "layer": 260, "position": [0, 0.0]}, {"id": "2964-digit-0", "image": "textures/scroll/wild_tex/4.png", "rect": [996.75, 368.0, 1024, 373.0], "layer": 260, "position": [44.75, 0.0]}, {"id": "2973-digit-1", "image": "textures/scroll/wild_tex/4.png", "rect": [0, 829.0, 42.25, 834.0], "layer": 260, "position": [0, 5.0]}, {"id": "2964-digit-1", "image": "textures/scroll/wild_tex/4.png", "rect": [994.25, 373.0, 1024, 378.0], "layer": 260, "position": [42.25, 5.0]}, {"id": "2973-digit-2", "image": "textures/scroll/wild_tex/4.png", "rect": [0, 834.0, 39.75, 839.0], "layer": 260, "position": [0, 10.0]}, {"id": "2964-digit-2", "image": "textures/scroll/wild_tex/4.png", "rect": [991.75, 378.0, 1024, 383.0], "layer": 260, "position": [39.75, 10.0]}, {"id": "2973-digit-3", "image": "textures/scroll/wild_tex/4.png", "rect": [0, 839.0, 37.25, 844.0], "layer": 260, "position": [0, 15.0]}, {"id": "2964-digit-3", "image": "textures/scroll/wild_tex/4.png", "rect": [989.25, 383.0, 1024, 388.0], "layer": 260, "position": [37.25, 15.0]}, {"id": "2973-digit-4", "image": "textures/scroll/wild_tex/4.png", "rect": [0, 844.0, 34.75, 849.0], "layer": 260, "position": [0, 20.0]}, {"id": "2964-digit-4", "image": "textures/scroll/wild_tex/4.png", "rect": [986.75, 388.0, 1024, 393.0], "layer": 260, "position": [34.75, 20.0]}, {"id": "2973-digit-5", "image": "textures/scroll/wild_tex/4.png", "rect": [0, 849.0, 32.25, 854.0], "layer": 260, "position": [0, 25.0]}, {"id": "2964-digit-5", "image": "textures/scroll/wild_tex/4.png", "rect": [984.25, 393.0, 1024, 398.0], "layer": 260, "position": [32.25, 25.0]}, {"id": "2973-digit-6", "image": "textures/scroll/wild_tex/4.png", "rect": [0, 854.0, 29.75, 859.0], "layer": 260, "position": [0, 30.0]}, {"id": "2964-digit-6", "image": "textures/scroll/wild_tex/4.png", "rect": [981.75, 398.0, 1024, 403.0], "layer": 260, "position": [29.75, 30.0]}, {"id": "2973-digit-7", "image": "textures/scroll/wild_tex/4.png", "rect": [0, 859.0, 27.25, 864.0], "layer": 260, "position": [0, 35.0]}, {"id": "2964-digit-7", "image": "textures/scroll/wild_tex/4.png", "rect": [979.25, 403.0, 1024, 408.0], "layer": 260, "position": [27.25, 35.0]}],
+   [{"id": "2973-digit-0", "image": "textures/scroll/wild_tex/4.png", "rect": [0, 824.0, 44.75, 829.0], "layer": 260, "position": [0, 0.0]}, {"id": "2965-digit-0", "image": "textures/scroll/wild_tex/4.png", "rect": [996.75, 408.0, 1024, 413.0], "layer": 260, "position": [44.75, 0.0]}, {"id": "2973-digit-1", "image": "textures/scroll/wild_tex/4.png", "rect": [0, 829.0, 42.25, 834.0], "layer": 260, "position": [0, 5.0]}, {"id": "2965-digit-1", "image": "textures/scroll/wild_tex/4.png", "rect": [994.25, 413.0, 1024, 418.0], "layer": 260, "position": [42.25, 5.0]}, {"id": "2973-digit-2", "image": "textures/scroll/wild_tex/4.png", "rect": [0, 834.0, 39.75, 839.0], "layer": 260, "position": [0, 10.0]}, {"id": "2965-digit-2", "image": "textures/scroll/wild_tex/4.png", "rect": [991.75, 418.0, 1024, 423.0], "layer": 260, "position": [39.75, 10.0]}, {"id": "2973-digit-3", "image": "textures/scroll/wild_tex/4.png", "rect": [0, 839.0, 37.25, 844.0], "layer": 260, "position": [0, 15.0]}, {"id": "2965-digit-3", "image": "textures/scroll/wild_tex/4.png", "rect": [989.25, 423.0, 1024, 428.0], "layer": 260, "position": [37.25, 15.0]}, {"id": "2973-digit-4", "image": "textures/scroll/wild_tex/4.png", "rect": [0, 844.0, 34.75, 849.0], "layer": 260, "position": [0, 20.0]}, {"id": "2965-digit-4", "image": "textures/scroll/wild_tex/4.png", "rect": [986.75, 428.0, 1024, 433.0], "layer": 260, "position": [34.75, 20.0]}, {"id": "2973-digit-5", "image": "textures/scroll/wild_tex/4.png", "rect": [0, 849.0, 32.25, 854.0], "layer": 260, "position": [0, 25.0]}, {"id": "2965-digit-5", "image": "textures/scroll/wild_tex/4.png", "rect": [984.25, 433.0, 1024, 438.0], "layer": 260, "position": [32.25, 25.0]}, {"id": "2973-digit-6", "image": "textures/scroll/wild_tex/4.png", "rect": [0, 854.0, 29.75, 859.0], "layer": 260, "position": [0, 30.0]}, {"id": "2965-digit-6", "image": "textures/scroll/wild_tex/4.png", "rect": [981.75, 438.0, 1024, 443.0], "layer": 260, "position": [29.75, 30.0]}, {"id": "2973-digit-7", "image": "textures/scroll/wild_tex/4.png", "rect": [0, 859.0, 27.25, 864.0], "layer": 260, "position": [0, 35.0]}, {"id": "2965-digit-7", "image": "textures/scroll/wild_tex/4.png", "rect": [979.25, 443.0, 1024, 448.0], "layer": 260, "position": [27.25, 35.0]}]
+  ],
+  "centre": [283, 234],
+  "step": 60,
+  "clip": [220, 234, 418, 274],
+  "empty_colour": "#ffffff",
+  "used_colour": "#333333",
+  "chosen_empty": "#ff9400",
+  "chosen_used": "#331e00",
+  "number_layer": 260,
+  "chosen_layer": 261,
+  "scroll_seconds": 0.1333,
+  "shown": 5,
+  "cancel_hint": [
+   {"id": "3122", "image": "textures/scroll/scr_common_tex/0.png", "rect": [256, 184, 272, 200], "position": [335, 279], "layer": 260},
+   {"id": "3133", "image": "textures/scroll/scr_common_tex/0.png", "rect": [536, 184, 600, 200], "position": [355, 281], "layer": 260}
+  ]
+ },
+ "message_text_at": [139, 213],
+ "messages": {"no_hangar": ["{xbe:0x199afc}"], "no_stock": ["{xbe:0x199f24}", "{xbe:0x199ef0}", "module."], "poor": ["{xbe:0x199ac8}", "{xbe:0x199a98}", "you have."], "in_use": ["{xbe:0x199a4c}", "{xbe:0x199a20}"], "not_yours": ["{xbe:0x1999ec}", "Choose yours."], "delivered": ["{xbe:0x19999c}", "special Scoobee!", "{xbe:0x199948}"], "board": ["{xbe:0x199918}", "{xbe:0x1998e4}"], "boarded": ["{xbe:0x1998b0}"], "name_chip": ["{xbe:0x19957c}", "{xbe:0x199544}", "{xbe:0x19950c}", "choose wisely!"]}
+}

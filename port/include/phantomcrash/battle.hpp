@@ -178,6 +178,13 @@ public:
   void set_cheats(const BattleCheats cheats) noexcept {
     cheats_ = cheats;
   }
+  // While set, hits on the piloted robots do nothing (a boss's entrance).
+  void set_players_spared(const bool spared) noexcept {
+    players_spared_ = spared;
+  }
+  [[nodiscard]] bool players_spared() const noexcept {
+    return players_spared_;
+  }
   // Robot `index` locks missiles and grenades after holding a target this long.
   void set_lock_seconds(int index, float seconds);
   void set_sight(int index, const SightBoxes &boxes);
@@ -367,6 +374,7 @@ private:
   std::vector<int> arrivals_;
   unsigned allowed_weapons_{0xf};
   BattleCheats cheats_;
+  bool players_spared_{};
   int destroyed_{};
   bool drones_active_{true};
   bool first_kill_told_{}; // chatter_event::first_kill is said once a battle

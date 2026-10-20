@@ -239,3 +239,17 @@ TEST_CASE("co-op: a laser does no damage to a teammate but still hurts a rival")
   hold_laser(rival);
   CHECK(rival.victim().hp < full);
 }
+
+TEST_CASE("while the players are spared no hit hurts or pushes a piloted robot") {
+  Range spared("pusher", pi);
+  spared.battle.robot(spared.target).piloted = true;
+  spared.battle.set_players_spared(true);
+  spared.shoot();
+  CHECK(spared.victim().hp == full);
+  CHECK(length(spared.victim().push) == 0.0F);
+
+  Range computer("pusher", pi);
+  computer.battle.set_players_spared(true);
+  computer.shoot();
+  CHECK(computer.victim().hp < full);
+}

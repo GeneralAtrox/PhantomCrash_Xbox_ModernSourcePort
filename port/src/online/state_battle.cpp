@@ -19,7 +19,7 @@ void StateInspector::write(online::StateWriter &out, const Battle &v) {
   }
   out(v.nav_climbs_, v.nav_plans_left_, v.doors_, v.objects_, v.wrecks_, v.supply_, v.path_,
       v.random_, v.robots_, v.armory_, v.events_, v.arrivals_, v.allowed_weapons_, v.cheats_,
-      v.destroyed_, v.drones_active_, v.first_kill_told_);
+      v.destroyed_, v.drones_active_, v.first_kill_told_, v.players_spared_);
 }
 
 void StateInspector::write(online::StateWriter &out, const Combatant &v) {

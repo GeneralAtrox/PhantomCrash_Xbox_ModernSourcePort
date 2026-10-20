@@ -35,6 +35,7 @@ void StateInspector::sections(online::StateSections &out, const Battle &v) {
   PC_PART(destroyed_);
   PC_PART(drones_active_);
   PC_PART(first_kill_told_);
+  PC_PART(players_spared_);
   out.show("robots", v.robots_.size());
   out.show("events", v.events_.size());
   sections(out, v.armory_);

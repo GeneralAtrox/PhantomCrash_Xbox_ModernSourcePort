@@ -1,7 +1,6 @@
-Version 0.5.21 draws dashes in game-font text and cleans up the menu
-titles. 0.5.20 made online co-op rollback cheaper, added a one-tick online
-input delay, turned the co-op sharing options on by default and logs the
-details of an online divergence on both players' machines.
+Version 0.5.22 keeps the players' robots safe from hits while a boss's
+entrance holds the camera. 0.5.21 drew dashes in game-font text and cleaned
+up the menu titles.
 
 This is a work-in-progress Windows x64 port. The ZIP includes
 `phantomcrash_port.exe`, the game data installer `phantomcrash_extract.exe`,
@@ -55,6 +54,15 @@ opens the Class D rental shortcut (`rumbling_d_night_rental` for the night
 one); it uses and saves the current quest.
 
 ## Included changes
+
+0.5.22 changes:
+
+- While a boss walks out in its own entrance shot, which takes the camera
+  and the players' controls as the other robots fight on, no hit hurts,
+  pushes or staggers the players' robots. They can be hit again once the
+  boss's walk ends. This is a port addition: `boss_spares_players` in
+  `data/world/training.json` set to `false` restores the original.
+- Online, both players should use 0.5.22.
 
 0.5.21 changes:
 

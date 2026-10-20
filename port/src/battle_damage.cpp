@@ -165,6 +165,9 @@ void Battle::apply_hits(const std::vector<WeaponHit> &hits) {
     if (!victim.alive || victim.shield > 0.0F) {
       continue; // shielded while it enters or leaves (entry_shield.hpp)
     }
+    if (players_spared_ && victim.piloted) {
+      continue; // a boss's entrance holds the camera (BattleScene::start_walking)
+    }
     const bool attacker = hit.attacker >= 0 && hit.attacker < static_cast<int>(count);
     if (cooperative_ && attacker && hit.attacker != hit.victim && victim.piloted &&
         robots_[hit.attacker].piloted) {

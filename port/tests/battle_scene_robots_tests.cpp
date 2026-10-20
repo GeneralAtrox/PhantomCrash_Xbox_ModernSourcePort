@@ -238,3 +238,30 @@ TEST_CASE("a computer robot back in a gate walks in and leaves once its door has
   }
   CHECK(robot.alive);
 }
+
+TEST_CASE("the players are spared while a boss's entrance holds the camera") {
+  BattleScene scene(test_tables(), SceneTuning{}, 1);
+  TestBattle test;
+  Battle &battle = test.battle;
+  battle.set_boss(1, true);
+  CHECK(scene.start_robot_entrance(battle, 1));
+  step(scene, battle);
+  CHECK(scene.cinematic());
+  CHECK(battle.players_spared());
+  for (int index = 0; index < 600 && scene.cinematic(); ++index) {
+    step(scene, battle);
+    CHECK(battle.players_spared() == scene.cinematic());
+  }
+  CHECK(!scene.cinematic());
+  CHECK(!battle.players_spared());
+
+  SceneTuning off;
+  off.boss_spares_players = false;
+  BattleScene unspared(test_tables(), off, 1);
+  TestBattle other;
+  other.battle.set_boss(1, true);
+  CHECK(unspared.start_robot_entrance(other.battle, 1));
+  step(unspared, other.battle);
+  CHECK(unspared.cinematic());
+  CHECK(!other.battle.players_spared());
+}

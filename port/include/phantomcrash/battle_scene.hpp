@@ -117,6 +117,9 @@ struct SceneTuning {
   std::string go_sound{"battle_go"};           // sys bank entry 1
   std::string play_in_music{"battle_play_in"}; // track 16, 9PLAYIN
   std::string boss_music{"boss_start"};        // track 6, 13BossStart
+  // The piloted robots take no hits while a boss's entrance holds the
+  // camera (port: their controls wait while the others fight on).
+  bool boss_spares_players{true};
   DoorTuning doors;
 };
 

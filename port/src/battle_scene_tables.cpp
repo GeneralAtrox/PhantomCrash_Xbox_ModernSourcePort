@@ -91,6 +91,7 @@ SceneTuning parse_scene_tuning(const JsonValue &value) {
   }
   s.rider_entrance = value.boolean_or("rider_entrance", s.rider_entrance);
   s.computer_exit = value.boolean_or("computer_exit", s.computer_exit);
+  s.boss_spares_players = value.boolean_or("boss_spares_players", s.boss_spares_players);
   s.regular_battle = value.boolean_or("regular_battle", s.regular_battle);
   s.ready_frame = number(value, "ready_frame", s.ready_frame);
   s.go_frame = number(value, "go_frame", s.go_frame);

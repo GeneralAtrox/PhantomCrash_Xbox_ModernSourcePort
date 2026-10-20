@@ -224,6 +224,8 @@ void BattleScene::start_walking(Battle &battle, RobotEntrance &entry) {
   entry.state = scene_state::boss;
   entry.left = scene->frames;
   cinematic_ = entry.robot;
+  // Nothing hurts the players' robots until its walk ends (end_robot).
+  battle.set_players_spared(tuning_.boss_spares_players);
   letterbox_way_ = 1.0F; // the bars slide in (global +0xef320 2)
   music_ = tuning_.boss_music;
 }
@@ -237,6 +239,7 @@ void BattleScene::end_robot(Battle &battle, RobotEntrance &entry) {
   }
   if (cinematic_ == entry.robot) {
     cinematic_ = -1;
+    battle.set_players_spared(false);
     boss_played_ = true; // global +0xef328
     letterbox_way_ = -1.0F;
   }

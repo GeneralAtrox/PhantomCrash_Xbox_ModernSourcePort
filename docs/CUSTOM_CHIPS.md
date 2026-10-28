@@ -260,7 +260,7 @@ and `data/ui/uplift.json` holds the same list; add one string per record to
 both (the five of a family alike, as the originals are), at most about 235
 characters, in the original's style, ending "Modeled after <breed>.". The
 original CHIPs' lines are references to the game's own descriptions
-(`"Guard — {xbe:0x188988}"`, see the README's Data and mods); the shops show
+(`"Guard — {xbe:0x188988}"`, see [Data and mods](PORT_GUIDE.md#data-and-mods)); the shops show
 those with their sight brackets evenly spaced.
 
 ### Bosses' CHIPs
